@@ -13,7 +13,8 @@ export const config = {
     jwtSecret: process.env.JWT_SECRET || 'dev-insecure-secret-change-me',
     jwtExpires: Number(process.env.JWT_EXPIRES_IN) || 86_400000,
     refreshExpires: Number(process.env.REFRESH_EXPIRES_IN) || 604_800000,
-    clientOrigin: process.env.CLIENT_ORIGIN || 'http://localhost:3000',
+    clientOrigins: (process.env.CLIENT_ORIGIN || 'http://localhost:3000,http://localhost:4000')
+        .split(',').map(s => s.trim()).filter(Boolean),
     uploadDir: path.resolve(process.env.UPLOAD_DIR || path.join(__dirname, '../../.data')),
     bootstrap: {
         matricule: Number(process.env.BOOTSTRAP_ADMIN_MATRICULE) || 10001,

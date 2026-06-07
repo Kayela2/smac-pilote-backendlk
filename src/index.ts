@@ -32,7 +32,7 @@ const clientDist = path.join(__dirname, '../public')
 
 const app = express()
 
-app.use(cors({origin: config.clientOrigin, credentials: true}))
+app.use(cors({origin: config.clientOrigins, credentials: true}))
 app.use(express.json())
 app.use(cookieParser())
 
