@@ -100,6 +100,7 @@ export const ModelName = {
   VerificationAvantMiseServiceEchafaudage: 'VerificationAvantMiseServiceEchafaudage',
   Document: 'Document',
   DossierExpertise: 'DossierExpertise',
+  PvEtanchVersion: 'PvEtanchVersion',
   Reserve: 'Reserve'
 } as const
 
@@ -757,6 +758,17 @@ export const DossierExpertiseScalarFieldEnum = {
 } as const
 
 export type DossierExpertiseScalarFieldEnum = (typeof DossierExpertiseScalarFieldEnum)[keyof typeof DossierExpertiseScalarFieldEnum]
+
+
+export const PvEtanchVersionScalarFieldEnum = {
+  id: 'id',
+  idDocumentation: 'idDocumentation',
+  versionNum: 'versionNum',
+  snapshot: 'snapshot',
+  savedAt: 'savedAt'
+} as const
+
+export type PvEtanchVersionScalarFieldEnum = (typeof PvEtanchVersionScalarFieldEnum)[keyof typeof PvEtanchVersionScalarFieldEnum]
 
 
 export const ReserveScalarFieldEnum = {

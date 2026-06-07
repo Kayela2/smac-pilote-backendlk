@@ -36,11 +36,12 @@ const pvInclude = {
     pvReceptionEtancheite: true,
     participants: true,
     reserves: true,
+    pvEtanchVersions: {orderBy: {versionNum: 'asc' as const}},
 } satisfies Prisma.DocumentationInclude
 
 type PvDoc = Prisma.DocumentationGetPayload<{include: typeof pvInclude}>
 
-function mapPv(doc: PvDoc) {
+function mapPvBase(doc: PvDoc) {
     const pv = doc.pvReceptionEtancheite!
     return {
         id: doc.id,
@@ -86,12 +87,24 @@ function mapPv(doc: PvDoc) {
     }
 }
 
+function mapPv(doc: PvDoc) {
+    return {
+        ...mapPvBase(doc),
+        versions: doc.pvEtanchVersions.map(v => ({
+            versionId:  v.id,
+            versionNum: v.versionNum,
+            savedAt:    v.savedAt.toISOString(),
+            snapshot:   v.snapshot,
+        })),
+    }
+}
+
 // ── Service ───────────────────────────────────────────────────────────────────
 
 export const pvEtancheiteService = {
     async findAll(chantierId: string) {
         const docs = await prisma.documentation.findMany({
-            where: {idChantier: chantierId, typeDoc: TypeDocEnum.PVReceptionEtancheite},
+            where:   {idChantier: chantierId, typeDoc: TypeDocEnum.PVReceptionEtancheite},
             include: pvInclude,
             orderBy: {createdAt: 'desc'},
         })
@@ -100,7 +113,7 @@ export const pvEtancheiteService = {
 
     async findById(id: string) {
         const doc = await prisma.documentation.findUnique({
-            where: {id, typeDoc: TypeDocEnum.PVReceptionEtancheite},
+            where:   {id, typeDoc: TypeDocEnum.PVReceptionEtancheite},
             include: pvInclude,
         })
         if (!doc || !doc.pvReceptionEtancheite) return null
@@ -175,9 +188,10 @@ export const pvEtancheiteService = {
 
     async update(id: string, b: UpdatePvEtancheiteRequest): Promise<ReturnType<typeof mapPv> | 'NOT_FOUND'> {
         const existing = await prisma.documentation.findUnique({
-            where: {id, typeDoc: TypeDocEnum.PVReceptionEtancheite},
+            where:   {id, typeDoc: TypeDocEnum.PVReceptionEtancheite},
+            include: pvInclude,
         })
-        if (!existing) return 'NOT_FOUND'
+        if (!existing || !existing.pvReceptionEtancheite) return 'NOT_FOUND'
 
         return prisma.$transaction(async (tx) => {
             await tx.pvReceptionEtancheite.update({
@@ -246,6 +260,21 @@ export const pvEtancheiteService = {
                 include: pvInclude,
             })
             return mapPv(updated)
+        })
+    },
+
+    async createVersion(pvId: string, snapshot: unknown): Promise<void> {
+        const agg = await prisma.pvEtanchVersion.aggregate({
+            where:  {idDocumentation: pvId},
+            _max:   {versionNum: true},
+        })
+        const nextNum = (agg._max.versionNum ?? 0) + 1
+        await prisma.pvEtanchVersion.create({
+            data: {
+                idDocumentation: pvId,
+                versionNum:      nextNum,
+                snapshot:        snapshot as Prisma.InputJsonValue,
+            },
         })
     },
 

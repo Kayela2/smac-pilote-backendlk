@@ -37,6 +37,13 @@ export const pvEtancheiteController = {
         res.json(ok(result, 'PV updated successfully'))
     }),
 
+    createVersion: asyncHandler(async (req, res) => {
+        const {snapshot} = (req.body ?? {}) as {snapshot?: unknown}
+        if (!snapshot) { res.status(406).json(fail('snapshot is required')); return }
+        await pvEtancheiteService.createVersion(req.params.id, snapshot)
+        res.status(201).json(ok(null, 'Version enregistrée'))
+    }),
+
     delete: asyncHandler(async (req, res) => {
         const deleted = await pvEtancheiteService.delete(req.params.id)
         if (!deleted) { res.status(404).json(fail('Not found')); return }

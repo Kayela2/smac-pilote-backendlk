@@ -263,6 +263,11 @@ export type Document = Prisma.DocumentModel
  */
 export type DossierExpertise = Prisma.DossierExpertiseModel
 /**
+ * Model PvEtanchVersion
+ * 
+ */
+export type PvEtanchVersion = Prisma.PvEtanchVersionModel
+/**
  * Model Reserve
  * 
  */
