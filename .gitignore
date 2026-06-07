@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.env
+.env.prod
+.env.dev
+.env.render
+npm-debug.log
+
+#/src/generated/prisma
+#/src/generated/
+/.data/
+/coverage/
+/public/

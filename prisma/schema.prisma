@@ -1,0 +1,836 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ── Users ────────────────────────────────────────────────────────────────────
+
+model User {
+  id          String                  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  matricule   Int                     @unique
+  password    String                  @map("password")
+  role        String
+  phone       String?
+  email       String?                 @unique
+  microsoftId String?                 @unique @map("microsoft_id")
+  enabled     Boolean                 @default(true)
+  locked      Boolean                 @default(false)
+  createdAt   DateTime                @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime                @default(now()) @map("updated_at") @db.Timestamptz(6)
+  person      Person?
+  photo       UserPhoto?
+  documents   ChantierDocumentation[]
+
+  @@map("user_table")
+}
+
+model Person {
+  id              String         @id @db.Uuid
+  lastName        String         @map("last_name")
+  firstName       String?        @map("first_name")
+  gender          String?
+  user            User           @relation(fields: [id], references: [id], onDelete: Cascade)
+  idEtablissement String?        @map("id_etablissement") @db.Uuid
+  etablissement   Etablissement? @relation(fields: [idEtablissement], references: [id])
+
+  @@map("person")
+}
+
+model UserPhoto {
+  id             String   @id @db.Uuid
+  matricule      Int?     @unique
+  profilePicture String?  @map("profile_picture")
+  createdAt      DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt      DateTime @default(now()) @map("updated_at") @db.Timestamptz(6)
+  user           User     @relation(fields: [id], references: [id], onDelete: Cascade)
+
+  @@map("user_photo")
+}
+
+// ── Chantiers ─────────────────────────────────────────────────────────────────
+
+model Chantier {
+  id                String                  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  codeOTP           Int                     @unique @map("otp")
+  name              String?                 @unique
+  description       String?                 @map("description_otp") @db.VarChar(255)
+  codeAgenceSap     String?                 @map("code_agence_sap") @db.VarChar(20)
+  team              String?
+  client            String?
+  address           String?
+  progress          Decimal                 @default(0) @map("progress") @db.Decimal(7, 2)
+  status            String
+  chantierDetailsId String?                 @map("chantier_details_id") @db.Uuid
+  matrResponsable   String?                 @map("matr_responsable") @db.VarChar(20)
+  nomResponsable    String?                 @map("nom_responsable") @db.VarChar(150)
+  matrDemandeur     String?                 @map("matr_demandeur") @db.VarChar(20)
+  nomDemandeur      String?                 @map("nom_demandeur") @db.VarChar(150)
+  adresseChantier   String?                 @map("adresse_chantier")
+  idClient          String?                 @map("id_client") @db.VarChar(20)
+  nomClient         String?                 @map("nom_client") @db.VarChar(150)
+  contactSite       String?                 @map("contact_site") @db.VarChar(150)
+  dateDebut         DateTime?               @map("date_debut") @db.Date
+  facturationIni    Decimal?                @map("facturation_ini") @db.Decimal(15, 2)
+  autresDepensesIni Decimal?                @map("autres_depenses_ini") @db.Decimal(15, 2)
+  materielIni       Decimal?                @map("materiel_ini") @db.Decimal(15, 2)
+  fournituresIni    Decimal?                @map("fournitures_ini") @db.Decimal(15, 2)
+  mainOeuvreIni     Decimal?                @map("main_oeuvre_ini") @db.Decimal(15, 2)
+  facturationVld    Decimal?                @map("facturation_vld") @db.Decimal(15, 2)
+  autresDepensesVld Decimal?                @map("autres_depenses_vld") @db.Decimal(15, 2)
+  materielVld       Decimal?                @map("materiel_vld") @db.Decimal(15, 2)
+  fournituresVld    Decimal?                @map("fournitures_vld") @db.Decimal(15, 2)
+  mainOeuvreVld     Decimal?                @map("main_oeuvre_vld") @db.Decimal(15, 2)
+  typeProjet        String?                 @map("type_projet") @db.VarChar(100)
+  segmentNeu        String?                 @map("segment_neu") @db.VarChar(10)
+  segmentFfb        String?                 @map("segment_ffb") @db.VarChar(10)
+  zoneOtp           String?                 @map("zone_otp") @db.VarChar(10)
+  numDevis          String?                 @map("num_devis") @db.VarChar(50)
+  dateSynchroSap    DateTime?               @map("date_synchro_sap") @db.Timestamp(6)
+  idAgence          String?                 @map("id_agence") @db.Uuid
+  idAo              String?                 @map("id_ao") @db.Uuid
+  agence            Agence?                 @relation(fields: [idAgence], references: [id])
+  ao                Ao?                     @relation(fields: [idAo], references: [id])
+  chantierDetails   ChantierDetails?        @relation(fields: [chantierDetailsId], references: [id])
+  intervenants      ChantierIntervenant[]
+  actions           ChantierAction[]
+  documentation     ChantierDocumentation[]
+  interventions     Intervention[]
+  documentations    Documentation[]
+  folders           Folder[]
+  requiredDocs      ChantierRequiredDoc[]
+  sharedDocs        ChantierSharedDoc[]
+  organisation      ChantierOrganisation?
+  objectifs         ChantierObjectif[]
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @map("updated_at") @db.Timestamptz(6)
+
+  @@index([client])
+  @@index([status])
+  @@index([team])
+  @@map("chantier")
+}
+
+model ChantierDetails {
+  id                     String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  client                 String?
+  finalClient            String?    @map("final_client")
+  address                String?
+  contact                String?
+  responsible            String?
+  architecturalDesign    String?    @map("architectural_design")
+  startDate              DateTime?  @map("start_date") @db.Timestamp(6)
+  expectedEndDate        DateTime?  @map("expected_end_date") @db.Timestamp(6)
+  offerSubmissionDate    DateTime?  @map("offer_submission_date") @db.Timestamp(6)
+  responseDeadline       DateTime?  @map("response_deadline") @db.Time(6)
+  targetDateSMACWork     DateTime?  @map("target_date_smac_work") @db.Timestamp(6)
+  marketType             String?    @map("market_type")
+  chantierType           String?    @map("chantier_type")
+  siteVisit              Boolean    @default(false) @map("site_visit")
+  clusterQuote           String?    @map("cluster_quote")
+  needDelegatedAuthority Boolean    @default(false) @map("need_delegated_authority")
+  technicity             String?
+  linkToAo               String?    @map("link_to_ao")
+  technicalDescription   String?    @map("technical_description")
+  createdAt              DateTime   @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt              DateTime   @default(now()) @map("updated_at") @db.Timestamptz(6)
+  chantier               Chantier[]
+
+  @@map("chantier_details")
+}
+
+// ── Intervenants ─────────────────────────────────────────────────────────────
+
+model Intervenant {
+  id              String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  typePole        String              @map("type_pole")
+  numSAP          Int                 @unique @map("num_sap")
+  typeIntervenant TypeIntervenantEnum @map("type_intervenant")
+  nom             String              @db.VarChar(100)
+  prenom          String              @db.VarChar(100)
+  fullName        String              @map("full_name")
+  matricule       String?             @db.VarChar(50)
+  phone           String?             @map("telephone") @db.VarChar(20)
+  qualification   String?             @db.VarChar(100)
+  mail            String?             @unique @map("email")
+  idAgence        String              @map("id_agence") @db.Uuid
+  createdAt       DateTime            @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt       DateTime            @default(now()) @map("updated_at") @db.Timestamp(6)
+  agence          Agence              @relation(fields: [idAgence], references: [id])
+  interventions   Intervention[]
+
+  address   String?
+  chantiers ChantierIntervenant[]
+  actions   Action[]
+
+  @@index([typePole])
+  @@index([idAgence])
+  @@index([typeIntervenant])
+  @@index([matricule])
+  @@map("intervenant")
+}
+
+model ChantierIntervenant {
+  chantierId    String      @map("chantier_id") @db.Uuid
+  intervenantId String      @map("intervenants_id") @db.Uuid
+  chantier      Chantier    @relation(fields: [chantierId], references: [id], onDelete: Cascade)
+  intervenant   Intervenant @relation(fields: [intervenantId], references: [id], onDelete: Cascade)
+
+  @@id([chantierId, intervenantId])
+  @@map("chantier_intervenants")
+}
+
+// ── Actions ────────────────────────────────────────────────────────────────────
+
+model Action {
+  id               String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  site             String?
+  anomalyRef       String?          @map("anomaly_ref")
+  correctiveAction String?          @map("corrective_action")
+  idResponsible    String           @db.Uuid
+  startDate        DateTime?        @map("start_date") @db.Timestamp(6)
+  dueDate          DateTime?        @map("due_date") @db.Timestamp(6)
+  status           String
+  progress         Int?
+  childIndex       Int?             @map("child_index")
+  createdAt        DateTime         @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt        DateTime         @default(now()) @map("updated_at") @db.Timestamptz(6)
+  chantiers        ChantierAction[]
+  children         ActionChild[]    @relation("parent")
+  childOf          ActionChild[]    @relation("child")
+  previousOf       ActionPrevious[] @relation("action")
+  predecessors     ActionPrevious[] @relation("previous")
+
+  responsible Intervenant @relation(fields: [idResponsible], references: [id])
+
+  @@index([idResponsible])
+  @@index([status])
+  @@map("action")
+}
+
+model ChantierAction {
+  chantierId String   @map("chantier_id") @db.Uuid
+  actionId   String   @map("actions_id") @db.Uuid
+  chantier   Chantier @relation(fields: [chantierId], references: [id], onDelete: Cascade)
+  action     Action   @relation(fields: [actionId], references: [id], onDelete: Cascade)
+
+  @@id([chantierId, actionId])
+  @@map("chantier_actions")
+}
+
+model ActionChild {
+  actionId   String @map("action_id") @db.Uuid
+  childrenId String @map("children_id") @db.Uuid
+  parent     Action @relation("parent", fields: [actionId], references: [id], onDelete: Cascade)
+  child      Action @relation("child", fields: [childrenId], references: [id], onDelete: Cascade)
+
+  @@id([actionId, childrenId])
+  @@map("action_children")
+}
+
+model ActionPrevious {
+  actionId   String @map("action_id") @db.Uuid
+  previousId String @map("previous_id") @db.Uuid
+  action     Action @relation("action", fields: [actionId], references: [id], onDelete: Cascade)
+  previous   Action @relation("previous", fields: [previousId], references: [id], onDelete: Cascade)
+
+  @@id([actionId, previousId])
+  @@map("action_previous")
+}
+
+// ── Chantier Documentation ────────────────────────────────────────────────────
+
+enum ChantierDocumentationStatus {
+  ToDeposit  @map("À Déposer")
+  Deposited  @map("Déposé")
+  InProgress @map("En cours")
+  Archived   @map("Archivé")
+
+  @@map("chantier_documentation_status")
+}
+
+enum ChantierDocumentationMotif {
+  TRANSFERT_AFFAIRE                @map("transfert-affaire")
+  ETUDE_EXECUTION                  @map("etude-execution")
+  DOCUMENT_ETUDE                   @map("document-etude")
+  SUIVI_VISA                       @map("suivi-visa")
+  VISA                             @map("visa")
+  BTE_OBJECTIF                     @map("bte-objectif")
+  BTE_VERSION                      @map("bte-version")
+  DOCUMENTAIRE_LANCEMENT           @map("documentaire-lancement")
+  DOCUMENT_LANCEMENT               @map("document-lancement")
+  EXECUTION                        @map("execution")
+  DOCUMENT_RECEPTION               @map("document-reception")
+  CLOTURE_AFFAIRE                  @map("cloture-affaire")
+  FINANCIAL_MONITORING             @map("financial-monitoring")
+  FINANCIAL_MONITORING_CAUTION     @map("financial-monitoring/caution")
+  FINANCIAL_MONITORING_FACTURATION @map("financial-monitoring/facturation")
+  GUARANTEE_GPA                    @map("guarantee-gpa")
+  GUARANTEE_DECENNALE              @map("guarantee-decennale")
+
+  @@map("chantier_documentation_motif")
+}
+
+model ChantierDocumentation {
+  id                    String                      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  chantierId            String                      @map("chantier_id") @db.Uuid
+  authorId              String                      @map("author_id") @db.Uuid
+  motif                 ChantierDocumentationMotif
+  status                ChantierDocumentationStatus
+  path                  String
+  fileName              String                      @map("file_name")
+  fileNameWithExtension String                      @map("file_name_with_extension")
+  type                  String
+  size                  Float
+  endDate               DateTime?                   @map("end_date") @db.Timestamptz(6)
+  folderId              String?                     @map("folder_id") @db.Uuid
+  createdAt             DateTime                    @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt             DateTime                    @default(now()) @map("updated_at") @db.Timestamptz(6)
+  chantier              Chantier                    @relation(fields: [chantierId], references: [id], onDelete: Cascade)
+  author                User                        @relation(fields: [authorId], references: [id])
+  folder                Folder?                     @relation(fields: [folderId], references: [id], onDelete: SetNull)
+
+  @@index([chantierId])
+  @@index([motif])
+  @@index([folderId])
+  @@map("chantier_documentation")
+}
+
+model ChantierRequiredDoc {
+  chantierId String   @map("chantier_id") @db.Uuid
+  docKey     String   @map("doc_key")
+  chantier   Chantier @relation(fields: [chantierId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@id([chantierId, docKey])
+  @@map("chantier_required_doc")
+}
+
+model ChantierSharedDoc {
+  chantierId String   @map("chantier_id") @db.Uuid
+  docKey     String   @map("doc_key")
+  chantier   Chantier @relation(fields: [chantierId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@id([chantierId, docKey])
+  @@map("chantier_shared_doc")
+}
+
+model ChantierOrganisation {
+  chantierId         String   @id @map("chantier_id") @db.Uuid
+  conditionsAcces    Json     @default("[]") @map("conditions_acces")
+  conditionsStockage Json     @default("[]") @map("conditions_stockage")
+  chantier           Chantier @relation(fields: [chantierId], references: [id], onDelete: Cascade)
+  updatedAt          DateTime @default(now()) @map("updated_at") @db.Timestamptz(6)
+
+  @@map("chantier_organisation")
+}
+
+model ChantierObjectif {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  chantierId String   @map("chantier_id") @db.Uuid
+  objectif   String
+  tache      String?
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt  DateTime @default(now()) @map("updated_at") @db.Timestamptz(6)
+  chantier   Chantier @relation(fields: [chantierId], references: [id], onDelete: Cascade)
+
+  @@index([chantierId])
+  @@map("chantier_objectif")
+}
+
+model Folder {
+  id         String                  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name       String
+  chantierId String                  @map("chantier_id") @db.Uuid
+  parentId   String?                 @map("parent_id") @db.Uuid
+  chantier   Chantier                @relation(fields: [chantierId], references: [id], onDelete: Cascade)
+  parent     Folder?                 @relation("FolderChildren", fields: [parentId], references: [id], onDelete: Cascade)
+  children   Folder[]                @relation("FolderChildren")
+  documents  ChantierDocumentation[]
+  createdAt  DateTime                @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt  DateTime                @default(now()) @map("updated_at") @db.Timestamptz(6)
+
+  @@index([chantierId])
+  @@index([parentId])
+  @@map("folder")
+}
+
+// ── Misc ─────────────────────────────────────────────────────────────────────
+
+model RequestLog {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  clientIp  String?  @map("client_ip")
+  method    String?
+  uri       String?
+  protocol  String?
+  userAgent String?  @map("user_agent")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@map("request_log")
+}
+
+// ── SMAC DB ── Agence / Etablissement / Intervenant ──────────────────────────
+
+enum TypeIntervenantEnum {
+  ConducteurTravaux    @map("conducteur_travaux")
+  CompagnonResponsable @map("compagnon_responsable")
+
+  @@map("type_intervenant_enum")
+}
+
+enum TypeDocEnum {
+  FicheApri                               @map("fiche-apri")
+  Mmt                                     @map("mmt")
+  Ppsps                                   @map("ppsps")
+  EtatsLieux                              @map("etat-lieux")
+  FeuilleEmargement                       @map("feuille-emargement")
+  FicheStarter                            @map("starter")
+  FicheVerificationFourgon                @map("verif-fourg")
+  NoticeEPI                               @map("notice-epi")
+  PVMiseEau                               @map("pv-mise-eau")
+  PVReceptionBetonCharpenteCouverture     @map("pv-recep-beton-charp-couv")
+  PVReceptionBetonCharpenteBardage        @map("pv-recep-beton-charp-bard")
+  PVReceptionBetonFacade                  @map("pv-recep-beton-fac")
+  PVReceptionCharpenteMetalBoisBardage    @map("pv-recep-charp-met-bois-bard")
+  PVReceptionCharpenteMetalBoisCouverture @map("pv-recep-charp-met-bois-couv")
+  PVReceptionEtancheite                   @map("pv-recep-etan")
+  PVReceptionOuvrageArt                   @map("pv-recep-ouv-art")
+  PVReceptionSupportsBetonVoirie          @map("pv-recep-sup-beton-voir")
+  PVReceptionOuvragesSousTraites          @map("pv-recep-ouv-sous-traites")
+  VisitePrevention                        @map("visite-prev")
+  FicheVerificationJournaliereEchafaudage @map("verif-journ-echaf")
+  VerificationAvantMiseServiceEchafaudage @map("verif-avant-mise-serv-echaf")
+  PVReceptionBetonTerrasse                @map("pv-recep-beton-ter")
+
+  @@map("type_doc_enum")
+}
+
+enum StatutAoEnum {
+  EnCours @map("en_cours")
+  Gagne   @map("gagne")
+  Perdu   @map("perdu")
+  Annule  @map("annule")
+
+  @@map("statut_ao_enum")
+}
+
+model Agence {
+  id                 String          @id @default(dbgenerated("gen_random_uuid()")) @map("id_agence") @db.Uuid
+  codeAgence         String          @unique @map("code_agence") @db.VarChar(20)
+  nomAgence          String          @map("nom_agence") @db.VarChar(150)
+  adresseResponsable String?         @map("adresse_responsable")
+  adresseDirecteur   String?         @map("adresse_directeur")
+  createdAt          DateTime        @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt          DateTime        @default(now()) @map("updated_at") @db.Timestamp(6)
+  etablissements     Etablissement[]
+  intervenants       Intervenant[]
+  chantiers          Chantier[]
+
+  @@map("agence")
+}
+
+model Etablissement {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @map("id_etablissement") @db.Uuid
+  adresse1   String   @map("adresse_1") @db.VarChar(255)
+  adresse2   String?  @map("adresse_2") @db.VarChar(255)
+  codePostal String?  @map("code_postal") @db.VarChar(10)
+  ville      String?  @db.VarChar(100)
+  telephone  String?  @db.VarChar(20)
+  email      String?  @db.VarChar(150)
+  codeSap    String?  @map("code_sap") @db.VarChar(50)
+  idAgence   String?  @map("id_agence") @db.Uuid
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt  DateTime @default(now()) @map("updated_at") @db.Timestamp(6)
+  agence     Agence?  @relation(fields: [idAgence], references: [id])
+  persons    Person[]
+
+  @@index([idAgence])
+  @@map("etablissement")
+}
+
+// ── AO (Appel d'Offres) ───────────────────────────────────────────────────────
+
+model Ao {
+  id            String       @id @default(dbgenerated("gen_random_uuid()")) @map("id_ao") @db.Uuid
+  referenceAo   String       @unique @map("reference_ao") @db.VarChar(100)
+  intitule      String?      @db.VarChar(255)
+  dateEmission  DateTime?    @map("date_emission") @db.Date
+  dateLimite    DateTime?    @map("date_limite") @db.Date
+  montantEstime Decimal?     @map("montant_estime") @db.Decimal(15, 2)
+  statut        StatutAoEnum @default(EnCours)
+  idVecteur     String?      @map("id_vecteur") @db.VarChar(100)
+  dateSynchro   DateTime?    @map("date_synchro") @db.Timestamp(6)
+  createdAt     DateTime     @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt     DateTime     @default(now()) @map("updated_at") @db.Timestamp(6)
+  chantiers     Chantier[]
+
+  @@index([statut])
+  @@index([idVecteur])
+  @@map("ao")
+}
+
+model Intervention {
+  id              String        @id @default(dbgenerated("gen_random_uuid()")) @map("id_intervention") @db.Uuid
+  idIntervenant   String        @map("id_intervenant") @db.Uuid
+  idDocumentation String        @map("id_documentation") @db.Uuid
+  idChantier      String        @map("id_chantier") @db.Uuid
+  dateAssignation DateTime      @map("date_assignation") @db.Date
+  description     String?
+  createdAt       DateTime      @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt       DateTime      @default(now()) @map("updated_at") @db.Timestamp(6)
+  intervenant     Intervenant   @relation(fields: [idIntervenant], references: [id])
+  chantier        Chantier      @relation(fields: [idChantier], references: [id])
+  documentation   Documentation @relation(fields: [idDocumentation], references: [id])
+
+  @@index([idIntervenant])
+  @@index([idChantier])
+  @@map("intervention")
+}
+
+// ── Documentation (Table Per Type) ───────────────────────────────────────────
+
+enum TypeFiche {
+  FICHE @map("fiche")
+  PV    @map("pv")
+
+  @@map("type_fiche")
+}
+
+model Fiches {
+  id        String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  code      TypeDocEnum
+  name      String
+  type      TypeFiche
+  createdAt DateTime    @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt DateTime    @default(now()) @map("updated_at") @db.Timestamp(6)
+
+  @@map("fiches")
+}
+
+model Participant {
+  id              String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  idDocumentation String @db.Uuid
+  titre           String
+  nom             String
+  signature       Json
+
+  documentation Documentation @relation(fields: [idDocumentation], references: [id])
+
+  @@map("participant")
+}
+
+model Documentation {
+  id                                      String                                   @id @default(dbgenerated("gen_random_uuid()")) @map("id_documentation") @db.Uuid
+  idChantier                              String                                   @map("id_chantier") @db.Uuid
+  typeDoc                                 TypeDocEnum                              @map("type_doc")
+  createdAt                               DateTime                                 @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt                               DateTime                                 @default(now()) @map("updated_at") @db.Timestamp(6)
+  chantier                                Chantier                                 @relation(fields: [idChantier], references: [id])
+  ficheApri                               FicheApri?
+  mmt                                     Mmt?
+  ppsps                                   Ppsps?
+  etatsLieux                              EtatsLieux?
+  feuilleEmargement                       FeuilleEmargement?
+  ficheStarter                            FicheStarter?
+  ficheVerificationFourgon                FicheVerificationFourgon?
+  noticeEpi                               NoticeEpi?
+  pvMiseEau                               PvMiseEau?
+  pvReceptionBetonCharpenteCouverture     PvReceptionBetonCharpenteCouverture?
+  pvReceptionBetonCharpenteBardage        PvReceptionBetonCharpenteBardage?
+  pvReceptionBetonFacade                  PvReceptionBetonFacade?
+  pvReceptionCharpenteMetalBoisBardage    PvReceptionCharpenteMetalBoisBardage?
+  pvReceptionCharpenteMetalBoisCouv       PvReceptionCharpenteMetalBoisCouverture?
+  pvReceptionEtancheite                   PvReceptionEtancheite?
+  pvReceptionOuvrageArt                   PvReceptionOuvrageArt?
+  pvReceptionSupportsBetonVoirie          PvReceptionSupportsBetonVoirie?
+  pvReceptionOuvragesSousTraites          PvReceptionOuvragesSousTraites?
+  visitePrevention                        VisitePrevention?
+  ficheVerifJournaliereEchafaudage        FicheVerifJournaliereEchafaudage?
+  verificationAvantMiseServiceEchafaudage VerificationAvantMiseServiceEchafaudage?
+  pvTerrasse                              PVTerrasse?
+  documents                               Document[]
+  reserves                                Reserve[]
+  interventions                           Intervention[]
+  participants                            Participant[]
+
+  @@index([idChantier])
+  @@index([typeDoc])
+  @@index([idChantier, typeDoc])
+  @@map("documentation")
+}
+
+model FicheApri {
+  id            String        @id @map("id_fiche_apri") @db.Uuid
+  createdAt     DateTime      @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt     DateTime      @default(now()) @map("updated_at") @db.Timestamp(6)
+  documentation Documentation @relation(fields: [id], references: [id], onDelete: Cascade)
+
+  @@map("fiche_apri")
+}
+
+model Mmt {
+  id            String        @id @map("id_mmt") @db.Uuid
+  createdAt     DateTime      @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt     DateTime      @default(now()) @map("updated_at") @db.Timestamp(6)
+  documentation Documentation @relation(fields: [id], references: [id], onDelete: Cascade)
+
+  @@map("mmt")
+}
+
+model Ppsps {
+  id            String        @id @map("id_ppsps") @db.Uuid
+  createdAt     DateTime      @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt     DateTime      @default(now()) @map("updated_at") @db.Timestamp(6)
+  documentation Documentation @relation(fields: [id], references: [id], onDelete: Cascade)
+
+  @@map("ppsps")
+}
+
+model PVTerrasse {
+  id            String        @id @map("id_pv_terrasse") @db.Uuid
+  createdAt     DateTime      @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt     DateTime      @default(now()) @map("updated_at") @db.Timestamp(6)
+  documentation Documentation @relation(fields: [id], references: [id], onDelete: Cascade)
+
+  @@map("pv_terrasse")
+}
+
+model EtatsLieux {
+  id            String        @id @map("id_etat_lieux") @db.Uuid
+  createdAt     DateTime      @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt     DateTime      @default(now()) @map("updated_at") @db.Timestamp(6)
+  documentation Documentation @relation(fields: [id], references: [id], onDelete: Cascade)
+
+  @@map("etat_lieux")
+}
+
+model FeuilleEmargement {
+  id            String        @id @map("id_feuille_emargement") @db.Uuid
+  createdAt     DateTime      @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt     DateTime      @default(now()) @map("updated_at") @db.Timestamp(6)
+  documentation Documentation @relation(fields: [id], references: [id], onDelete: Cascade)
+
+  @@map("feuille_emargement")
+}
+
+model FicheStarter {
+  id            String        @id @map("id_fiche_starter") @db.Uuid
+  createdAt     DateTime      @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt     DateTime      @default(now()) @map("updated_at") @db.Timestamp(6)
+  documentation Documentation @relation(fields: [id], references: [id], onDelete: Cascade)
+
+  @@map("fiche_starter")
+}
+
+model FicheVerificationFourgon {
+  id            String        @id @map("id_verif_fourg") @db.Uuid
+  createdAt     DateTime      @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt     DateTime      @default(now()) @map("updated_at") @db.Timestamp(6)
+  documentation Documentation @relation(fields: [id], references: [id], onDelete: Cascade)
+
+  @@map("verif_fourg")
+}
+
+model NoticeEpi {
+  id            String        @id @map("id_notice_epi") @db.Uuid
+  createdAt     DateTime      @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt     DateTime      @default(now()) @map("updated_at") @db.Timestamp(6)
+  documentation Documentation @relation(fields: [id], references: [id], onDelete: Cascade)
+
+  @@map("notice_epi")
+}
+
+model PvMiseEau {
+  id            String        @id @map("id_pv_mise_eau") @db.Uuid
+  createdAt     DateTime      @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt     DateTime      @default(now()) @map("updated_at") @db.Timestamp(6)
+  documentation Documentation @relation(fields: [id], references: [id], onDelete: Cascade)
+
+  @@map("pv_mise_eau")
+}
+
+model PvReceptionBetonCharpenteCouverture {
+  id            String        @id @map("id_pv_recep_beton_charp_couv") @db.Uuid
+  createdAt     DateTime      @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt     DateTime      @default(now()) @map("updated_at") @db.Timestamp(6)
+  documentation Documentation @relation(fields: [id], references: [id], onDelete: Cascade)
+
+  @@map("pv_recep_beton_charp_couv")
+}
+
+model PvReceptionBetonCharpenteBardage {
+  id            String        @id @map("id_pv_recep_beton_charp_bard") @db.Uuid
+  createdAt     DateTime      @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt     DateTime      @default(now()) @map("updated_at") @db.Timestamp(6)
+  documentation Documentation @relation(fields: [id], references: [id], onDelete: Cascade)
+
+  @@map("pv_recep_beton_charp_bard")
+}
+
+model PvReceptionBetonFacade {
+  id            String        @id @map("id_pv_recep_beton_fac") @db.Uuid
+  createdAt     DateTime      @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt     DateTime      @default(now()) @map("updated_at") @db.Timestamp(6)
+  documentation Documentation @relation(fields: [id], references: [id], onDelete: Cascade)
+
+  @@map("pv_recep_beton_fac")
+}
+
+model PvReceptionCharpenteMetalBoisBardage {
+  id            String        @id @map("id_pv_recep_charp_met_bois_bard") @db.Uuid
+  createdAt     DateTime      @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt     DateTime      @default(now()) @map("updated_at") @db.Timestamp(6)
+  documentation Documentation @relation(fields: [id], references: [id], onDelete: Cascade)
+
+  @@map("pv_recep_charp_met_bois_bard")
+}
+
+model PvReceptionCharpenteMetalBoisCouverture {
+  id            String        @id @map("id_pv_metal_bois_couv") @db.Uuid
+  createdAt     DateTime      @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt     DateTime      @default(now()) @map("updated_at") @db.Timestamp(6)
+  documentation Documentation @relation(fields: [id], references: [id], onDelete: Cascade)
+
+  @@map("pv_recep_charp_met_bois_couv")
+}
+
+enum PlanReperage {
+  Oui @map("oui")
+  Non @map("non")
+
+  @@map("plan_reperage")
+}
+
+enum NatureTravaux {
+  EtancheiteBeton @map("etancheite-beton")
+  AutreSupport    @map("autre-support")
+
+  @@map("nature_travaux")
+}
+
+enum ConformiteValue {
+  Conforme    @map("conforme")
+  NonConforme @map("non-conforme")
+  SO          @map("SO")
+
+  @@map("conformite_value")
+}
+
+model PvReceptionEtancheite {
+  id String @id @map("id_pv_recep_etan") @db.Uuid
+
+  zoneBatiment             String          @map("zone_batiment")
+  dateInspection           String          @map("date_inspection")
+  responsableChantier      String          @map("responsable_chantier")
+  planReperage             PlanReperage    @map("plan_reperage")
+  natureTravaux            NatureTravaux   @map("nature_travaux")
+  regulariteSupport        ConformiteValue @map("regularite_support")
+  propreteSupport          ConformiteValue @map("proprete_support")
+  pente                    ConformiteValue
+  hauteurEngravure         ConformiteValue @map("hauteur_engravure")
+  profondeurEngravure      ConformiteValue @map("profondeur_engravure")
+  protectionTeteReleves    ConformiteValue @map("protection_tete_releves")
+  propreteSupportReleves   ConformiteValue @map("proprete_support_releves")
+  tremiesLanterneaux       ConformiteValue @map("tremies_lanterneaux")
+  eauxPluviales            ConformiteValue @map("eaux_pluviales")
+  ventilation              ConformiteValue
+  tropPleins               ConformiteValue @map("trop_pleins")
+  jointsDialatation        ConformiteValue @map("joints_dialatation")
+  autresEcartsObservations String?         @map("autres_ecarts_observations")
+  nomSmac                  String          @map("nom_smac")
+  signatureSmac            Json            @map("signature_smac")
+  receptionAcceptee        Boolean         @map("reception_acceptee")
+  miseEnConformiteLe       DateTime        @map("date_mise_en_conformite") @db.Timestamp(6)
+  envoyerEmail             Boolean         @map("envoyer_email")
+  emailDestinataire        String          @map("email_destinataire")
+
+  createdAt     DateTime      @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt     DateTime      @default(now()) @map("updated_at") @db.Timestamp(6)
+  documentation Documentation @relation(fields: [id], references: [id], onDelete: Cascade)
+
+  @@map("pv_recep_etan")
+}
+
+model PvReceptionOuvrageArt {
+  id            String        @id @map("id_pv_recep_ouv_art") @db.Uuid
+  createdAt     DateTime      @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt     DateTime      @default(now()) @map("updated_at") @db.Timestamp(6)
+  documentation Documentation @relation(fields: [id], references: [id], onDelete: Cascade)
+
+  @@map("pv_recep_ouv_art")
+}
+
+model PvReceptionSupportsBetonVoirie {
+  id            String        @id @map("id_pv_recep_sup_beton_voir") @db.Uuid
+  createdAt     DateTime      @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt     DateTime      @default(now()) @map("updated_at") @db.Timestamp(6)
+  documentation Documentation @relation(fields: [id], references: [id], onDelete: Cascade)
+
+  @@map("pv_recep_sup_beton_voir")
+}
+
+model PvReceptionOuvragesSousTraites {
+  id            String        @id @map("id_pv_recep_ouv_sous_traites") @db.Uuid
+  createdAt     DateTime      @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt     DateTime      @default(now()) @map("updated_at") @db.Timestamp(6)
+  documentation Documentation @relation(fields: [id], references: [id], onDelete: Cascade)
+
+  @@map("pv_recep_ouv_sous_traites")
+}
+
+model VisitePrevention {
+  id            String        @id @map("id_visite_prev") @db.Uuid
+  createdAt     DateTime      @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt     DateTime      @default(now()) @map("updated_at") @db.Timestamp(6)
+  documentation Documentation @relation(fields: [id], references: [id], onDelete: Cascade)
+
+  @@map("visite_prev")
+}
+
+model FicheVerifJournaliereEchafaudage {
+  id            String        @id @map("id_verif_journ_echaf") @db.Uuid
+  createdAt     DateTime      @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt     DateTime      @default(now()) @map("updated_at") @db.Timestamp(6)
+  documentation Documentation @relation(fields: [id], references: [id], onDelete: Cascade)
+
+  @@map("verif_journ_echaf")
+}
+
+model VerificationAvantMiseServiceEchafaudage {
+  id            String        @id @map("id_verif_avant_mise_serv_echaf") @db.Uuid
+  createdAt     DateTime      @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt     DateTime      @default(now()) @map("updated_at") @db.Timestamp(6)
+  documentation Documentation @relation(fields: [id], references: [id], onDelete: Cascade)
+
+  @@map("verif_avant_mise_serv_echaf")
+}
+
+model Document {
+  id              String        @id @default(dbgenerated("gen_random_uuid()")) @map("id_document") @db.Uuid
+  idDocumentation String        @map("id_documentation") @db.Uuid
+  urlPdf          String        @map("url_pdf")
+  dateGeneration  DateTime      @default(now()) @map("date_generation") @db.Timestamp(6)
+  documentation   Documentation @relation(fields: [idDocumentation], references: [id], onDelete: Cascade)
+
+  @@index([idDocumentation])
+  @@map("document")
+}
+
+model Reserve {
+  id              String        @id @default(dbgenerated("gen_random_uuid()")) @map("id_reserve") @db.Uuid
+  idDocumentation String        @map("id_documentation") @db.Uuid
+  images          Json          @default("[]") // max 6 images — enforce in application layer (DB-level CHECK not supported by Prisma)
+  localisation    String?
+  details         String
+  createdAt       DateTime      @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt       DateTime      @default(now()) @map("updated_at") @db.Timestamp(6)
+  documentation   Documentation @relation(fields: [idDocumentation], references: [id], onDelete: Cascade)
+
+  @@index([idDocumentation])
+  @@map("reserve")
+}
