@@ -30,6 +30,9 @@ function getMimeType(ext: string): string {
 }
 
 function getContainerClient() {
+    if (!config.azureStorage.connectionString) {
+        throw new Error('AZURE_STORAGE_CONNECTION_STRING non configurée')
+    }
     return BlobServiceClient
         .fromConnectionString(config.azureStorage.connectionString)
         .getContainerClient(config.azureStorage.containerName)
@@ -37,6 +40,10 @@ function getContainerClient() {
 
 export const fileStorageService = {
     async init(): Promise<void> {
+        if (!config.azureStorage.connectionString) {
+            console.warn('[FileStorage] Azure Storage non configuré — upload de fichiers désactivé')
+            return
+        }
         await getContainerClient().createIfNotExists()
     },
 
