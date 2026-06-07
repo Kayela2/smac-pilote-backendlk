@@ -1,14 +1,23 @@
 import {prisma} from '../db/prisma.js'
 import {buildPage} from '../utils/pagination.js'
 import {ProcessStatus} from '../enums.js'
-import type {Prisma, Action} from '../generated/prisma/client.js'
+import type {Prisma} from '../generated/prisma/client.js'
+import {psToEnum, enumToPs} from '../utils/processStatus.js'
 import type {CreateActionRequest, MappedAction, UpdateActionRequest} from '../types.js'
 
-function mapAction(t: Action, children: MappedAction[] | null = null, previous: MappedAction[] | null = null): MappedAction {
+const actionInclude = {
+    children: true,
+    previousOf: true,
+    responsible: {select: {id: true, fullName: true}},
+    chantier: {select: {id: true, name: true, codeOTP: true}},
+} as const
+type ActionWithIncludes = Prisma.ActionGetPayload<{include: typeof actionInclude}>
+
+function mapAction(t: ActionWithIncludes, children: MappedAction[] | null = null, previous: MappedAction[] | null = null): MappedAction {
     return {
-        id: t.id, site: t.site, anomalyRef: t.anomalyRef, correctiveAction: t.correctiveAction,
-        responsible: t.idResponsible, startDate: t.startDate, dueDate: t.dueDate,
-        status: t.status as ProcessStatus, progress: t.progress, childIndex: t.childIndex,
+        id: t.id, chantier: t.chantier, anomalyRef: t.anomalyRef, correctiveAction: t.correctiveAction,
+        responsible: t.responsible, startDate: t.startDate, dueDate: t.dueDate,
+        status: enumToPs(t.status) as ProcessStatus, progress: t.progress, childIndex: t.childIndex,
         children, previous, createdAt: t.createdAt, updatedAt: t.updatedAt,
     }
 }
@@ -17,7 +26,7 @@ async function loadAction(id: string, visited = new Set<string>()): Promise<Mapp
     if (visited.has(id)) return null
     visited.add(id)
 
-    const action = await prisma.action.findUnique({where: {id}, include: {children: true, previousOf: true}})
+    const action = await prisma.action.findUnique({where: {id}, include: actionInclude})
     if (!action) return null
 
     const childSet = new Set(visited)
@@ -53,7 +62,7 @@ const defaultActionOrderBy: Prisma.ActionOrderByWithRelationInput[] = [
 
 function actionOrderBy(field: string, dir: 'asc' | 'desc'): Prisma.ActionOrderByWithRelationInput {
     switch (field) {
-        case 'site':             return {site: dir}
+        case 'chantier':         return {chantier: {name: dir}}
         case 'anomalyRef':       return {anomalyRef: dir}
         case 'correctiveAction': return {correctiveAction: dir}
         case 'responsible':      return {responsible: {fullName: dir}}
@@ -71,13 +80,13 @@ async function paginatedActions(
     const orderBy = sort ? actionOrderBy(sort.field, sort.dir) : defaultActionOrderBy
     const [total, items] = await prisma.$transaction([
         prisma.action.count({where}),
-        prisma.action.findMany({where, orderBy, skip: offset, take: size}),
+        prisma.action.findMany({where, orderBy, skip: offset, take: size, include: actionInclude}),
     ])
     return {total, page: buildPage(items.map(t => mapAction(t)), total, page, size)}
 }
 
 export interface ActionFilters {
-    site?: string
+    idChantier?: string
     anomalyRef?: string
     correctiveAction?: string
     responsible?: string
@@ -89,11 +98,11 @@ export interface ActionFilters {
 
 function buildWhere(f: ActionFilters): Prisma.ActionWhereInput {
     const where: Prisma.ActionWhereInput = {}
-    if (f.site) where.site = {contains: f.site, mode: 'insensitive'}
+    if (f.idChantier) where.idChantier = f.idChantier
     if (f.anomalyRef) where.anomalyRef = {contains: f.anomalyRef, mode: 'insensitive'}
     if (f.correctiveAction) where.correctiveAction = {contains: f.correctiveAction, mode: 'insensitive'}
     if (f.responsible) where.responsible = {fullName: {contains: f.responsible, mode: 'insensitive'}}
-    if (f.status) where.status = f.status
+    if (f.status) where.status = psToEnum(f.status)
     if (f.dueDateAfter || f.dueDateBefore) {
         where.dueDate = {...(f.dueDateAfter ? {gte: f.dueDateAfter} : {}), ...(f.dueDateBefore ? {lte: f.dueDateBefore} : {})}
     } else if (f.dueDate) {
@@ -108,11 +117,11 @@ export const actionsService = {
     async create(b: CreateActionRequest): Promise<MappedAction> {
         const action = await prisma.action.create({
             data: {
-                site: b.site ?? null, anomalyRef: b.anomalyRef ?? null,
+                idChantier: b.idChantier, anomalyRef: b.anomalyRef ?? null,
                 correctiveAction: b.correctiveAction ?? null, idResponsible: b.responsible!,
                 startDate: b.startDate ? new Date(b.startDate) : null,
                 dueDate: b.dueDate ? new Date(b.dueDate) : null,
-                status: b.status ?? ProcessStatus.INITIALIZED,
+                status: psToEnum(b.status ?? ProcessStatus.INITIALIZED),
             },
         })
         return (await loadAction(action.id))!
@@ -124,11 +133,11 @@ export const actionsService = {
         const childIndex = await prisma.actionChild.count({where: {actionId}})
         await prisma.action.create({
             data: {
-                site: b.site ?? null, anomalyRef: b.anomalyRef ?? null,
+                idChantier: b.idChantier, anomalyRef: b.anomalyRef ?? null,
                 correctiveAction: b.correctiveAction ?? null, idResponsible: b.responsible!,
                 startDate: b.startDate ? new Date(b.startDate) : null,
                 dueDate: b.dueDate ? new Date(b.dueDate) : null,
-                status: b.status ?? ProcessStatus.INITIALIZED, childIndex,
+                status: psToEnum(b.status ?? ProcessStatus.INITIALIZED), childIndex,
                 childOf: {create: {actionId}},
             },
         })
@@ -140,14 +149,14 @@ export const actionsService = {
         if (!parent) return null
         let childIndex = await prisma.actionChild.count({where: {actionId}})
         for (const b of items) {
-            if (!b.responsible) continue
+            if (!b.responsible || !b.idChantier) continue
             await prisma.action.create({
                 data: {
-                    site: b.site ?? null, anomalyRef: b.anomalyRef ?? null,
+                    idChantier: b.idChantier, anomalyRef: b.anomalyRef ?? null,
                     correctiveAction: b.correctiveAction ?? null, idResponsible: b.responsible!,
                     startDate: b.startDate ? new Date(b.startDate) : null,
                     dueDate: b.dueDate ? new Date(b.dueDate) : null,
-                    status: b.status ?? ProcessStatus.INITIALIZED, childIndex: childIndex++,
+                    status: psToEnum(b.status ?? ProcessStatus.INITIALIZED), childIndex: childIndex++,
                     childOf: {create: {actionId}},
                 },
             })
@@ -165,11 +174,11 @@ export const actionsService = {
             await prisma.action.update({
                 where: {id},
                 data: {
-                    site: b.site ?? undefined, anomalyRef: b.anomalyRef ?? undefined,
+                    idChantier: b.idChantier ?? undefined, anomalyRef: b.anomalyRef ?? undefined,
                     correctiveAction: b.correctiveAction ?? undefined,
                     idResponsible: b.responsible ?? undefined,
                     dueDate: b.dueDate ? new Date(b.dueDate) : undefined,
-                    status: b.status ?? undefined, updatedAt: new Date(),
+                    status: b.status ? psToEnum(b.status) : undefined, updatedAt: new Date(),
                 },
             })
             return (await loadAction(id))!

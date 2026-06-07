@@ -26,6 +26,8 @@ export type AggregateEtablissement = {
 
 export type EtablissementMinAggregateOutputType = {
   id: string | null
+  codeEtablissement: string | null
+  nomEtablissement: string | null
   adresse1: string | null
   adresse2: string | null
   codePostal: string | null
@@ -40,6 +42,8 @@ export type EtablissementMinAggregateOutputType = {
 
 export type EtablissementMaxAggregateOutputType = {
   id: string | null
+  codeEtablissement: string | null
+  nomEtablissement: string | null
   adresse1: string | null
   adresse2: string | null
   codePostal: string | null
@@ -54,6 +58,8 @@ export type EtablissementMaxAggregateOutputType = {
 
 export type EtablissementCountAggregateOutputType = {
   id: number
+  codeEtablissement: number
+  nomEtablissement: number
   adresse1: number
   adresse2: number
   codePostal: number
@@ -70,6 +76,8 @@ export type EtablissementCountAggregateOutputType = {
 
 export type EtablissementMinAggregateInputType = {
   id?: true
+  codeEtablissement?: true
+  nomEtablissement?: true
   adresse1?: true
   adresse2?: true
   codePostal?: true
@@ -84,6 +92,8 @@ export type EtablissementMinAggregateInputType = {
 
 export type EtablissementMaxAggregateInputType = {
   id?: true
+  codeEtablissement?: true
+  nomEtablissement?: true
   adresse1?: true
   adresse2?: true
   codePostal?: true
@@ -98,6 +108,8 @@ export type EtablissementMaxAggregateInputType = {
 
 export type EtablissementCountAggregateInputType = {
   id?: true
+  codeEtablissement?: true
+  nomEtablissement?: true
   adresse1?: true
   adresse2?: true
   codePostal?: true
@@ -185,6 +197,8 @@ export type EtablissementGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
 
 export type EtablissementGroupByOutputType = {
   id: string
+  codeEtablissement: string
+  nomEtablissement: string
   adresse1: string
   adresse2: string | null
   codePostal: string | null
@@ -220,6 +234,8 @@ export type EtablissementWhereInput = {
   OR?: Prisma.EtablissementWhereInput[]
   NOT?: Prisma.EtablissementWhereInput | Prisma.EtablissementWhereInput[]
   id?: Prisma.UuidFilter<"Etablissement"> | string
+  codeEtablissement?: Prisma.StringFilter<"Etablissement"> | string
+  nomEtablissement?: Prisma.StringFilter<"Etablissement"> | string
   adresse1?: Prisma.StringFilter<"Etablissement"> | string
   adresse2?: Prisma.StringNullableFilter<"Etablissement"> | string | null
   codePostal?: Prisma.StringNullableFilter<"Etablissement"> | string | null
@@ -236,6 +252,8 @@ export type EtablissementWhereInput = {
 
 export type EtablissementOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  codeEtablissement?: Prisma.SortOrder
+  nomEtablissement?: Prisma.SortOrder
   adresse1?: Prisma.SortOrder
   adresse2?: Prisma.SortOrderInput | Prisma.SortOrder
   codePostal?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -252,9 +270,11 @@ export type EtablissementOrderByWithRelationInput = {
 
 export type EtablissementWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  codeEtablissement?: string
   AND?: Prisma.EtablissementWhereInput | Prisma.EtablissementWhereInput[]
   OR?: Prisma.EtablissementWhereInput[]
   NOT?: Prisma.EtablissementWhereInput | Prisma.EtablissementWhereInput[]
+  nomEtablissement?: Prisma.StringFilter<"Etablissement"> | string
   adresse1?: Prisma.StringFilter<"Etablissement"> | string
   adresse2?: Prisma.StringNullableFilter<"Etablissement"> | string | null
   codePostal?: Prisma.StringNullableFilter<"Etablissement"> | string | null
@@ -267,10 +287,12 @@ export type EtablissementWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Etablissement"> | Date | string
   agence?: Prisma.XOR<Prisma.AgenceNullableScalarRelationFilter, Prisma.AgenceWhereInput> | null
   persons?: Prisma.PersonListRelationFilter
-}, "id">
+}, "id" | "codeEtablissement">
 
 export type EtablissementOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  codeEtablissement?: Prisma.SortOrder
+  nomEtablissement?: Prisma.SortOrder
   adresse1?: Prisma.SortOrder
   adresse2?: Prisma.SortOrderInput | Prisma.SortOrder
   codePostal?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -291,6 +313,8 @@ export type EtablissementScalarWhereWithAggregatesInput = {
   OR?: Prisma.EtablissementScalarWhereWithAggregatesInput[]
   NOT?: Prisma.EtablissementScalarWhereWithAggregatesInput | Prisma.EtablissementScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"Etablissement"> | string
+  codeEtablissement?: Prisma.StringWithAggregatesFilter<"Etablissement"> | string
+  nomEtablissement?: Prisma.StringWithAggregatesFilter<"Etablissement"> | string
   adresse1?: Prisma.StringWithAggregatesFilter<"Etablissement"> | string
   adresse2?: Prisma.StringNullableWithAggregatesFilter<"Etablissement"> | string | null
   codePostal?: Prisma.StringNullableWithAggregatesFilter<"Etablissement"> | string | null
@@ -305,6 +329,8 @@ export type EtablissementScalarWhereWithAggregatesInput = {
 
 export type EtablissementCreateInput = {
   id?: string
+  codeEtablissement: string
+  nomEtablissement: string
   adresse1: string
   adresse2?: string | null
   codePostal?: string | null
@@ -320,6 +346,8 @@ export type EtablissementCreateInput = {
 
 export type EtablissementUncheckedCreateInput = {
   id?: string
+  codeEtablissement: string
+  nomEtablissement: string
   adresse1: string
   adresse2?: string | null
   codePostal?: string | null
@@ -335,6 +363,8 @@ export type EtablissementUncheckedCreateInput = {
 
 export type EtablissementUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  codeEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
+  nomEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
   adresse1?: Prisma.StringFieldUpdateOperationsInput | string
   adresse2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codePostal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -350,6 +380,8 @@ export type EtablissementUpdateInput = {
 
 export type EtablissementUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  codeEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
+  nomEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
   adresse1?: Prisma.StringFieldUpdateOperationsInput | string
   adresse2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codePostal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -365,6 +397,8 @@ export type EtablissementUncheckedUpdateInput = {
 
 export type EtablissementCreateManyInput = {
   id?: string
+  codeEtablissement: string
+  nomEtablissement: string
   adresse1: string
   adresse2?: string | null
   codePostal?: string | null
@@ -379,6 +413,8 @@ export type EtablissementCreateManyInput = {
 
 export type EtablissementUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  codeEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
+  nomEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
   adresse1?: Prisma.StringFieldUpdateOperationsInput | string
   adresse2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codePostal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -392,6 +428,8 @@ export type EtablissementUpdateManyMutationInput = {
 
 export type EtablissementUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  codeEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
+  nomEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
   adresse1?: Prisma.StringFieldUpdateOperationsInput | string
   adresse2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codePostal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -421,6 +459,8 @@ export type EtablissementOrderByRelationAggregateInput = {
 
 export type EtablissementCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  codeEtablissement?: Prisma.SortOrder
+  nomEtablissement?: Prisma.SortOrder
   adresse1?: Prisma.SortOrder
   adresse2?: Prisma.SortOrder
   codePostal?: Prisma.SortOrder
@@ -435,6 +475,8 @@ export type EtablissementCountOrderByAggregateInput = {
 
 export type EtablissementMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  codeEtablissement?: Prisma.SortOrder
+  nomEtablissement?: Prisma.SortOrder
   adresse1?: Prisma.SortOrder
   adresse2?: Prisma.SortOrder
   codePostal?: Prisma.SortOrder
@@ -449,6 +491,8 @@ export type EtablissementMaxOrderByAggregateInput = {
 
 export type EtablissementMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  codeEtablissement?: Prisma.SortOrder
+  nomEtablissement?: Prisma.SortOrder
   adresse1?: Prisma.SortOrder
   adresse2?: Prisma.SortOrder
   codePostal?: Prisma.SortOrder
@@ -521,6 +565,8 @@ export type EtablissementUncheckedUpdateManyWithoutAgenceNestedInput = {
 
 export type EtablissementCreateWithoutPersonsInput = {
   id?: string
+  codeEtablissement: string
+  nomEtablissement: string
   adresse1: string
   adresse2?: string | null
   codePostal?: string | null
@@ -535,6 +581,8 @@ export type EtablissementCreateWithoutPersonsInput = {
 
 export type EtablissementUncheckedCreateWithoutPersonsInput = {
   id?: string
+  codeEtablissement: string
+  nomEtablissement: string
   adresse1: string
   adresse2?: string | null
   codePostal?: string | null
@@ -565,6 +613,8 @@ export type EtablissementUpdateToOneWithWhereWithoutPersonsInput = {
 
 export type EtablissementUpdateWithoutPersonsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  codeEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
+  nomEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
   adresse1?: Prisma.StringFieldUpdateOperationsInput | string
   adresse2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codePostal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -579,6 +629,8 @@ export type EtablissementUpdateWithoutPersonsInput = {
 
 export type EtablissementUncheckedUpdateWithoutPersonsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  codeEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
+  nomEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
   adresse1?: Prisma.StringFieldUpdateOperationsInput | string
   adresse2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codePostal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -593,6 +645,8 @@ export type EtablissementUncheckedUpdateWithoutPersonsInput = {
 
 export type EtablissementCreateWithoutAgenceInput = {
   id?: string
+  codeEtablissement: string
+  nomEtablissement: string
   adresse1: string
   adresse2?: string | null
   codePostal?: string | null
@@ -607,6 +661,8 @@ export type EtablissementCreateWithoutAgenceInput = {
 
 export type EtablissementUncheckedCreateWithoutAgenceInput = {
   id?: string
+  codeEtablissement: string
+  nomEtablissement: string
   adresse1: string
   adresse2?: string | null
   codePostal?: string | null
@@ -650,6 +706,8 @@ export type EtablissementScalarWhereInput = {
   OR?: Prisma.EtablissementScalarWhereInput[]
   NOT?: Prisma.EtablissementScalarWhereInput | Prisma.EtablissementScalarWhereInput[]
   id?: Prisma.UuidFilter<"Etablissement"> | string
+  codeEtablissement?: Prisma.StringFilter<"Etablissement"> | string
+  nomEtablissement?: Prisma.StringFilter<"Etablissement"> | string
   adresse1?: Prisma.StringFilter<"Etablissement"> | string
   adresse2?: Prisma.StringNullableFilter<"Etablissement"> | string | null
   codePostal?: Prisma.StringNullableFilter<"Etablissement"> | string | null
@@ -664,6 +722,8 @@ export type EtablissementScalarWhereInput = {
 
 export type EtablissementCreateManyAgenceInput = {
   id?: string
+  codeEtablissement: string
+  nomEtablissement: string
   adresse1: string
   adresse2?: string | null
   codePostal?: string | null
@@ -677,6 +737,8 @@ export type EtablissementCreateManyAgenceInput = {
 
 export type EtablissementUpdateWithoutAgenceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  codeEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
+  nomEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
   adresse1?: Prisma.StringFieldUpdateOperationsInput | string
   adresse2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codePostal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -691,6 +753,8 @@ export type EtablissementUpdateWithoutAgenceInput = {
 
 export type EtablissementUncheckedUpdateWithoutAgenceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  codeEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
+  nomEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
   adresse1?: Prisma.StringFieldUpdateOperationsInput | string
   adresse2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codePostal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -705,6 +769,8 @@ export type EtablissementUncheckedUpdateWithoutAgenceInput = {
 
 export type EtablissementUncheckedUpdateManyWithoutAgenceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  codeEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
+  nomEtablissement?: Prisma.StringFieldUpdateOperationsInput | string
   adresse1?: Prisma.StringFieldUpdateOperationsInput | string
   adresse2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codePostal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -749,6 +815,8 @@ export type EtablissementCountOutputTypeCountPersonsArgs<ExtArgs extends runtime
 
 export type EtablissementSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  codeEtablissement?: boolean
+  nomEtablissement?: boolean
   adresse1?: boolean
   adresse2?: boolean
   codePostal?: boolean
@@ -766,6 +834,8 @@ export type EtablissementSelect<ExtArgs extends runtime.Types.Extensions.Interna
 
 export type EtablissementSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  codeEtablissement?: boolean
+  nomEtablissement?: boolean
   adresse1?: boolean
   adresse2?: boolean
   codePostal?: boolean
@@ -781,6 +851,8 @@ export type EtablissementSelectCreateManyAndReturn<ExtArgs extends runtime.Types
 
 export type EtablissementSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  codeEtablissement?: boolean
+  nomEtablissement?: boolean
   adresse1?: boolean
   adresse2?: boolean
   codePostal?: boolean
@@ -796,6 +868,8 @@ export type EtablissementSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
 
 export type EtablissementSelectScalar = {
   id?: boolean
+  codeEtablissement?: boolean
+  nomEtablissement?: boolean
   adresse1?: boolean
   adresse2?: boolean
   codePostal?: boolean
@@ -808,7 +882,7 @@ export type EtablissementSelectScalar = {
   updatedAt?: boolean
 }
 
-export type EtablissementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "adresse1" | "adresse2" | "codePostal" | "ville" | "telephone" | "email" | "codeSap" | "idAgence" | "createdAt" | "updatedAt", ExtArgs["result"]["etablissement"]>
+export type EtablissementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "codeEtablissement" | "nomEtablissement" | "adresse1" | "adresse2" | "codePostal" | "ville" | "telephone" | "email" | "codeSap" | "idAgence" | "createdAt" | "updatedAt", ExtArgs["result"]["etablissement"]>
 export type EtablissementInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   agence?: boolean | Prisma.Etablissement$agenceArgs<ExtArgs>
   persons?: boolean | Prisma.Etablissement$personsArgs<ExtArgs>
@@ -829,6 +903,8 @@ export type $EtablissementPayload<ExtArgs extends runtime.Types.Extensions.Inter
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
+    codeEtablissement: string
+    nomEtablissement: string
     adresse1: string
     adresse2: string | null
     codePostal: string | null
@@ -1265,6 +1341,8 @@ export interface Prisma__EtablissementClient<T, Null = never, ExtArgs extends ru
  */
 export interface EtablissementFieldRefs {
   readonly id: Prisma.FieldRef<"Etablissement", 'String'>
+  readonly codeEtablissement: Prisma.FieldRef<"Etablissement", 'String'>
+  readonly nomEtablissement: Prisma.FieldRef<"Etablissement", 'String'>
   readonly adresse1: Prisma.FieldRef<"Etablissement", 'String'>
   readonly adresse2: Prisma.FieldRef<"Etablissement", 'String'>
   readonly codePostal: Prisma.FieldRef<"Etablissement", 'String'>

@@ -41,6 +41,7 @@ DROP TABLE IF EXISTS "chantier_required_doc" CASCADE;
 DROP TABLE IF EXISTS "chantier_shared_doc" CASCADE;
 DROP TABLE IF EXISTS "chantier_documentation" CASCADE;
 DROP TABLE IF EXISTS "folder" CASCADE;
+DROP TABLE IF EXISTS "dossier_expertise" CASCADE;
 DROP TABLE IF EXISTS "chantier" CASCADE;
 DROP TABLE IF EXISTS "chantier_details" CASCADE;
 DROP TABLE IF EXISTS "ao" CASCADE;
@@ -61,6 +62,9 @@ DROP TYPE IF EXISTS "type_fiche" CASCADE;
 DROP TYPE IF EXISTS "plan_reperage" CASCADE;
 DROP TYPE IF EXISTS "nature_travaux" CASCADE;
 DROP TYPE IF EXISTS "conformite_value" CASCADE;
+DROP TYPE IF EXISTS "type_garantie_enum" CASCADE;
+DROP TYPE IF EXISTS "statut_dossier_enum" CASCADE;
+DROP TYPE IF EXISTS "process_status_enum" CASCADE;
 
 -- CreateSchema
 CREATE SCHEMA IF NOT EXISTS "public";
@@ -71,7 +75,7 @@ CREATE SCHEMA IF NOT EXISTS "public";
 
 CREATE TYPE "chantier_documentation_status" AS ENUM ('À Déposer', 'Déposé', 'En cours', 'Archivé');
 
-CREATE TYPE "chantier_documentation_motif" AS ENUM ('transfert-affaire', 'etude-execution', 'document-etude', 'suivi-visa', 'visa', 'bte-objectif', 'bte-version', 'documentaire-lancement', 'document-lancement', 'execution', 'document-reception', 'cloture-affaire', 'financial-monitoring', 'financial-monitoring/caution', 'financial-monitoring/facturation', 'guarantee-gpa', 'guarantee-decennale');
+CREATE TYPE "chantier_documentation_motif" AS ENUM ('transfert-affaire', 'etude-execution', 'document-etude', 'suivi-visa', 'visa', 'bte-objectif', 'bte-version', 'bte-validation', 'documentaire-lancement', 'document-lancement', 'execution', 'document-reception', 'cloture-affaire', 'financial-monitoring', 'financial-monitoring/caution', 'financial-monitoring/facturation', 'guarantee-gpa', 'guarantee-decennale');
 
 CREATE TYPE "type_intervenant_enum" AS ENUM ('conducteur_travaux', 'compagnon_responsable');
 
@@ -109,6 +113,22 @@ CREATE TYPE "plan_reperage" AS ENUM ('oui', 'non');
 CREATE TYPE "nature_travaux" AS ENUM ('etancheite-beton', 'autre-support');
 
 CREATE TYPE "conformite_value" AS ENUM ('conforme', 'non-conforme', 'SO');
+
+CREATE TYPE "type_garantie_enum" AS ENUM ('gpa', 'decennale');
+
+CREATE TYPE "statut_dossier_enum" AS ENUM ('en_cours', 'cloture');
+
+CREATE TYPE "process_status_enum" AS ENUM (
+    'Planifié',
+    'Initialisé',
+    'En cours',
+    'En attente',
+    'Pas commencé',
+    'Terminé',
+    'Annulé',
+    'Accepté',
+    'Refusé'
+);
 
 CREATE TABLE "user_table" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
@@ -156,7 +176,7 @@ CREATE TABLE "chantier" (
     "client" TEXT,
     "address" TEXT,
     "progress" DECIMAL(7,2) NOT NULL DEFAULT 0,
-    "status" TEXT NOT NULL,
+    "status" "process_status_enum" NOT NULL DEFAULT 'Initialisé',
     "chantier_details_id" UUID,
     "matr_responsable" VARCHAR(20),
     "nom_responsable" VARCHAR(150),
@@ -247,13 +267,13 @@ CREATE TABLE "chantier_intervenants" (
 
 CREATE TABLE "action" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
-    "site" TEXT,
     "anomaly_ref" TEXT,
     "corrective_action" TEXT,
-    "idResponsible" UUID NOT NULL,
+    "id_responsible" UUID NOT NULL,
+    "id_chantier" UUID NOT NULL,
     "start_date" TIMESTAMP(6),
     "due_date" TIMESTAMP(6),
-    "status" TEXT NOT NULL,
+    "status" "process_status_enum" NOT NULL DEFAULT 'Initialisé',
     "progress" INTEGER,
     "child_index" INTEGER,
     "created_at" TIMESTAMPTZ(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -296,6 +316,9 @@ CREATE TABLE "chantier_documentation" (
     "size" DOUBLE PRECISION NOT NULL,
     "end_date" TIMESTAMPTZ(6),
     "folder_id" UUID,
+    "version"     INTEGER,
+    "validateur"  TEXT,
+    "commentaire" TEXT,
     "created_at" TIMESTAMPTZ(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMPTZ(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -329,10 +352,46 @@ CREATE TABLE "chantier_objectif" (
     CONSTRAINT "chantier_objectif_pkey" PRIMARY KEY ("id")
 );
 
+CREATE TABLE "dossier_expertise" (
+    "id"               UUID NOT NULL DEFAULT gen_random_uuid(),
+    "reference"        TEXT NOT NULL,
+    "id_chantier"      UUID NOT NULL,
+    "type_garantie"    "type_garantie_enum" NOT NULL,
+    "objet"            TEXT NOT NULL,
+    "expert_designe"   TEXT,
+    "avocat_smac"      TEXT,
+    "date_ouverture"   DATE NOT NULL,
+    "statut"           "statut_dossier_enum" NOT NULL DEFAULT 'en_cours',
+    "juridiction"      TEXT,
+    "date_assignation" DATE,
+    "demandeur"        TEXT,
+    "defendeurs"       TEXT,
+    "griefs"           TEXT,
+    "created_at"       TIMESTAMPTZ(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_at"       TIMESTAMPTZ(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "dossier_expertise_pkey" PRIMARY KEY ("id")
+);
+
 CREATE TABLE "chantier_organisation" (
-    "chantier_id" UUID NOT NULL,
-    "conditions_acces" JSONB NOT NULL DEFAULT '[]',
-    "conditions_stockage" JSONB NOT NULL DEFAULT '[]',
+    "chantier_id"                  UUID NOT NULL,
+    "heure_depart"                 TEXT,
+    "heure_fin"                    TEXT,
+    "cles"                         TEXT,
+    "badges"                       TEXT,
+    "papiers_identite"             TEXT,
+    "poste_controle"               TEXT,
+    "acces"                        TEXT,
+    "mise_en_oeuvre"               TEXT,
+    "manutention"                  TEXT,
+    "materiel_manutention_levage"  TEXT,
+    "precautions_particulieres"    TEXT,
+    "demarrage_previsionnel_le"    TEXT,
+    "fin_previsionnel_le"          TEXT,
+    "tache_executee"               TEXT,
+    "quantite"                     TEXT,
+    "temps_prevus"                 TEXT,
+    "created_at" TIMESTAMPTZ(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMPTZ(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "chantier_organisation_pkey" PRIMARY KEY ("chantier_id")
@@ -375,6 +434,8 @@ CREATE TABLE "agence" (
 
 CREATE TABLE "etablissement" (
     "id_etablissement" UUID NOT NULL DEFAULT gen_random_uuid(),
+    "code_etab" VARCHAR(20) NOT NULL,
+    "nom_etab" VARCHAR(150) NOT NULL,
     "adresse_1" VARCHAR(255) NOT NULL,
     "adresse_2" VARCHAR(255),
     "code_postal" VARCHAR(10),
@@ -433,6 +494,7 @@ CREATE TABLE "documentation" (
     "id_documentation" UUID NOT NULL DEFAULT gen_random_uuid(),
     "id_chantier" UUID NOT NULL,
     "type_doc" "type_doc_enum" NOT NULL,
+    "status" "process_status_enum" NOT NULL DEFAULT 'Pas commencé',
     "created_at" TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -587,6 +649,7 @@ CREATE TABLE "pv_recep_etan" (
     "proprete_support_releves" "conformite_value" NOT NULL,
     "tremies_lanterneaux" "conformite_value" NOT NULL,
     "eaux_pluviales" "conformite_value" NOT NULL,
+    "ventilation" "conformite_value" NOT NULL,
     "trop_pleins" "conformite_value" NOT NULL,
     "joints_dialatation" "conformite_value" NOT NULL,
     "autres_ecarts_observations" TEXT,
@@ -653,6 +716,7 @@ CREATE TABLE "verif_avant_mise_serv_echaf" (
 CREATE TABLE "document" (
     "id_document" UUID NOT NULL DEFAULT gen_random_uuid(),
     "id_documentation" UUID NOT NULL,
+    "version" INTEGER NOT NULL,
     "url_pdf" TEXT NOT NULL,
     "date_generation" TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -717,7 +781,10 @@ CREATE INDEX "intervenant_type_intervenant_idx" ON "intervenant"("type_intervena
 CREATE INDEX "intervenant_matricule_idx" ON "intervenant"("matricule");
 
 -- CreateIndex
-CREATE INDEX "action_idResponsible_idx" ON "action"("idResponsible");
+CREATE INDEX "action_id_responsible_idx" ON "action"("id_responsible");
+
+-- CreateIndex
+CREATE INDEX "action_id_chantier_idx" ON "action"("id_chantier");
 
 -- CreateIndex
 CREATE INDEX "action_status_idx" ON "action"("status");
@@ -741,7 +808,16 @@ CREATE INDEX "folder_parent_id_idx" ON "folder"("parent_id");
 CREATE UNIQUE INDEX "agence_code_agence_key" ON "agence"("code_agence");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "etablissement_code_etab_key" ON "etablissement"("code_etab");
+
+-- CreateIndex
 CREATE INDEX "etablissement_id_agence_idx" ON "etablissement"("id_agence");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "dossier_expertise_reference_key" ON "dossier_expertise"("reference");
+
+-- CreateIndex
+CREATE INDEX "dossier_expertise_statut_idx" ON "dossier_expertise"("statut");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "ao_reference_ao_key" ON "ao"("reference_ao");
@@ -769,6 +845,9 @@ CREATE INDEX "documentation_id_chantier_type_doc_idx" ON "documentation"("id_cha
 
 -- CreateIndex
 CREATE INDEX "document_id_documentation_idx" ON "document"("id_documentation");
+
+-- CreateIndex
+CREATE INDEX "document_version_idx" ON "document"("version");
 
 -- CreateIndex
 CREATE INDEX "reserve_id_documentation_idx" ON "reserve"("id_documentation");
@@ -801,7 +880,10 @@ ALTER TABLE "chantier_intervenants" ADD CONSTRAINT "chantier_intervenants_chanti
 ALTER TABLE "chantier_intervenants" ADD CONSTRAINT "chantier_intervenants_intervenants_id_fkey" FOREIGN KEY ("intervenants_id") REFERENCES "intervenant"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "action" ADD CONSTRAINT "action_idResponsible_fkey" FOREIGN KEY ("idResponsible") REFERENCES "intervenant"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "action" ADD CONSTRAINT "action_id_responsible_fkey" FOREIGN KEY ("id_responsible") REFERENCES "intervenant"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "action" ADD CONSTRAINT "action_id_chantier_fkey" FOREIGN KEY ("id_chantier") REFERENCES "chantier"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "chantier_actions" ADD CONSTRAINT "chantier_actions_chantier_id_fkey" FOREIGN KEY ("chantier_id") REFERENCES "chantier"("id") ON DELETE CASCADE ON UPDATE CASCADE;
@@ -835,6 +917,9 @@ ALTER TABLE "chantier_required_doc" ADD CONSTRAINT "chantier_required_doc_chanti
 
 -- AddForeignKey
 ALTER TABLE "chantier_shared_doc" ADD CONSTRAINT "chantier_shared_doc_chantier_id_fkey" FOREIGN KEY ("chantier_id") REFERENCES "chantier"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "dossier_expertise" ADD CONSTRAINT "dossier_expertise_id_chantier_fkey" FOREIGN KEY ("id_chantier") REFERENCES "chantier"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "chantier_organisation" ADD CONSTRAINT "chantier_organisation_chantier_id_fkey" FOREIGN KEY ("chantier_id") REFERENCES "chantier"("id") ON DELETE CASCADE ON UPDATE CASCADE;

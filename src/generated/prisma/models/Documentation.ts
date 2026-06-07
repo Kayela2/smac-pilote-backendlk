@@ -28,6 +28,7 @@ export type DocumentationMinAggregateOutputType = {
   id: string | null
   idChantier: string | null
   typeDoc: $Enums.TypeDocEnum | null
+  status: $Enums.ProcessStatusEnum | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -36,6 +37,7 @@ export type DocumentationMaxAggregateOutputType = {
   id: string | null
   idChantier: string | null
   typeDoc: $Enums.TypeDocEnum | null
+  status: $Enums.ProcessStatusEnum | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -44,6 +46,7 @@ export type DocumentationCountAggregateOutputType = {
   id: number
   idChantier: number
   typeDoc: number
+  status: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -54,6 +57,7 @@ export type DocumentationMinAggregateInputType = {
   id?: true
   idChantier?: true
   typeDoc?: true
+  status?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -62,6 +66,7 @@ export type DocumentationMaxAggregateInputType = {
   id?: true
   idChantier?: true
   typeDoc?: true
+  status?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -70,6 +75,7 @@ export type DocumentationCountAggregateInputType = {
   id?: true
   idChantier?: true
   typeDoc?: true
+  status?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -151,6 +157,7 @@ export type DocumentationGroupByOutputType = {
   id: string
   idChantier: string
   typeDoc: $Enums.TypeDocEnum
+  status: $Enums.ProcessStatusEnum
   createdAt: Date
   updatedAt: Date
   _count: DocumentationCountAggregateOutputType | null
@@ -180,6 +187,7 @@ export type DocumentationWhereInput = {
   id?: Prisma.UuidFilter<"Documentation"> | string
   idChantier?: Prisma.UuidFilter<"Documentation"> | string
   typeDoc?: Prisma.EnumTypeDocEnumFilter<"Documentation"> | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFilter<"Documentation"> | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFilter<"Documentation"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Documentation"> | Date | string
   chantier?: Prisma.XOR<Prisma.ChantierScalarRelationFilter, Prisma.ChantierWhereInput>
@@ -215,6 +223,7 @@ export type DocumentationOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   idChantier?: Prisma.SortOrder
   typeDoc?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   chantier?: Prisma.ChantierOrderByWithRelationInput
@@ -253,6 +262,7 @@ export type DocumentationWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.DocumentationWhereInput | Prisma.DocumentationWhereInput[]
   idChantier?: Prisma.UuidFilter<"Documentation"> | string
   typeDoc?: Prisma.EnumTypeDocEnumFilter<"Documentation"> | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFilter<"Documentation"> | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFilter<"Documentation"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Documentation"> | Date | string
   chantier?: Prisma.XOR<Prisma.ChantierScalarRelationFilter, Prisma.ChantierWhereInput>
@@ -288,6 +298,7 @@ export type DocumentationOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   idChantier?: Prisma.SortOrder
   typeDoc?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.DocumentationCountOrderByAggregateInput
@@ -302,6 +313,7 @@ export type DocumentationScalarWhereWithAggregatesInput = {
   id?: Prisma.UuidWithAggregatesFilter<"Documentation"> | string
   idChantier?: Prisma.UuidWithAggregatesFilter<"Documentation"> | string
   typeDoc?: Prisma.EnumTypeDocEnumWithAggregatesFilter<"Documentation"> | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumWithAggregatesFilter<"Documentation"> | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Documentation"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Documentation"> | Date | string
 }
@@ -309,6 +321,7 @@ export type DocumentationScalarWhereWithAggregatesInput = {
 export type DocumentationCreateInput = {
   id?: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   chantier: Prisma.ChantierCreateNestedOneWithoutDocumentationsInput
@@ -344,6 +357,7 @@ export type DocumentationUncheckedCreateInput = {
   id?: string
   idChantier: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   ficheApri?: Prisma.FicheApriUncheckedCreateNestedOneWithoutDocumentationInput
@@ -377,6 +391,7 @@ export type DocumentationUncheckedCreateInput = {
 export type DocumentationUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   chantier?: Prisma.ChantierUpdateOneRequiredWithoutDocumentationsNestedInput
@@ -412,6 +427,7 @@ export type DocumentationUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ficheApri?: Prisma.FicheApriUncheckedUpdateOneWithoutDocumentationNestedInput
@@ -446,6 +462,7 @@ export type DocumentationCreateManyInput = {
   id?: string
   idChantier: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -453,6 +470,7 @@ export type DocumentationCreateManyInput = {
 export type DocumentationUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -461,6 +479,7 @@ export type DocumentationUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -484,6 +503,7 @@ export type DocumentationCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   idChantier?: Prisma.SortOrder
   typeDoc?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -492,6 +512,7 @@ export type DocumentationMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   idChantier?: Prisma.SortOrder
   typeDoc?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -500,6 +521,7 @@ export type DocumentationMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   idChantier?: Prisma.SortOrder
   typeDoc?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -913,6 +935,7 @@ export type DocumentationUpdateOneRequiredWithoutReservesNestedInput = {
 export type DocumentationCreateWithoutChantierInput = {
   id?: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   ficheApri?: Prisma.FicheApriCreateNestedOneWithoutDocumentationInput
@@ -946,6 +969,7 @@ export type DocumentationCreateWithoutChantierInput = {
 export type DocumentationUncheckedCreateWithoutChantierInput = {
   id?: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   ficheApri?: Prisma.FicheApriUncheckedCreateNestedOneWithoutDocumentationInput
@@ -1009,6 +1033,7 @@ export type DocumentationScalarWhereInput = {
   id?: Prisma.UuidFilter<"Documentation"> | string
   idChantier?: Prisma.UuidFilter<"Documentation"> | string
   typeDoc?: Prisma.EnumTypeDocEnumFilter<"Documentation"> | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFilter<"Documentation"> | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFilter<"Documentation"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Documentation"> | Date | string
 }
@@ -1016,6 +1041,7 @@ export type DocumentationScalarWhereInput = {
 export type DocumentationCreateWithoutInterventionsInput = {
   id?: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   chantier: Prisma.ChantierCreateNestedOneWithoutDocumentationsInput
@@ -1050,6 +1076,7 @@ export type DocumentationUncheckedCreateWithoutInterventionsInput = {
   id?: string
   idChantier: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   ficheApri?: Prisma.FicheApriUncheckedCreateNestedOneWithoutDocumentationInput
@@ -1098,6 +1125,7 @@ export type DocumentationUpdateToOneWithWhereWithoutInterventionsInput = {
 export type DocumentationUpdateWithoutInterventionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   chantier?: Prisma.ChantierUpdateOneRequiredWithoutDocumentationsNestedInput
@@ -1132,6 +1160,7 @@ export type DocumentationUncheckedUpdateWithoutInterventionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ficheApri?: Prisma.FicheApriUncheckedUpdateOneWithoutDocumentationNestedInput
@@ -1164,6 +1193,7 @@ export type DocumentationUncheckedUpdateWithoutInterventionsInput = {
 export type DocumentationCreateWithoutParticipantsInput = {
   id?: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   chantier: Prisma.ChantierCreateNestedOneWithoutDocumentationsInput
@@ -1198,6 +1228,7 @@ export type DocumentationUncheckedCreateWithoutParticipantsInput = {
   id?: string
   idChantier: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   ficheApri?: Prisma.FicheApriUncheckedCreateNestedOneWithoutDocumentationInput
@@ -1246,6 +1277,7 @@ export type DocumentationUpdateToOneWithWhereWithoutParticipantsInput = {
 export type DocumentationUpdateWithoutParticipantsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   chantier?: Prisma.ChantierUpdateOneRequiredWithoutDocumentationsNestedInput
@@ -1280,6 +1312,7 @@ export type DocumentationUncheckedUpdateWithoutParticipantsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ficheApri?: Prisma.FicheApriUncheckedUpdateOneWithoutDocumentationNestedInput
@@ -1312,6 +1345,7 @@ export type DocumentationUncheckedUpdateWithoutParticipantsInput = {
 export type DocumentationCreateWithoutFicheApriInput = {
   id?: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   chantier: Prisma.ChantierCreateNestedOneWithoutDocumentationsInput
@@ -1346,6 +1380,7 @@ export type DocumentationUncheckedCreateWithoutFicheApriInput = {
   id?: string
   idChantier: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   mmt?: Prisma.MmtUncheckedCreateNestedOneWithoutDocumentationInput
@@ -1394,6 +1429,7 @@ export type DocumentationUpdateToOneWithWhereWithoutFicheApriInput = {
 export type DocumentationUpdateWithoutFicheApriInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   chantier?: Prisma.ChantierUpdateOneRequiredWithoutDocumentationsNestedInput
@@ -1428,6 +1464,7 @@ export type DocumentationUncheckedUpdateWithoutFicheApriInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   mmt?: Prisma.MmtUncheckedUpdateOneWithoutDocumentationNestedInput
@@ -1460,6 +1497,7 @@ export type DocumentationUncheckedUpdateWithoutFicheApriInput = {
 export type DocumentationCreateWithoutMmtInput = {
   id?: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   chantier: Prisma.ChantierCreateNestedOneWithoutDocumentationsInput
@@ -1494,6 +1532,7 @@ export type DocumentationUncheckedCreateWithoutMmtInput = {
   id?: string
   idChantier: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   ficheApri?: Prisma.FicheApriUncheckedCreateNestedOneWithoutDocumentationInput
@@ -1542,6 +1581,7 @@ export type DocumentationUpdateToOneWithWhereWithoutMmtInput = {
 export type DocumentationUpdateWithoutMmtInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   chantier?: Prisma.ChantierUpdateOneRequiredWithoutDocumentationsNestedInput
@@ -1576,6 +1616,7 @@ export type DocumentationUncheckedUpdateWithoutMmtInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ficheApri?: Prisma.FicheApriUncheckedUpdateOneWithoutDocumentationNestedInput
@@ -1608,6 +1649,7 @@ export type DocumentationUncheckedUpdateWithoutMmtInput = {
 export type DocumentationCreateWithoutPpspsInput = {
   id?: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   chantier: Prisma.ChantierCreateNestedOneWithoutDocumentationsInput
@@ -1642,6 +1684,7 @@ export type DocumentationUncheckedCreateWithoutPpspsInput = {
   id?: string
   idChantier: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   ficheApri?: Prisma.FicheApriUncheckedCreateNestedOneWithoutDocumentationInput
@@ -1690,6 +1733,7 @@ export type DocumentationUpdateToOneWithWhereWithoutPpspsInput = {
 export type DocumentationUpdateWithoutPpspsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   chantier?: Prisma.ChantierUpdateOneRequiredWithoutDocumentationsNestedInput
@@ -1724,6 +1768,7 @@ export type DocumentationUncheckedUpdateWithoutPpspsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ficheApri?: Prisma.FicheApriUncheckedUpdateOneWithoutDocumentationNestedInput
@@ -1756,6 +1801,7 @@ export type DocumentationUncheckedUpdateWithoutPpspsInput = {
 export type DocumentationCreateWithoutPvTerrasseInput = {
   id?: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   chantier: Prisma.ChantierCreateNestedOneWithoutDocumentationsInput
@@ -1790,6 +1836,7 @@ export type DocumentationUncheckedCreateWithoutPvTerrasseInput = {
   id?: string
   idChantier: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   ficheApri?: Prisma.FicheApriUncheckedCreateNestedOneWithoutDocumentationInput
@@ -1838,6 +1885,7 @@ export type DocumentationUpdateToOneWithWhereWithoutPvTerrasseInput = {
 export type DocumentationUpdateWithoutPvTerrasseInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   chantier?: Prisma.ChantierUpdateOneRequiredWithoutDocumentationsNestedInput
@@ -1872,6 +1920,7 @@ export type DocumentationUncheckedUpdateWithoutPvTerrasseInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ficheApri?: Prisma.FicheApriUncheckedUpdateOneWithoutDocumentationNestedInput
@@ -1904,6 +1953,7 @@ export type DocumentationUncheckedUpdateWithoutPvTerrasseInput = {
 export type DocumentationCreateWithoutEtatsLieuxInput = {
   id?: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   chantier: Prisma.ChantierCreateNestedOneWithoutDocumentationsInput
@@ -1938,6 +1988,7 @@ export type DocumentationUncheckedCreateWithoutEtatsLieuxInput = {
   id?: string
   idChantier: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   ficheApri?: Prisma.FicheApriUncheckedCreateNestedOneWithoutDocumentationInput
@@ -1986,6 +2037,7 @@ export type DocumentationUpdateToOneWithWhereWithoutEtatsLieuxInput = {
 export type DocumentationUpdateWithoutEtatsLieuxInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   chantier?: Prisma.ChantierUpdateOneRequiredWithoutDocumentationsNestedInput
@@ -2020,6 +2072,7 @@ export type DocumentationUncheckedUpdateWithoutEtatsLieuxInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ficheApri?: Prisma.FicheApriUncheckedUpdateOneWithoutDocumentationNestedInput
@@ -2052,6 +2105,7 @@ export type DocumentationUncheckedUpdateWithoutEtatsLieuxInput = {
 export type DocumentationCreateWithoutFeuilleEmargementInput = {
   id?: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   chantier: Prisma.ChantierCreateNestedOneWithoutDocumentationsInput
@@ -2086,6 +2140,7 @@ export type DocumentationUncheckedCreateWithoutFeuilleEmargementInput = {
   id?: string
   idChantier: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   ficheApri?: Prisma.FicheApriUncheckedCreateNestedOneWithoutDocumentationInput
@@ -2134,6 +2189,7 @@ export type DocumentationUpdateToOneWithWhereWithoutFeuilleEmargementInput = {
 export type DocumentationUpdateWithoutFeuilleEmargementInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   chantier?: Prisma.ChantierUpdateOneRequiredWithoutDocumentationsNestedInput
@@ -2168,6 +2224,7 @@ export type DocumentationUncheckedUpdateWithoutFeuilleEmargementInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ficheApri?: Prisma.FicheApriUncheckedUpdateOneWithoutDocumentationNestedInput
@@ -2200,6 +2257,7 @@ export type DocumentationUncheckedUpdateWithoutFeuilleEmargementInput = {
 export type DocumentationCreateWithoutFicheStarterInput = {
   id?: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   chantier: Prisma.ChantierCreateNestedOneWithoutDocumentationsInput
@@ -2234,6 +2292,7 @@ export type DocumentationUncheckedCreateWithoutFicheStarterInput = {
   id?: string
   idChantier: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   ficheApri?: Prisma.FicheApriUncheckedCreateNestedOneWithoutDocumentationInput
@@ -2282,6 +2341,7 @@ export type DocumentationUpdateToOneWithWhereWithoutFicheStarterInput = {
 export type DocumentationUpdateWithoutFicheStarterInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   chantier?: Prisma.ChantierUpdateOneRequiredWithoutDocumentationsNestedInput
@@ -2316,6 +2376,7 @@ export type DocumentationUncheckedUpdateWithoutFicheStarterInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ficheApri?: Prisma.FicheApriUncheckedUpdateOneWithoutDocumentationNestedInput
@@ -2348,6 +2409,7 @@ export type DocumentationUncheckedUpdateWithoutFicheStarterInput = {
 export type DocumentationCreateWithoutFicheVerificationFourgonInput = {
   id?: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   chantier: Prisma.ChantierCreateNestedOneWithoutDocumentationsInput
@@ -2382,6 +2444,7 @@ export type DocumentationUncheckedCreateWithoutFicheVerificationFourgonInput = {
   id?: string
   idChantier: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   ficheApri?: Prisma.FicheApriUncheckedCreateNestedOneWithoutDocumentationInput
@@ -2430,6 +2493,7 @@ export type DocumentationUpdateToOneWithWhereWithoutFicheVerificationFourgonInpu
 export type DocumentationUpdateWithoutFicheVerificationFourgonInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   chantier?: Prisma.ChantierUpdateOneRequiredWithoutDocumentationsNestedInput
@@ -2464,6 +2528,7 @@ export type DocumentationUncheckedUpdateWithoutFicheVerificationFourgonInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ficheApri?: Prisma.FicheApriUncheckedUpdateOneWithoutDocumentationNestedInput
@@ -2496,6 +2561,7 @@ export type DocumentationUncheckedUpdateWithoutFicheVerificationFourgonInput = {
 export type DocumentationCreateWithoutNoticeEpiInput = {
   id?: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   chantier: Prisma.ChantierCreateNestedOneWithoutDocumentationsInput
@@ -2530,6 +2596,7 @@ export type DocumentationUncheckedCreateWithoutNoticeEpiInput = {
   id?: string
   idChantier: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   ficheApri?: Prisma.FicheApriUncheckedCreateNestedOneWithoutDocumentationInput
@@ -2578,6 +2645,7 @@ export type DocumentationUpdateToOneWithWhereWithoutNoticeEpiInput = {
 export type DocumentationUpdateWithoutNoticeEpiInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   chantier?: Prisma.ChantierUpdateOneRequiredWithoutDocumentationsNestedInput
@@ -2612,6 +2680,7 @@ export type DocumentationUncheckedUpdateWithoutNoticeEpiInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ficheApri?: Prisma.FicheApriUncheckedUpdateOneWithoutDocumentationNestedInput
@@ -2644,6 +2713,7 @@ export type DocumentationUncheckedUpdateWithoutNoticeEpiInput = {
 export type DocumentationCreateWithoutPvMiseEauInput = {
   id?: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   chantier: Prisma.ChantierCreateNestedOneWithoutDocumentationsInput
@@ -2678,6 +2748,7 @@ export type DocumentationUncheckedCreateWithoutPvMiseEauInput = {
   id?: string
   idChantier: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   ficheApri?: Prisma.FicheApriUncheckedCreateNestedOneWithoutDocumentationInput
@@ -2726,6 +2797,7 @@ export type DocumentationUpdateToOneWithWhereWithoutPvMiseEauInput = {
 export type DocumentationUpdateWithoutPvMiseEauInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   chantier?: Prisma.ChantierUpdateOneRequiredWithoutDocumentationsNestedInput
@@ -2760,6 +2832,7 @@ export type DocumentationUncheckedUpdateWithoutPvMiseEauInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ficheApri?: Prisma.FicheApriUncheckedUpdateOneWithoutDocumentationNestedInput
@@ -2792,6 +2865,7 @@ export type DocumentationUncheckedUpdateWithoutPvMiseEauInput = {
 export type DocumentationCreateWithoutPvReceptionBetonCharpenteCouvertureInput = {
   id?: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   chantier: Prisma.ChantierCreateNestedOneWithoutDocumentationsInput
@@ -2826,6 +2900,7 @@ export type DocumentationUncheckedCreateWithoutPvReceptionBetonCharpenteCouvertu
   id?: string
   idChantier: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   ficheApri?: Prisma.FicheApriUncheckedCreateNestedOneWithoutDocumentationInput
@@ -2874,6 +2949,7 @@ export type DocumentationUpdateToOneWithWhereWithoutPvReceptionBetonCharpenteCou
 export type DocumentationUpdateWithoutPvReceptionBetonCharpenteCouvertureInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   chantier?: Prisma.ChantierUpdateOneRequiredWithoutDocumentationsNestedInput
@@ -2908,6 +2984,7 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionBetonCharpenteCouvertu
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ficheApri?: Prisma.FicheApriUncheckedUpdateOneWithoutDocumentationNestedInput
@@ -2940,6 +3017,7 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionBetonCharpenteCouvertu
 export type DocumentationCreateWithoutPvReceptionBetonCharpenteBardageInput = {
   id?: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   chantier: Prisma.ChantierCreateNestedOneWithoutDocumentationsInput
@@ -2974,6 +3052,7 @@ export type DocumentationUncheckedCreateWithoutPvReceptionBetonCharpenteBardageI
   id?: string
   idChantier: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   ficheApri?: Prisma.FicheApriUncheckedCreateNestedOneWithoutDocumentationInput
@@ -3022,6 +3101,7 @@ export type DocumentationUpdateToOneWithWhereWithoutPvReceptionBetonCharpenteBar
 export type DocumentationUpdateWithoutPvReceptionBetonCharpenteBardageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   chantier?: Prisma.ChantierUpdateOneRequiredWithoutDocumentationsNestedInput
@@ -3056,6 +3136,7 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionBetonCharpenteBardageI
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ficheApri?: Prisma.FicheApriUncheckedUpdateOneWithoutDocumentationNestedInput
@@ -3088,6 +3169,7 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionBetonCharpenteBardageI
 export type DocumentationCreateWithoutPvReceptionBetonFacadeInput = {
   id?: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   chantier: Prisma.ChantierCreateNestedOneWithoutDocumentationsInput
@@ -3122,6 +3204,7 @@ export type DocumentationUncheckedCreateWithoutPvReceptionBetonFacadeInput = {
   id?: string
   idChantier: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   ficheApri?: Prisma.FicheApriUncheckedCreateNestedOneWithoutDocumentationInput
@@ -3170,6 +3253,7 @@ export type DocumentationUpdateToOneWithWhereWithoutPvReceptionBetonFacadeInput 
 export type DocumentationUpdateWithoutPvReceptionBetonFacadeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   chantier?: Prisma.ChantierUpdateOneRequiredWithoutDocumentationsNestedInput
@@ -3204,6 +3288,7 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionBetonFacadeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ficheApri?: Prisma.FicheApriUncheckedUpdateOneWithoutDocumentationNestedInput
@@ -3236,6 +3321,7 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionBetonFacadeInput = {
 export type DocumentationCreateWithoutPvReceptionCharpenteMetalBoisBardageInput = {
   id?: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   chantier: Prisma.ChantierCreateNestedOneWithoutDocumentationsInput
@@ -3270,6 +3356,7 @@ export type DocumentationUncheckedCreateWithoutPvReceptionCharpenteMetalBoisBard
   id?: string
   idChantier: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   ficheApri?: Prisma.FicheApriUncheckedCreateNestedOneWithoutDocumentationInput
@@ -3318,6 +3405,7 @@ export type DocumentationUpdateToOneWithWhereWithoutPvReceptionCharpenteMetalBoi
 export type DocumentationUpdateWithoutPvReceptionCharpenteMetalBoisBardageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   chantier?: Prisma.ChantierUpdateOneRequiredWithoutDocumentationsNestedInput
@@ -3352,6 +3440,7 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionCharpenteMetalBoisBard
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ficheApri?: Prisma.FicheApriUncheckedUpdateOneWithoutDocumentationNestedInput
@@ -3384,6 +3473,7 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionCharpenteMetalBoisBard
 export type DocumentationCreateWithoutPvReceptionCharpenteMetalBoisCouvInput = {
   id?: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   chantier: Prisma.ChantierCreateNestedOneWithoutDocumentationsInput
@@ -3418,6 +3508,7 @@ export type DocumentationUncheckedCreateWithoutPvReceptionCharpenteMetalBoisCouv
   id?: string
   idChantier: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   ficheApri?: Prisma.FicheApriUncheckedCreateNestedOneWithoutDocumentationInput
@@ -3466,6 +3557,7 @@ export type DocumentationUpdateToOneWithWhereWithoutPvReceptionCharpenteMetalBoi
 export type DocumentationUpdateWithoutPvReceptionCharpenteMetalBoisCouvInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   chantier?: Prisma.ChantierUpdateOneRequiredWithoutDocumentationsNestedInput
@@ -3500,6 +3592,7 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionCharpenteMetalBoisCouv
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ficheApri?: Prisma.FicheApriUncheckedUpdateOneWithoutDocumentationNestedInput
@@ -3532,6 +3625,7 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionCharpenteMetalBoisCouv
 export type DocumentationCreateWithoutPvReceptionEtancheiteInput = {
   id?: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   chantier: Prisma.ChantierCreateNestedOneWithoutDocumentationsInput
@@ -3566,6 +3660,7 @@ export type DocumentationUncheckedCreateWithoutPvReceptionEtancheiteInput = {
   id?: string
   idChantier: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   ficheApri?: Prisma.FicheApriUncheckedCreateNestedOneWithoutDocumentationInput
@@ -3614,6 +3709,7 @@ export type DocumentationUpdateToOneWithWhereWithoutPvReceptionEtancheiteInput =
 export type DocumentationUpdateWithoutPvReceptionEtancheiteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   chantier?: Prisma.ChantierUpdateOneRequiredWithoutDocumentationsNestedInput
@@ -3648,6 +3744,7 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionEtancheiteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ficheApri?: Prisma.FicheApriUncheckedUpdateOneWithoutDocumentationNestedInput
@@ -3680,6 +3777,7 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionEtancheiteInput = {
 export type DocumentationCreateWithoutPvReceptionOuvrageArtInput = {
   id?: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   chantier: Prisma.ChantierCreateNestedOneWithoutDocumentationsInput
@@ -3714,6 +3812,7 @@ export type DocumentationUncheckedCreateWithoutPvReceptionOuvrageArtInput = {
   id?: string
   idChantier: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   ficheApri?: Prisma.FicheApriUncheckedCreateNestedOneWithoutDocumentationInput
@@ -3762,6 +3861,7 @@ export type DocumentationUpdateToOneWithWhereWithoutPvReceptionOuvrageArtInput =
 export type DocumentationUpdateWithoutPvReceptionOuvrageArtInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   chantier?: Prisma.ChantierUpdateOneRequiredWithoutDocumentationsNestedInput
@@ -3796,6 +3896,7 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionOuvrageArtInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ficheApri?: Prisma.FicheApriUncheckedUpdateOneWithoutDocumentationNestedInput
@@ -3828,6 +3929,7 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionOuvrageArtInput = {
 export type DocumentationCreateWithoutPvReceptionSupportsBetonVoirieInput = {
   id?: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   chantier: Prisma.ChantierCreateNestedOneWithoutDocumentationsInput
@@ -3862,6 +3964,7 @@ export type DocumentationUncheckedCreateWithoutPvReceptionSupportsBetonVoirieInp
   id?: string
   idChantier: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   ficheApri?: Prisma.FicheApriUncheckedCreateNestedOneWithoutDocumentationInput
@@ -3910,6 +4013,7 @@ export type DocumentationUpdateToOneWithWhereWithoutPvReceptionSupportsBetonVoir
 export type DocumentationUpdateWithoutPvReceptionSupportsBetonVoirieInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   chantier?: Prisma.ChantierUpdateOneRequiredWithoutDocumentationsNestedInput
@@ -3944,6 +4048,7 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionSupportsBetonVoirieInp
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ficheApri?: Prisma.FicheApriUncheckedUpdateOneWithoutDocumentationNestedInput
@@ -3976,6 +4081,7 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionSupportsBetonVoirieInp
 export type DocumentationCreateWithoutPvReceptionOuvragesSousTraitesInput = {
   id?: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   chantier: Prisma.ChantierCreateNestedOneWithoutDocumentationsInput
@@ -4010,6 +4116,7 @@ export type DocumentationUncheckedCreateWithoutPvReceptionOuvragesSousTraitesInp
   id?: string
   idChantier: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   ficheApri?: Prisma.FicheApriUncheckedCreateNestedOneWithoutDocumentationInput
@@ -4058,6 +4165,7 @@ export type DocumentationUpdateToOneWithWhereWithoutPvReceptionOuvragesSousTrait
 export type DocumentationUpdateWithoutPvReceptionOuvragesSousTraitesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   chantier?: Prisma.ChantierUpdateOneRequiredWithoutDocumentationsNestedInput
@@ -4092,6 +4200,7 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionOuvragesSousTraitesInp
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ficheApri?: Prisma.FicheApriUncheckedUpdateOneWithoutDocumentationNestedInput
@@ -4124,6 +4233,7 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionOuvragesSousTraitesInp
 export type DocumentationCreateWithoutVisitePreventionInput = {
   id?: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   chantier: Prisma.ChantierCreateNestedOneWithoutDocumentationsInput
@@ -4158,6 +4268,7 @@ export type DocumentationUncheckedCreateWithoutVisitePreventionInput = {
   id?: string
   idChantier: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   ficheApri?: Prisma.FicheApriUncheckedCreateNestedOneWithoutDocumentationInput
@@ -4206,6 +4317,7 @@ export type DocumentationUpdateToOneWithWhereWithoutVisitePreventionInput = {
 export type DocumentationUpdateWithoutVisitePreventionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   chantier?: Prisma.ChantierUpdateOneRequiredWithoutDocumentationsNestedInput
@@ -4240,6 +4352,7 @@ export type DocumentationUncheckedUpdateWithoutVisitePreventionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ficheApri?: Prisma.FicheApriUncheckedUpdateOneWithoutDocumentationNestedInput
@@ -4272,6 +4385,7 @@ export type DocumentationUncheckedUpdateWithoutVisitePreventionInput = {
 export type DocumentationCreateWithoutFicheVerifJournaliereEchafaudageInput = {
   id?: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   chantier: Prisma.ChantierCreateNestedOneWithoutDocumentationsInput
@@ -4306,6 +4420,7 @@ export type DocumentationUncheckedCreateWithoutFicheVerifJournaliereEchafaudageI
   id?: string
   idChantier: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   ficheApri?: Prisma.FicheApriUncheckedCreateNestedOneWithoutDocumentationInput
@@ -4354,6 +4469,7 @@ export type DocumentationUpdateToOneWithWhereWithoutFicheVerifJournaliereEchafau
 export type DocumentationUpdateWithoutFicheVerifJournaliereEchafaudageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   chantier?: Prisma.ChantierUpdateOneRequiredWithoutDocumentationsNestedInput
@@ -4388,6 +4504,7 @@ export type DocumentationUncheckedUpdateWithoutFicheVerifJournaliereEchafaudageI
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ficheApri?: Prisma.FicheApriUncheckedUpdateOneWithoutDocumentationNestedInput
@@ -4420,6 +4537,7 @@ export type DocumentationUncheckedUpdateWithoutFicheVerifJournaliereEchafaudageI
 export type DocumentationCreateWithoutVerificationAvantMiseServiceEchafaudageInput = {
   id?: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   chantier: Prisma.ChantierCreateNestedOneWithoutDocumentationsInput
@@ -4454,6 +4572,7 @@ export type DocumentationUncheckedCreateWithoutVerificationAvantMiseServiceEchaf
   id?: string
   idChantier: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   ficheApri?: Prisma.FicheApriUncheckedCreateNestedOneWithoutDocumentationInput
@@ -4502,6 +4621,7 @@ export type DocumentationUpdateToOneWithWhereWithoutVerificationAvantMiseService
 export type DocumentationUpdateWithoutVerificationAvantMiseServiceEchafaudageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   chantier?: Prisma.ChantierUpdateOneRequiredWithoutDocumentationsNestedInput
@@ -4536,6 +4656,7 @@ export type DocumentationUncheckedUpdateWithoutVerificationAvantMiseServiceEchaf
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ficheApri?: Prisma.FicheApriUncheckedUpdateOneWithoutDocumentationNestedInput
@@ -4568,6 +4689,7 @@ export type DocumentationUncheckedUpdateWithoutVerificationAvantMiseServiceEchaf
 export type DocumentationCreateWithoutDocumentsInput = {
   id?: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   chantier: Prisma.ChantierCreateNestedOneWithoutDocumentationsInput
@@ -4602,6 +4724,7 @@ export type DocumentationUncheckedCreateWithoutDocumentsInput = {
   id?: string
   idChantier: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   ficheApri?: Prisma.FicheApriUncheckedCreateNestedOneWithoutDocumentationInput
@@ -4650,6 +4773,7 @@ export type DocumentationUpdateToOneWithWhereWithoutDocumentsInput = {
 export type DocumentationUpdateWithoutDocumentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   chantier?: Prisma.ChantierUpdateOneRequiredWithoutDocumentationsNestedInput
@@ -4684,6 +4808,7 @@ export type DocumentationUncheckedUpdateWithoutDocumentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ficheApri?: Prisma.FicheApriUncheckedUpdateOneWithoutDocumentationNestedInput
@@ -4716,6 +4841,7 @@ export type DocumentationUncheckedUpdateWithoutDocumentsInput = {
 export type DocumentationCreateWithoutReservesInput = {
   id?: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   chantier: Prisma.ChantierCreateNestedOneWithoutDocumentationsInput
@@ -4750,6 +4876,7 @@ export type DocumentationUncheckedCreateWithoutReservesInput = {
   id?: string
   idChantier: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
   ficheApri?: Prisma.FicheApriUncheckedCreateNestedOneWithoutDocumentationInput
@@ -4798,6 +4925,7 @@ export type DocumentationUpdateToOneWithWhereWithoutReservesInput = {
 export type DocumentationUpdateWithoutReservesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   chantier?: Prisma.ChantierUpdateOneRequiredWithoutDocumentationsNestedInput
@@ -4832,6 +4960,7 @@ export type DocumentationUncheckedUpdateWithoutReservesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ficheApri?: Prisma.FicheApriUncheckedUpdateOneWithoutDocumentationNestedInput
@@ -4864,6 +4993,7 @@ export type DocumentationUncheckedUpdateWithoutReservesInput = {
 export type DocumentationCreateManyChantierInput = {
   id?: string
   typeDoc: $Enums.TypeDocEnum
+  status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -4871,6 +5001,7 @@ export type DocumentationCreateManyChantierInput = {
 export type DocumentationUpdateWithoutChantierInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ficheApri?: Prisma.FicheApriUpdateOneWithoutDocumentationNestedInput
@@ -4904,6 +5035,7 @@ export type DocumentationUpdateWithoutChantierInput = {
 export type DocumentationUncheckedUpdateWithoutChantierInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ficheApri?: Prisma.FicheApriUncheckedUpdateOneWithoutDocumentationNestedInput
@@ -4937,6 +5069,7 @@ export type DocumentationUncheckedUpdateWithoutChantierInput = {
 export type DocumentationUncheckedUpdateManyWithoutChantierInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -5003,6 +5136,7 @@ export type DocumentationSelect<ExtArgs extends runtime.Types.Extensions.Interna
   id?: boolean
   idChantier?: boolean
   typeDoc?: boolean
+  status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   chantier?: boolean | Prisma.ChantierDefaultArgs<ExtArgs>
@@ -5039,6 +5173,7 @@ export type DocumentationSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   id?: boolean
   idChantier?: boolean
   typeDoc?: boolean
+  status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   chantier?: boolean | Prisma.ChantierDefaultArgs<ExtArgs>
@@ -5048,6 +5183,7 @@ export type DocumentationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   id?: boolean
   idChantier?: boolean
   typeDoc?: boolean
+  status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   chantier?: boolean | Prisma.ChantierDefaultArgs<ExtArgs>
@@ -5057,11 +5193,12 @@ export type DocumentationSelectScalar = {
   id?: boolean
   idChantier?: boolean
   typeDoc?: boolean
+  status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type DocumentationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "idChantier" | "typeDoc" | "createdAt" | "updatedAt", ExtArgs["result"]["documentation"]>
+export type DocumentationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "idChantier" | "typeDoc" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["documentation"]>
 export type DocumentationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   chantier?: boolean | Prisma.ChantierDefaultArgs<ExtArgs>
   ficheApri?: boolean | Prisma.Documentation$ficheApriArgs<ExtArgs>
@@ -5134,6 +5271,7 @@ export type $DocumentationPayload<ExtArgs extends runtime.Types.Extensions.Inter
     id: string
     idChantier: string
     typeDoc: $Enums.TypeDocEnum
+    status: $Enums.ProcessStatusEnum
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["documentation"]>
@@ -5589,6 +5727,7 @@ export interface DocumentationFieldRefs {
   readonly id: Prisma.FieldRef<"Documentation", 'String'>
   readonly idChantier: Prisma.FieldRef<"Documentation", 'String'>
   readonly typeDoc: Prisma.FieldRef<"Documentation", 'TypeDocEnum'>
+  readonly status: Prisma.FieldRef<"Documentation", 'ProcessStatusEnum'>
   readonly createdAt: Prisma.FieldRef<"Documentation", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Documentation", 'DateTime'>
 }

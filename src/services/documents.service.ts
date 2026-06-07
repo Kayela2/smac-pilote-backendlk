@@ -43,6 +43,9 @@ function mapDoc(d: RawDoc): MappedDocumentation {
         fileNameWithExtension: d.fileNameWithExtension,
         type: d.type as DocumentExtension,
         size: d.size,
+        version: d.version ?? null,
+        validateur: d.validateur ?? null,
+        commentaire: d.commentaire ?? null,
         author: d.author as unknown as UserWithRelations,
         createdAt: d.createdAt,
         updatedAt: d.updatedAt,
@@ -73,12 +76,26 @@ async function paginatedDocs(
 }
 
 export const documentsService = {
-    async upload(file: File, chantierId: string, authorId: string, motif: Motif): Promise<MappedDocumentation | string> {
+    async upload(file: File, chantierId: string, authorId: string, motif: Motif, commentaire?: string): Promise<MappedDocumentation | string> {
         const chantier = await prisma.chantier.findUnique({where: {id: chantierId}, select: {id: true}})
         if (!chantier) return 'Chantier not found'
 
         const result = await fileStorageService.storeFile(file, chantierId, motif)
         if (typeof result === 'string') return result
+
+        let version: number | null = null
+        let validateur: string | null = null
+        if (motif === Motif.BTE_VALIDATION) {
+            const count = await prisma.chantierDocumentation.count({
+                where: {chantierId, motif: toDbMotif(motif)},
+            })
+            version = count + 1
+            const user = await prisma.user.findUnique({
+                where: {id: authorId},
+                include: {person: {select: {firstName: true, lastName: true}}},
+            })
+            if (user?.person) validateur = `${user.person.firstName} ${user.person.lastName}`.trim()
+        }
 
         const fileNameWithExtension = path.basename(result.path)
         const fileName = path.basename(result.path, path.extname(result.path))
@@ -95,6 +112,9 @@ export const documentsService = {
                 fileNameWithExtension,
                 type: ext,
                 size: file.buffer.length,
+                version,
+                validateur,
+                commentaire: commentaire ?? null,
             },
             include: docInclude,
         })

@@ -81,6 +81,7 @@ export enum Motif {
     VISA = "visa",
     BTE_OBJECTIF = "bte-objectif",
     BTE_VERSION = "bte-version",
+    BTE_VALIDATION = "bte-validation",
     DOCUMENTAIRE_LANCEMENT = "documentaire-lancement",
     DOCUMENT_LANCEMENT = "document-lancement",
     EXECUTION = "execution",

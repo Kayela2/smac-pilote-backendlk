@@ -99,6 +99,7 @@ export const ModelName = {
   FicheVerifJournaliereEchafaudage: 'FicheVerifJournaliereEchafaudage',
   VerificationAvantMiseServiceEchafaudage: 'VerificationAvantMiseServiceEchafaudage',
   Document: 'Document',
+  DossierExpertise: 'DossierExpertise',
   Reserve: 'Reserve'
 } as const
 
@@ -262,10 +263,10 @@ export type ChantierIntervenantScalarFieldEnum = (typeof ChantierIntervenantScal
 
 export const ActionScalarFieldEnum = {
   id: 'id',
-  site: 'site',
   anomalyRef: 'anomalyRef',
   correctiveAction: 'correctiveAction',
   idResponsible: 'idResponsible',
+  idChantier: 'idChantier',
   startDate: 'startDate',
   dueDate: 'dueDate',
   status: 'status',
@@ -315,6 +316,9 @@ export const ChantierDocumentationScalarFieldEnum = {
   size: 'size',
   endDate: 'endDate',
   folderId: 'folderId',
+  version: 'version',
+  validateur: 'validateur',
+  commentaire: 'commentaire',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -342,8 +346,23 @@ export type ChantierSharedDocScalarFieldEnum = (typeof ChantierSharedDocScalarFi
 
 export const ChantierOrganisationScalarFieldEnum = {
   chantierId: 'chantierId',
-  conditionsAcces: 'conditionsAcces',
-  conditionsStockage: 'conditionsStockage',
+  heureDepart: 'heureDepart',
+  heureFin: 'heureFin',
+  cles: 'cles',
+  badges: 'badges',
+  papiersIdentite: 'papiersIdentite',
+  posteControle: 'posteControle',
+  acces: 'acces',
+  miseEnOeuvre: 'miseEnOeuvre',
+  manutention: 'manutention',
+  materielManutentionLevage: 'materielManutentionLevage',
+  precautionsParticulieres: 'precautionsParticulieres',
+  demarragePrevisionnelLe: 'demarragePrevisionnelLe',
+  finPrevisionnelLe: 'finPrevisionnelLe',
+  tacheExecutee: 'tacheExecutee',
+  quantite: 'quantite',
+  tempsPrevus: 'tempsPrevus',
+  createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
@@ -402,6 +421,8 @@ export type AgenceScalarFieldEnum = (typeof AgenceScalarFieldEnum)[keyof typeof 
 
 export const EtablissementScalarFieldEnum = {
   id: 'id',
+  codeEtablissement: 'codeEtablissement',
+  nomEtablissement: 'nomEtablissement',
   adresse1: 'adresse1',
   adresse2: 'adresse2',
   codePostal: 'codePostal',
@@ -475,6 +496,7 @@ export const DocumentationScalarFieldEnum = {
   id: 'id',
   idChantier: 'idChantier',
   typeDoc: 'typeDoc',
+  status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -707,11 +729,34 @@ export type VerificationAvantMiseServiceEchafaudageScalarFieldEnum = (typeof Ver
 export const DocumentScalarFieldEnum = {
   id: 'id',
   idDocumentation: 'idDocumentation',
+  version: 'version',
   urlPdf: 'urlPdf',
   dateGeneration: 'dateGeneration'
 } as const
 
 export type DocumentScalarFieldEnum = (typeof DocumentScalarFieldEnum)[keyof typeof DocumentScalarFieldEnum]
+
+
+export const DossierExpertiseScalarFieldEnum = {
+  id: 'id',
+  reference: 'reference',
+  idChantier: 'idChantier',
+  typeGarantie: 'typeGarantie',
+  objet: 'objet',
+  expertDesigne: 'expertDesigne',
+  avocatSmac: 'avocatSmac',
+  dateOuverture: 'dateOuverture',
+  statut: 'statut',
+  juridiction: 'juridiction',
+  dateAssignation: 'dateAssignation',
+  demandeur: 'demandeur',
+  defendeurs: 'defendeurs',
+  griefs: 'griefs',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DossierExpertiseScalarFieldEnum = (typeof DossierExpertiseScalarFieldEnum)[keyof typeof DossierExpertiseScalarFieldEnum]
 
 
 export const ReserveScalarFieldEnum = {

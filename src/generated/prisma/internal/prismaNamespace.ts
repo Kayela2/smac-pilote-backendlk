@@ -432,6 +432,7 @@ export const ModelName = {
   FicheVerifJournaliereEchafaudage: 'FicheVerifJournaliereEchafaudage',
   VerificationAvantMiseServiceEchafaudage: 'VerificationAvantMiseServiceEchafaudage',
   Document: 'Document',
+  DossierExpertise: 'DossierExpertise',
   Reserve: 'Reserve'
 } as const
 
@@ -448,7 +449,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "person" | "userPhoto" | "chantier" | "chantierDetails" | "intervenant" | "chantierIntervenant" | "action" | "chantierAction" | "actionChild" | "actionPrevious" | "chantierDocumentation" | "chantierRequiredDoc" | "chantierSharedDoc" | "chantierOrganisation" | "chantierObjectif" | "folder" | "requestLog" | "agence" | "etablissement" | "ao" | "intervention" | "fiches" | "participant" | "documentation" | "ficheApri" | "mmt" | "ppsps" | "pVTerrasse" | "etatsLieux" | "feuilleEmargement" | "ficheStarter" | "ficheVerificationFourgon" | "noticeEpi" | "pvMiseEau" | "pvReceptionBetonCharpenteCouverture" | "pvReceptionBetonCharpenteBardage" | "pvReceptionBetonFacade" | "pvReceptionCharpenteMetalBoisBardage" | "pvReceptionCharpenteMetalBoisCouverture" | "pvReceptionEtancheite" | "pvReceptionOuvrageArt" | "pvReceptionSupportsBetonVoirie" | "pvReceptionOuvragesSousTraites" | "visitePrevention" | "ficheVerifJournaliereEchafaudage" | "verificationAvantMiseServiceEchafaudage" | "document" | "reserve"
+    modelProps: "user" | "person" | "userPhoto" | "chantier" | "chantierDetails" | "intervenant" | "chantierIntervenant" | "action" | "chantierAction" | "actionChild" | "actionPrevious" | "chantierDocumentation" | "chantierRequiredDoc" | "chantierSharedDoc" | "chantierOrganisation" | "chantierObjectif" | "folder" | "requestLog" | "agence" | "etablissement" | "ao" | "intervention" | "fiches" | "participant" | "documentation" | "ficheApri" | "mmt" | "ppsps" | "pVTerrasse" | "etatsLieux" | "feuilleEmargement" | "ficheStarter" | "ficheVerificationFourgon" | "noticeEpi" | "pvMiseEau" | "pvReceptionBetonCharpenteCouverture" | "pvReceptionBetonCharpenteBardage" | "pvReceptionBetonFacade" | "pvReceptionCharpenteMetalBoisBardage" | "pvReceptionCharpenteMetalBoisCouverture" | "pvReceptionEtancheite" | "pvReceptionOuvrageArt" | "pvReceptionSupportsBetonVoirie" | "pvReceptionOuvragesSousTraites" | "visitePrevention" | "ficheVerifJournaliereEchafaudage" | "verificationAvantMiseServiceEchafaudage" | "document" | "dossierExpertise" | "reserve"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -4004,6 +4005,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    DossierExpertise: {
+      payload: Prisma.$DossierExpertisePayload<ExtArgs>
+      fields: Prisma.DossierExpertiseFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DossierExpertiseFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DossierExpertisePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DossierExpertiseFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DossierExpertisePayload>
+        }
+        findFirst: {
+          args: Prisma.DossierExpertiseFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DossierExpertisePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DossierExpertiseFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DossierExpertisePayload>
+        }
+        findMany: {
+          args: Prisma.DossierExpertiseFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DossierExpertisePayload>[]
+        }
+        create: {
+          args: Prisma.DossierExpertiseCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DossierExpertisePayload>
+        }
+        createMany: {
+          args: Prisma.DossierExpertiseCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DossierExpertiseCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DossierExpertisePayload>[]
+        }
+        delete: {
+          args: Prisma.DossierExpertiseDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DossierExpertisePayload>
+        }
+        update: {
+          args: Prisma.DossierExpertiseUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DossierExpertisePayload>
+        }
+        deleteMany: {
+          args: Prisma.DossierExpertiseDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DossierExpertiseUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DossierExpertiseUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DossierExpertisePayload>[]
+        }
+        upsert: {
+          args: Prisma.DossierExpertiseUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DossierExpertisePayload>
+        }
+        aggregate: {
+          args: Prisma.DossierExpertiseAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDossierExpertise>
+        }
+        groupBy: {
+          args: Prisma.DossierExpertiseGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DossierExpertiseGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DossierExpertiseCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DossierExpertiseCountAggregateOutputType> | number
+        }
+      }
+    }
     Reserve: {
       payload: Prisma.$ReservePayload<ExtArgs>
       fields: Prisma.ReserveFieldRefs
@@ -4261,10 +4336,10 @@ export type ChantierIntervenantScalarFieldEnum = (typeof ChantierIntervenantScal
 
 export const ActionScalarFieldEnum = {
   id: 'id',
-  site: 'site',
   anomalyRef: 'anomalyRef',
   correctiveAction: 'correctiveAction',
   idResponsible: 'idResponsible',
+  idChantier: 'idChantier',
   startDate: 'startDate',
   dueDate: 'dueDate',
   status: 'status',
@@ -4314,6 +4389,9 @@ export const ChantierDocumentationScalarFieldEnum = {
   size: 'size',
   endDate: 'endDate',
   folderId: 'folderId',
+  version: 'version',
+  validateur: 'validateur',
+  commentaire: 'commentaire',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -4341,8 +4419,23 @@ export type ChantierSharedDocScalarFieldEnum = (typeof ChantierSharedDocScalarFi
 
 export const ChantierOrganisationScalarFieldEnum = {
   chantierId: 'chantierId',
-  conditionsAcces: 'conditionsAcces',
-  conditionsStockage: 'conditionsStockage',
+  heureDepart: 'heureDepart',
+  heureFin: 'heureFin',
+  cles: 'cles',
+  badges: 'badges',
+  papiersIdentite: 'papiersIdentite',
+  posteControle: 'posteControle',
+  acces: 'acces',
+  miseEnOeuvre: 'miseEnOeuvre',
+  manutention: 'manutention',
+  materielManutentionLevage: 'materielManutentionLevage',
+  precautionsParticulieres: 'precautionsParticulieres',
+  demarragePrevisionnelLe: 'demarragePrevisionnelLe',
+  finPrevisionnelLe: 'finPrevisionnelLe',
+  tacheExecutee: 'tacheExecutee',
+  quantite: 'quantite',
+  tempsPrevus: 'tempsPrevus',
+  createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
@@ -4401,6 +4494,8 @@ export type AgenceScalarFieldEnum = (typeof AgenceScalarFieldEnum)[keyof typeof 
 
 export const EtablissementScalarFieldEnum = {
   id: 'id',
+  codeEtablissement: 'codeEtablissement',
+  nomEtablissement: 'nomEtablissement',
   adresse1: 'adresse1',
   adresse2: 'adresse2',
   codePostal: 'codePostal',
@@ -4474,6 +4569,7 @@ export const DocumentationScalarFieldEnum = {
   id: 'id',
   idChantier: 'idChantier',
   typeDoc: 'typeDoc',
+  status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -4706,11 +4802,34 @@ export type VerificationAvantMiseServiceEchafaudageScalarFieldEnum = (typeof Ver
 export const DocumentScalarFieldEnum = {
   id: 'id',
   idDocumentation: 'idDocumentation',
+  version: 'version',
   urlPdf: 'urlPdf',
   dateGeneration: 'dateGeneration'
 } as const
 
 export type DocumentScalarFieldEnum = (typeof DocumentScalarFieldEnum)[keyof typeof DocumentScalarFieldEnum]
+
+
+export const DossierExpertiseScalarFieldEnum = {
+  id: 'id',
+  reference: 'reference',
+  idChantier: 'idChantier',
+  typeGarantie: 'typeGarantie',
+  objet: 'objet',
+  expertDesigne: 'expertDesigne',
+  avocatSmac: 'avocatSmac',
+  dateOuverture: 'dateOuverture',
+  statut: 'statut',
+  juridiction: 'juridiction',
+  dateAssignation: 'dateAssignation',
+  demandeur: 'demandeur',
+  defendeurs: 'defendeurs',
+  griefs: 'griefs',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DossierExpertiseScalarFieldEnum = (typeof DossierExpertiseScalarFieldEnum)[keyof typeof DossierExpertiseScalarFieldEnum]
 
 
 export const ReserveScalarFieldEnum = {
@@ -4836,6 +4955,20 @@ export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMo
 
 
 /**
+ * Reference to a field of type 'ProcessStatusEnum'
+ */
+export type EnumProcessStatusEnumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProcessStatusEnum'>
+    
+
+
+/**
+ * Reference to a field of type 'ProcessStatusEnum[]'
+ */
+export type ListEnumProcessStatusEnumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProcessStatusEnum[]'>
+    
+
+
+/**
  * Reference to a field of type 'TypeIntervenantEnum'
  */
 export type EnumTypeIntervenantEnumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TypeIntervenantEnum'>
@@ -4892,20 +5025,6 @@ export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMode
 
 
 /**
- * Reference to a field of type 'Json'
- */
-export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
-    
-
-
-/**
- * Reference to a field of type 'QueryMode'
- */
-export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
-    
-
-
-/**
  * Reference to a field of type 'StatutAoEnum'
  */
 export type EnumStatutAoEnumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StatutAoEnum'>
@@ -4948,6 +5067,20 @@ export type ListEnumTypeFicheFieldRefInput<$PrismaModel> = FieldRefInputType<$Pr
 
 
 /**
+ * Reference to a field of type 'Json'
+ */
+export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+/**
+ * Reference to a field of type 'QueryMode'
+ */
+export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+/**
  * Reference to a field of type 'PlanReperage'
  */
 export type EnumPlanReperageFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PlanReperage'>
@@ -4986,6 +5119,34 @@ export type EnumConformiteValueFieldRefInput<$PrismaModel> = FieldRefInputType<$
  * Reference to a field of type 'ConformiteValue[]'
  */
 export type ListEnumConformiteValueFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ConformiteValue[]'>
+    
+
+
+/**
+ * Reference to a field of type 'TypeGarantieEnum'
+ */
+export type EnumTypeGarantieEnumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TypeGarantieEnum'>
+    
+
+
+/**
+ * Reference to a field of type 'TypeGarantieEnum[]'
+ */
+export type ListEnumTypeGarantieEnumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TypeGarantieEnum[]'>
+    
+
+
+/**
+ * Reference to a field of type 'StatutDossierEnum'
+ */
+export type EnumStatutDossierEnumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StatutDossierEnum'>
+    
+
+
+/**
+ * Reference to a field of type 'StatutDossierEnum[]'
+ */
+export type ListEnumStatutDossierEnumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StatutDossierEnum[]'>
     
 
 /**
@@ -5146,6 +5307,7 @@ export type GlobalOmitConfig = {
   ficheVerifJournaliereEchafaudage?: Prisma.FicheVerifJournaliereEchafaudageOmit
   verificationAvantMiseServiceEchafaudage?: Prisma.VerificationAvantMiseServiceEchafaudageOmit
   document?: Prisma.DocumentOmit
+  dossierExpertise?: Prisma.DossierExpertiseOmit
   reserve?: Prisma.ReserveOmit
 }
 

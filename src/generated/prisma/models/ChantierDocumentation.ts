@@ -28,10 +28,12 @@ export type AggregateChantierDocumentation = {
 
 export type ChantierDocumentationAvgAggregateOutputType = {
   size: number | null
+  version: number | null
 }
 
 export type ChantierDocumentationSumAggregateOutputType = {
   size: number | null
+  version: number | null
 }
 
 export type ChantierDocumentationMinAggregateOutputType = {
@@ -47,6 +49,9 @@ export type ChantierDocumentationMinAggregateOutputType = {
   size: number | null
   endDate: Date | null
   folderId: string | null
+  version: number | null
+  validateur: string | null
+  commentaire: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -64,6 +69,9 @@ export type ChantierDocumentationMaxAggregateOutputType = {
   size: number | null
   endDate: Date | null
   folderId: string | null
+  version: number | null
+  validateur: string | null
+  commentaire: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -81,6 +89,9 @@ export type ChantierDocumentationCountAggregateOutputType = {
   size: number
   endDate: number
   folderId: number
+  version: number
+  validateur: number
+  commentaire: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -89,10 +100,12 @@ export type ChantierDocumentationCountAggregateOutputType = {
 
 export type ChantierDocumentationAvgAggregateInputType = {
   size?: true
+  version?: true
 }
 
 export type ChantierDocumentationSumAggregateInputType = {
   size?: true
+  version?: true
 }
 
 export type ChantierDocumentationMinAggregateInputType = {
@@ -108,6 +121,9 @@ export type ChantierDocumentationMinAggregateInputType = {
   size?: true
   endDate?: true
   folderId?: true
+  version?: true
+  validateur?: true
+  commentaire?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -125,6 +141,9 @@ export type ChantierDocumentationMaxAggregateInputType = {
   size?: true
   endDate?: true
   folderId?: true
+  version?: true
+  validateur?: true
+  commentaire?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -142,6 +161,9 @@ export type ChantierDocumentationCountAggregateInputType = {
   size?: true
   endDate?: true
   folderId?: true
+  version?: true
+  validateur?: true
+  commentaire?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -246,6 +268,9 @@ export type ChantierDocumentationGroupByOutputType = {
   size: number
   endDate: Date | null
   folderId: string | null
+  version: number | null
+  validateur: string | null
+  commentaire: string | null
   createdAt: Date
   updatedAt: Date
   _count: ChantierDocumentationCountAggregateOutputType | null
@@ -286,6 +311,9 @@ export type ChantierDocumentationWhereInput = {
   size?: Prisma.FloatFilter<"ChantierDocumentation"> | number
   endDate?: Prisma.DateTimeNullableFilter<"ChantierDocumentation"> | Date | string | null
   folderId?: Prisma.UuidNullableFilter<"ChantierDocumentation"> | string | null
+  version?: Prisma.IntNullableFilter<"ChantierDocumentation"> | number | null
+  validateur?: Prisma.StringNullableFilter<"ChantierDocumentation"> | string | null
+  commentaire?: Prisma.StringNullableFilter<"ChantierDocumentation"> | string | null
   createdAt?: Prisma.DateTimeFilter<"ChantierDocumentation"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ChantierDocumentation"> | Date | string
   chantier?: Prisma.XOR<Prisma.ChantierScalarRelationFilter, Prisma.ChantierWhereInput>
@@ -306,6 +334,9 @@ export type ChantierDocumentationOrderByWithRelationInput = {
   size?: Prisma.SortOrder
   endDate?: Prisma.SortOrderInput | Prisma.SortOrder
   folderId?: Prisma.SortOrderInput | Prisma.SortOrder
+  version?: Prisma.SortOrderInput | Prisma.SortOrder
+  validateur?: Prisma.SortOrderInput | Prisma.SortOrder
+  commentaire?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   chantier?: Prisma.ChantierOrderByWithRelationInput
@@ -329,6 +360,9 @@ export type ChantierDocumentationWhereUniqueInput = Prisma.AtLeast<{
   size?: Prisma.FloatFilter<"ChantierDocumentation"> | number
   endDate?: Prisma.DateTimeNullableFilter<"ChantierDocumentation"> | Date | string | null
   folderId?: Prisma.UuidNullableFilter<"ChantierDocumentation"> | string | null
+  version?: Prisma.IntNullableFilter<"ChantierDocumentation"> | number | null
+  validateur?: Prisma.StringNullableFilter<"ChantierDocumentation"> | string | null
+  commentaire?: Prisma.StringNullableFilter<"ChantierDocumentation"> | string | null
   createdAt?: Prisma.DateTimeFilter<"ChantierDocumentation"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ChantierDocumentation"> | Date | string
   chantier?: Prisma.XOR<Prisma.ChantierScalarRelationFilter, Prisma.ChantierWhereInput>
@@ -349,6 +383,9 @@ export type ChantierDocumentationOrderByWithAggregationInput = {
   size?: Prisma.SortOrder
   endDate?: Prisma.SortOrderInput | Prisma.SortOrder
   folderId?: Prisma.SortOrderInput | Prisma.SortOrder
+  version?: Prisma.SortOrderInput | Prisma.SortOrder
+  validateur?: Prisma.SortOrderInput | Prisma.SortOrder
+  commentaire?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.ChantierDocumentationCountOrderByAggregateInput
@@ -374,6 +411,9 @@ export type ChantierDocumentationScalarWhereWithAggregatesInput = {
   size?: Prisma.FloatWithAggregatesFilter<"ChantierDocumentation"> | number
   endDate?: Prisma.DateTimeNullableWithAggregatesFilter<"ChantierDocumentation"> | Date | string | null
   folderId?: Prisma.UuidNullableWithAggregatesFilter<"ChantierDocumentation"> | string | null
+  version?: Prisma.IntNullableWithAggregatesFilter<"ChantierDocumentation"> | number | null
+  validateur?: Prisma.StringNullableWithAggregatesFilter<"ChantierDocumentation"> | string | null
+  commentaire?: Prisma.StringNullableWithAggregatesFilter<"ChantierDocumentation"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ChantierDocumentation"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"ChantierDocumentation"> | Date | string
 }
@@ -388,6 +428,9 @@ export type ChantierDocumentationCreateInput = {
   type: string
   size: number
   endDate?: Date | string | null
+  version?: number | null
+  validateur?: string | null
+  commentaire?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   chantier: Prisma.ChantierCreateNestedOneWithoutDocumentationInput
@@ -408,6 +451,9 @@ export type ChantierDocumentationUncheckedCreateInput = {
   size: number
   endDate?: Date | string | null
   folderId?: string | null
+  version?: number | null
+  validateur?: string | null
+  commentaire?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -422,6 +468,9 @@ export type ChantierDocumentationUpdateInput = {
   type?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.FloatFieldUpdateOperationsInput | number
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  version?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  validateur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  commentaire?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   chantier?: Prisma.ChantierUpdateOneRequiredWithoutDocumentationNestedInput
@@ -442,6 +491,9 @@ export type ChantierDocumentationUncheckedUpdateInput = {
   size?: Prisma.FloatFieldUpdateOperationsInput | number
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   folderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  version?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  validateur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  commentaire?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -459,6 +511,9 @@ export type ChantierDocumentationCreateManyInput = {
   size: number
   endDate?: Date | string | null
   folderId?: string | null
+  version?: number | null
+  validateur?: string | null
+  commentaire?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -473,6 +528,9 @@ export type ChantierDocumentationUpdateManyMutationInput = {
   type?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.FloatFieldUpdateOperationsInput | number
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  version?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  validateur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  commentaire?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -490,6 +548,9 @@ export type ChantierDocumentationUncheckedUpdateManyInput = {
   size?: Prisma.FloatFieldUpdateOperationsInput | number
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   folderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  version?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  validateur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  commentaire?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -517,12 +578,16 @@ export type ChantierDocumentationCountOrderByAggregateInput = {
   size?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   folderId?: Prisma.SortOrder
+  version?: Prisma.SortOrder
+  validateur?: Prisma.SortOrder
+  commentaire?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type ChantierDocumentationAvgOrderByAggregateInput = {
   size?: Prisma.SortOrder
+  version?: Prisma.SortOrder
 }
 
 export type ChantierDocumentationMaxOrderByAggregateInput = {
@@ -538,6 +603,9 @@ export type ChantierDocumentationMaxOrderByAggregateInput = {
   size?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   folderId?: Prisma.SortOrder
+  version?: Prisma.SortOrder
+  validateur?: Prisma.SortOrder
+  commentaire?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -555,12 +623,16 @@ export type ChantierDocumentationMinOrderByAggregateInput = {
   size?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   folderId?: Prisma.SortOrder
+  version?: Prisma.SortOrder
+  validateur?: Prisma.SortOrder
+  commentaire?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type ChantierDocumentationSumOrderByAggregateInput = {
   size?: Prisma.SortOrder
+  version?: Prisma.SortOrder
 }
 
 export type ChantierDocumentationCreateNestedManyWithoutAuthorInput = {
@@ -715,6 +787,9 @@ export type ChantierDocumentationCreateWithoutAuthorInput = {
   type: string
   size: number
   endDate?: Date | string | null
+  version?: number | null
+  validateur?: string | null
+  commentaire?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   chantier: Prisma.ChantierCreateNestedOneWithoutDocumentationInput
@@ -733,6 +808,9 @@ export type ChantierDocumentationUncheckedCreateWithoutAuthorInput = {
   size: number
   endDate?: Date | string | null
   folderId?: string | null
+  version?: number | null
+  validateur?: string | null
+  commentaire?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -779,6 +857,9 @@ export type ChantierDocumentationScalarWhereInput = {
   size?: Prisma.FloatFilter<"ChantierDocumentation"> | number
   endDate?: Prisma.DateTimeNullableFilter<"ChantierDocumentation"> | Date | string | null
   folderId?: Prisma.UuidNullableFilter<"ChantierDocumentation"> | string | null
+  version?: Prisma.IntNullableFilter<"ChantierDocumentation"> | number | null
+  validateur?: Prisma.StringNullableFilter<"ChantierDocumentation"> | string | null
+  commentaire?: Prisma.StringNullableFilter<"ChantierDocumentation"> | string | null
   createdAt?: Prisma.DateTimeFilter<"ChantierDocumentation"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ChantierDocumentation"> | Date | string
 }
@@ -793,6 +874,9 @@ export type ChantierDocumentationCreateWithoutChantierInput = {
   type: string
   size: number
   endDate?: Date | string | null
+  version?: number | null
+  validateur?: string | null
+  commentaire?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   author: Prisma.UserCreateNestedOneWithoutDocumentsInput
@@ -811,6 +895,9 @@ export type ChantierDocumentationUncheckedCreateWithoutChantierInput = {
   size: number
   endDate?: Date | string | null
   folderId?: string | null
+  version?: number | null
+  validateur?: string | null
+  commentaire?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -851,6 +938,9 @@ export type ChantierDocumentationCreateWithoutFolderInput = {
   type: string
   size: number
   endDate?: Date | string | null
+  version?: number | null
+  validateur?: string | null
+  commentaire?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   chantier: Prisma.ChantierCreateNestedOneWithoutDocumentationInput
@@ -869,6 +959,9 @@ export type ChantierDocumentationUncheckedCreateWithoutFolderInput = {
   type: string
   size: number
   endDate?: Date | string | null
+  version?: number | null
+  validateur?: string | null
+  commentaire?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -911,6 +1004,9 @@ export type ChantierDocumentationCreateManyAuthorInput = {
   size: number
   endDate?: Date | string | null
   folderId?: string | null
+  version?: number | null
+  validateur?: string | null
+  commentaire?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -925,6 +1021,9 @@ export type ChantierDocumentationUpdateWithoutAuthorInput = {
   type?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.FloatFieldUpdateOperationsInput | number
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  version?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  validateur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  commentaire?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   chantier?: Prisma.ChantierUpdateOneRequiredWithoutDocumentationNestedInput
@@ -943,6 +1042,9 @@ export type ChantierDocumentationUncheckedUpdateWithoutAuthorInput = {
   size?: Prisma.FloatFieldUpdateOperationsInput | number
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   folderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  version?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  validateur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  commentaire?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -959,6 +1061,9 @@ export type ChantierDocumentationUncheckedUpdateManyWithoutAuthorInput = {
   size?: Prisma.FloatFieldUpdateOperationsInput | number
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   folderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  version?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  validateur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  commentaire?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -975,6 +1080,9 @@ export type ChantierDocumentationCreateManyChantierInput = {
   size: number
   endDate?: Date | string | null
   folderId?: string | null
+  version?: number | null
+  validateur?: string | null
+  commentaire?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -989,6 +1097,9 @@ export type ChantierDocumentationUpdateWithoutChantierInput = {
   type?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.FloatFieldUpdateOperationsInput | number
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  version?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  validateur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  commentaire?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   author?: Prisma.UserUpdateOneRequiredWithoutDocumentsNestedInput
@@ -1007,6 +1118,9 @@ export type ChantierDocumentationUncheckedUpdateWithoutChantierInput = {
   size?: Prisma.FloatFieldUpdateOperationsInput | number
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   folderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  version?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  validateur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  commentaire?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1023,6 +1137,9 @@ export type ChantierDocumentationUncheckedUpdateManyWithoutChantierInput = {
   size?: Prisma.FloatFieldUpdateOperationsInput | number
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   folderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  version?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  validateur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  commentaire?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1039,6 +1156,9 @@ export type ChantierDocumentationCreateManyFolderInput = {
   type: string
   size: number
   endDate?: Date | string | null
+  version?: number | null
+  validateur?: string | null
+  commentaire?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1053,6 +1173,9 @@ export type ChantierDocumentationUpdateWithoutFolderInput = {
   type?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.FloatFieldUpdateOperationsInput | number
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  version?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  validateur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  commentaire?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   chantier?: Prisma.ChantierUpdateOneRequiredWithoutDocumentationNestedInput
@@ -1071,6 +1194,9 @@ export type ChantierDocumentationUncheckedUpdateWithoutFolderInput = {
   type?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.FloatFieldUpdateOperationsInput | number
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  version?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  validateur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  commentaire?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1087,6 +1213,9 @@ export type ChantierDocumentationUncheckedUpdateManyWithoutFolderInput = {
   type?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.FloatFieldUpdateOperationsInput | number
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  version?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  validateur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  commentaire?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1106,6 +1235,9 @@ export type ChantierDocumentationSelect<ExtArgs extends runtime.Types.Extensions
   size?: boolean
   endDate?: boolean
   folderId?: boolean
+  version?: boolean
+  validateur?: boolean
+  commentaire?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   chantier?: boolean | Prisma.ChantierDefaultArgs<ExtArgs>
@@ -1126,6 +1258,9 @@ export type ChantierDocumentationSelectCreateManyAndReturn<ExtArgs extends runti
   size?: boolean
   endDate?: boolean
   folderId?: boolean
+  version?: boolean
+  validateur?: boolean
+  commentaire?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   chantier?: boolean | Prisma.ChantierDefaultArgs<ExtArgs>
@@ -1146,6 +1281,9 @@ export type ChantierDocumentationSelectUpdateManyAndReturn<ExtArgs extends runti
   size?: boolean
   endDate?: boolean
   folderId?: boolean
+  version?: boolean
+  validateur?: boolean
+  commentaire?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   chantier?: boolean | Prisma.ChantierDefaultArgs<ExtArgs>
@@ -1166,11 +1304,14 @@ export type ChantierDocumentationSelectScalar = {
   size?: boolean
   endDate?: boolean
   folderId?: boolean
+  version?: boolean
+  validateur?: boolean
+  commentaire?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ChantierDocumentationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "chantierId" | "authorId" | "motif" | "status" | "path" | "fileName" | "fileNameWithExtension" | "type" | "size" | "endDate" | "folderId" | "createdAt" | "updatedAt", ExtArgs["result"]["chantierDocumentation"]>
+export type ChantierDocumentationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "chantierId" | "authorId" | "motif" | "status" | "path" | "fileName" | "fileNameWithExtension" | "type" | "size" | "endDate" | "folderId" | "version" | "validateur" | "commentaire" | "createdAt" | "updatedAt", ExtArgs["result"]["chantierDocumentation"]>
 export type ChantierDocumentationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   chantier?: boolean | Prisma.ChantierDefaultArgs<ExtArgs>
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -1207,6 +1348,9 @@ export type $ChantierDocumentationPayload<ExtArgs extends runtime.Types.Extensio
     size: number
     endDate: Date | null
     folderId: string | null
+    version: number | null
+    validateur: string | null
+    commentaire: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["chantierDocumentation"]>
@@ -1647,6 +1791,9 @@ export interface ChantierDocumentationFieldRefs {
   readonly size: Prisma.FieldRef<"ChantierDocumentation", 'Float'>
   readonly endDate: Prisma.FieldRef<"ChantierDocumentation", 'DateTime'>
   readonly folderId: Prisma.FieldRef<"ChantierDocumentation", 'String'>
+  readonly version: Prisma.FieldRef<"ChantierDocumentation", 'Int'>
+  readonly validateur: Prisma.FieldRef<"ChantierDocumentation", 'String'>
+  readonly commentaire: Prisma.FieldRef<"ChantierDocumentation", 'String'>
   readonly createdAt: Prisma.FieldRef<"ChantierDocumentation", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"ChantierDocumentation", 'DateTime'>
 }

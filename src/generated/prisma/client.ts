@@ -282,6 +282,11 @@ export type VerificationAvantMiseServiceEchafaudage = Prisma.VerificationAvantMi
  */
 export type Document = Prisma.DocumentModel
 /**
+ * Model DossierExpertise
+ * 
+ */
+export type DossierExpertise = Prisma.DossierExpertiseModel
+/**
  * Model Reserve
  * 
  */

@@ -63,7 +63,7 @@ model Chantier {
   client            String?
   address           String?
   progress          Decimal                 @default(0) @map("progress") @db.Decimal(7, 2)
-  status            String
+  status            ProcessStatusEnum       @default(Initialise)
   chantierDetailsId String?                 @map("chantier_details_id") @db.Uuid
   matrResponsable   String?                 @map("matr_responsable") @db.VarChar(20)
   nomResponsable    String?                 @map("nom_responsable") @db.VarChar(150)
@@ -105,6 +105,8 @@ model Chantier {
   sharedDocs        ChantierSharedDoc[]
   organisation      ChantierOrganisation?
   objectifs         ChantierObjectif[]
+  dossierExpertises DossierExpertise[]
+  siteActions       Action[]
 
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt DateTime @default(now()) @map("updated_at") @db.Timestamptz(6)
@@ -187,27 +189,28 @@ model ChantierIntervenant {
 // ── Actions ────────────────────────────────────────────────────────────────────
 
 model Action {
-  id               String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  site             String?
-  anomalyRef       String?          @map("anomaly_ref")
-  correctiveAction String?          @map("corrective_action")
-  idResponsible    String           @db.Uuid
-  startDate        DateTime?        @map("start_date") @db.Timestamp(6)
-  dueDate          DateTime?        @map("due_date") @db.Timestamp(6)
-  status           String
+  id               String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  anomalyRef       String?           @map("anomaly_ref")
+  correctiveAction String?           @map("corrective_action")
+  idResponsible    String            @map("id_responsible") @db.Uuid
+  idChantier       String            @map("id_chantier") @db.Uuid
+  startDate        DateTime?         @map("start_date") @db.Timestamp(6)
+  dueDate          DateTime?         @map("due_date") @db.Timestamp(6)
+  status           ProcessStatusEnum @default(Initialise)
   progress         Int?
-  childIndex       Int?             @map("child_index")
-  createdAt        DateTime         @default(now()) @map("created_at") @db.Timestamptz(6)
-  updatedAt        DateTime         @default(now()) @map("updated_at") @db.Timestamptz(6)
+  childIndex       Int?              @map("child_index")
+  createdAt        DateTime          @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt        DateTime          @default(now()) @map("updated_at") @db.Timestamptz(6)
   chantiers        ChantierAction[]
-  children         ActionChild[]    @relation("parent")
-  childOf          ActionChild[]    @relation("child")
-  previousOf       ActionPrevious[] @relation("action")
-  predecessors     ActionPrevious[] @relation("previous")
-
-  responsible Intervenant @relation(fields: [idResponsible], references: [id])
+  children         ActionChild[]     @relation("parent")
+  childOf          ActionChild[]     @relation("child")
+  previousOf       ActionPrevious[]  @relation("action")
+  predecessors     ActionPrevious[]  @relation("previous")
+  responsible      Intervenant       @relation(fields: [idResponsible], references: [id])
+  chantier         Chantier          @relation(fields: [idChantier], references: [id], onDelete: Cascade)
 
   @@index([idResponsible])
+  @@index([idChantier])
   @@index([status])
   @@map("action")
 }
@@ -242,6 +245,22 @@ model ActionPrevious {
   @@map("action_previous")
 }
 
+// ── Process Status ────────────────────────────────────────────────────────────
+
+enum ProcessStatusEnum {
+  Planifie    @map("Planifié")
+  Initialise  @map("Initialisé")
+  EnCours     @map("En cours")
+  EnAttente   @map("En attente")
+  PasCommence @map("Pas commencé")
+  Termine     @map("Terminé")
+  Annule      @map("Annulé")
+  Accepte     @map("Accepté")
+  Refuse      @map("Refusé")
+
+  @@map("process_status_enum")
+}
+
 // ── Chantier Documentation ────────────────────────────────────────────────────
 
 enum ChantierDocumentationStatus {
@@ -261,6 +280,7 @@ enum ChantierDocumentationMotif {
   VISA                             @map("visa")
   BTE_OBJECTIF                     @map("bte-objectif")
   BTE_VERSION                      @map("bte-version")
+  BTE_VALIDATION                   @map("bte-validation")
   DOCUMENTAIRE_LANCEMENT           @map("documentaire-lancement")
   DOCUMENT_LANCEMENT               @map("document-lancement")
   EXECUTION                        @map("execution")
@@ -288,6 +308,9 @@ model ChantierDocumentation {
   size                  Float
   endDate               DateTime?                   @map("end_date") @db.Timestamptz(6)
   folderId              String?                     @map("folder_id") @db.Uuid
+  version               Int?
+  validateur            String?
+  commentaire           String?
   createdAt             DateTime                    @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt             DateTime                    @default(now()) @map("updated_at") @db.Timestamptz(6)
   chantier              Chantier                    @relation(fields: [chantierId], references: [id], onDelete: Cascade)
@@ -321,11 +344,26 @@ model ChantierSharedDoc {
 }
 
 model ChantierOrganisation {
-  chantierId         String   @id @map("chantier_id") @db.Uuid
-  conditionsAcces    Json     @default("[]") @map("conditions_acces")
-  conditionsStockage Json     @default("[]") @map("conditions_stockage")
-  chantier           Chantier @relation(fields: [chantierId], references: [id], onDelete: Cascade)
-  updatedAt          DateTime @default(now()) @map("updated_at") @db.Timestamptz(6)
+  chantierId                String   @id @map("chantier_id") @db.Uuid
+  heureDepart               String?  @map("heure_depart")
+  heureFin                  String?  @map("heure_fin")
+  cles                      String?  @map("cles")
+  badges                    String?  @map("badges")
+  papiersIdentite           String?  @map("papiers_identite")
+  posteControle             String?  @map("poste_controle")
+  acces                     String?  @map("acces")
+  miseEnOeuvre              String?  @map("mise_en_oeuvre")
+  manutention               String?  @map("manutention")
+  materielManutentionLevage String?  @map("materiel_manutention_levage")
+  precautionsParticulieres  String?  @map("precautions_particulieres")
+  demarragePrevisionnelLe   String?  @map("demarrage_previsionnel_le")
+  finPrevisionnelLe         String?  @map("fin_previsionnel_le")
+  tacheExecutee             String?  @map("tache_executee")
+  quantite                  String?  @map("quantite")
+  tempsPrevus               String?  @map("temps_prevus")
+  chantier                  Chantier @relation(fields: [chantierId], references: [id], onDelete: Cascade)
+  createdAt                 DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt                 DateTime @default(now()) @map("updated_at") @db.Timestamptz(6)
 
   @@map("chantier_organisation")
 }
@@ -435,19 +473,21 @@ model Agence {
 }
 
 model Etablissement {
-  id         String   @id @default(dbgenerated("gen_random_uuid()")) @map("id_etablissement") @db.Uuid
-  adresse1   String   @map("adresse_1") @db.VarChar(255)
-  adresse2   String?  @map("adresse_2") @db.VarChar(255)
-  codePostal String?  @map("code_postal") @db.VarChar(10)
-  ville      String?  @db.VarChar(100)
-  telephone  String?  @db.VarChar(20)
-  email      String?  @db.VarChar(150)
-  codeSap    String?  @map("code_sap") @db.VarChar(50)
-  idAgence   String?  @map("id_agence") @db.Uuid
-  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamp(6)
-  updatedAt  DateTime @default(now()) @map("updated_at") @db.Timestamp(6)
-  agence     Agence?  @relation(fields: [idAgence], references: [id])
-  persons    Person[]
+  id                String   @id @default(dbgenerated("gen_random_uuid()")) @map("id_etablissement") @db.Uuid
+  codeEtablissement String   @unique @map("code_etab") @db.VarChar(20)
+  nomEtablissement  String   @map("nom_etab") @db.VarChar(150)
+  adresse1          String   @map("adresse_1") @db.VarChar(255)
+  adresse2          String?  @map("adresse_2") @db.VarChar(255)
+  codePostal        String?  @map("code_postal") @db.VarChar(10)
+  ville             String?  @db.VarChar(100)
+  telephone         String?  @db.VarChar(20)
+  email             String?  @db.VarChar(150)
+  codeSap           String?  @map("code_sap") @db.VarChar(50)
+  idAgence          String?  @map("id_agence") @db.Uuid
+  createdAt         DateTime @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt         DateTime @default(now()) @map("updated_at") @db.Timestamp(6)
+  agence            Agence?  @relation(fields: [idAgence], references: [id])
+  persons           Person[]
 
   @@index([idAgence])
   @@map("etablissement")
@@ -528,6 +568,7 @@ model Documentation {
   id                                      String                                   @id @default(dbgenerated("gen_random_uuid()")) @map("id_documentation") @db.Uuid
   idChantier                              String                                   @map("id_chantier") @db.Uuid
   typeDoc                                 TypeDocEnum                              @map("type_doc")
+  status                                  ProcessStatusEnum                        @default(PasCommence) @map("status")
   createdAt                               DateTime                                 @default(now()) @map("created_at") @db.Timestamp(6)
   updatedAt                               DateTime                                 @default(now()) @map("updated_at") @db.Timestamp(6)
   chantier                                Chantier                                 @relation(fields: [idChantier], references: [id])
@@ -813,12 +854,54 @@ model VerificationAvantMiseServiceEchafaudage {
 model Document {
   id              String        @id @default(dbgenerated("gen_random_uuid()")) @map("id_document") @db.Uuid
   idDocumentation String        @map("id_documentation") @db.Uuid
+  version         Int
   urlPdf          String        @map("url_pdf")
   dateGeneration  DateTime      @default(now()) @map("date_generation") @db.Timestamp(6)
   documentation   Documentation @relation(fields: [idDocumentation], references: [id], onDelete: Cascade)
 
   @@index([idDocumentation])
+  @@index([version])
   @@map("document")
+}
+
+// ── Dossiers d'Expertise ─────────────────────────────────────────────────────
+
+enum TypeGarantieEnum {
+  GPA       @map("gpa")
+  Decennale @map("decennale")
+
+  @@map("type_garantie_enum")
+}
+
+enum StatutDossierEnum {
+  EnCours @map("en_cours")
+  Cloture @map("cloture")
+
+  @@map("statut_dossier_enum")
+}
+
+model DossierExpertise {
+  id              String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  reference       String            @unique
+  idChantier      String            @map("id_chantier") @db.Uuid
+  typeGarantie    TypeGarantieEnum  @map("type_garantie")
+  objet           String
+  expertDesigne   String?           @map("expert_designe")
+  avocatSmac      String?           @map("avocat_smac")
+  dateOuverture   DateTime          @map("date_ouverture") @db.Date
+  statut          StatutDossierEnum @default(EnCours)
+  juridiction     String?
+  dateAssignation DateTime?         @map("date_assignation") @db.Date
+  demandeur       String?
+  defendeurs      String?
+  griefs          String?
+  chantier        Chantier          @relation(fields: [idChantier], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @map("updated_at") @db.Timestamptz(6)
+
+  @@index([statut])
+  @@map("dossier_expertise")
 }
 
 model Reserve {
@@ -827,9 +910,10 @@ model Reserve {
   images          Json          @default("[]") // max 6 images — enforce in application layer (DB-level CHECK not supported by Prisma)
   localisation    String?
   details         String
-  createdAt       DateTime      @default(now()) @map("created_at") @db.Timestamp(6)
-  updatedAt       DateTime      @default(now()) @map("updated_at") @db.Timestamp(6)
   documentation   Documentation @relation(fields: [idDocumentation], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt DateTime @default(now()) @map("updated_at") @db.Timestamp(6)
 
   @@index([idDocumentation])
   @@map("reserve")

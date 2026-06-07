@@ -8,7 +8,7 @@ import type {CreateActionRequest, UpdateActionRequest} from '../types.js'
 function getFilters(req: Request): ActionFilters {
     const q = req.query
     return {
-        site: q.site ? String(q.site) : undefined,
+        idChantier: q.idChantier ? String(q.idChantier) : undefined,
         anomalyRef: q.anomalyRef ? String(q.anomalyRef) : undefined,
         correctiveAction: q.correctiveAction ? String(q.correctiveAction) : undefined,
         responsible: q.responsible ? String(q.responsible) : undefined,
@@ -22,13 +22,13 @@ function getFilters(req: Request): ActionFilters {
 export const actionsController = {
     create: asyncHandler(async (req, res) => {
         const b = (req.body ?? {}) as CreateActionRequest
-        if (!b.responsible) { res.status(406).json(fail('Invalid entries!')); return }
+        if (!b.responsible || !b.idChantier) { res.status(406).json(fail('Invalid entries!')); return }
         res.status(201).json(ok(await actionsService.create(b), 'Action created successfully'))
     }),
 
     addChild: asyncHandler(async (req, res) => {
         const b = (req.body ?? {}) as CreateActionRequest
-        if (!b.responsible) { res.status(406).json(fail('Invalid entries!')); return }
+        if (!b.responsible || !b.idChantier) { res.status(406).json(fail('Invalid entries!')); return }
         const result = await actionsService.addChild(req.params.actionId, b)
         if (!result) { res.status(404).json(fail('Not found')); return }
         res.status(201).json(ok(result, 'Child action added successfully'))

@@ -2,6 +2,7 @@ import {prisma} from '../db/prisma.js'
 import {buildPage} from '../utils/pagination.js'
 import {ProcessStatus} from '../enums.js'
 import {TypeIntervenantEnum} from '../generated/prisma/enums.js'
+import {psToEnum, enumToPs} from '../utils/processStatus.js'
 import type {Prisma} from '../generated/prisma/client.js'
 import type {CreateChantierRequest, CreateIntervenantRequest, CreateActionRequest, UpdateChantierDetailsRequest, UpdateChantierRequest} from '../types.js'
 
@@ -13,7 +14,7 @@ function mapChantier(p: ChantierWithDetails) {
         id: p.id, codeOTP: p.codeOTP, name: p.name, team: p.team,
         client: p.client, address: p.address,
         progress: p.progress === null ? null : Number(p.progress),
-        status: p.status, createdAt: p.createdAt, updatedAt: p.updatedAt,
+        status: enumToPs(p.status), createdAt: p.createdAt, updatedAt: p.updatedAt,
         chantierDetails: p.chantierDetails ? {
             id: p.chantierDetails.id, client: p.chantierDetails.client,
             finalClient: p.chantierDetails.finalClient, address: p.chantierDetails.address,
@@ -52,6 +53,7 @@ async function findChantier(id: string): Promise<ChantierWithDetails | null> {
 
 function chantierOrderBy(field: string, dir: 'asc' | 'desc'): Prisma.ChantierOrderByWithRelationInput {
     switch (field) {
+        case 'otp':      return {codeOTP: dir}
         case 'name':     return {name: dir}
         case 'team':     return {team: dir}
         case 'progress': return {progress: dir}
@@ -77,7 +79,7 @@ function buildWhere(f: ChantierFilters): Prisma.ChantierWhereInput {
     if (f.codeOTP !== undefined) where.codeOTP = f.codeOTP
     if (f.name) where.name = {contains: f.name, mode: 'insensitive'}
     if (f.team) where.team = f.team
-    if (f.status) where.status = f.status
+    if (f.status) where.status = psToEnum(f.status)
     if (f.client) where.client = {contains: f.client, mode: 'insensitive'}
     if (f.progressFrom !== undefined || f.progressTo !== undefined) {
         where.progress = {gte: f.progressFrom ?? 0, lte: f.progressTo ?? 100}
@@ -122,7 +124,7 @@ export const chantiersService = {
             data: {
                 codeOTP: b.codeOTP, name: b.name ?? null, team: b.team ?? null,
                 client: b.client ?? null, address: b.address ?? null,
-                progress: b.progress ?? 0, status: b.status ?? ProcessStatus.INITIALIZED,
+                progress: b.progress ?? 0, status: psToEnum(b.status ?? ProcessStatus.INITIALIZED),
             },
             include: chantierInclude,
         })
@@ -153,7 +155,7 @@ export const chantiersService = {
     async updateStatus(id: string, status: string) {
         try {
             const p = await prisma.chantier.update({
-                where: {id}, data: {status, updatedAt: new Date()}, include: chantierInclude,
+                where: {id}, data: {status: psToEnum(status), updatedAt: new Date()}, include: chantierInclude,
             })
             return mapChantier(p)
         } catch {
@@ -220,11 +222,11 @@ export const chantiersService = {
             if (!t.responsible) continue
             const action = await prisma.action.create({
                 data: {
-                    site: t.site ?? null, anomalyRef: t.anomalyRef ?? null,
+                    idChantier: chantierId, anomalyRef: t.anomalyRef ?? null,
                     correctiveAction: t.correctiveAction ?? null, idResponsible: t.responsible,
                     startDate: t.startDate ? new Date(t.startDate) : null,
                     dueDate: t.dueDate ? new Date(t.dueDate) : null,
-                    status: t.status ?? ProcessStatus.INITIALIZED, childIndex: childIndex++,
+                    status: psToEnum(t.status ?? ProcessStatus.INITIALIZED), childIndex: childIndex++,
                 },
             })
             await prisma.chantierAction.create({data: {chantierId, actionId: action.id}})

@@ -26,18 +26,67 @@ export type AggregateChantierOrganisation = {
 
 export type ChantierOrganisationMinAggregateOutputType = {
   chantierId: string | null
+  heureDepart: string | null
+  heureFin: string | null
+  cles: string | null
+  badges: string | null
+  papiersIdentite: string | null
+  posteControle: string | null
+  acces: string | null
+  miseEnOeuvre: string | null
+  manutention: string | null
+  materielManutentionLevage: string | null
+  precautionsParticulieres: string | null
+  demarragePrevisionnelLe: string | null
+  finPrevisionnelLe: string | null
+  tacheExecutee: string | null
+  quantite: string | null
+  tempsPrevus: string | null
+  createdAt: Date | null
   updatedAt: Date | null
 }
 
 export type ChantierOrganisationMaxAggregateOutputType = {
   chantierId: string | null
+  heureDepart: string | null
+  heureFin: string | null
+  cles: string | null
+  badges: string | null
+  papiersIdentite: string | null
+  posteControle: string | null
+  acces: string | null
+  miseEnOeuvre: string | null
+  manutention: string | null
+  materielManutentionLevage: string | null
+  precautionsParticulieres: string | null
+  demarragePrevisionnelLe: string | null
+  finPrevisionnelLe: string | null
+  tacheExecutee: string | null
+  quantite: string | null
+  tempsPrevus: string | null
+  createdAt: Date | null
   updatedAt: Date | null
 }
 
 export type ChantierOrganisationCountAggregateOutputType = {
   chantierId: number
-  conditionsAcces: number
-  conditionsStockage: number
+  heureDepart: number
+  heureFin: number
+  cles: number
+  badges: number
+  papiersIdentite: number
+  posteControle: number
+  acces: number
+  miseEnOeuvre: number
+  manutention: number
+  materielManutentionLevage: number
+  precautionsParticulieres: number
+  demarragePrevisionnelLe: number
+  finPrevisionnelLe: number
+  tacheExecutee: number
+  quantite: number
+  tempsPrevus: number
+  createdAt: number
   updatedAt: number
   _all: number
 }
@@ -45,18 +94,67 @@ export type ChantierOrganisationCountAggregateOutputType = {
 
 export type ChantierOrganisationMinAggregateInputType = {
   chantierId?: true
+  heureDepart?: true
+  heureFin?: true
+  cles?: true
+  badges?: true
+  papiersIdentite?: true
+  posteControle?: true
+  acces?: true
+  miseEnOeuvre?: true
+  manutention?: true
+  materielManutentionLevage?: true
+  precautionsParticulieres?: true
+  demarragePrevisionnelLe?: true
+  finPrevisionnelLe?: true
+  tacheExecutee?: true
+  quantite?: true
+  tempsPrevus?: true
+  createdAt?: true
   updatedAt?: true
 }
 
 export type ChantierOrganisationMaxAggregateInputType = {
   chantierId?: true
+  heureDepart?: true
+  heureFin?: true
+  cles?: true
+  badges?: true
+  papiersIdentite?: true
+  posteControle?: true
+  acces?: true
+  miseEnOeuvre?: true
+  manutention?: true
+  materielManutentionLevage?: true
+  precautionsParticulieres?: true
+  demarragePrevisionnelLe?: true
+  finPrevisionnelLe?: true
+  tacheExecutee?: true
+  quantite?: true
+  tempsPrevus?: true
+  createdAt?: true
   updatedAt?: true
 }
 
 export type ChantierOrganisationCountAggregateInputType = {
   chantierId?: true
-  conditionsAcces?: true
-  conditionsStockage?: true
+  heureDepart?: true
+  heureFin?: true
+  cles?: true
+  badges?: true
+  papiersIdentite?: true
+  posteControle?: true
+  acces?: true
+  miseEnOeuvre?: true
+  manutention?: true
+  materielManutentionLevage?: true
+  precautionsParticulieres?: true
+  demarragePrevisionnelLe?: true
+  finPrevisionnelLe?: true
+  tacheExecutee?: true
+  quantite?: true
+  tempsPrevus?: true
+  createdAt?: true
   updatedAt?: true
   _all?: true
 }
@@ -135,8 +233,23 @@ export type ChantierOrganisationGroupByArgs<ExtArgs extends runtime.Types.Extens
 
 export type ChantierOrganisationGroupByOutputType = {
   chantierId: string
-  conditionsAcces: runtime.JsonValue
-  conditionsStockage: runtime.JsonValue
+  heureDepart: string | null
+  heureFin: string | null
+  cles: string | null
+  badges: string | null
+  papiersIdentite: string | null
+  posteControle: string | null
+  acces: string | null
+  miseEnOeuvre: string | null
+  manutention: string | null
+  materielManutentionLevage: string | null
+  precautionsParticulieres: string | null
+  demarragePrevisionnelLe: string | null
+  finPrevisionnelLe: string | null
+  tacheExecutee: string | null
+  quantite: string | null
+  tempsPrevus: string | null
+  createdAt: Date
   updatedAt: Date
   _count: ChantierOrganisationCountAggregateOutputType | null
   _min: ChantierOrganisationMinAggregateOutputType | null
@@ -163,16 +276,46 @@ export type ChantierOrganisationWhereInput = {
   OR?: Prisma.ChantierOrganisationWhereInput[]
   NOT?: Prisma.ChantierOrganisationWhereInput | Prisma.ChantierOrganisationWhereInput[]
   chantierId?: Prisma.UuidFilter<"ChantierOrganisation"> | string
-  conditionsAcces?: Prisma.JsonFilter<"ChantierOrganisation">
-  conditionsStockage?: Prisma.JsonFilter<"ChantierOrganisation">
+  heureDepart?: Prisma.StringNullableFilter<"ChantierOrganisation"> | string | null
+  heureFin?: Prisma.StringNullableFilter<"ChantierOrganisation"> | string | null
+  cles?: Prisma.StringNullableFilter<"ChantierOrganisation"> | string | null
+  badges?: Prisma.StringNullableFilter<"ChantierOrganisation"> | string | null
+  papiersIdentite?: Prisma.StringNullableFilter<"ChantierOrganisation"> | string | null
+  posteControle?: Prisma.StringNullableFilter<"ChantierOrganisation"> | string | null
+  acces?: Prisma.StringNullableFilter<"ChantierOrganisation"> | string | null
+  miseEnOeuvre?: Prisma.StringNullableFilter<"ChantierOrganisation"> | string | null
+  manutention?: Prisma.StringNullableFilter<"ChantierOrganisation"> | string | null
+  materielManutentionLevage?: Prisma.StringNullableFilter<"ChantierOrganisation"> | string | null
+  precautionsParticulieres?: Prisma.StringNullableFilter<"ChantierOrganisation"> | string | null
+  demarragePrevisionnelLe?: Prisma.StringNullableFilter<"ChantierOrganisation"> | string | null
+  finPrevisionnelLe?: Prisma.StringNullableFilter<"ChantierOrganisation"> | string | null
+  tacheExecutee?: Prisma.StringNullableFilter<"ChantierOrganisation"> | string | null
+  quantite?: Prisma.StringNullableFilter<"ChantierOrganisation"> | string | null
+  tempsPrevus?: Prisma.StringNullableFilter<"ChantierOrganisation"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"ChantierOrganisation"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ChantierOrganisation"> | Date | string
   chantier?: Prisma.XOR<Prisma.ChantierScalarRelationFilter, Prisma.ChantierWhereInput>
 }
 
 export type ChantierOrganisationOrderByWithRelationInput = {
   chantierId?: Prisma.SortOrder
-  conditionsAcces?: Prisma.SortOrder
-  conditionsStockage?: Prisma.SortOrder
+  heureDepart?: Prisma.SortOrderInput | Prisma.SortOrder
+  heureFin?: Prisma.SortOrderInput | Prisma.SortOrder
+  cles?: Prisma.SortOrderInput | Prisma.SortOrder
+  badges?: Prisma.SortOrderInput | Prisma.SortOrder
+  papiersIdentite?: Prisma.SortOrderInput | Prisma.SortOrder
+  posteControle?: Prisma.SortOrderInput | Prisma.SortOrder
+  acces?: Prisma.SortOrderInput | Prisma.SortOrder
+  miseEnOeuvre?: Prisma.SortOrderInput | Prisma.SortOrder
+  manutention?: Prisma.SortOrderInput | Prisma.SortOrder
+  materielManutentionLevage?: Prisma.SortOrderInput | Prisma.SortOrder
+  precautionsParticulieres?: Prisma.SortOrderInput | Prisma.SortOrder
+  demarragePrevisionnelLe?: Prisma.SortOrderInput | Prisma.SortOrder
+  finPrevisionnelLe?: Prisma.SortOrderInput | Prisma.SortOrder
+  tacheExecutee?: Prisma.SortOrderInput | Prisma.SortOrder
+  quantite?: Prisma.SortOrderInput | Prisma.SortOrder
+  tempsPrevus?: Prisma.SortOrderInput | Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   chantier?: Prisma.ChantierOrderByWithRelationInput
 }
@@ -182,16 +325,46 @@ export type ChantierOrganisationWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.ChantierOrganisationWhereInput | Prisma.ChantierOrganisationWhereInput[]
   OR?: Prisma.ChantierOrganisationWhereInput[]
   NOT?: Prisma.ChantierOrganisationWhereInput | Prisma.ChantierOrganisationWhereInput[]
-  conditionsAcces?: Prisma.JsonFilter<"ChantierOrganisation">
-  conditionsStockage?: Prisma.JsonFilter<"ChantierOrganisation">
+  heureDepart?: Prisma.StringNullableFilter<"ChantierOrganisation"> | string | null
+  heureFin?: Prisma.StringNullableFilter<"ChantierOrganisation"> | string | null
+  cles?: Prisma.StringNullableFilter<"ChantierOrganisation"> | string | null
+  badges?: Prisma.StringNullableFilter<"ChantierOrganisation"> | string | null
+  papiersIdentite?: Prisma.StringNullableFilter<"ChantierOrganisation"> | string | null
+  posteControle?: Prisma.StringNullableFilter<"ChantierOrganisation"> | string | null
+  acces?: Prisma.StringNullableFilter<"ChantierOrganisation"> | string | null
+  miseEnOeuvre?: Prisma.StringNullableFilter<"ChantierOrganisation"> | string | null
+  manutention?: Prisma.StringNullableFilter<"ChantierOrganisation"> | string | null
+  materielManutentionLevage?: Prisma.StringNullableFilter<"ChantierOrganisation"> | string | null
+  precautionsParticulieres?: Prisma.StringNullableFilter<"ChantierOrganisation"> | string | null
+  demarragePrevisionnelLe?: Prisma.StringNullableFilter<"ChantierOrganisation"> | string | null
+  finPrevisionnelLe?: Prisma.StringNullableFilter<"ChantierOrganisation"> | string | null
+  tacheExecutee?: Prisma.StringNullableFilter<"ChantierOrganisation"> | string | null
+  quantite?: Prisma.StringNullableFilter<"ChantierOrganisation"> | string | null
+  tempsPrevus?: Prisma.StringNullableFilter<"ChantierOrganisation"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"ChantierOrganisation"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ChantierOrganisation"> | Date | string
   chantier?: Prisma.XOR<Prisma.ChantierScalarRelationFilter, Prisma.ChantierWhereInput>
 }, "chantierId">
 
 export type ChantierOrganisationOrderByWithAggregationInput = {
   chantierId?: Prisma.SortOrder
-  conditionsAcces?: Prisma.SortOrder
-  conditionsStockage?: Prisma.SortOrder
+  heureDepart?: Prisma.SortOrderInput | Prisma.SortOrder
+  heureFin?: Prisma.SortOrderInput | Prisma.SortOrder
+  cles?: Prisma.SortOrderInput | Prisma.SortOrder
+  badges?: Prisma.SortOrderInput | Prisma.SortOrder
+  papiersIdentite?: Prisma.SortOrderInput | Prisma.SortOrder
+  posteControle?: Prisma.SortOrderInput | Prisma.SortOrder
+  acces?: Prisma.SortOrderInput | Prisma.SortOrder
+  miseEnOeuvre?: Prisma.SortOrderInput | Prisma.SortOrder
+  manutention?: Prisma.SortOrderInput | Prisma.SortOrder
+  materielManutentionLevage?: Prisma.SortOrderInput | Prisma.SortOrder
+  precautionsParticulieres?: Prisma.SortOrderInput | Prisma.SortOrder
+  demarragePrevisionnelLe?: Prisma.SortOrderInput | Prisma.SortOrder
+  finPrevisionnelLe?: Prisma.SortOrderInput | Prisma.SortOrder
+  tacheExecutee?: Prisma.SortOrderInput | Prisma.SortOrder
+  quantite?: Prisma.SortOrderInput | Prisma.SortOrder
+  tempsPrevus?: Prisma.SortOrderInput | Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.ChantierOrganisationCountOrderByAggregateInput
   _max?: Prisma.ChantierOrganisationMaxOrderByAggregateInput
@@ -203,56 +376,176 @@ export type ChantierOrganisationScalarWhereWithAggregatesInput = {
   OR?: Prisma.ChantierOrganisationScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ChantierOrganisationScalarWhereWithAggregatesInput | Prisma.ChantierOrganisationScalarWhereWithAggregatesInput[]
   chantierId?: Prisma.UuidWithAggregatesFilter<"ChantierOrganisation"> | string
-  conditionsAcces?: Prisma.JsonWithAggregatesFilter<"ChantierOrganisation">
-  conditionsStockage?: Prisma.JsonWithAggregatesFilter<"ChantierOrganisation">
+  heureDepart?: Prisma.StringNullableWithAggregatesFilter<"ChantierOrganisation"> | string | null
+  heureFin?: Prisma.StringNullableWithAggregatesFilter<"ChantierOrganisation"> | string | null
+  cles?: Prisma.StringNullableWithAggregatesFilter<"ChantierOrganisation"> | string | null
+  badges?: Prisma.StringNullableWithAggregatesFilter<"ChantierOrganisation"> | string | null
+  papiersIdentite?: Prisma.StringNullableWithAggregatesFilter<"ChantierOrganisation"> | string | null
+  posteControle?: Prisma.StringNullableWithAggregatesFilter<"ChantierOrganisation"> | string | null
+  acces?: Prisma.StringNullableWithAggregatesFilter<"ChantierOrganisation"> | string | null
+  miseEnOeuvre?: Prisma.StringNullableWithAggregatesFilter<"ChantierOrganisation"> | string | null
+  manutention?: Prisma.StringNullableWithAggregatesFilter<"ChantierOrganisation"> | string | null
+  materielManutentionLevage?: Prisma.StringNullableWithAggregatesFilter<"ChantierOrganisation"> | string | null
+  precautionsParticulieres?: Prisma.StringNullableWithAggregatesFilter<"ChantierOrganisation"> | string | null
+  demarragePrevisionnelLe?: Prisma.StringNullableWithAggregatesFilter<"ChantierOrganisation"> | string | null
+  finPrevisionnelLe?: Prisma.StringNullableWithAggregatesFilter<"ChantierOrganisation"> | string | null
+  tacheExecutee?: Prisma.StringNullableWithAggregatesFilter<"ChantierOrganisation"> | string | null
+  quantite?: Prisma.StringNullableWithAggregatesFilter<"ChantierOrganisation"> | string | null
+  tempsPrevus?: Prisma.StringNullableWithAggregatesFilter<"ChantierOrganisation"> | string | null
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"ChantierOrganisation"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"ChantierOrganisation"> | Date | string
 }
 
 export type ChantierOrganisationCreateInput = {
-  conditionsAcces?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  conditionsStockage?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  heureDepart?: string | null
+  heureFin?: string | null
+  cles?: string | null
+  badges?: string | null
+  papiersIdentite?: string | null
+  posteControle?: string | null
+  acces?: string | null
+  miseEnOeuvre?: string | null
+  manutention?: string | null
+  materielManutentionLevage?: string | null
+  precautionsParticulieres?: string | null
+  demarragePrevisionnelLe?: string | null
+  finPrevisionnelLe?: string | null
+  tacheExecutee?: string | null
+  quantite?: string | null
+  tempsPrevus?: string | null
+  createdAt?: Date | string
   updatedAt?: Date | string
   chantier: Prisma.ChantierCreateNestedOneWithoutOrganisationInput
 }
 
 export type ChantierOrganisationUncheckedCreateInput = {
   chantierId: string
-  conditionsAcces?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  conditionsStockage?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  heureDepart?: string | null
+  heureFin?: string | null
+  cles?: string | null
+  badges?: string | null
+  papiersIdentite?: string | null
+  posteControle?: string | null
+  acces?: string | null
+  miseEnOeuvre?: string | null
+  manutention?: string | null
+  materielManutentionLevage?: string | null
+  precautionsParticulieres?: string | null
+  demarragePrevisionnelLe?: string | null
+  finPrevisionnelLe?: string | null
+  tacheExecutee?: string | null
+  quantite?: string | null
+  tempsPrevus?: string | null
+  createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type ChantierOrganisationUpdateInput = {
-  conditionsAcces?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  conditionsStockage?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  heureDepart?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  heureFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cles?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  badges?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  papiersIdentite?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  posteControle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  acces?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  miseEnOeuvre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manutention?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  materielManutentionLevage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  precautionsParticulieres?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  demarragePrevisionnelLe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  finPrevisionnelLe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tacheExecutee?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  quantite?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tempsPrevus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   chantier?: Prisma.ChantierUpdateOneRequiredWithoutOrganisationNestedInput
 }
 
 export type ChantierOrganisationUncheckedUpdateInput = {
   chantierId?: Prisma.StringFieldUpdateOperationsInput | string
-  conditionsAcces?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  conditionsStockage?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  heureDepart?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  heureFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cles?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  badges?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  papiersIdentite?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  posteControle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  acces?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  miseEnOeuvre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manutention?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  materielManutentionLevage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  precautionsParticulieres?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  demarragePrevisionnelLe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  finPrevisionnelLe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tacheExecutee?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  quantite?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tempsPrevus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ChantierOrganisationCreateManyInput = {
   chantierId: string
-  conditionsAcces?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  conditionsStockage?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  heureDepart?: string | null
+  heureFin?: string | null
+  cles?: string | null
+  badges?: string | null
+  papiersIdentite?: string | null
+  posteControle?: string | null
+  acces?: string | null
+  miseEnOeuvre?: string | null
+  manutention?: string | null
+  materielManutentionLevage?: string | null
+  precautionsParticulieres?: string | null
+  demarragePrevisionnelLe?: string | null
+  finPrevisionnelLe?: string | null
+  tacheExecutee?: string | null
+  quantite?: string | null
+  tempsPrevus?: string | null
+  createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type ChantierOrganisationUpdateManyMutationInput = {
-  conditionsAcces?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  conditionsStockage?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  heureDepart?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  heureFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cles?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  badges?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  papiersIdentite?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  posteControle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  acces?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  miseEnOeuvre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manutention?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  materielManutentionLevage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  precautionsParticulieres?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  demarragePrevisionnelLe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  finPrevisionnelLe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tacheExecutee?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  quantite?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tempsPrevus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ChantierOrganisationUncheckedUpdateManyInput = {
   chantierId?: Prisma.StringFieldUpdateOperationsInput | string
-  conditionsAcces?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  conditionsStockage?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  heureDepart?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  heureFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cles?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  badges?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  papiersIdentite?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  posteControle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  acces?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  miseEnOeuvre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manutention?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  materielManutentionLevage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  precautionsParticulieres?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  demarragePrevisionnelLe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  finPrevisionnelLe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tacheExecutee?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  quantite?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tempsPrevus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -263,18 +556,67 @@ export type ChantierOrganisationNullableScalarRelationFilter = {
 
 export type ChantierOrganisationCountOrderByAggregateInput = {
   chantierId?: Prisma.SortOrder
-  conditionsAcces?: Prisma.SortOrder
-  conditionsStockage?: Prisma.SortOrder
+  heureDepart?: Prisma.SortOrder
+  heureFin?: Prisma.SortOrder
+  cles?: Prisma.SortOrder
+  badges?: Prisma.SortOrder
+  papiersIdentite?: Prisma.SortOrder
+  posteControle?: Prisma.SortOrder
+  acces?: Prisma.SortOrder
+  miseEnOeuvre?: Prisma.SortOrder
+  manutention?: Prisma.SortOrder
+  materielManutentionLevage?: Prisma.SortOrder
+  precautionsParticulieres?: Prisma.SortOrder
+  demarragePrevisionnelLe?: Prisma.SortOrder
+  finPrevisionnelLe?: Prisma.SortOrder
+  tacheExecutee?: Prisma.SortOrder
+  quantite?: Prisma.SortOrder
+  tempsPrevus?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type ChantierOrganisationMaxOrderByAggregateInput = {
   chantierId?: Prisma.SortOrder
+  heureDepart?: Prisma.SortOrder
+  heureFin?: Prisma.SortOrder
+  cles?: Prisma.SortOrder
+  badges?: Prisma.SortOrder
+  papiersIdentite?: Prisma.SortOrder
+  posteControle?: Prisma.SortOrder
+  acces?: Prisma.SortOrder
+  miseEnOeuvre?: Prisma.SortOrder
+  manutention?: Prisma.SortOrder
+  materielManutentionLevage?: Prisma.SortOrder
+  precautionsParticulieres?: Prisma.SortOrder
+  demarragePrevisionnelLe?: Prisma.SortOrder
+  finPrevisionnelLe?: Prisma.SortOrder
+  tacheExecutee?: Prisma.SortOrder
+  quantite?: Prisma.SortOrder
+  tempsPrevus?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type ChantierOrganisationMinOrderByAggregateInput = {
   chantierId?: Prisma.SortOrder
+  heureDepart?: Prisma.SortOrder
+  heureFin?: Prisma.SortOrder
+  cles?: Prisma.SortOrder
+  badges?: Prisma.SortOrder
+  papiersIdentite?: Prisma.SortOrder
+  posteControle?: Prisma.SortOrder
+  acces?: Prisma.SortOrder
+  miseEnOeuvre?: Prisma.SortOrder
+  manutention?: Prisma.SortOrder
+  materielManutentionLevage?: Prisma.SortOrder
+  precautionsParticulieres?: Prisma.SortOrder
+  demarragePrevisionnelLe?: Prisma.SortOrder
+  finPrevisionnelLe?: Prisma.SortOrder
+  tacheExecutee?: Prisma.SortOrder
+  quantite?: Prisma.SortOrder
+  tempsPrevus?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
@@ -311,14 +653,44 @@ export type ChantierOrganisationUncheckedUpdateOneWithoutChantierNestedInput = {
 }
 
 export type ChantierOrganisationCreateWithoutChantierInput = {
-  conditionsAcces?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  conditionsStockage?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  heureDepart?: string | null
+  heureFin?: string | null
+  cles?: string | null
+  badges?: string | null
+  papiersIdentite?: string | null
+  posteControle?: string | null
+  acces?: string | null
+  miseEnOeuvre?: string | null
+  manutention?: string | null
+  materielManutentionLevage?: string | null
+  precautionsParticulieres?: string | null
+  demarragePrevisionnelLe?: string | null
+  finPrevisionnelLe?: string | null
+  tacheExecutee?: string | null
+  quantite?: string | null
+  tempsPrevus?: string | null
+  createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type ChantierOrganisationUncheckedCreateWithoutChantierInput = {
-  conditionsAcces?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  conditionsStockage?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  heureDepart?: string | null
+  heureFin?: string | null
+  cles?: string | null
+  badges?: string | null
+  papiersIdentite?: string | null
+  posteControle?: string | null
+  acces?: string | null
+  miseEnOeuvre?: string | null
+  manutention?: string | null
+  materielManutentionLevage?: string | null
+  precautionsParticulieres?: string | null
+  demarragePrevisionnelLe?: string | null
+  finPrevisionnelLe?: string | null
+  tacheExecutee?: string | null
+  quantite?: string | null
+  tempsPrevus?: string | null
+  createdAt?: Date | string
   updatedAt?: Date | string
 }
 
@@ -339,14 +711,44 @@ export type ChantierOrganisationUpdateToOneWithWhereWithoutChantierInput = {
 }
 
 export type ChantierOrganisationUpdateWithoutChantierInput = {
-  conditionsAcces?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  conditionsStockage?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  heureDepart?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  heureFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cles?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  badges?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  papiersIdentite?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  posteControle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  acces?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  miseEnOeuvre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manutention?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  materielManutentionLevage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  precautionsParticulieres?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  demarragePrevisionnelLe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  finPrevisionnelLe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tacheExecutee?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  quantite?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tempsPrevus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ChantierOrganisationUncheckedUpdateWithoutChantierInput = {
-  conditionsAcces?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  conditionsStockage?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  heureDepart?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  heureFin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cles?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  badges?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  papiersIdentite?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  posteControle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  acces?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  miseEnOeuvre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manutention?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  materielManutentionLevage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  precautionsParticulieres?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  demarragePrevisionnelLe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  finPrevisionnelLe?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tacheExecutee?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  quantite?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tempsPrevus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -354,36 +756,96 @@ export type ChantierOrganisationUncheckedUpdateWithoutChantierInput = {
 
 export type ChantierOrganisationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   chantierId?: boolean
-  conditionsAcces?: boolean
-  conditionsStockage?: boolean
+  heureDepart?: boolean
+  heureFin?: boolean
+  cles?: boolean
+  badges?: boolean
+  papiersIdentite?: boolean
+  posteControle?: boolean
+  acces?: boolean
+  miseEnOeuvre?: boolean
+  manutention?: boolean
+  materielManutentionLevage?: boolean
+  precautionsParticulieres?: boolean
+  demarragePrevisionnelLe?: boolean
+  finPrevisionnelLe?: boolean
+  tacheExecutee?: boolean
+  quantite?: boolean
+  tempsPrevus?: boolean
+  createdAt?: boolean
   updatedAt?: boolean
   chantier?: boolean | Prisma.ChantierDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["chantierOrganisation"]>
 
 export type ChantierOrganisationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   chantierId?: boolean
-  conditionsAcces?: boolean
-  conditionsStockage?: boolean
+  heureDepart?: boolean
+  heureFin?: boolean
+  cles?: boolean
+  badges?: boolean
+  papiersIdentite?: boolean
+  posteControle?: boolean
+  acces?: boolean
+  miseEnOeuvre?: boolean
+  manutention?: boolean
+  materielManutentionLevage?: boolean
+  precautionsParticulieres?: boolean
+  demarragePrevisionnelLe?: boolean
+  finPrevisionnelLe?: boolean
+  tacheExecutee?: boolean
+  quantite?: boolean
+  tempsPrevus?: boolean
+  createdAt?: boolean
   updatedAt?: boolean
   chantier?: boolean | Prisma.ChantierDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["chantierOrganisation"]>
 
 export type ChantierOrganisationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   chantierId?: boolean
-  conditionsAcces?: boolean
-  conditionsStockage?: boolean
+  heureDepart?: boolean
+  heureFin?: boolean
+  cles?: boolean
+  badges?: boolean
+  papiersIdentite?: boolean
+  posteControle?: boolean
+  acces?: boolean
+  miseEnOeuvre?: boolean
+  manutention?: boolean
+  materielManutentionLevage?: boolean
+  precautionsParticulieres?: boolean
+  demarragePrevisionnelLe?: boolean
+  finPrevisionnelLe?: boolean
+  tacheExecutee?: boolean
+  quantite?: boolean
+  tempsPrevus?: boolean
+  createdAt?: boolean
   updatedAt?: boolean
   chantier?: boolean | Prisma.ChantierDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["chantierOrganisation"]>
 
 export type ChantierOrganisationSelectScalar = {
   chantierId?: boolean
-  conditionsAcces?: boolean
-  conditionsStockage?: boolean
+  heureDepart?: boolean
+  heureFin?: boolean
+  cles?: boolean
+  badges?: boolean
+  papiersIdentite?: boolean
+  posteControle?: boolean
+  acces?: boolean
+  miseEnOeuvre?: boolean
+  manutention?: boolean
+  materielManutentionLevage?: boolean
+  precautionsParticulieres?: boolean
+  demarragePrevisionnelLe?: boolean
+  finPrevisionnelLe?: boolean
+  tacheExecutee?: boolean
+  quantite?: boolean
+  tempsPrevus?: boolean
+  createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ChantierOrganisationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"chantierId" | "conditionsAcces" | "conditionsStockage" | "updatedAt", ExtArgs["result"]["chantierOrganisation"]>
+export type ChantierOrganisationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"chantierId" | "heureDepart" | "heureFin" | "cles" | "badges" | "papiersIdentite" | "posteControle" | "acces" | "miseEnOeuvre" | "manutention" | "materielManutentionLevage" | "precautionsParticulieres" | "demarragePrevisionnelLe" | "finPrevisionnelLe" | "tacheExecutee" | "quantite" | "tempsPrevus" | "createdAt" | "updatedAt", ExtArgs["result"]["chantierOrganisation"]>
 export type ChantierOrganisationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   chantier?: boolean | Prisma.ChantierDefaultArgs<ExtArgs>
 }
@@ -401,8 +863,23 @@ export type $ChantierOrganisationPayload<ExtArgs extends runtime.Types.Extension
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     chantierId: string
-    conditionsAcces: runtime.JsonValue
-    conditionsStockage: runtime.JsonValue
+    heureDepart: string | null
+    heureFin: string | null
+    cles: string | null
+    badges: string | null
+    papiersIdentite: string | null
+    posteControle: string | null
+    acces: string | null
+    miseEnOeuvre: string | null
+    manutention: string | null
+    materielManutentionLevage: string | null
+    precautionsParticulieres: string | null
+    demarragePrevisionnelLe: string | null
+    finPrevisionnelLe: string | null
+    tacheExecutee: string | null
+    quantite: string | null
+    tempsPrevus: string | null
+    createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["chantierOrganisation"]>
   composites: {}
@@ -829,8 +1306,23 @@ export interface Prisma__ChantierOrganisationClient<T, Null = never, ExtArgs ext
  */
 export interface ChantierOrganisationFieldRefs {
   readonly chantierId: Prisma.FieldRef<"ChantierOrganisation", 'String'>
-  readonly conditionsAcces: Prisma.FieldRef<"ChantierOrganisation", 'Json'>
-  readonly conditionsStockage: Prisma.FieldRef<"ChantierOrganisation", 'Json'>
+  readonly heureDepart: Prisma.FieldRef<"ChantierOrganisation", 'String'>
+  readonly heureFin: Prisma.FieldRef<"ChantierOrganisation", 'String'>
+  readonly cles: Prisma.FieldRef<"ChantierOrganisation", 'String'>
+  readonly badges: Prisma.FieldRef<"ChantierOrganisation", 'String'>
+  readonly papiersIdentite: Prisma.FieldRef<"ChantierOrganisation", 'String'>
+  readonly posteControle: Prisma.FieldRef<"ChantierOrganisation", 'String'>
+  readonly acces: Prisma.FieldRef<"ChantierOrganisation", 'String'>
+  readonly miseEnOeuvre: Prisma.FieldRef<"ChantierOrganisation", 'String'>
+  readonly manutention: Prisma.FieldRef<"ChantierOrganisation", 'String'>
+  readonly materielManutentionLevage: Prisma.FieldRef<"ChantierOrganisation", 'String'>
+  readonly precautionsParticulieres: Prisma.FieldRef<"ChantierOrganisation", 'String'>
+  readonly demarragePrevisionnelLe: Prisma.FieldRef<"ChantierOrganisation", 'String'>
+  readonly finPrevisionnelLe: Prisma.FieldRef<"ChantierOrganisation", 'String'>
+  readonly tacheExecutee: Prisma.FieldRef<"ChantierOrganisation", 'String'>
+  readonly quantite: Prisma.FieldRef<"ChantierOrganisation", 'String'>
+  readonly tempsPrevus: Prisma.FieldRef<"ChantierOrganisation", 'String'>
+  readonly createdAt: Prisma.FieldRef<"ChantierOrganisation", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"ChantierOrganisation", 'DateTime'>
 }
     

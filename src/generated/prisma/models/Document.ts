@@ -20,13 +20,24 @@ export type DocumentModel = runtime.Types.Result.DefaultSelection<Prisma.$Docume
 
 export type AggregateDocument = {
   _count: DocumentCountAggregateOutputType | null
+  _avg: DocumentAvgAggregateOutputType | null
+  _sum: DocumentSumAggregateOutputType | null
   _min: DocumentMinAggregateOutputType | null
   _max: DocumentMaxAggregateOutputType | null
+}
+
+export type DocumentAvgAggregateOutputType = {
+  version: number | null
+}
+
+export type DocumentSumAggregateOutputType = {
+  version: number | null
 }
 
 export type DocumentMinAggregateOutputType = {
   id: string | null
   idDocumentation: string | null
+  version: number | null
   urlPdf: string | null
   dateGeneration: Date | null
 }
@@ -34,6 +45,7 @@ export type DocumentMinAggregateOutputType = {
 export type DocumentMaxAggregateOutputType = {
   id: string | null
   idDocumentation: string | null
+  version: number | null
   urlPdf: string | null
   dateGeneration: Date | null
 }
@@ -41,15 +53,25 @@ export type DocumentMaxAggregateOutputType = {
 export type DocumentCountAggregateOutputType = {
   id: number
   idDocumentation: number
+  version: number
   urlPdf: number
   dateGeneration: number
   _all: number
 }
 
 
+export type DocumentAvgAggregateInputType = {
+  version?: true
+}
+
+export type DocumentSumAggregateInputType = {
+  version?: true
+}
+
 export type DocumentMinAggregateInputType = {
   id?: true
   idDocumentation?: true
+  version?: true
   urlPdf?: true
   dateGeneration?: true
 }
@@ -57,6 +79,7 @@ export type DocumentMinAggregateInputType = {
 export type DocumentMaxAggregateInputType = {
   id?: true
   idDocumentation?: true
+  version?: true
   urlPdf?: true
   dateGeneration?: true
 }
@@ -64,6 +87,7 @@ export type DocumentMaxAggregateInputType = {
 export type DocumentCountAggregateInputType = {
   id?: true
   idDocumentation?: true
+  version?: true
   urlPdf?: true
   dateGeneration?: true
   _all?: true
@@ -107,6 +131,18 @@ export type DocumentAggregateArgs<ExtArgs extends runtime.Types.Extensions.Inter
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: DocumentAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: DocumentSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: DocumentMinAggregateInputType
@@ -137,6 +173,8 @@ export type DocumentGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   _count?: DocumentCountAggregateInputType | true
+  _avg?: DocumentAvgAggregateInputType
+  _sum?: DocumentSumAggregateInputType
   _min?: DocumentMinAggregateInputType
   _max?: DocumentMaxAggregateInputType
 }
@@ -144,9 +182,12 @@ export type DocumentGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 export type DocumentGroupByOutputType = {
   id: string
   idDocumentation: string
+  version: number
   urlPdf: string
   dateGeneration: Date
   _count: DocumentCountAggregateOutputType | null
+  _avg: DocumentAvgAggregateOutputType | null
+  _sum: DocumentSumAggregateOutputType | null
   _min: DocumentMinAggregateOutputType | null
   _max: DocumentMaxAggregateOutputType | null
 }
@@ -172,6 +213,7 @@ export type DocumentWhereInput = {
   NOT?: Prisma.DocumentWhereInput | Prisma.DocumentWhereInput[]
   id?: Prisma.UuidFilter<"Document"> | string
   idDocumentation?: Prisma.UuidFilter<"Document"> | string
+  version?: Prisma.IntFilter<"Document"> | number
   urlPdf?: Prisma.StringFilter<"Document"> | string
   dateGeneration?: Prisma.DateTimeFilter<"Document"> | Date | string
   documentation?: Prisma.XOR<Prisma.DocumentationScalarRelationFilter, Prisma.DocumentationWhereInput>
@@ -180,6 +222,7 @@ export type DocumentWhereInput = {
 export type DocumentOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   idDocumentation?: Prisma.SortOrder
+  version?: Prisma.SortOrder
   urlPdf?: Prisma.SortOrder
   dateGeneration?: Prisma.SortOrder
   documentation?: Prisma.DocumentationOrderByWithRelationInput
@@ -191,6 +234,7 @@ export type DocumentWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.DocumentWhereInput[]
   NOT?: Prisma.DocumentWhereInput | Prisma.DocumentWhereInput[]
   idDocumentation?: Prisma.UuidFilter<"Document"> | string
+  version?: Prisma.IntFilter<"Document"> | number
   urlPdf?: Prisma.StringFilter<"Document"> | string
   dateGeneration?: Prisma.DateTimeFilter<"Document"> | Date | string
   documentation?: Prisma.XOR<Prisma.DocumentationScalarRelationFilter, Prisma.DocumentationWhereInput>
@@ -199,11 +243,14 @@ export type DocumentWhereUniqueInput = Prisma.AtLeast<{
 export type DocumentOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   idDocumentation?: Prisma.SortOrder
+  version?: Prisma.SortOrder
   urlPdf?: Prisma.SortOrder
   dateGeneration?: Prisma.SortOrder
   _count?: Prisma.DocumentCountOrderByAggregateInput
+  _avg?: Prisma.DocumentAvgOrderByAggregateInput
   _max?: Prisma.DocumentMaxOrderByAggregateInput
   _min?: Prisma.DocumentMinOrderByAggregateInput
+  _sum?: Prisma.DocumentSumOrderByAggregateInput
 }
 
 export type DocumentScalarWhereWithAggregatesInput = {
@@ -212,12 +259,14 @@ export type DocumentScalarWhereWithAggregatesInput = {
   NOT?: Prisma.DocumentScalarWhereWithAggregatesInput | Prisma.DocumentScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"Document"> | string
   idDocumentation?: Prisma.UuidWithAggregatesFilter<"Document"> | string
+  version?: Prisma.IntWithAggregatesFilter<"Document"> | number
   urlPdf?: Prisma.StringWithAggregatesFilter<"Document"> | string
   dateGeneration?: Prisma.DateTimeWithAggregatesFilter<"Document"> | Date | string
 }
 
 export type DocumentCreateInput = {
   id?: string
+  version: number
   urlPdf: string
   dateGeneration?: Date | string
   documentation: Prisma.DocumentationCreateNestedOneWithoutDocumentsInput
@@ -226,12 +275,14 @@ export type DocumentCreateInput = {
 export type DocumentUncheckedCreateInput = {
   id?: string
   idDocumentation: string
+  version: number
   urlPdf: string
   dateGeneration?: Date | string
 }
 
 export type DocumentUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  version?: Prisma.IntFieldUpdateOperationsInput | number
   urlPdf?: Prisma.StringFieldUpdateOperationsInput | string
   dateGeneration?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   documentation?: Prisma.DocumentationUpdateOneRequiredWithoutDocumentsNestedInput
@@ -240,6 +291,7 @@ export type DocumentUpdateInput = {
 export type DocumentUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idDocumentation?: Prisma.StringFieldUpdateOperationsInput | string
+  version?: Prisma.IntFieldUpdateOperationsInput | number
   urlPdf?: Prisma.StringFieldUpdateOperationsInput | string
   dateGeneration?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -247,12 +299,14 @@ export type DocumentUncheckedUpdateInput = {
 export type DocumentCreateManyInput = {
   id?: string
   idDocumentation: string
+  version: number
   urlPdf: string
   dateGeneration?: Date | string
 }
 
 export type DocumentUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  version?: Prisma.IntFieldUpdateOperationsInput | number
   urlPdf?: Prisma.StringFieldUpdateOperationsInput | string
   dateGeneration?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -260,6 +314,7 @@ export type DocumentUpdateManyMutationInput = {
 export type DocumentUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idDocumentation?: Prisma.StringFieldUpdateOperationsInput | string
+  version?: Prisma.IntFieldUpdateOperationsInput | number
   urlPdf?: Prisma.StringFieldUpdateOperationsInput | string
   dateGeneration?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -277,13 +332,19 @@ export type DocumentOrderByRelationAggregateInput = {
 export type DocumentCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   idDocumentation?: Prisma.SortOrder
+  version?: Prisma.SortOrder
   urlPdf?: Prisma.SortOrder
   dateGeneration?: Prisma.SortOrder
+}
+
+export type DocumentAvgOrderByAggregateInput = {
+  version?: Prisma.SortOrder
 }
 
 export type DocumentMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   idDocumentation?: Prisma.SortOrder
+  version?: Prisma.SortOrder
   urlPdf?: Prisma.SortOrder
   dateGeneration?: Prisma.SortOrder
 }
@@ -291,8 +352,13 @@ export type DocumentMaxOrderByAggregateInput = {
 export type DocumentMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   idDocumentation?: Prisma.SortOrder
+  version?: Prisma.SortOrder
   urlPdf?: Prisma.SortOrder
   dateGeneration?: Prisma.SortOrder
+}
+
+export type DocumentSumOrderByAggregateInput = {
+  version?: Prisma.SortOrder
 }
 
 export type DocumentCreateNestedManyWithoutDocumentationInput = {
@@ -339,12 +405,14 @@ export type DocumentUncheckedUpdateManyWithoutDocumentationNestedInput = {
 
 export type DocumentCreateWithoutDocumentationInput = {
   id?: string
+  version: number
   urlPdf: string
   dateGeneration?: Date | string
 }
 
 export type DocumentUncheckedCreateWithoutDocumentationInput = {
   id?: string
+  version: number
   urlPdf: string
   dateGeneration?: Date | string
 }
@@ -381,30 +449,35 @@ export type DocumentScalarWhereInput = {
   NOT?: Prisma.DocumentScalarWhereInput | Prisma.DocumentScalarWhereInput[]
   id?: Prisma.UuidFilter<"Document"> | string
   idDocumentation?: Prisma.UuidFilter<"Document"> | string
+  version?: Prisma.IntFilter<"Document"> | number
   urlPdf?: Prisma.StringFilter<"Document"> | string
   dateGeneration?: Prisma.DateTimeFilter<"Document"> | Date | string
 }
 
 export type DocumentCreateManyDocumentationInput = {
   id?: string
+  version: number
   urlPdf: string
   dateGeneration?: Date | string
 }
 
 export type DocumentUpdateWithoutDocumentationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  version?: Prisma.IntFieldUpdateOperationsInput | number
   urlPdf?: Prisma.StringFieldUpdateOperationsInput | string
   dateGeneration?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type DocumentUncheckedUpdateWithoutDocumentationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  version?: Prisma.IntFieldUpdateOperationsInput | number
   urlPdf?: Prisma.StringFieldUpdateOperationsInput | string
   dateGeneration?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type DocumentUncheckedUpdateManyWithoutDocumentationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  version?: Prisma.IntFieldUpdateOperationsInput | number
   urlPdf?: Prisma.StringFieldUpdateOperationsInput | string
   dateGeneration?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -414,6 +487,7 @@ export type DocumentUncheckedUpdateManyWithoutDocumentationInput = {
 export type DocumentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   idDocumentation?: boolean
+  version?: boolean
   urlPdf?: boolean
   dateGeneration?: boolean
   documentation?: boolean | Prisma.DocumentationDefaultArgs<ExtArgs>
@@ -422,6 +496,7 @@ export type DocumentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
 export type DocumentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   idDocumentation?: boolean
+  version?: boolean
   urlPdf?: boolean
   dateGeneration?: boolean
   documentation?: boolean | Prisma.DocumentationDefaultArgs<ExtArgs>
@@ -430,6 +505,7 @@ export type DocumentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type DocumentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   idDocumentation?: boolean
+  version?: boolean
   urlPdf?: boolean
   dateGeneration?: boolean
   documentation?: boolean | Prisma.DocumentationDefaultArgs<ExtArgs>
@@ -438,11 +514,12 @@ export type DocumentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type DocumentSelectScalar = {
   id?: boolean
   idDocumentation?: boolean
+  version?: boolean
   urlPdf?: boolean
   dateGeneration?: boolean
 }
 
-export type DocumentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "idDocumentation" | "urlPdf" | "dateGeneration", ExtArgs["result"]["document"]>
+export type DocumentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "idDocumentation" | "version" | "urlPdf" | "dateGeneration", ExtArgs["result"]["document"]>
 export type DocumentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   documentation?: boolean | Prisma.DocumentationDefaultArgs<ExtArgs>
 }
@@ -461,6 +538,7 @@ export type $DocumentPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     idDocumentation: string
+    version: number
     urlPdf: string
     dateGeneration: Date
   }, ExtArgs["result"]["document"]>
@@ -889,6 +967,7 @@ export interface Prisma__DocumentClient<T, Null = never, ExtArgs extends runtime
 export interface DocumentFieldRefs {
   readonly id: Prisma.FieldRef<"Document", 'String'>
   readonly idDocumentation: Prisma.FieldRef<"Document", 'String'>
+  readonly version: Prisma.FieldRef<"Document", 'Int'>
   readonly urlPdf: Prisma.FieldRef<"Document", 'String'>
   readonly dateGeneration: Prisma.FieldRef<"Document", 'DateTime'>
 }

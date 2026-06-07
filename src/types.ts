@@ -14,6 +14,7 @@ import {
     IntervenantPole
 } from './enums.js'
 import {ChantierDocumentationStatus, TypeDocEnum, TypeFiche, TypeIntervenantEnum} from "./generated/prisma/enums.js";
+import {Intervenant} from "./generated/prisma/client.js";
 
 export type {MessageType}
 
@@ -173,6 +174,7 @@ export type UpdateInterventionRequest = {
     idChantier?: string
     dateAssignation?: string
     description?: string
+    status?: string
 }
 
 export type PvConformite = 'conforme' | 'non-conforme' | 'SO'
@@ -210,7 +212,7 @@ export type CreatePvEtancheiteRequest = {
 export type UpdatePvEtancheiteRequest = Partial<Omit<CreatePvEtancheiteRequest, 'idChantier'>>
 
 export type CreateActionRequest = {
-    site?: string
+    idChantier: string
     anomalyRef?: string
     correctiveAction?: string
     responsible?: string
@@ -220,7 +222,7 @@ export type CreateActionRequest = {
 }
 
 export type UpdateActionRequest = {
-    site?: string
+    idChantier?: string
     anomalyRef?: string
     correctiveAction?: string
     responsible?: string
@@ -247,10 +249,10 @@ export type UserWithRelations = {
 
 export type MappedAction = {
     id: string
-    site: string | null
+    chantier: {id: string; name: string | null; codeOTP: number}
     anomalyRef: string | null
     correctiveAction: string | null
-    responsible: string
+    responsible: {id: string; fullName: string}
     startDate: Date | null
     dueDate: Date | null
     status: ProcessStatus
@@ -278,10 +280,41 @@ export type MappedDocumentation = {
     author: UserWithRelations
     type: DocumentExtension
     size: number
+    version: number | null
+    validateur: string | null
+    commentaire: string | null
     createdAt: Date
     updatedAt: Date
 }
 
 export type CreateDocumentationRequest = {
     motif: Motif
+}
+
+export type CreateDossierExpertiseRequest = {
+    idChantier: string
+    typeGarantie: 'gpa' | 'decennale'
+    objet: string
+    expertDesigne?: string
+    avocatSmac?: string
+    dateOuverture: string
+    juridiction?: string
+    dateAssignation?: string
+    demandeur?: string
+    defendeurs?: string
+    griefs?: string
+}
+
+export type UpdateDossierExpertiseRequest = {
+    typeGarantie?: 'gpa' | 'decennale'
+    objet?: string
+    expertDesigne?: string
+    avocatSmac?: string
+    dateOuverture?: string
+    juridiction?: string
+    dateAssignation?: string
+    demandeur?: string
+    defendeurs?: string
+    griefs?: string
+    statut?: 'en_cours' | 'cloture'
 }

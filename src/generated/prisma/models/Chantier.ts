@@ -66,7 +66,7 @@ export type ChantierMinAggregateOutputType = {
   client: string | null
   address: string | null
   progress: runtime.Decimal | null
-  status: string | null
+  status: $Enums.ProcessStatusEnum | null
   chantierDetailsId: string | null
   matrResponsable: string | null
   nomResponsable: string | null
@@ -109,7 +109,7 @@ export type ChantierMaxAggregateOutputType = {
   client: string | null
   address: string | null
   progress: runtime.Decimal | null
-  status: string | null
+  status: $Enums.ProcessStatusEnum | null
   chantierDetailsId: string | null
   matrResponsable: string | null
   nomResponsable: string | null
@@ -443,7 +443,7 @@ export type ChantierGroupByOutputType = {
   client: string | null
   address: string | null
   progress: runtime.Decimal
-  status: string
+  status: $Enums.ProcessStatusEnum
   chantierDetailsId: string | null
   matrResponsable: string | null
   nomResponsable: string | null
@@ -509,7 +509,7 @@ export type ChantierWhereInput = {
   client?: Prisma.StringNullableFilter<"Chantier"> | string | null
   address?: Prisma.StringNullableFilter<"Chantier"> | string | null
   progress?: Prisma.DecimalFilter<"Chantier"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFilter<"Chantier"> | string
+  status?: Prisma.EnumProcessStatusEnumFilter<"Chantier"> | $Enums.ProcessStatusEnum
   chantierDetailsId?: Prisma.UuidNullableFilter<"Chantier"> | string | null
   matrResponsable?: Prisma.StringNullableFilter<"Chantier"> | string | null
   nomResponsable?: Prisma.StringNullableFilter<"Chantier"> | string | null
@@ -553,6 +553,8 @@ export type ChantierWhereInput = {
   sharedDocs?: Prisma.ChantierSharedDocListRelationFilter
   organisation?: Prisma.XOR<Prisma.ChantierOrganisationNullableScalarRelationFilter, Prisma.ChantierOrganisationWhereInput> | null
   objectifs?: Prisma.ChantierObjectifListRelationFilter
+  dossierExpertises?: Prisma.DossierExpertiseListRelationFilter
+  siteActions?: Prisma.ActionListRelationFilter
 }
 
 export type ChantierOrderByWithRelationInput = {
@@ -609,6 +611,8 @@ export type ChantierOrderByWithRelationInput = {
   sharedDocs?: Prisma.ChantierSharedDocOrderByRelationAggregateInput
   organisation?: Prisma.ChantierOrganisationOrderByWithRelationInput
   objectifs?: Prisma.ChantierObjectifOrderByRelationAggregateInput
+  dossierExpertises?: Prisma.DossierExpertiseOrderByRelationAggregateInput
+  siteActions?: Prisma.ActionOrderByRelationAggregateInput
 }
 
 export type ChantierWhereUniqueInput = Prisma.AtLeast<{
@@ -624,7 +628,7 @@ export type ChantierWhereUniqueInput = Prisma.AtLeast<{
   client?: Prisma.StringNullableFilter<"Chantier"> | string | null
   address?: Prisma.StringNullableFilter<"Chantier"> | string | null
   progress?: Prisma.DecimalFilter<"Chantier"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFilter<"Chantier"> | string
+  status?: Prisma.EnumProcessStatusEnumFilter<"Chantier"> | $Enums.ProcessStatusEnum
   chantierDetailsId?: Prisma.UuidNullableFilter<"Chantier"> | string | null
   matrResponsable?: Prisma.StringNullableFilter<"Chantier"> | string | null
   nomResponsable?: Prisma.StringNullableFilter<"Chantier"> | string | null
@@ -668,6 +672,8 @@ export type ChantierWhereUniqueInput = Prisma.AtLeast<{
   sharedDocs?: Prisma.ChantierSharedDocListRelationFilter
   organisation?: Prisma.XOR<Prisma.ChantierOrganisationNullableScalarRelationFilter, Prisma.ChantierOrganisationWhereInput> | null
   objectifs?: Prisma.ChantierObjectifListRelationFilter
+  dossierExpertises?: Prisma.DossierExpertiseListRelationFilter
+  siteActions?: Prisma.ActionListRelationFilter
 }, "id" | "codeOTP" | "name">
 
 export type ChantierOrderByWithAggregationInput = {
@@ -731,7 +737,7 @@ export type ChantierScalarWhereWithAggregatesInput = {
   client?: Prisma.StringNullableWithAggregatesFilter<"Chantier"> | string | null
   address?: Prisma.StringNullableWithAggregatesFilter<"Chantier"> | string | null
   progress?: Prisma.DecimalWithAggregatesFilter<"Chantier"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringWithAggregatesFilter<"Chantier"> | string
+  status?: Prisma.EnumProcessStatusEnumWithAggregatesFilter<"Chantier"> | $Enums.ProcessStatusEnum
   chantierDetailsId?: Prisma.UuidNullableWithAggregatesFilter<"Chantier"> | string | null
   matrResponsable?: Prisma.StringNullableWithAggregatesFilter<"Chantier"> | string | null
   nomResponsable?: Prisma.StringNullableWithAggregatesFilter<"Chantier"> | string | null
@@ -774,7 +780,7 @@ export type ChantierCreateInput = {
   client?: string | null
   address?: string | null
   progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: string
+  status?: $Enums.ProcessStatusEnum
   matrResponsable?: string | null
   nomResponsable?: string | null
   matrDemandeur?: string | null
@@ -815,6 +821,8 @@ export type ChantierCreateInput = {
   sharedDocs?: Prisma.ChantierSharedDocCreateNestedManyWithoutChantierInput
   organisation?: Prisma.ChantierOrganisationCreateNestedOneWithoutChantierInput
   objectifs?: Prisma.ChantierObjectifCreateNestedManyWithoutChantierInput
+  dossierExpertises?: Prisma.DossierExpertiseCreateNestedManyWithoutChantierInput
+  siteActions?: Prisma.ActionCreateNestedManyWithoutChantierInput
 }
 
 export type ChantierUncheckedCreateInput = {
@@ -827,7 +835,7 @@ export type ChantierUncheckedCreateInput = {
   client?: string | null
   address?: string | null
   progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: string
+  status?: $Enums.ProcessStatusEnum
   chantierDetailsId?: string | null
   matrResponsable?: string | null
   nomResponsable?: string | null
@@ -868,6 +876,8 @@ export type ChantierUncheckedCreateInput = {
   sharedDocs?: Prisma.ChantierSharedDocUncheckedCreateNestedManyWithoutChantierInput
   organisation?: Prisma.ChantierOrganisationUncheckedCreateNestedOneWithoutChantierInput
   objectifs?: Prisma.ChantierObjectifUncheckedCreateNestedManyWithoutChantierInput
+  dossierExpertises?: Prisma.DossierExpertiseUncheckedCreateNestedManyWithoutChantierInput
+  siteActions?: Prisma.ActionUncheckedCreateNestedManyWithoutChantierInput
 }
 
 export type ChantierUpdateInput = {
@@ -880,7 +890,7 @@ export type ChantierUpdateInput = {
   client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   matrDemandeur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -921,6 +931,8 @@ export type ChantierUpdateInput = {
   sharedDocs?: Prisma.ChantierSharedDocUpdateManyWithoutChantierNestedInput
   organisation?: Prisma.ChantierOrganisationUpdateOneWithoutChantierNestedInput
   objectifs?: Prisma.ChantierObjectifUpdateManyWithoutChantierNestedInput
+  dossierExpertises?: Prisma.DossierExpertiseUpdateManyWithoutChantierNestedInput
+  siteActions?: Prisma.ActionUpdateManyWithoutChantierNestedInput
 }
 
 export type ChantierUncheckedUpdateInput = {
@@ -933,7 +945,7 @@ export type ChantierUncheckedUpdateInput = {
   client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   chantierDetailsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -974,6 +986,8 @@ export type ChantierUncheckedUpdateInput = {
   sharedDocs?: Prisma.ChantierSharedDocUncheckedUpdateManyWithoutChantierNestedInput
   organisation?: Prisma.ChantierOrganisationUncheckedUpdateOneWithoutChantierNestedInput
   objectifs?: Prisma.ChantierObjectifUncheckedUpdateManyWithoutChantierNestedInput
+  dossierExpertises?: Prisma.DossierExpertiseUncheckedUpdateManyWithoutChantierNestedInput
+  siteActions?: Prisma.ActionUncheckedUpdateManyWithoutChantierNestedInput
 }
 
 export type ChantierCreateManyInput = {
@@ -986,7 +1000,7 @@ export type ChantierCreateManyInput = {
   client?: string | null
   address?: string | null
   progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: string
+  status?: $Enums.ProcessStatusEnum
   chantierDetailsId?: string | null
   matrResponsable?: string | null
   nomResponsable?: string | null
@@ -1029,7 +1043,7 @@ export type ChantierUpdateManyMutationInput = {
   client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   matrDemandeur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1069,7 +1083,7 @@ export type ChantierUncheckedUpdateManyInput = {
   client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   chantierDetailsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1284,6 +1298,10 @@ export type DecimalFieldUpdateOperationsInput = {
   divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
+export type EnumProcessStatusEnumFieldUpdateOperationsInput = {
+  set?: $Enums.ProcessStatusEnum
+}
+
 export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
 }
@@ -1350,6 +1368,20 @@ export type ChantierUpdateOneRequiredWithoutIntervenantsNestedInput = {
   upsert?: Prisma.ChantierUpsertWithoutIntervenantsInput
   connect?: Prisma.ChantierWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.ChantierUpdateToOneWithWhereWithoutIntervenantsInput, Prisma.ChantierUpdateWithoutIntervenantsInput>, Prisma.ChantierUncheckedUpdateWithoutIntervenantsInput>
+}
+
+export type ChantierCreateNestedOneWithoutSiteActionsInput = {
+  create?: Prisma.XOR<Prisma.ChantierCreateWithoutSiteActionsInput, Prisma.ChantierUncheckedCreateWithoutSiteActionsInput>
+  connectOrCreate?: Prisma.ChantierCreateOrConnectWithoutSiteActionsInput
+  connect?: Prisma.ChantierWhereUniqueInput
+}
+
+export type ChantierUpdateOneRequiredWithoutSiteActionsNestedInput = {
+  create?: Prisma.XOR<Prisma.ChantierCreateWithoutSiteActionsInput, Prisma.ChantierUncheckedCreateWithoutSiteActionsInput>
+  connectOrCreate?: Prisma.ChantierCreateOrConnectWithoutSiteActionsInput
+  upsert?: Prisma.ChantierUpsertWithoutSiteActionsInput
+  connect?: Prisma.ChantierWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ChantierUpdateToOneWithWhereWithoutSiteActionsInput, Prisma.ChantierUpdateWithoutSiteActionsInput>, Prisma.ChantierUncheckedUpdateWithoutSiteActionsInput>
 }
 
 export type ChantierCreateNestedOneWithoutActionsInput = {
@@ -1562,6 +1594,20 @@ export type ChantierUpdateOneRequiredWithoutDocumentationsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ChantierUpdateToOneWithWhereWithoutDocumentationsInput, Prisma.ChantierUpdateWithoutDocumentationsInput>, Prisma.ChantierUncheckedUpdateWithoutDocumentationsInput>
 }
 
+export type ChantierCreateNestedOneWithoutDossierExpertisesInput = {
+  create?: Prisma.XOR<Prisma.ChantierCreateWithoutDossierExpertisesInput, Prisma.ChantierUncheckedCreateWithoutDossierExpertisesInput>
+  connectOrCreate?: Prisma.ChantierCreateOrConnectWithoutDossierExpertisesInput
+  connect?: Prisma.ChantierWhereUniqueInput
+}
+
+export type ChantierUpdateOneRequiredWithoutDossierExpertisesNestedInput = {
+  create?: Prisma.XOR<Prisma.ChantierCreateWithoutDossierExpertisesInput, Prisma.ChantierUncheckedCreateWithoutDossierExpertisesInput>
+  connectOrCreate?: Prisma.ChantierCreateOrConnectWithoutDossierExpertisesInput
+  upsert?: Prisma.ChantierUpsertWithoutDossierExpertisesInput
+  connect?: Prisma.ChantierWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ChantierUpdateToOneWithWhereWithoutDossierExpertisesInput, Prisma.ChantierUpdateWithoutDossierExpertisesInput>, Prisma.ChantierUncheckedUpdateWithoutDossierExpertisesInput>
+}
+
 export type ChantierCreateWithoutChantierDetailsInput = {
   id?: string
   codeOTP: number
@@ -1572,7 +1618,7 @@ export type ChantierCreateWithoutChantierDetailsInput = {
   client?: string | null
   address?: string | null
   progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: string
+  status?: $Enums.ProcessStatusEnum
   matrResponsable?: string | null
   nomResponsable?: string | null
   matrDemandeur?: string | null
@@ -1612,6 +1658,8 @@ export type ChantierCreateWithoutChantierDetailsInput = {
   sharedDocs?: Prisma.ChantierSharedDocCreateNestedManyWithoutChantierInput
   organisation?: Prisma.ChantierOrganisationCreateNestedOneWithoutChantierInput
   objectifs?: Prisma.ChantierObjectifCreateNestedManyWithoutChantierInput
+  dossierExpertises?: Prisma.DossierExpertiseCreateNestedManyWithoutChantierInput
+  siteActions?: Prisma.ActionCreateNestedManyWithoutChantierInput
 }
 
 export type ChantierUncheckedCreateWithoutChantierDetailsInput = {
@@ -1624,7 +1672,7 @@ export type ChantierUncheckedCreateWithoutChantierDetailsInput = {
   client?: string | null
   address?: string | null
   progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: string
+  status?: $Enums.ProcessStatusEnum
   matrResponsable?: string | null
   nomResponsable?: string | null
   matrDemandeur?: string | null
@@ -1664,6 +1712,8 @@ export type ChantierUncheckedCreateWithoutChantierDetailsInput = {
   sharedDocs?: Prisma.ChantierSharedDocUncheckedCreateNestedManyWithoutChantierInput
   organisation?: Prisma.ChantierOrganisationUncheckedCreateNestedOneWithoutChantierInput
   objectifs?: Prisma.ChantierObjectifUncheckedCreateNestedManyWithoutChantierInput
+  dossierExpertises?: Prisma.DossierExpertiseUncheckedCreateNestedManyWithoutChantierInput
+  siteActions?: Prisma.ActionUncheckedCreateNestedManyWithoutChantierInput
 }
 
 export type ChantierCreateOrConnectWithoutChantierDetailsInput = {
@@ -1705,7 +1755,7 @@ export type ChantierScalarWhereInput = {
   client?: Prisma.StringNullableFilter<"Chantier"> | string | null
   address?: Prisma.StringNullableFilter<"Chantier"> | string | null
   progress?: Prisma.DecimalFilter<"Chantier"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFilter<"Chantier"> | string
+  status?: Prisma.EnumProcessStatusEnumFilter<"Chantier"> | $Enums.ProcessStatusEnum
   chantierDetailsId?: Prisma.UuidNullableFilter<"Chantier"> | string | null
   matrResponsable?: Prisma.StringNullableFilter<"Chantier"> | string | null
   nomResponsable?: Prisma.StringNullableFilter<"Chantier"> | string | null
@@ -1748,7 +1798,7 @@ export type ChantierCreateWithoutIntervenantsInput = {
   client?: string | null
   address?: string | null
   progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: string
+  status?: $Enums.ProcessStatusEnum
   matrResponsable?: string | null
   nomResponsable?: string | null
   matrDemandeur?: string | null
@@ -1788,6 +1838,8 @@ export type ChantierCreateWithoutIntervenantsInput = {
   sharedDocs?: Prisma.ChantierSharedDocCreateNestedManyWithoutChantierInput
   organisation?: Prisma.ChantierOrganisationCreateNestedOneWithoutChantierInput
   objectifs?: Prisma.ChantierObjectifCreateNestedManyWithoutChantierInput
+  dossierExpertises?: Prisma.DossierExpertiseCreateNestedManyWithoutChantierInput
+  siteActions?: Prisma.ActionCreateNestedManyWithoutChantierInput
 }
 
 export type ChantierUncheckedCreateWithoutIntervenantsInput = {
@@ -1800,7 +1852,7 @@ export type ChantierUncheckedCreateWithoutIntervenantsInput = {
   client?: string | null
   address?: string | null
   progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: string
+  status?: $Enums.ProcessStatusEnum
   chantierDetailsId?: string | null
   matrResponsable?: string | null
   nomResponsable?: string | null
@@ -1840,6 +1892,8 @@ export type ChantierUncheckedCreateWithoutIntervenantsInput = {
   sharedDocs?: Prisma.ChantierSharedDocUncheckedCreateNestedManyWithoutChantierInput
   organisation?: Prisma.ChantierOrganisationUncheckedCreateNestedOneWithoutChantierInput
   objectifs?: Prisma.ChantierObjectifUncheckedCreateNestedManyWithoutChantierInput
+  dossierExpertises?: Prisma.DossierExpertiseUncheckedCreateNestedManyWithoutChantierInput
+  siteActions?: Prisma.ActionUncheckedCreateNestedManyWithoutChantierInput
 }
 
 export type ChantierCreateOrConnectWithoutIntervenantsInput = {
@@ -1868,7 +1922,7 @@ export type ChantierUpdateWithoutIntervenantsInput = {
   client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   matrDemandeur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1908,6 +1962,8 @@ export type ChantierUpdateWithoutIntervenantsInput = {
   sharedDocs?: Prisma.ChantierSharedDocUpdateManyWithoutChantierNestedInput
   organisation?: Prisma.ChantierOrganisationUpdateOneWithoutChantierNestedInput
   objectifs?: Prisma.ChantierObjectifUpdateManyWithoutChantierNestedInput
+  dossierExpertises?: Prisma.DossierExpertiseUpdateManyWithoutChantierNestedInput
+  siteActions?: Prisma.ActionUpdateManyWithoutChantierNestedInput
 }
 
 export type ChantierUncheckedUpdateWithoutIntervenantsInput = {
@@ -1920,7 +1976,7 @@ export type ChantierUncheckedUpdateWithoutIntervenantsInput = {
   client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   chantierDetailsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1960,6 +2016,240 @@ export type ChantierUncheckedUpdateWithoutIntervenantsInput = {
   sharedDocs?: Prisma.ChantierSharedDocUncheckedUpdateManyWithoutChantierNestedInput
   organisation?: Prisma.ChantierOrganisationUncheckedUpdateOneWithoutChantierNestedInput
   objectifs?: Prisma.ChantierObjectifUncheckedUpdateManyWithoutChantierNestedInput
+  dossierExpertises?: Prisma.DossierExpertiseUncheckedUpdateManyWithoutChantierNestedInput
+  siteActions?: Prisma.ActionUncheckedUpdateManyWithoutChantierNestedInput
+}
+
+export type ChantierCreateWithoutSiteActionsInput = {
+  id?: string
+  codeOTP: number
+  name?: string | null
+  description?: string | null
+  codeAgenceSap?: string | null
+  team?: string | null
+  client?: string | null
+  address?: string | null
+  progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: $Enums.ProcessStatusEnum
+  matrResponsable?: string | null
+  nomResponsable?: string | null
+  matrDemandeur?: string | null
+  nomDemandeur?: string | null
+  adresseChantier?: string | null
+  idClient?: string | null
+  nomClient?: string | null
+  contactSite?: string | null
+  dateDebut?: Date | string | null
+  facturationIni?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  autresDepensesIni?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  materielIni?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fournituresIni?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  mainOeuvreIni?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  facturationVld?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  autresDepensesVld?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  materielVld?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fournituresVld?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  mainOeuvreVld?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  typeProjet?: string | null
+  segmentNeu?: string | null
+  segmentFfb?: string | null
+  zoneOtp?: string | null
+  numDevis?: string | null
+  dateSynchroSap?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  agence?: Prisma.AgenceCreateNestedOneWithoutChantiersInput
+  ao?: Prisma.AoCreateNestedOneWithoutChantiersInput
+  chantierDetails?: Prisma.ChantierDetailsCreateNestedOneWithoutChantierInput
+  intervenants?: Prisma.ChantierIntervenantCreateNestedManyWithoutChantierInput
+  actions?: Prisma.ChantierActionCreateNestedManyWithoutChantierInput
+  documentation?: Prisma.ChantierDocumentationCreateNestedManyWithoutChantierInput
+  interventions?: Prisma.InterventionCreateNestedManyWithoutChantierInput
+  documentations?: Prisma.DocumentationCreateNestedManyWithoutChantierInput
+  folders?: Prisma.FolderCreateNestedManyWithoutChantierInput
+  requiredDocs?: Prisma.ChantierRequiredDocCreateNestedManyWithoutChantierInput
+  sharedDocs?: Prisma.ChantierSharedDocCreateNestedManyWithoutChantierInput
+  organisation?: Prisma.ChantierOrganisationCreateNestedOneWithoutChantierInput
+  objectifs?: Prisma.ChantierObjectifCreateNestedManyWithoutChantierInput
+  dossierExpertises?: Prisma.DossierExpertiseCreateNestedManyWithoutChantierInput
+}
+
+export type ChantierUncheckedCreateWithoutSiteActionsInput = {
+  id?: string
+  codeOTP: number
+  name?: string | null
+  description?: string | null
+  codeAgenceSap?: string | null
+  team?: string | null
+  client?: string | null
+  address?: string | null
+  progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: $Enums.ProcessStatusEnum
+  chantierDetailsId?: string | null
+  matrResponsable?: string | null
+  nomResponsable?: string | null
+  matrDemandeur?: string | null
+  nomDemandeur?: string | null
+  adresseChantier?: string | null
+  idClient?: string | null
+  nomClient?: string | null
+  contactSite?: string | null
+  dateDebut?: Date | string | null
+  facturationIni?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  autresDepensesIni?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  materielIni?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fournituresIni?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  mainOeuvreIni?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  facturationVld?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  autresDepensesVld?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  materielVld?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fournituresVld?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  mainOeuvreVld?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  typeProjet?: string | null
+  segmentNeu?: string | null
+  segmentFfb?: string | null
+  zoneOtp?: string | null
+  numDevis?: string | null
+  dateSynchroSap?: Date | string | null
+  idAgence?: string | null
+  idAo?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  intervenants?: Prisma.ChantierIntervenantUncheckedCreateNestedManyWithoutChantierInput
+  actions?: Prisma.ChantierActionUncheckedCreateNestedManyWithoutChantierInput
+  documentation?: Prisma.ChantierDocumentationUncheckedCreateNestedManyWithoutChantierInput
+  interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutChantierInput
+  documentations?: Prisma.DocumentationUncheckedCreateNestedManyWithoutChantierInput
+  folders?: Prisma.FolderUncheckedCreateNestedManyWithoutChantierInput
+  requiredDocs?: Prisma.ChantierRequiredDocUncheckedCreateNestedManyWithoutChantierInput
+  sharedDocs?: Prisma.ChantierSharedDocUncheckedCreateNestedManyWithoutChantierInput
+  organisation?: Prisma.ChantierOrganisationUncheckedCreateNestedOneWithoutChantierInput
+  objectifs?: Prisma.ChantierObjectifUncheckedCreateNestedManyWithoutChantierInput
+  dossierExpertises?: Prisma.DossierExpertiseUncheckedCreateNestedManyWithoutChantierInput
+}
+
+export type ChantierCreateOrConnectWithoutSiteActionsInput = {
+  where: Prisma.ChantierWhereUniqueInput
+  create: Prisma.XOR<Prisma.ChantierCreateWithoutSiteActionsInput, Prisma.ChantierUncheckedCreateWithoutSiteActionsInput>
+}
+
+export type ChantierUpsertWithoutSiteActionsInput = {
+  update: Prisma.XOR<Prisma.ChantierUpdateWithoutSiteActionsInput, Prisma.ChantierUncheckedUpdateWithoutSiteActionsInput>
+  create: Prisma.XOR<Prisma.ChantierCreateWithoutSiteActionsInput, Prisma.ChantierUncheckedCreateWithoutSiteActionsInput>
+  where?: Prisma.ChantierWhereInput
+}
+
+export type ChantierUpdateToOneWithWhereWithoutSiteActionsInput = {
+  where?: Prisma.ChantierWhereInput
+  data: Prisma.XOR<Prisma.ChantierUpdateWithoutSiteActionsInput, Prisma.ChantierUncheckedUpdateWithoutSiteActionsInput>
+}
+
+export type ChantierUpdateWithoutSiteActionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codeOTP?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codeAgenceSap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  team?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
+  matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  matrDemandeur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nomDemandeur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adresseChantier?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idClient?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nomClient?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactSite?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateDebut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  facturationIni?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  autresDepensesIni?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  materielIni?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fournituresIni?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  mainOeuvreIni?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  facturationVld?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  autresDepensesVld?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  materielVld?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fournituresVld?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  mainOeuvreVld?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  typeProjet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  segmentNeu?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  segmentFfb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  zoneOtp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numDevis?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateSynchroSap?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  agence?: Prisma.AgenceUpdateOneWithoutChantiersNestedInput
+  ao?: Prisma.AoUpdateOneWithoutChantiersNestedInput
+  chantierDetails?: Prisma.ChantierDetailsUpdateOneWithoutChantierNestedInput
+  intervenants?: Prisma.ChantierIntervenantUpdateManyWithoutChantierNestedInput
+  actions?: Prisma.ChantierActionUpdateManyWithoutChantierNestedInput
+  documentation?: Prisma.ChantierDocumentationUpdateManyWithoutChantierNestedInput
+  interventions?: Prisma.InterventionUpdateManyWithoutChantierNestedInput
+  documentations?: Prisma.DocumentationUpdateManyWithoutChantierNestedInput
+  folders?: Prisma.FolderUpdateManyWithoutChantierNestedInput
+  requiredDocs?: Prisma.ChantierRequiredDocUpdateManyWithoutChantierNestedInput
+  sharedDocs?: Prisma.ChantierSharedDocUpdateManyWithoutChantierNestedInput
+  organisation?: Prisma.ChantierOrganisationUpdateOneWithoutChantierNestedInput
+  objectifs?: Prisma.ChantierObjectifUpdateManyWithoutChantierNestedInput
+  dossierExpertises?: Prisma.DossierExpertiseUpdateManyWithoutChantierNestedInput
+}
+
+export type ChantierUncheckedUpdateWithoutSiteActionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codeOTP?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codeAgenceSap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  team?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
+  chantierDetailsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  matrDemandeur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nomDemandeur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adresseChantier?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idClient?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nomClient?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactSite?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateDebut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  facturationIni?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  autresDepensesIni?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  materielIni?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fournituresIni?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  mainOeuvreIni?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  facturationVld?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  autresDepensesVld?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  materielVld?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fournituresVld?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  mainOeuvreVld?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  typeProjet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  segmentNeu?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  segmentFfb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  zoneOtp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numDevis?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateSynchroSap?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  idAgence?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idAo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  intervenants?: Prisma.ChantierIntervenantUncheckedUpdateManyWithoutChantierNestedInput
+  actions?: Prisma.ChantierActionUncheckedUpdateManyWithoutChantierNestedInput
+  documentation?: Prisma.ChantierDocumentationUncheckedUpdateManyWithoutChantierNestedInput
+  interventions?: Prisma.InterventionUncheckedUpdateManyWithoutChantierNestedInput
+  documentations?: Prisma.DocumentationUncheckedUpdateManyWithoutChantierNestedInput
+  folders?: Prisma.FolderUncheckedUpdateManyWithoutChantierNestedInput
+  requiredDocs?: Prisma.ChantierRequiredDocUncheckedUpdateManyWithoutChantierNestedInput
+  sharedDocs?: Prisma.ChantierSharedDocUncheckedUpdateManyWithoutChantierNestedInput
+  organisation?: Prisma.ChantierOrganisationUncheckedUpdateOneWithoutChantierNestedInput
+  objectifs?: Prisma.ChantierObjectifUncheckedUpdateManyWithoutChantierNestedInput
+  dossierExpertises?: Prisma.DossierExpertiseUncheckedUpdateManyWithoutChantierNestedInput
 }
 
 export type ChantierCreateWithoutActionsInput = {
@@ -1972,7 +2262,7 @@ export type ChantierCreateWithoutActionsInput = {
   client?: string | null
   address?: string | null
   progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: string
+  status?: $Enums.ProcessStatusEnum
   matrResponsable?: string | null
   nomResponsable?: string | null
   matrDemandeur?: string | null
@@ -2012,6 +2302,8 @@ export type ChantierCreateWithoutActionsInput = {
   sharedDocs?: Prisma.ChantierSharedDocCreateNestedManyWithoutChantierInput
   organisation?: Prisma.ChantierOrganisationCreateNestedOneWithoutChantierInput
   objectifs?: Prisma.ChantierObjectifCreateNestedManyWithoutChantierInput
+  dossierExpertises?: Prisma.DossierExpertiseCreateNestedManyWithoutChantierInput
+  siteActions?: Prisma.ActionCreateNestedManyWithoutChantierInput
 }
 
 export type ChantierUncheckedCreateWithoutActionsInput = {
@@ -2024,7 +2316,7 @@ export type ChantierUncheckedCreateWithoutActionsInput = {
   client?: string | null
   address?: string | null
   progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: string
+  status?: $Enums.ProcessStatusEnum
   chantierDetailsId?: string | null
   matrResponsable?: string | null
   nomResponsable?: string | null
@@ -2064,6 +2356,8 @@ export type ChantierUncheckedCreateWithoutActionsInput = {
   sharedDocs?: Prisma.ChantierSharedDocUncheckedCreateNestedManyWithoutChantierInput
   organisation?: Prisma.ChantierOrganisationUncheckedCreateNestedOneWithoutChantierInput
   objectifs?: Prisma.ChantierObjectifUncheckedCreateNestedManyWithoutChantierInput
+  dossierExpertises?: Prisma.DossierExpertiseUncheckedCreateNestedManyWithoutChantierInput
+  siteActions?: Prisma.ActionUncheckedCreateNestedManyWithoutChantierInput
 }
 
 export type ChantierCreateOrConnectWithoutActionsInput = {
@@ -2092,7 +2386,7 @@ export type ChantierUpdateWithoutActionsInput = {
   client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   matrDemandeur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2132,6 +2426,8 @@ export type ChantierUpdateWithoutActionsInput = {
   sharedDocs?: Prisma.ChantierSharedDocUpdateManyWithoutChantierNestedInput
   organisation?: Prisma.ChantierOrganisationUpdateOneWithoutChantierNestedInput
   objectifs?: Prisma.ChantierObjectifUpdateManyWithoutChantierNestedInput
+  dossierExpertises?: Prisma.DossierExpertiseUpdateManyWithoutChantierNestedInput
+  siteActions?: Prisma.ActionUpdateManyWithoutChantierNestedInput
 }
 
 export type ChantierUncheckedUpdateWithoutActionsInput = {
@@ -2144,7 +2440,7 @@ export type ChantierUncheckedUpdateWithoutActionsInput = {
   client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   chantierDetailsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2184,6 +2480,8 @@ export type ChantierUncheckedUpdateWithoutActionsInput = {
   sharedDocs?: Prisma.ChantierSharedDocUncheckedUpdateManyWithoutChantierNestedInput
   organisation?: Prisma.ChantierOrganisationUncheckedUpdateOneWithoutChantierNestedInput
   objectifs?: Prisma.ChantierObjectifUncheckedUpdateManyWithoutChantierNestedInput
+  dossierExpertises?: Prisma.DossierExpertiseUncheckedUpdateManyWithoutChantierNestedInput
+  siteActions?: Prisma.ActionUncheckedUpdateManyWithoutChantierNestedInput
 }
 
 export type ChantierCreateWithoutDocumentationInput = {
@@ -2196,7 +2494,7 @@ export type ChantierCreateWithoutDocumentationInput = {
   client?: string | null
   address?: string | null
   progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: string
+  status?: $Enums.ProcessStatusEnum
   matrResponsable?: string | null
   nomResponsable?: string | null
   matrDemandeur?: string | null
@@ -2236,6 +2534,8 @@ export type ChantierCreateWithoutDocumentationInput = {
   sharedDocs?: Prisma.ChantierSharedDocCreateNestedManyWithoutChantierInput
   organisation?: Prisma.ChantierOrganisationCreateNestedOneWithoutChantierInput
   objectifs?: Prisma.ChantierObjectifCreateNestedManyWithoutChantierInput
+  dossierExpertises?: Prisma.DossierExpertiseCreateNestedManyWithoutChantierInput
+  siteActions?: Prisma.ActionCreateNestedManyWithoutChantierInput
 }
 
 export type ChantierUncheckedCreateWithoutDocumentationInput = {
@@ -2248,7 +2548,7 @@ export type ChantierUncheckedCreateWithoutDocumentationInput = {
   client?: string | null
   address?: string | null
   progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: string
+  status?: $Enums.ProcessStatusEnum
   chantierDetailsId?: string | null
   matrResponsable?: string | null
   nomResponsable?: string | null
@@ -2288,6 +2588,8 @@ export type ChantierUncheckedCreateWithoutDocumentationInput = {
   sharedDocs?: Prisma.ChantierSharedDocUncheckedCreateNestedManyWithoutChantierInput
   organisation?: Prisma.ChantierOrganisationUncheckedCreateNestedOneWithoutChantierInput
   objectifs?: Prisma.ChantierObjectifUncheckedCreateNestedManyWithoutChantierInput
+  dossierExpertises?: Prisma.DossierExpertiseUncheckedCreateNestedManyWithoutChantierInput
+  siteActions?: Prisma.ActionUncheckedCreateNestedManyWithoutChantierInput
 }
 
 export type ChantierCreateOrConnectWithoutDocumentationInput = {
@@ -2316,7 +2618,7 @@ export type ChantierUpdateWithoutDocumentationInput = {
   client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   matrDemandeur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2356,6 +2658,8 @@ export type ChantierUpdateWithoutDocumentationInput = {
   sharedDocs?: Prisma.ChantierSharedDocUpdateManyWithoutChantierNestedInput
   organisation?: Prisma.ChantierOrganisationUpdateOneWithoutChantierNestedInput
   objectifs?: Prisma.ChantierObjectifUpdateManyWithoutChantierNestedInput
+  dossierExpertises?: Prisma.DossierExpertiseUpdateManyWithoutChantierNestedInput
+  siteActions?: Prisma.ActionUpdateManyWithoutChantierNestedInput
 }
 
 export type ChantierUncheckedUpdateWithoutDocumentationInput = {
@@ -2368,7 +2672,7 @@ export type ChantierUncheckedUpdateWithoutDocumentationInput = {
   client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   chantierDetailsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2408,6 +2712,8 @@ export type ChantierUncheckedUpdateWithoutDocumentationInput = {
   sharedDocs?: Prisma.ChantierSharedDocUncheckedUpdateManyWithoutChantierNestedInput
   organisation?: Prisma.ChantierOrganisationUncheckedUpdateOneWithoutChantierNestedInput
   objectifs?: Prisma.ChantierObjectifUncheckedUpdateManyWithoutChantierNestedInput
+  dossierExpertises?: Prisma.DossierExpertiseUncheckedUpdateManyWithoutChantierNestedInput
+  siteActions?: Prisma.ActionUncheckedUpdateManyWithoutChantierNestedInput
 }
 
 export type ChantierCreateWithoutRequiredDocsInput = {
@@ -2420,7 +2726,7 @@ export type ChantierCreateWithoutRequiredDocsInput = {
   client?: string | null
   address?: string | null
   progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: string
+  status?: $Enums.ProcessStatusEnum
   matrResponsable?: string | null
   nomResponsable?: string | null
   matrDemandeur?: string | null
@@ -2460,6 +2766,8 @@ export type ChantierCreateWithoutRequiredDocsInput = {
   sharedDocs?: Prisma.ChantierSharedDocCreateNestedManyWithoutChantierInput
   organisation?: Prisma.ChantierOrganisationCreateNestedOneWithoutChantierInput
   objectifs?: Prisma.ChantierObjectifCreateNestedManyWithoutChantierInput
+  dossierExpertises?: Prisma.DossierExpertiseCreateNestedManyWithoutChantierInput
+  siteActions?: Prisma.ActionCreateNestedManyWithoutChantierInput
 }
 
 export type ChantierUncheckedCreateWithoutRequiredDocsInput = {
@@ -2472,7 +2780,7 @@ export type ChantierUncheckedCreateWithoutRequiredDocsInput = {
   client?: string | null
   address?: string | null
   progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: string
+  status?: $Enums.ProcessStatusEnum
   chantierDetailsId?: string | null
   matrResponsable?: string | null
   nomResponsable?: string | null
@@ -2512,6 +2820,8 @@ export type ChantierUncheckedCreateWithoutRequiredDocsInput = {
   sharedDocs?: Prisma.ChantierSharedDocUncheckedCreateNestedManyWithoutChantierInput
   organisation?: Prisma.ChantierOrganisationUncheckedCreateNestedOneWithoutChantierInput
   objectifs?: Prisma.ChantierObjectifUncheckedCreateNestedManyWithoutChantierInput
+  dossierExpertises?: Prisma.DossierExpertiseUncheckedCreateNestedManyWithoutChantierInput
+  siteActions?: Prisma.ActionUncheckedCreateNestedManyWithoutChantierInput
 }
 
 export type ChantierCreateOrConnectWithoutRequiredDocsInput = {
@@ -2540,7 +2850,7 @@ export type ChantierUpdateWithoutRequiredDocsInput = {
   client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   matrDemandeur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2580,6 +2890,8 @@ export type ChantierUpdateWithoutRequiredDocsInput = {
   sharedDocs?: Prisma.ChantierSharedDocUpdateManyWithoutChantierNestedInput
   organisation?: Prisma.ChantierOrganisationUpdateOneWithoutChantierNestedInput
   objectifs?: Prisma.ChantierObjectifUpdateManyWithoutChantierNestedInput
+  dossierExpertises?: Prisma.DossierExpertiseUpdateManyWithoutChantierNestedInput
+  siteActions?: Prisma.ActionUpdateManyWithoutChantierNestedInput
 }
 
 export type ChantierUncheckedUpdateWithoutRequiredDocsInput = {
@@ -2592,7 +2904,7 @@ export type ChantierUncheckedUpdateWithoutRequiredDocsInput = {
   client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   chantierDetailsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2632,6 +2944,8 @@ export type ChantierUncheckedUpdateWithoutRequiredDocsInput = {
   sharedDocs?: Prisma.ChantierSharedDocUncheckedUpdateManyWithoutChantierNestedInput
   organisation?: Prisma.ChantierOrganisationUncheckedUpdateOneWithoutChantierNestedInput
   objectifs?: Prisma.ChantierObjectifUncheckedUpdateManyWithoutChantierNestedInput
+  dossierExpertises?: Prisma.DossierExpertiseUncheckedUpdateManyWithoutChantierNestedInput
+  siteActions?: Prisma.ActionUncheckedUpdateManyWithoutChantierNestedInput
 }
 
 export type ChantierCreateWithoutSharedDocsInput = {
@@ -2644,7 +2958,7 @@ export type ChantierCreateWithoutSharedDocsInput = {
   client?: string | null
   address?: string | null
   progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: string
+  status?: $Enums.ProcessStatusEnum
   matrResponsable?: string | null
   nomResponsable?: string | null
   matrDemandeur?: string | null
@@ -2684,6 +2998,8 @@ export type ChantierCreateWithoutSharedDocsInput = {
   requiredDocs?: Prisma.ChantierRequiredDocCreateNestedManyWithoutChantierInput
   organisation?: Prisma.ChantierOrganisationCreateNestedOneWithoutChantierInput
   objectifs?: Prisma.ChantierObjectifCreateNestedManyWithoutChantierInput
+  dossierExpertises?: Prisma.DossierExpertiseCreateNestedManyWithoutChantierInput
+  siteActions?: Prisma.ActionCreateNestedManyWithoutChantierInput
 }
 
 export type ChantierUncheckedCreateWithoutSharedDocsInput = {
@@ -2696,7 +3012,7 @@ export type ChantierUncheckedCreateWithoutSharedDocsInput = {
   client?: string | null
   address?: string | null
   progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: string
+  status?: $Enums.ProcessStatusEnum
   chantierDetailsId?: string | null
   matrResponsable?: string | null
   nomResponsable?: string | null
@@ -2736,6 +3052,8 @@ export type ChantierUncheckedCreateWithoutSharedDocsInput = {
   requiredDocs?: Prisma.ChantierRequiredDocUncheckedCreateNestedManyWithoutChantierInput
   organisation?: Prisma.ChantierOrganisationUncheckedCreateNestedOneWithoutChantierInput
   objectifs?: Prisma.ChantierObjectifUncheckedCreateNestedManyWithoutChantierInput
+  dossierExpertises?: Prisma.DossierExpertiseUncheckedCreateNestedManyWithoutChantierInput
+  siteActions?: Prisma.ActionUncheckedCreateNestedManyWithoutChantierInput
 }
 
 export type ChantierCreateOrConnectWithoutSharedDocsInput = {
@@ -2764,7 +3082,7 @@ export type ChantierUpdateWithoutSharedDocsInput = {
   client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   matrDemandeur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2804,6 +3122,8 @@ export type ChantierUpdateWithoutSharedDocsInput = {
   requiredDocs?: Prisma.ChantierRequiredDocUpdateManyWithoutChantierNestedInput
   organisation?: Prisma.ChantierOrganisationUpdateOneWithoutChantierNestedInput
   objectifs?: Prisma.ChantierObjectifUpdateManyWithoutChantierNestedInput
+  dossierExpertises?: Prisma.DossierExpertiseUpdateManyWithoutChantierNestedInput
+  siteActions?: Prisma.ActionUpdateManyWithoutChantierNestedInput
 }
 
 export type ChantierUncheckedUpdateWithoutSharedDocsInput = {
@@ -2816,7 +3136,7 @@ export type ChantierUncheckedUpdateWithoutSharedDocsInput = {
   client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   chantierDetailsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2856,6 +3176,8 @@ export type ChantierUncheckedUpdateWithoutSharedDocsInput = {
   requiredDocs?: Prisma.ChantierRequiredDocUncheckedUpdateManyWithoutChantierNestedInput
   organisation?: Prisma.ChantierOrganisationUncheckedUpdateOneWithoutChantierNestedInput
   objectifs?: Prisma.ChantierObjectifUncheckedUpdateManyWithoutChantierNestedInput
+  dossierExpertises?: Prisma.DossierExpertiseUncheckedUpdateManyWithoutChantierNestedInput
+  siteActions?: Prisma.ActionUncheckedUpdateManyWithoutChantierNestedInput
 }
 
 export type ChantierCreateWithoutOrganisationInput = {
@@ -2868,7 +3190,7 @@ export type ChantierCreateWithoutOrganisationInput = {
   client?: string | null
   address?: string | null
   progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: string
+  status?: $Enums.ProcessStatusEnum
   matrResponsable?: string | null
   nomResponsable?: string | null
   matrDemandeur?: string | null
@@ -2908,6 +3230,8 @@ export type ChantierCreateWithoutOrganisationInput = {
   requiredDocs?: Prisma.ChantierRequiredDocCreateNestedManyWithoutChantierInput
   sharedDocs?: Prisma.ChantierSharedDocCreateNestedManyWithoutChantierInput
   objectifs?: Prisma.ChantierObjectifCreateNestedManyWithoutChantierInput
+  dossierExpertises?: Prisma.DossierExpertiseCreateNestedManyWithoutChantierInput
+  siteActions?: Prisma.ActionCreateNestedManyWithoutChantierInput
 }
 
 export type ChantierUncheckedCreateWithoutOrganisationInput = {
@@ -2920,7 +3244,7 @@ export type ChantierUncheckedCreateWithoutOrganisationInput = {
   client?: string | null
   address?: string | null
   progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: string
+  status?: $Enums.ProcessStatusEnum
   chantierDetailsId?: string | null
   matrResponsable?: string | null
   nomResponsable?: string | null
@@ -2960,6 +3284,8 @@ export type ChantierUncheckedCreateWithoutOrganisationInput = {
   requiredDocs?: Prisma.ChantierRequiredDocUncheckedCreateNestedManyWithoutChantierInput
   sharedDocs?: Prisma.ChantierSharedDocUncheckedCreateNestedManyWithoutChantierInput
   objectifs?: Prisma.ChantierObjectifUncheckedCreateNestedManyWithoutChantierInput
+  dossierExpertises?: Prisma.DossierExpertiseUncheckedCreateNestedManyWithoutChantierInput
+  siteActions?: Prisma.ActionUncheckedCreateNestedManyWithoutChantierInput
 }
 
 export type ChantierCreateOrConnectWithoutOrganisationInput = {
@@ -2988,7 +3314,7 @@ export type ChantierUpdateWithoutOrganisationInput = {
   client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   matrDemandeur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3028,6 +3354,8 @@ export type ChantierUpdateWithoutOrganisationInput = {
   requiredDocs?: Prisma.ChantierRequiredDocUpdateManyWithoutChantierNestedInput
   sharedDocs?: Prisma.ChantierSharedDocUpdateManyWithoutChantierNestedInput
   objectifs?: Prisma.ChantierObjectifUpdateManyWithoutChantierNestedInput
+  dossierExpertises?: Prisma.DossierExpertiseUpdateManyWithoutChantierNestedInput
+  siteActions?: Prisma.ActionUpdateManyWithoutChantierNestedInput
 }
 
 export type ChantierUncheckedUpdateWithoutOrganisationInput = {
@@ -3040,7 +3368,7 @@ export type ChantierUncheckedUpdateWithoutOrganisationInput = {
   client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   chantierDetailsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3080,6 +3408,8 @@ export type ChantierUncheckedUpdateWithoutOrganisationInput = {
   requiredDocs?: Prisma.ChantierRequiredDocUncheckedUpdateManyWithoutChantierNestedInput
   sharedDocs?: Prisma.ChantierSharedDocUncheckedUpdateManyWithoutChantierNestedInput
   objectifs?: Prisma.ChantierObjectifUncheckedUpdateManyWithoutChantierNestedInput
+  dossierExpertises?: Prisma.DossierExpertiseUncheckedUpdateManyWithoutChantierNestedInput
+  siteActions?: Prisma.ActionUncheckedUpdateManyWithoutChantierNestedInput
 }
 
 export type ChantierCreateWithoutObjectifsInput = {
@@ -3092,7 +3422,7 @@ export type ChantierCreateWithoutObjectifsInput = {
   client?: string | null
   address?: string | null
   progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: string
+  status?: $Enums.ProcessStatusEnum
   matrResponsable?: string | null
   nomResponsable?: string | null
   matrDemandeur?: string | null
@@ -3132,6 +3462,8 @@ export type ChantierCreateWithoutObjectifsInput = {
   requiredDocs?: Prisma.ChantierRequiredDocCreateNestedManyWithoutChantierInput
   sharedDocs?: Prisma.ChantierSharedDocCreateNestedManyWithoutChantierInput
   organisation?: Prisma.ChantierOrganisationCreateNestedOneWithoutChantierInput
+  dossierExpertises?: Prisma.DossierExpertiseCreateNestedManyWithoutChantierInput
+  siteActions?: Prisma.ActionCreateNestedManyWithoutChantierInput
 }
 
 export type ChantierUncheckedCreateWithoutObjectifsInput = {
@@ -3144,7 +3476,7 @@ export type ChantierUncheckedCreateWithoutObjectifsInput = {
   client?: string | null
   address?: string | null
   progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: string
+  status?: $Enums.ProcessStatusEnum
   chantierDetailsId?: string | null
   matrResponsable?: string | null
   nomResponsable?: string | null
@@ -3184,6 +3516,8 @@ export type ChantierUncheckedCreateWithoutObjectifsInput = {
   requiredDocs?: Prisma.ChantierRequiredDocUncheckedCreateNestedManyWithoutChantierInput
   sharedDocs?: Prisma.ChantierSharedDocUncheckedCreateNestedManyWithoutChantierInput
   organisation?: Prisma.ChantierOrganisationUncheckedCreateNestedOneWithoutChantierInput
+  dossierExpertises?: Prisma.DossierExpertiseUncheckedCreateNestedManyWithoutChantierInput
+  siteActions?: Prisma.ActionUncheckedCreateNestedManyWithoutChantierInput
 }
 
 export type ChantierCreateOrConnectWithoutObjectifsInput = {
@@ -3212,7 +3546,7 @@ export type ChantierUpdateWithoutObjectifsInput = {
   client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   matrDemandeur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3252,6 +3586,8 @@ export type ChantierUpdateWithoutObjectifsInput = {
   requiredDocs?: Prisma.ChantierRequiredDocUpdateManyWithoutChantierNestedInput
   sharedDocs?: Prisma.ChantierSharedDocUpdateManyWithoutChantierNestedInput
   organisation?: Prisma.ChantierOrganisationUpdateOneWithoutChantierNestedInput
+  dossierExpertises?: Prisma.DossierExpertiseUpdateManyWithoutChantierNestedInput
+  siteActions?: Prisma.ActionUpdateManyWithoutChantierNestedInput
 }
 
 export type ChantierUncheckedUpdateWithoutObjectifsInput = {
@@ -3264,7 +3600,7 @@ export type ChantierUncheckedUpdateWithoutObjectifsInput = {
   client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   chantierDetailsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3304,6 +3640,8 @@ export type ChantierUncheckedUpdateWithoutObjectifsInput = {
   requiredDocs?: Prisma.ChantierRequiredDocUncheckedUpdateManyWithoutChantierNestedInput
   sharedDocs?: Prisma.ChantierSharedDocUncheckedUpdateManyWithoutChantierNestedInput
   organisation?: Prisma.ChantierOrganisationUncheckedUpdateOneWithoutChantierNestedInput
+  dossierExpertises?: Prisma.DossierExpertiseUncheckedUpdateManyWithoutChantierNestedInput
+  siteActions?: Prisma.ActionUncheckedUpdateManyWithoutChantierNestedInput
 }
 
 export type ChantierCreateWithoutFoldersInput = {
@@ -3316,7 +3654,7 @@ export type ChantierCreateWithoutFoldersInput = {
   client?: string | null
   address?: string | null
   progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: string
+  status?: $Enums.ProcessStatusEnum
   matrResponsable?: string | null
   nomResponsable?: string | null
   matrDemandeur?: string | null
@@ -3356,6 +3694,8 @@ export type ChantierCreateWithoutFoldersInput = {
   sharedDocs?: Prisma.ChantierSharedDocCreateNestedManyWithoutChantierInput
   organisation?: Prisma.ChantierOrganisationCreateNestedOneWithoutChantierInput
   objectifs?: Prisma.ChantierObjectifCreateNestedManyWithoutChantierInput
+  dossierExpertises?: Prisma.DossierExpertiseCreateNestedManyWithoutChantierInput
+  siteActions?: Prisma.ActionCreateNestedManyWithoutChantierInput
 }
 
 export type ChantierUncheckedCreateWithoutFoldersInput = {
@@ -3368,7 +3708,7 @@ export type ChantierUncheckedCreateWithoutFoldersInput = {
   client?: string | null
   address?: string | null
   progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: string
+  status?: $Enums.ProcessStatusEnum
   chantierDetailsId?: string | null
   matrResponsable?: string | null
   nomResponsable?: string | null
@@ -3408,6 +3748,8 @@ export type ChantierUncheckedCreateWithoutFoldersInput = {
   sharedDocs?: Prisma.ChantierSharedDocUncheckedCreateNestedManyWithoutChantierInput
   organisation?: Prisma.ChantierOrganisationUncheckedCreateNestedOneWithoutChantierInput
   objectifs?: Prisma.ChantierObjectifUncheckedCreateNestedManyWithoutChantierInput
+  dossierExpertises?: Prisma.DossierExpertiseUncheckedCreateNestedManyWithoutChantierInput
+  siteActions?: Prisma.ActionUncheckedCreateNestedManyWithoutChantierInput
 }
 
 export type ChantierCreateOrConnectWithoutFoldersInput = {
@@ -3436,7 +3778,7 @@ export type ChantierUpdateWithoutFoldersInput = {
   client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   matrDemandeur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3476,6 +3818,8 @@ export type ChantierUpdateWithoutFoldersInput = {
   sharedDocs?: Prisma.ChantierSharedDocUpdateManyWithoutChantierNestedInput
   organisation?: Prisma.ChantierOrganisationUpdateOneWithoutChantierNestedInput
   objectifs?: Prisma.ChantierObjectifUpdateManyWithoutChantierNestedInput
+  dossierExpertises?: Prisma.DossierExpertiseUpdateManyWithoutChantierNestedInput
+  siteActions?: Prisma.ActionUpdateManyWithoutChantierNestedInput
 }
 
 export type ChantierUncheckedUpdateWithoutFoldersInput = {
@@ -3488,7 +3832,7 @@ export type ChantierUncheckedUpdateWithoutFoldersInput = {
   client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   chantierDetailsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3528,6 +3872,8 @@ export type ChantierUncheckedUpdateWithoutFoldersInput = {
   sharedDocs?: Prisma.ChantierSharedDocUncheckedUpdateManyWithoutChantierNestedInput
   organisation?: Prisma.ChantierOrganisationUncheckedUpdateOneWithoutChantierNestedInput
   objectifs?: Prisma.ChantierObjectifUncheckedUpdateManyWithoutChantierNestedInput
+  dossierExpertises?: Prisma.DossierExpertiseUncheckedUpdateManyWithoutChantierNestedInput
+  siteActions?: Prisma.ActionUncheckedUpdateManyWithoutChantierNestedInput
 }
 
 export type ChantierCreateWithoutAgenceInput = {
@@ -3540,7 +3886,7 @@ export type ChantierCreateWithoutAgenceInput = {
   client?: string | null
   address?: string | null
   progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: string
+  status?: $Enums.ProcessStatusEnum
   matrResponsable?: string | null
   nomResponsable?: string | null
   matrDemandeur?: string | null
@@ -3580,6 +3926,8 @@ export type ChantierCreateWithoutAgenceInput = {
   sharedDocs?: Prisma.ChantierSharedDocCreateNestedManyWithoutChantierInput
   organisation?: Prisma.ChantierOrganisationCreateNestedOneWithoutChantierInput
   objectifs?: Prisma.ChantierObjectifCreateNestedManyWithoutChantierInput
+  dossierExpertises?: Prisma.DossierExpertiseCreateNestedManyWithoutChantierInput
+  siteActions?: Prisma.ActionCreateNestedManyWithoutChantierInput
 }
 
 export type ChantierUncheckedCreateWithoutAgenceInput = {
@@ -3592,7 +3940,7 @@ export type ChantierUncheckedCreateWithoutAgenceInput = {
   client?: string | null
   address?: string | null
   progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: string
+  status?: $Enums.ProcessStatusEnum
   chantierDetailsId?: string | null
   matrResponsable?: string | null
   nomResponsable?: string | null
@@ -3632,6 +3980,8 @@ export type ChantierUncheckedCreateWithoutAgenceInput = {
   sharedDocs?: Prisma.ChantierSharedDocUncheckedCreateNestedManyWithoutChantierInput
   organisation?: Prisma.ChantierOrganisationUncheckedCreateNestedOneWithoutChantierInput
   objectifs?: Prisma.ChantierObjectifUncheckedCreateNestedManyWithoutChantierInput
+  dossierExpertises?: Prisma.DossierExpertiseUncheckedCreateNestedManyWithoutChantierInput
+  siteActions?: Prisma.ActionUncheckedCreateNestedManyWithoutChantierInput
 }
 
 export type ChantierCreateOrConnectWithoutAgenceInput = {
@@ -3670,7 +4020,7 @@ export type ChantierCreateWithoutAoInput = {
   client?: string | null
   address?: string | null
   progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: string
+  status?: $Enums.ProcessStatusEnum
   matrResponsable?: string | null
   nomResponsable?: string | null
   matrDemandeur?: string | null
@@ -3710,6 +4060,8 @@ export type ChantierCreateWithoutAoInput = {
   sharedDocs?: Prisma.ChantierSharedDocCreateNestedManyWithoutChantierInput
   organisation?: Prisma.ChantierOrganisationCreateNestedOneWithoutChantierInput
   objectifs?: Prisma.ChantierObjectifCreateNestedManyWithoutChantierInput
+  dossierExpertises?: Prisma.DossierExpertiseCreateNestedManyWithoutChantierInput
+  siteActions?: Prisma.ActionCreateNestedManyWithoutChantierInput
 }
 
 export type ChantierUncheckedCreateWithoutAoInput = {
@@ -3722,7 +4074,7 @@ export type ChantierUncheckedCreateWithoutAoInput = {
   client?: string | null
   address?: string | null
   progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: string
+  status?: $Enums.ProcessStatusEnum
   chantierDetailsId?: string | null
   matrResponsable?: string | null
   nomResponsable?: string | null
@@ -3762,6 +4114,8 @@ export type ChantierUncheckedCreateWithoutAoInput = {
   sharedDocs?: Prisma.ChantierSharedDocUncheckedCreateNestedManyWithoutChantierInput
   organisation?: Prisma.ChantierOrganisationUncheckedCreateNestedOneWithoutChantierInput
   objectifs?: Prisma.ChantierObjectifUncheckedCreateNestedManyWithoutChantierInput
+  dossierExpertises?: Prisma.DossierExpertiseUncheckedCreateNestedManyWithoutChantierInput
+  siteActions?: Prisma.ActionUncheckedCreateNestedManyWithoutChantierInput
 }
 
 export type ChantierCreateOrConnectWithoutAoInput = {
@@ -3800,7 +4154,7 @@ export type ChantierCreateWithoutInterventionsInput = {
   client?: string | null
   address?: string | null
   progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: string
+  status?: $Enums.ProcessStatusEnum
   matrResponsable?: string | null
   nomResponsable?: string | null
   matrDemandeur?: string | null
@@ -3840,6 +4194,8 @@ export type ChantierCreateWithoutInterventionsInput = {
   sharedDocs?: Prisma.ChantierSharedDocCreateNestedManyWithoutChantierInput
   organisation?: Prisma.ChantierOrganisationCreateNestedOneWithoutChantierInput
   objectifs?: Prisma.ChantierObjectifCreateNestedManyWithoutChantierInput
+  dossierExpertises?: Prisma.DossierExpertiseCreateNestedManyWithoutChantierInput
+  siteActions?: Prisma.ActionCreateNestedManyWithoutChantierInput
 }
 
 export type ChantierUncheckedCreateWithoutInterventionsInput = {
@@ -3852,7 +4208,7 @@ export type ChantierUncheckedCreateWithoutInterventionsInput = {
   client?: string | null
   address?: string | null
   progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: string
+  status?: $Enums.ProcessStatusEnum
   chantierDetailsId?: string | null
   matrResponsable?: string | null
   nomResponsable?: string | null
@@ -3892,6 +4248,8 @@ export type ChantierUncheckedCreateWithoutInterventionsInput = {
   sharedDocs?: Prisma.ChantierSharedDocUncheckedCreateNestedManyWithoutChantierInput
   organisation?: Prisma.ChantierOrganisationUncheckedCreateNestedOneWithoutChantierInput
   objectifs?: Prisma.ChantierObjectifUncheckedCreateNestedManyWithoutChantierInput
+  dossierExpertises?: Prisma.DossierExpertiseUncheckedCreateNestedManyWithoutChantierInput
+  siteActions?: Prisma.ActionUncheckedCreateNestedManyWithoutChantierInput
 }
 
 export type ChantierCreateOrConnectWithoutInterventionsInput = {
@@ -3920,7 +4278,7 @@ export type ChantierUpdateWithoutInterventionsInput = {
   client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   matrDemandeur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3960,6 +4318,8 @@ export type ChantierUpdateWithoutInterventionsInput = {
   sharedDocs?: Prisma.ChantierSharedDocUpdateManyWithoutChantierNestedInput
   organisation?: Prisma.ChantierOrganisationUpdateOneWithoutChantierNestedInput
   objectifs?: Prisma.ChantierObjectifUpdateManyWithoutChantierNestedInput
+  dossierExpertises?: Prisma.DossierExpertiseUpdateManyWithoutChantierNestedInput
+  siteActions?: Prisma.ActionUpdateManyWithoutChantierNestedInput
 }
 
 export type ChantierUncheckedUpdateWithoutInterventionsInput = {
@@ -3972,7 +4332,7 @@ export type ChantierUncheckedUpdateWithoutInterventionsInput = {
   client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   chantierDetailsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4012,6 +4372,8 @@ export type ChantierUncheckedUpdateWithoutInterventionsInput = {
   sharedDocs?: Prisma.ChantierSharedDocUncheckedUpdateManyWithoutChantierNestedInput
   organisation?: Prisma.ChantierOrganisationUncheckedUpdateOneWithoutChantierNestedInput
   objectifs?: Prisma.ChantierObjectifUncheckedUpdateManyWithoutChantierNestedInput
+  dossierExpertises?: Prisma.DossierExpertiseUncheckedUpdateManyWithoutChantierNestedInput
+  siteActions?: Prisma.ActionUncheckedUpdateManyWithoutChantierNestedInput
 }
 
 export type ChantierCreateWithoutDocumentationsInput = {
@@ -4024,7 +4386,7 @@ export type ChantierCreateWithoutDocumentationsInput = {
   client?: string | null
   address?: string | null
   progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: string
+  status?: $Enums.ProcessStatusEnum
   matrResponsable?: string | null
   nomResponsable?: string | null
   matrDemandeur?: string | null
@@ -4064,6 +4426,8 @@ export type ChantierCreateWithoutDocumentationsInput = {
   sharedDocs?: Prisma.ChantierSharedDocCreateNestedManyWithoutChantierInput
   organisation?: Prisma.ChantierOrganisationCreateNestedOneWithoutChantierInput
   objectifs?: Prisma.ChantierObjectifCreateNestedManyWithoutChantierInput
+  dossierExpertises?: Prisma.DossierExpertiseCreateNestedManyWithoutChantierInput
+  siteActions?: Prisma.ActionCreateNestedManyWithoutChantierInput
 }
 
 export type ChantierUncheckedCreateWithoutDocumentationsInput = {
@@ -4076,7 +4440,7 @@ export type ChantierUncheckedCreateWithoutDocumentationsInput = {
   client?: string | null
   address?: string | null
   progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: string
+  status?: $Enums.ProcessStatusEnum
   chantierDetailsId?: string | null
   matrResponsable?: string | null
   nomResponsable?: string | null
@@ -4116,6 +4480,8 @@ export type ChantierUncheckedCreateWithoutDocumentationsInput = {
   sharedDocs?: Prisma.ChantierSharedDocUncheckedCreateNestedManyWithoutChantierInput
   organisation?: Prisma.ChantierOrganisationUncheckedCreateNestedOneWithoutChantierInput
   objectifs?: Prisma.ChantierObjectifUncheckedCreateNestedManyWithoutChantierInput
+  dossierExpertises?: Prisma.DossierExpertiseUncheckedCreateNestedManyWithoutChantierInput
+  siteActions?: Prisma.ActionUncheckedCreateNestedManyWithoutChantierInput
 }
 
 export type ChantierCreateOrConnectWithoutDocumentationsInput = {
@@ -4144,7 +4510,7 @@ export type ChantierUpdateWithoutDocumentationsInput = {
   client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   matrDemandeur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4184,6 +4550,8 @@ export type ChantierUpdateWithoutDocumentationsInput = {
   sharedDocs?: Prisma.ChantierSharedDocUpdateManyWithoutChantierNestedInput
   organisation?: Prisma.ChantierOrganisationUpdateOneWithoutChantierNestedInput
   objectifs?: Prisma.ChantierObjectifUpdateManyWithoutChantierNestedInput
+  dossierExpertises?: Prisma.DossierExpertiseUpdateManyWithoutChantierNestedInput
+  siteActions?: Prisma.ActionUpdateManyWithoutChantierNestedInput
 }
 
 export type ChantierUncheckedUpdateWithoutDocumentationsInput = {
@@ -4196,7 +4564,7 @@ export type ChantierUncheckedUpdateWithoutDocumentationsInput = {
   client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   chantierDetailsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4236,6 +4604,240 @@ export type ChantierUncheckedUpdateWithoutDocumentationsInput = {
   sharedDocs?: Prisma.ChantierSharedDocUncheckedUpdateManyWithoutChantierNestedInput
   organisation?: Prisma.ChantierOrganisationUncheckedUpdateOneWithoutChantierNestedInput
   objectifs?: Prisma.ChantierObjectifUncheckedUpdateManyWithoutChantierNestedInput
+  dossierExpertises?: Prisma.DossierExpertiseUncheckedUpdateManyWithoutChantierNestedInput
+  siteActions?: Prisma.ActionUncheckedUpdateManyWithoutChantierNestedInput
+}
+
+export type ChantierCreateWithoutDossierExpertisesInput = {
+  id?: string
+  codeOTP: number
+  name?: string | null
+  description?: string | null
+  codeAgenceSap?: string | null
+  team?: string | null
+  client?: string | null
+  address?: string | null
+  progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: $Enums.ProcessStatusEnum
+  matrResponsable?: string | null
+  nomResponsable?: string | null
+  matrDemandeur?: string | null
+  nomDemandeur?: string | null
+  adresseChantier?: string | null
+  idClient?: string | null
+  nomClient?: string | null
+  contactSite?: string | null
+  dateDebut?: Date | string | null
+  facturationIni?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  autresDepensesIni?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  materielIni?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fournituresIni?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  mainOeuvreIni?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  facturationVld?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  autresDepensesVld?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  materielVld?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fournituresVld?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  mainOeuvreVld?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  typeProjet?: string | null
+  segmentNeu?: string | null
+  segmentFfb?: string | null
+  zoneOtp?: string | null
+  numDevis?: string | null
+  dateSynchroSap?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  agence?: Prisma.AgenceCreateNestedOneWithoutChantiersInput
+  ao?: Prisma.AoCreateNestedOneWithoutChantiersInput
+  chantierDetails?: Prisma.ChantierDetailsCreateNestedOneWithoutChantierInput
+  intervenants?: Prisma.ChantierIntervenantCreateNestedManyWithoutChantierInput
+  actions?: Prisma.ChantierActionCreateNestedManyWithoutChantierInput
+  documentation?: Prisma.ChantierDocumentationCreateNestedManyWithoutChantierInput
+  interventions?: Prisma.InterventionCreateNestedManyWithoutChantierInput
+  documentations?: Prisma.DocumentationCreateNestedManyWithoutChantierInput
+  folders?: Prisma.FolderCreateNestedManyWithoutChantierInput
+  requiredDocs?: Prisma.ChantierRequiredDocCreateNestedManyWithoutChantierInput
+  sharedDocs?: Prisma.ChantierSharedDocCreateNestedManyWithoutChantierInput
+  organisation?: Prisma.ChantierOrganisationCreateNestedOneWithoutChantierInput
+  objectifs?: Prisma.ChantierObjectifCreateNestedManyWithoutChantierInput
+  siteActions?: Prisma.ActionCreateNestedManyWithoutChantierInput
+}
+
+export type ChantierUncheckedCreateWithoutDossierExpertisesInput = {
+  id?: string
+  codeOTP: number
+  name?: string | null
+  description?: string | null
+  codeAgenceSap?: string | null
+  team?: string | null
+  client?: string | null
+  address?: string | null
+  progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: $Enums.ProcessStatusEnum
+  chantierDetailsId?: string | null
+  matrResponsable?: string | null
+  nomResponsable?: string | null
+  matrDemandeur?: string | null
+  nomDemandeur?: string | null
+  adresseChantier?: string | null
+  idClient?: string | null
+  nomClient?: string | null
+  contactSite?: string | null
+  dateDebut?: Date | string | null
+  facturationIni?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  autresDepensesIni?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  materielIni?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fournituresIni?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  mainOeuvreIni?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  facturationVld?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  autresDepensesVld?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  materielVld?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fournituresVld?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  mainOeuvreVld?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  typeProjet?: string | null
+  segmentNeu?: string | null
+  segmentFfb?: string | null
+  zoneOtp?: string | null
+  numDevis?: string | null
+  dateSynchroSap?: Date | string | null
+  idAgence?: string | null
+  idAo?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  intervenants?: Prisma.ChantierIntervenantUncheckedCreateNestedManyWithoutChantierInput
+  actions?: Prisma.ChantierActionUncheckedCreateNestedManyWithoutChantierInput
+  documentation?: Prisma.ChantierDocumentationUncheckedCreateNestedManyWithoutChantierInput
+  interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutChantierInput
+  documentations?: Prisma.DocumentationUncheckedCreateNestedManyWithoutChantierInput
+  folders?: Prisma.FolderUncheckedCreateNestedManyWithoutChantierInput
+  requiredDocs?: Prisma.ChantierRequiredDocUncheckedCreateNestedManyWithoutChantierInput
+  sharedDocs?: Prisma.ChantierSharedDocUncheckedCreateNestedManyWithoutChantierInput
+  organisation?: Prisma.ChantierOrganisationUncheckedCreateNestedOneWithoutChantierInput
+  objectifs?: Prisma.ChantierObjectifUncheckedCreateNestedManyWithoutChantierInput
+  siteActions?: Prisma.ActionUncheckedCreateNestedManyWithoutChantierInput
+}
+
+export type ChantierCreateOrConnectWithoutDossierExpertisesInput = {
+  where: Prisma.ChantierWhereUniqueInput
+  create: Prisma.XOR<Prisma.ChantierCreateWithoutDossierExpertisesInput, Prisma.ChantierUncheckedCreateWithoutDossierExpertisesInput>
+}
+
+export type ChantierUpsertWithoutDossierExpertisesInput = {
+  update: Prisma.XOR<Prisma.ChantierUpdateWithoutDossierExpertisesInput, Prisma.ChantierUncheckedUpdateWithoutDossierExpertisesInput>
+  create: Prisma.XOR<Prisma.ChantierCreateWithoutDossierExpertisesInput, Prisma.ChantierUncheckedCreateWithoutDossierExpertisesInput>
+  where?: Prisma.ChantierWhereInput
+}
+
+export type ChantierUpdateToOneWithWhereWithoutDossierExpertisesInput = {
+  where?: Prisma.ChantierWhereInput
+  data: Prisma.XOR<Prisma.ChantierUpdateWithoutDossierExpertisesInput, Prisma.ChantierUncheckedUpdateWithoutDossierExpertisesInput>
+}
+
+export type ChantierUpdateWithoutDossierExpertisesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codeOTP?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codeAgenceSap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  team?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
+  matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  matrDemandeur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nomDemandeur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adresseChantier?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idClient?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nomClient?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactSite?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateDebut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  facturationIni?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  autresDepensesIni?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  materielIni?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fournituresIni?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  mainOeuvreIni?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  facturationVld?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  autresDepensesVld?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  materielVld?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fournituresVld?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  mainOeuvreVld?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  typeProjet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  segmentNeu?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  segmentFfb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  zoneOtp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numDevis?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateSynchroSap?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  agence?: Prisma.AgenceUpdateOneWithoutChantiersNestedInput
+  ao?: Prisma.AoUpdateOneWithoutChantiersNestedInput
+  chantierDetails?: Prisma.ChantierDetailsUpdateOneWithoutChantierNestedInput
+  intervenants?: Prisma.ChantierIntervenantUpdateManyWithoutChantierNestedInput
+  actions?: Prisma.ChantierActionUpdateManyWithoutChantierNestedInput
+  documentation?: Prisma.ChantierDocumentationUpdateManyWithoutChantierNestedInput
+  interventions?: Prisma.InterventionUpdateManyWithoutChantierNestedInput
+  documentations?: Prisma.DocumentationUpdateManyWithoutChantierNestedInput
+  folders?: Prisma.FolderUpdateManyWithoutChantierNestedInput
+  requiredDocs?: Prisma.ChantierRequiredDocUpdateManyWithoutChantierNestedInput
+  sharedDocs?: Prisma.ChantierSharedDocUpdateManyWithoutChantierNestedInput
+  organisation?: Prisma.ChantierOrganisationUpdateOneWithoutChantierNestedInput
+  objectifs?: Prisma.ChantierObjectifUpdateManyWithoutChantierNestedInput
+  siteActions?: Prisma.ActionUpdateManyWithoutChantierNestedInput
+}
+
+export type ChantierUncheckedUpdateWithoutDossierExpertisesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codeOTP?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codeAgenceSap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  team?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
+  chantierDetailsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  matrDemandeur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nomDemandeur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  adresseChantier?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idClient?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nomClient?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactSite?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateDebut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  facturationIni?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  autresDepensesIni?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  materielIni?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fournituresIni?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  mainOeuvreIni?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  facturationVld?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  autresDepensesVld?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  materielVld?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fournituresVld?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  mainOeuvreVld?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  typeProjet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  segmentNeu?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  segmentFfb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  zoneOtp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numDevis?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateSynchroSap?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  idAgence?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idAo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  intervenants?: Prisma.ChantierIntervenantUncheckedUpdateManyWithoutChantierNestedInput
+  actions?: Prisma.ChantierActionUncheckedUpdateManyWithoutChantierNestedInput
+  documentation?: Prisma.ChantierDocumentationUncheckedUpdateManyWithoutChantierNestedInput
+  interventions?: Prisma.InterventionUncheckedUpdateManyWithoutChantierNestedInput
+  documentations?: Prisma.DocumentationUncheckedUpdateManyWithoutChantierNestedInput
+  folders?: Prisma.FolderUncheckedUpdateManyWithoutChantierNestedInput
+  requiredDocs?: Prisma.ChantierRequiredDocUncheckedUpdateManyWithoutChantierNestedInput
+  sharedDocs?: Prisma.ChantierSharedDocUncheckedUpdateManyWithoutChantierNestedInput
+  organisation?: Prisma.ChantierOrganisationUncheckedUpdateOneWithoutChantierNestedInput
+  objectifs?: Prisma.ChantierObjectifUncheckedUpdateManyWithoutChantierNestedInput
+  siteActions?: Prisma.ActionUncheckedUpdateManyWithoutChantierNestedInput
 }
 
 export type ChantierCreateManyChantierDetailsInput = {
@@ -4248,7 +4850,7 @@ export type ChantierCreateManyChantierDetailsInput = {
   client?: string | null
   address?: string | null
   progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: string
+  status?: $Enums.ProcessStatusEnum
   matrResponsable?: string | null
   nomResponsable?: string | null
   matrDemandeur?: string | null
@@ -4290,7 +4892,7 @@ export type ChantierUpdateWithoutChantierDetailsInput = {
   client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   matrDemandeur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4330,6 +4932,8 @@ export type ChantierUpdateWithoutChantierDetailsInput = {
   sharedDocs?: Prisma.ChantierSharedDocUpdateManyWithoutChantierNestedInput
   organisation?: Prisma.ChantierOrganisationUpdateOneWithoutChantierNestedInput
   objectifs?: Prisma.ChantierObjectifUpdateManyWithoutChantierNestedInput
+  dossierExpertises?: Prisma.DossierExpertiseUpdateManyWithoutChantierNestedInput
+  siteActions?: Prisma.ActionUpdateManyWithoutChantierNestedInput
 }
 
 export type ChantierUncheckedUpdateWithoutChantierDetailsInput = {
@@ -4342,7 +4946,7 @@ export type ChantierUncheckedUpdateWithoutChantierDetailsInput = {
   client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   matrDemandeur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4382,6 +4986,8 @@ export type ChantierUncheckedUpdateWithoutChantierDetailsInput = {
   sharedDocs?: Prisma.ChantierSharedDocUncheckedUpdateManyWithoutChantierNestedInput
   organisation?: Prisma.ChantierOrganisationUncheckedUpdateOneWithoutChantierNestedInput
   objectifs?: Prisma.ChantierObjectifUncheckedUpdateManyWithoutChantierNestedInput
+  dossierExpertises?: Prisma.DossierExpertiseUncheckedUpdateManyWithoutChantierNestedInput
+  siteActions?: Prisma.ActionUncheckedUpdateManyWithoutChantierNestedInput
 }
 
 export type ChantierUncheckedUpdateManyWithoutChantierDetailsInput = {
@@ -4394,7 +5000,7 @@ export type ChantierUncheckedUpdateManyWithoutChantierDetailsInput = {
   client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   matrDemandeur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4436,7 +5042,7 @@ export type ChantierCreateManyAgenceInput = {
   client?: string | null
   address?: string | null
   progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: string
+  status?: $Enums.ProcessStatusEnum
   chantierDetailsId?: string | null
   matrResponsable?: string | null
   nomResponsable?: string | null
@@ -4478,7 +5084,7 @@ export type ChantierUpdateWithoutAgenceInput = {
   client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   matrDemandeur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4518,6 +5124,8 @@ export type ChantierUpdateWithoutAgenceInput = {
   sharedDocs?: Prisma.ChantierSharedDocUpdateManyWithoutChantierNestedInput
   organisation?: Prisma.ChantierOrganisationUpdateOneWithoutChantierNestedInput
   objectifs?: Prisma.ChantierObjectifUpdateManyWithoutChantierNestedInput
+  dossierExpertises?: Prisma.DossierExpertiseUpdateManyWithoutChantierNestedInput
+  siteActions?: Prisma.ActionUpdateManyWithoutChantierNestedInput
 }
 
 export type ChantierUncheckedUpdateWithoutAgenceInput = {
@@ -4530,7 +5138,7 @@ export type ChantierUncheckedUpdateWithoutAgenceInput = {
   client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   chantierDetailsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4570,6 +5178,8 @@ export type ChantierUncheckedUpdateWithoutAgenceInput = {
   sharedDocs?: Prisma.ChantierSharedDocUncheckedUpdateManyWithoutChantierNestedInput
   organisation?: Prisma.ChantierOrganisationUncheckedUpdateOneWithoutChantierNestedInput
   objectifs?: Prisma.ChantierObjectifUncheckedUpdateManyWithoutChantierNestedInput
+  dossierExpertises?: Prisma.DossierExpertiseUncheckedUpdateManyWithoutChantierNestedInput
+  siteActions?: Prisma.ActionUncheckedUpdateManyWithoutChantierNestedInput
 }
 
 export type ChantierUncheckedUpdateManyWithoutAgenceInput = {
@@ -4582,7 +5192,7 @@ export type ChantierUncheckedUpdateManyWithoutAgenceInput = {
   client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   chantierDetailsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4624,7 +5234,7 @@ export type ChantierCreateManyAoInput = {
   client?: string | null
   address?: string | null
   progress?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  status: string
+  status?: $Enums.ProcessStatusEnum
   chantierDetailsId?: string | null
   matrResponsable?: string | null
   nomResponsable?: string | null
@@ -4666,7 +5276,7 @@ export type ChantierUpdateWithoutAoInput = {
   client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   matrDemandeur?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4706,6 +5316,8 @@ export type ChantierUpdateWithoutAoInput = {
   sharedDocs?: Prisma.ChantierSharedDocUpdateManyWithoutChantierNestedInput
   organisation?: Prisma.ChantierOrganisationUpdateOneWithoutChantierNestedInput
   objectifs?: Prisma.ChantierObjectifUpdateManyWithoutChantierNestedInput
+  dossierExpertises?: Prisma.DossierExpertiseUpdateManyWithoutChantierNestedInput
+  siteActions?: Prisma.ActionUpdateManyWithoutChantierNestedInput
 }
 
 export type ChantierUncheckedUpdateWithoutAoInput = {
@@ -4718,7 +5330,7 @@ export type ChantierUncheckedUpdateWithoutAoInput = {
   client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   chantierDetailsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4758,6 +5370,8 @@ export type ChantierUncheckedUpdateWithoutAoInput = {
   sharedDocs?: Prisma.ChantierSharedDocUncheckedUpdateManyWithoutChantierNestedInput
   organisation?: Prisma.ChantierOrganisationUncheckedUpdateOneWithoutChantierNestedInput
   objectifs?: Prisma.ChantierObjectifUncheckedUpdateManyWithoutChantierNestedInput
+  dossierExpertises?: Prisma.DossierExpertiseUncheckedUpdateManyWithoutChantierNestedInput
+  siteActions?: Prisma.ActionUncheckedUpdateManyWithoutChantierNestedInput
 }
 
 export type ChantierUncheckedUpdateManyWithoutAoInput = {
@@ -4770,7 +5384,7 @@ export type ChantierUncheckedUpdateManyWithoutAoInput = {
   client?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   progress?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   chantierDetailsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   matrResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nomResponsable?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4817,6 +5431,8 @@ export type ChantierCountOutputType = {
   requiredDocs: number
   sharedDocs: number
   objectifs: number
+  dossierExpertises: number
+  siteActions: number
 }
 
 export type ChantierCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -4829,6 +5445,8 @@ export type ChantierCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensio
   requiredDocs?: boolean | ChantierCountOutputTypeCountRequiredDocsArgs
   sharedDocs?: boolean | ChantierCountOutputTypeCountSharedDocsArgs
   objectifs?: boolean | ChantierCountOutputTypeCountObjectifsArgs
+  dossierExpertises?: boolean | ChantierCountOutputTypeCountDossierExpertisesArgs
+  siteActions?: boolean | ChantierCountOutputTypeCountSiteActionsArgs
 }
 
 /**
@@ -4904,6 +5522,20 @@ export type ChantierCountOutputTypeCountObjectifsArgs<ExtArgs extends runtime.Ty
   where?: Prisma.ChantierObjectifWhereInput
 }
 
+/**
+ * ChantierCountOutputType without action
+ */
+export type ChantierCountOutputTypeCountDossierExpertisesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DossierExpertiseWhereInput
+}
+
+/**
+ * ChantierCountOutputType without action
+ */
+export type ChantierCountOutputTypeCountSiteActionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ActionWhereInput
+}
+
 
 export type ChantierSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -4959,6 +5591,8 @@ export type ChantierSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   sharedDocs?: boolean | Prisma.Chantier$sharedDocsArgs<ExtArgs>
   organisation?: boolean | Prisma.Chantier$organisationArgs<ExtArgs>
   objectifs?: boolean | Prisma.Chantier$objectifsArgs<ExtArgs>
+  dossierExpertises?: boolean | Prisma.Chantier$dossierExpertisesArgs<ExtArgs>
+  siteActions?: boolean | Prisma.Chantier$siteActionsArgs<ExtArgs>
   _count?: boolean | Prisma.ChantierCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["chantier"]>
 
@@ -5112,6 +5746,8 @@ export type ChantierInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   sharedDocs?: boolean | Prisma.Chantier$sharedDocsArgs<ExtArgs>
   organisation?: boolean | Prisma.Chantier$organisationArgs<ExtArgs>
   objectifs?: boolean | Prisma.Chantier$objectifsArgs<ExtArgs>
+  dossierExpertises?: boolean | Prisma.Chantier$dossierExpertisesArgs<ExtArgs>
+  siteActions?: boolean | Prisma.Chantier$siteActionsArgs<ExtArgs>
   _count?: boolean | Prisma.ChantierCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ChantierIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -5141,6 +5777,8 @@ export type $ChantierPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     sharedDocs: Prisma.$ChantierSharedDocPayload<ExtArgs>[]
     organisation: Prisma.$ChantierOrganisationPayload<ExtArgs> | null
     objectifs: Prisma.$ChantierObjectifPayload<ExtArgs>[]
+    dossierExpertises: Prisma.$DossierExpertisePayload<ExtArgs>[]
+    siteActions: Prisma.$ActionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -5152,7 +5790,7 @@ export type $ChantierPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     client: string | null
     address: string | null
     progress: runtime.Decimal
-    status: string
+    status: $Enums.ProcessStatusEnum
     chantierDetailsId: string | null
     matrResponsable: string | null
     nomResponsable: string | null
@@ -5590,6 +6228,8 @@ export interface Prisma__ChantierClient<T, Null = never, ExtArgs extends runtime
   sharedDocs<T extends Prisma.Chantier$sharedDocsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Chantier$sharedDocsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ChantierSharedDocPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   organisation<T extends Prisma.Chantier$organisationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Chantier$organisationArgs<ExtArgs>>): Prisma.Prisma__ChantierOrganisationClient<runtime.Types.Result.GetResult<Prisma.$ChantierOrganisationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   objectifs<T extends Prisma.Chantier$objectifsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Chantier$objectifsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ChantierObjectifPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  dossierExpertises<T extends Prisma.Chantier$dossierExpertisesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Chantier$dossierExpertisesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DossierExpertisePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  siteActions<T extends Prisma.Chantier$siteActionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Chantier$siteActionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5628,7 +6268,7 @@ export interface ChantierFieldRefs {
   readonly client: Prisma.FieldRef<"Chantier", 'String'>
   readonly address: Prisma.FieldRef<"Chantier", 'String'>
   readonly progress: Prisma.FieldRef<"Chantier", 'Decimal'>
-  readonly status: Prisma.FieldRef<"Chantier", 'String'>
+  readonly status: Prisma.FieldRef<"Chantier", 'ProcessStatusEnum'>
   readonly chantierDetailsId: Prisma.FieldRef<"Chantier", 'String'>
   readonly matrResponsable: Prisma.FieldRef<"Chantier", 'String'>
   readonly nomResponsable: Prisma.FieldRef<"Chantier", 'String'>
@@ -6349,6 +6989,54 @@ export type Chantier$objectifsArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.ChantierObjectifScalarFieldEnum | Prisma.ChantierObjectifScalarFieldEnum[]
+}
+
+/**
+ * Chantier.dossierExpertises
+ */
+export type Chantier$dossierExpertisesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DossierExpertise
+   */
+  select?: Prisma.DossierExpertiseSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DossierExpertise
+   */
+  omit?: Prisma.DossierExpertiseOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DossierExpertiseInclude<ExtArgs> | null
+  where?: Prisma.DossierExpertiseWhereInput
+  orderBy?: Prisma.DossierExpertiseOrderByWithRelationInput | Prisma.DossierExpertiseOrderByWithRelationInput[]
+  cursor?: Prisma.DossierExpertiseWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DossierExpertiseScalarFieldEnum | Prisma.DossierExpertiseScalarFieldEnum[]
+}
+
+/**
+ * Chantier.siteActions
+ */
+export type Chantier$siteActionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Action
+   */
+  select?: Prisma.ActionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Action
+   */
+  omit?: Prisma.ActionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ActionInclude<ExtArgs> | null
+  where?: Prisma.ActionWhereInput
+  orderBy?: Prisma.ActionOrderByWithRelationInput | Prisma.ActionOrderByWithRelationInput[]
+  cursor?: Prisma.ActionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ActionScalarFieldEnum | Prisma.ActionScalarFieldEnum[]
 }
 
 /**

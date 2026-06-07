@@ -9,6 +9,21 @@
 * 🟢 You can import this file directly.
 */
 
+export const ProcessStatusEnum = {
+  Planifie: 'Planifie',
+  Initialise: 'Initialise',
+  EnCours: 'EnCours',
+  EnAttente: 'EnAttente',
+  PasCommence: 'PasCommence',
+  Termine: 'Termine',
+  Annule: 'Annule',
+  Accepte: 'Accepte',
+  Refuse: 'Refuse'
+} as const
+
+export type ProcessStatusEnum = (typeof ProcessStatusEnum)[keyof typeof ProcessStatusEnum]
+
+
 export const ChantierDocumentationStatus = {
   ToDeposit: 'ToDeposit',
   Deposited: 'Deposited',
@@ -27,6 +42,7 @@ export const ChantierDocumentationMotif = {
   VISA: 'VISA',
   BTE_OBJECTIF: 'BTE_OBJECTIF',
   BTE_VERSION: 'BTE_VERSION',
+  BTE_VALIDATION: 'BTE_VALIDATION',
   DOCUMENTAIRE_LANCEMENT: 'DOCUMENTAIRE_LANCEMENT',
   DOCUMENT_LANCEMENT: 'DOCUMENT_LANCEMENT',
   EXECUTION: 'EXECUTION',
@@ -119,3 +135,19 @@ export const ConformiteValue = {
 } as const
 
 export type ConformiteValue = (typeof ConformiteValue)[keyof typeof ConformiteValue]
+
+
+export const TypeGarantieEnum = {
+  GPA: 'GPA',
+  Decennale: 'Decennale'
+} as const
+
+export type TypeGarantieEnum = (typeof TypeGarantieEnum)[keyof typeof TypeGarantieEnum]
+
+
+export const StatutDossierEnum = {
+  EnCours: 'EnCours',
+  Cloture: 'Cloture'
+} as const
+
+export type StatutDossierEnum = (typeof StatutDossierEnum)[keyof typeof StatutDossierEnum]

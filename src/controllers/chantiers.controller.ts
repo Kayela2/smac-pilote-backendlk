@@ -88,10 +88,31 @@ export const chantiersController = {
     }),
 
     setOrganisation: asyncHandler(async (req, res) => {
-        const b = (req.body ?? {}) as Partial<{conditionsAcces: unknown; conditionsStockage: unknown}>
-        const conditionsAcces = Array.isArray(b.conditionsAcces) ? b.conditionsAcces.filter((x): x is string => typeof x === 'string') : []
-        const conditionsStockage = Array.isArray(b.conditionsStockage) ? b.conditionsStockage.filter((x): x is string => typeof x === 'string') : []
-        res.json(ok(await organisationService.set(req.params.chantierId, {conditionsAcces, conditionsStockage}), 'Organisation updated'))
+        const b = (req.body ?? {}) as Record<string, unknown>
+        const s = (k: string): string | null => typeof b[k] === 'string' ? (b[k] as string) : null
+        try {
+            res.json(ok(await organisationService.set(req.params.chantierId, {
+                heureDepart: s('heureDepart'),
+                heureFin: s('heureFin'),
+                cles: s('cles'),
+                badges: s('badges'),
+                papiersIdentite: s('papiersIdentite'),
+                posteControle: s('posteControle'),
+                acces: s('acces'),
+                miseEnOeuvre: s('miseEnOeuvre'),
+                manutention: s('manutention'),
+                materielManutentionLevage: s('materielManutentionLevage'),
+                precautionsParticulieres: s('precautionsParticulieres'),
+                demarragePrevisionnelLe: s('demarragePrevisionnelLe'),
+                finPrevisionnelLe: s('finPrevisionnelLe'),
+                tacheExecutee: s('tacheExecutee'),
+                quantite: s('quantite'),
+                tempsPrevus: s('tempsPrevus'),
+            }), 'Organisation updated'))
+        } catch (err) {
+            console.error('[setOrganisation] Prisma error:', err)
+            res.status(500).json(fail(`Organisation save failed: ${err instanceof Error ? err.message : String(err)}`))
+        }
     }),
 
     getObjectifs: asyncHandler(async (req, res) => {
