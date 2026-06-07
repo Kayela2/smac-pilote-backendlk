@@ -11,13 +11,22 @@ pg.types.setTypeParser(1082, (value: string) => value)
 
 const isProd = process.env.MODE_ENV !== 'development'
 
+// Use DATABASE_URL when available (Render/production); fall back to individual vars for local dev.
+const databaseUrl = process.env['DATABASE_URL']
+    ? process.env['DATABASE_URL'].replace(/^postgres:\/\//, 'postgresql://')
+    : undefined
+
 /** Shared connection pool for the whole API (Prisma + raw queries). */
 export const pool = new pg.Pool({
-    host: config.db.host,
-    port: config.db.port,
-    database: config.db.database,
-    user: config.db.user,
-    password: config.db.password,
+    ...(databaseUrl
+        ? {connectionString: databaseUrl}
+        : {
+            host: config.db.host,
+            port: config.db.port,
+            database: config.db.database,
+            user: config.db.user,
+            password: config.db.password,
+        }),
     ssl: isProd ? {rejectUnauthorized: false} : false,
     keepAlive: true,
     keepAliveInitialDelayMillis: 100_000,
