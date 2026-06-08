@@ -9,6 +9,16 @@
 * 🟢 You can import this file directly.
 */
 
+export const ActionCriticite = {
+  FAIBLE: 'FAIBLE',
+  MOYEN: 'MOYEN',
+  ELEVE: 'ELEVE',
+  CRITIQUE: 'CRITIQUE'
+} as const
+
+export type ActionCriticite = (typeof ActionCriticite)[keyof typeof ActionCriticite]
+
+
 export const ProcessStatusEnum = {
   Planifie: 'Planifie',
   Initialise: 'Initialise',

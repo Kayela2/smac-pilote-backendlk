@@ -344,6 +344,23 @@ export type EnumTypeIntervenantEnumWithAggregatesFilter<$PrismaModel = never> = 
   _max?: Prisma.NestedEnumTypeIntervenantEnumFilter<$PrismaModel>
 }
 
+export type EnumActionCriticiteFilter<$PrismaModel = never> = {
+  equals?: $Enums.ActionCriticite | Prisma.EnumActionCriticiteFieldRefInput<$PrismaModel>
+  in?: $Enums.ActionCriticite[] | Prisma.ListEnumActionCriticiteFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ActionCriticite[] | Prisma.ListEnumActionCriticiteFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumActionCriticiteFilter<$PrismaModel> | $Enums.ActionCriticite
+}
+
+export type EnumActionCriticiteWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ActionCriticite | Prisma.EnumActionCriticiteFieldRefInput<$PrismaModel>
+  in?: $Enums.ActionCriticite[] | Prisma.ListEnumActionCriticiteFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ActionCriticite[] | Prisma.ListEnumActionCriticiteFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumActionCriticiteWithAggregatesFilter<$PrismaModel> | $Enums.ActionCriticite
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumActionCriticiteFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumActionCriticiteFilter<$PrismaModel>
+}
+
 export type EnumChantierDocumentationMotifFilter<$PrismaModel = never> = {
   equals?: $Enums.ChantierDocumentationMotif | Prisma.EnumChantierDocumentationMotifFieldRefInput<$PrismaModel>
   in?: $Enums.ChantierDocumentationMotif[] | Prisma.ListEnumChantierDocumentationMotifFieldRefInput<$PrismaModel>
@@ -929,6 +946,23 @@ export type NestedEnumTypeIntervenantEnumWithAggregatesFilter<$PrismaModel = nev
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumTypeIntervenantEnumFilter<$PrismaModel>
   _max?: Prisma.NestedEnumTypeIntervenantEnumFilter<$PrismaModel>
+}
+
+export type NestedEnumActionCriticiteFilter<$PrismaModel = never> = {
+  equals?: $Enums.ActionCriticite | Prisma.EnumActionCriticiteFieldRefInput<$PrismaModel>
+  in?: $Enums.ActionCriticite[] | Prisma.ListEnumActionCriticiteFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ActionCriticite[] | Prisma.ListEnumActionCriticiteFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumActionCriticiteFilter<$PrismaModel> | $Enums.ActionCriticite
+}
+
+export type NestedEnumActionCriticiteWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ActionCriticite | Prisma.EnumActionCriticiteFieldRefInput<$PrismaModel>
+  in?: $Enums.ActionCriticite[] | Prisma.ListEnumActionCriticiteFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ActionCriticite[] | Prisma.ListEnumActionCriticiteFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumActionCriticiteWithAggregatesFilter<$PrismaModel> | $Enums.ActionCriticite
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumActionCriticiteFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumActionCriticiteFilter<$PrismaModel>
 }
 
 export type NestedEnumChantierDocumentationMotifFilter<$PrismaModel = never> = {

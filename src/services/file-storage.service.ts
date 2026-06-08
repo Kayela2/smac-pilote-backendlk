@@ -86,6 +86,15 @@ export const fileStorageService = {
         }
     },
 
+    /** Upload d'un buffer avec un chemin Azure prédéfini (ex: versioning PV). */
+    async storeBlob(buffer: Buffer, blobPath: string, mimeType: string): Promise<string> {
+        const blobClient = getContainerClient().getBlockBlobClient(blobPath)
+        await blobClient.upload(buffer, buffer.length, {
+            blobHTTPHeaders: { blobContentType: mimeType },
+        })
+        return blobPath
+    },
+
     async getDownloadStream(blobName: string): Promise<Readable | null> {
         try {
             const response = await getContainerClient().getBlockBlobClient(blobName).download()

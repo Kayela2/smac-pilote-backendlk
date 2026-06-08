@@ -1,11 +1,18 @@
+import multer from 'multer'
 import {pvEtancheiteService} from '../services/pv-etancheite.service.js'
 import {fail, ok} from '../utils/response.js'
 import {asyncHandler} from '../utils/asyncHandler.js'
 import type {CreatePvEtancheiteRequest, UpdatePvEtancheiteRequest} from '../types.js'
 
+export const uploadPvPdf = multer({
+    storage: multer.memoryStorage(),
+    fileFilter(_req, file, cb) { cb(null, file.mimetype === 'application/pdf') },
+    limits: {fileSize: 20 * 1024 * 1024},
+})
+
 export const pvEtancheiteController = {
     getAll: asyncHandler(async (req, res) => {
-        const chantierId = req.query.chantierId ? String(req.query.chantierId) : undefined
+        const chantierId = req.query.chantierId ? (req.query.chantierId as string) : undefined
         if (!chantierId) { res.status(406).json(fail('chantierId is required')); return }
         res.json(ok(await pvEtancheiteService.findAll(chantierId), 'PV retrieved successfully'))
     }),
@@ -38,10 +45,17 @@ export const pvEtancheiteController = {
     }),
 
     createVersion: asyncHandler(async (req, res) => {
-        const {snapshot} = (req.body ?? {}) as {snapshot?: unknown}
-        if (!snapshot) { res.status(406).json(fail('snapshot is required')); return }
-        await pvEtancheiteService.createVersion(req.params.id, snapshot)
+        if (!req.file?.buffer) { res.status(406).json(fail('Fichier PDF requis')); return }
+        await pvEtancheiteService.createVersion(req.params.id, req.file.buffer)
         res.status(201).json(ok(null, 'Version enregistrée'))
+    }),
+
+    streamVersion: asyncHandler(async (req, res) => {
+        const result = await pvEtancheiteService.streamVersion(req.params.docId)
+        if (!result) { res.status(404).json(fail('Version introuvable')); return }
+        res.setHeader('Content-Type', 'application/pdf')
+        res.setHeader('Content-Disposition', `inline; filename="pv_version.pdf"`)
+        result.stream.pipe(res)
     }),
 
     delete: asyncHandler(async (req, res) => {

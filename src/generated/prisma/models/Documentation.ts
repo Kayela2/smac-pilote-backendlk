@@ -217,7 +217,6 @@ export type DocumentationWhereInput = {
   reserves?: Prisma.ReserveListRelationFilter
   interventions?: Prisma.InterventionListRelationFilter
   participants?: Prisma.ParticipantListRelationFilter
-  pvEtanchVersions?: Prisma.PvEtanchVersionListRelationFilter
 }
 
 export type DocumentationOrderByWithRelationInput = {
@@ -254,7 +253,6 @@ export type DocumentationOrderByWithRelationInput = {
   reserves?: Prisma.ReserveOrderByRelationAggregateInput
   interventions?: Prisma.InterventionOrderByRelationAggregateInput
   participants?: Prisma.ParticipantOrderByRelationAggregateInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionOrderByRelationAggregateInput
 }
 
 export type DocumentationWhereUniqueInput = Prisma.AtLeast<{
@@ -294,7 +292,6 @@ export type DocumentationWhereUniqueInput = Prisma.AtLeast<{
   reserves?: Prisma.ReserveListRelationFilter
   interventions?: Prisma.InterventionListRelationFilter
   participants?: Prisma.ParticipantListRelationFilter
-  pvEtanchVersions?: Prisma.PvEtanchVersionListRelationFilter
 }, "id">
 
 export type DocumentationOrderByWithAggregationInput = {
@@ -354,7 +351,6 @@ export type DocumentationCreateInput = {
   reserves?: Prisma.ReserveCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationUncheckedCreateInput = {
@@ -390,7 +386,6 @@ export type DocumentationUncheckedCreateInput = {
   reserves?: Prisma.ReserveUncheckedCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantUncheckedCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationUpdateInput = {
@@ -426,7 +421,6 @@ export type DocumentationUpdateInput = {
   reserves?: Prisma.ReserveUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationUncheckedUpdateInput = {
@@ -462,7 +456,6 @@ export type DocumentationUncheckedUpdateInput = {
   reserves?: Prisma.ReserveUncheckedUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUncheckedUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUncheckedUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationCreateManyInput = {
@@ -925,20 +918,6 @@ export type DocumentationUpdateOneRequiredWithoutDocumentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.DocumentationUpdateToOneWithWhereWithoutDocumentsInput, Prisma.DocumentationUpdateWithoutDocumentsInput>, Prisma.DocumentationUncheckedUpdateWithoutDocumentsInput>
 }
 
-export type DocumentationCreateNestedOneWithoutPvEtanchVersionsInput = {
-  create?: Prisma.XOR<Prisma.DocumentationCreateWithoutPvEtanchVersionsInput, Prisma.DocumentationUncheckedCreateWithoutPvEtanchVersionsInput>
-  connectOrCreate?: Prisma.DocumentationCreateOrConnectWithoutPvEtanchVersionsInput
-  connect?: Prisma.DocumentationWhereUniqueInput
-}
-
-export type DocumentationUpdateOneRequiredWithoutPvEtanchVersionsNestedInput = {
-  create?: Prisma.XOR<Prisma.DocumentationCreateWithoutPvEtanchVersionsInput, Prisma.DocumentationUncheckedCreateWithoutPvEtanchVersionsInput>
-  connectOrCreate?: Prisma.DocumentationCreateOrConnectWithoutPvEtanchVersionsInput
-  upsert?: Prisma.DocumentationUpsertWithoutPvEtanchVersionsInput
-  connect?: Prisma.DocumentationWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.DocumentationUpdateToOneWithWhereWithoutPvEtanchVersionsInput, Prisma.DocumentationUpdateWithoutPvEtanchVersionsInput>, Prisma.DocumentationUncheckedUpdateWithoutPvEtanchVersionsInput>
-}
-
 export type DocumentationCreateNestedOneWithoutReservesInput = {
   create?: Prisma.XOR<Prisma.DocumentationCreateWithoutReservesInput, Prisma.DocumentationUncheckedCreateWithoutReservesInput>
   connectOrCreate?: Prisma.DocumentationCreateOrConnectWithoutReservesInput
@@ -985,7 +964,6 @@ export type DocumentationCreateWithoutChantierInput = {
   reserves?: Prisma.ReserveCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationUncheckedCreateWithoutChantierInput = {
@@ -1020,7 +998,6 @@ export type DocumentationUncheckedCreateWithoutChantierInput = {
   reserves?: Prisma.ReserveUncheckedCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantUncheckedCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationCreateOrConnectWithoutChantierInput = {
@@ -1093,7 +1070,6 @@ export type DocumentationCreateWithoutInterventionsInput = {
   documents?: Prisma.DocumentCreateNestedManyWithoutDocumentationInput
   reserves?: Prisma.ReserveCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationUncheckedCreateWithoutInterventionsInput = {
@@ -1128,7 +1104,6 @@ export type DocumentationUncheckedCreateWithoutInterventionsInput = {
   documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutDocumentationInput
   reserves?: Prisma.ReserveUncheckedCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantUncheckedCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationCreateOrConnectWithoutInterventionsInput = {
@@ -1179,7 +1154,6 @@ export type DocumentationUpdateWithoutInterventionsInput = {
   documents?: Prisma.DocumentUpdateManyWithoutDocumentationNestedInput
   reserves?: Prisma.ReserveUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationUncheckedUpdateWithoutInterventionsInput = {
@@ -1214,7 +1188,6 @@ export type DocumentationUncheckedUpdateWithoutInterventionsInput = {
   documents?: Prisma.DocumentUncheckedUpdateManyWithoutDocumentationNestedInput
   reserves?: Prisma.ReserveUncheckedUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUncheckedUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationCreateWithoutParticipantsInput = {
@@ -1249,7 +1222,6 @@ export type DocumentationCreateWithoutParticipantsInput = {
   documents?: Prisma.DocumentCreateNestedManyWithoutDocumentationInput
   reserves?: Prisma.ReserveCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationUncheckedCreateWithoutParticipantsInput = {
@@ -1284,7 +1256,6 @@ export type DocumentationUncheckedCreateWithoutParticipantsInput = {
   documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutDocumentationInput
   reserves?: Prisma.ReserveUncheckedCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationCreateOrConnectWithoutParticipantsInput = {
@@ -1335,7 +1306,6 @@ export type DocumentationUpdateWithoutParticipantsInput = {
   documents?: Prisma.DocumentUpdateManyWithoutDocumentationNestedInput
   reserves?: Prisma.ReserveUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationUncheckedUpdateWithoutParticipantsInput = {
@@ -1370,7 +1340,6 @@ export type DocumentationUncheckedUpdateWithoutParticipantsInput = {
   documents?: Prisma.DocumentUncheckedUpdateManyWithoutDocumentationNestedInput
   reserves?: Prisma.ReserveUncheckedUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUncheckedUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationCreateWithoutFicheApriInput = {
@@ -1405,7 +1374,6 @@ export type DocumentationCreateWithoutFicheApriInput = {
   reserves?: Prisma.ReserveCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationUncheckedCreateWithoutFicheApriInput = {
@@ -1440,7 +1408,6 @@ export type DocumentationUncheckedCreateWithoutFicheApriInput = {
   reserves?: Prisma.ReserveUncheckedCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantUncheckedCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationCreateOrConnectWithoutFicheApriInput = {
@@ -1491,7 +1458,6 @@ export type DocumentationUpdateWithoutFicheApriInput = {
   reserves?: Prisma.ReserveUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationUncheckedUpdateWithoutFicheApriInput = {
@@ -1526,7 +1492,6 @@ export type DocumentationUncheckedUpdateWithoutFicheApriInput = {
   reserves?: Prisma.ReserveUncheckedUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUncheckedUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUncheckedUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationCreateWithoutMmtInput = {
@@ -1561,7 +1526,6 @@ export type DocumentationCreateWithoutMmtInput = {
   reserves?: Prisma.ReserveCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationUncheckedCreateWithoutMmtInput = {
@@ -1596,7 +1560,6 @@ export type DocumentationUncheckedCreateWithoutMmtInput = {
   reserves?: Prisma.ReserveUncheckedCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantUncheckedCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationCreateOrConnectWithoutMmtInput = {
@@ -1647,7 +1610,6 @@ export type DocumentationUpdateWithoutMmtInput = {
   reserves?: Prisma.ReserveUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationUncheckedUpdateWithoutMmtInput = {
@@ -1682,7 +1644,6 @@ export type DocumentationUncheckedUpdateWithoutMmtInput = {
   reserves?: Prisma.ReserveUncheckedUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUncheckedUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUncheckedUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationCreateWithoutPpspsInput = {
@@ -1717,7 +1678,6 @@ export type DocumentationCreateWithoutPpspsInput = {
   reserves?: Prisma.ReserveCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationUncheckedCreateWithoutPpspsInput = {
@@ -1752,7 +1712,6 @@ export type DocumentationUncheckedCreateWithoutPpspsInput = {
   reserves?: Prisma.ReserveUncheckedCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantUncheckedCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationCreateOrConnectWithoutPpspsInput = {
@@ -1803,7 +1762,6 @@ export type DocumentationUpdateWithoutPpspsInput = {
   reserves?: Prisma.ReserveUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationUncheckedUpdateWithoutPpspsInput = {
@@ -1838,7 +1796,6 @@ export type DocumentationUncheckedUpdateWithoutPpspsInput = {
   reserves?: Prisma.ReserveUncheckedUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUncheckedUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUncheckedUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationCreateWithoutPvTerrasseInput = {
@@ -1873,7 +1830,6 @@ export type DocumentationCreateWithoutPvTerrasseInput = {
   reserves?: Prisma.ReserveCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationUncheckedCreateWithoutPvTerrasseInput = {
@@ -1908,7 +1864,6 @@ export type DocumentationUncheckedCreateWithoutPvTerrasseInput = {
   reserves?: Prisma.ReserveUncheckedCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantUncheckedCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationCreateOrConnectWithoutPvTerrasseInput = {
@@ -1959,7 +1914,6 @@ export type DocumentationUpdateWithoutPvTerrasseInput = {
   reserves?: Prisma.ReserveUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationUncheckedUpdateWithoutPvTerrasseInput = {
@@ -1994,7 +1948,6 @@ export type DocumentationUncheckedUpdateWithoutPvTerrasseInput = {
   reserves?: Prisma.ReserveUncheckedUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUncheckedUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUncheckedUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationCreateWithoutEtatsLieuxInput = {
@@ -2029,7 +1982,6 @@ export type DocumentationCreateWithoutEtatsLieuxInput = {
   reserves?: Prisma.ReserveCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationUncheckedCreateWithoutEtatsLieuxInput = {
@@ -2064,7 +2016,6 @@ export type DocumentationUncheckedCreateWithoutEtatsLieuxInput = {
   reserves?: Prisma.ReserveUncheckedCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantUncheckedCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationCreateOrConnectWithoutEtatsLieuxInput = {
@@ -2115,7 +2066,6 @@ export type DocumentationUpdateWithoutEtatsLieuxInput = {
   reserves?: Prisma.ReserveUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationUncheckedUpdateWithoutEtatsLieuxInput = {
@@ -2150,7 +2100,6 @@ export type DocumentationUncheckedUpdateWithoutEtatsLieuxInput = {
   reserves?: Prisma.ReserveUncheckedUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUncheckedUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUncheckedUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationCreateWithoutFeuilleEmargementInput = {
@@ -2185,7 +2134,6 @@ export type DocumentationCreateWithoutFeuilleEmargementInput = {
   reserves?: Prisma.ReserveCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationUncheckedCreateWithoutFeuilleEmargementInput = {
@@ -2220,7 +2168,6 @@ export type DocumentationUncheckedCreateWithoutFeuilleEmargementInput = {
   reserves?: Prisma.ReserveUncheckedCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantUncheckedCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationCreateOrConnectWithoutFeuilleEmargementInput = {
@@ -2271,7 +2218,6 @@ export type DocumentationUpdateWithoutFeuilleEmargementInput = {
   reserves?: Prisma.ReserveUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationUncheckedUpdateWithoutFeuilleEmargementInput = {
@@ -2306,7 +2252,6 @@ export type DocumentationUncheckedUpdateWithoutFeuilleEmargementInput = {
   reserves?: Prisma.ReserveUncheckedUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUncheckedUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUncheckedUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationCreateWithoutFicheStarterInput = {
@@ -2341,7 +2286,6 @@ export type DocumentationCreateWithoutFicheStarterInput = {
   reserves?: Prisma.ReserveCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationUncheckedCreateWithoutFicheStarterInput = {
@@ -2376,7 +2320,6 @@ export type DocumentationUncheckedCreateWithoutFicheStarterInput = {
   reserves?: Prisma.ReserveUncheckedCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantUncheckedCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationCreateOrConnectWithoutFicheStarterInput = {
@@ -2427,7 +2370,6 @@ export type DocumentationUpdateWithoutFicheStarterInput = {
   reserves?: Prisma.ReserveUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationUncheckedUpdateWithoutFicheStarterInput = {
@@ -2462,7 +2404,6 @@ export type DocumentationUncheckedUpdateWithoutFicheStarterInput = {
   reserves?: Prisma.ReserveUncheckedUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUncheckedUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUncheckedUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationCreateWithoutFicheVerificationFourgonInput = {
@@ -2497,7 +2438,6 @@ export type DocumentationCreateWithoutFicheVerificationFourgonInput = {
   reserves?: Prisma.ReserveCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationUncheckedCreateWithoutFicheVerificationFourgonInput = {
@@ -2532,7 +2472,6 @@ export type DocumentationUncheckedCreateWithoutFicheVerificationFourgonInput = {
   reserves?: Prisma.ReserveUncheckedCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantUncheckedCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationCreateOrConnectWithoutFicheVerificationFourgonInput = {
@@ -2583,7 +2522,6 @@ export type DocumentationUpdateWithoutFicheVerificationFourgonInput = {
   reserves?: Prisma.ReserveUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationUncheckedUpdateWithoutFicheVerificationFourgonInput = {
@@ -2618,7 +2556,6 @@ export type DocumentationUncheckedUpdateWithoutFicheVerificationFourgonInput = {
   reserves?: Prisma.ReserveUncheckedUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUncheckedUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUncheckedUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationCreateWithoutNoticeEpiInput = {
@@ -2653,7 +2590,6 @@ export type DocumentationCreateWithoutNoticeEpiInput = {
   reserves?: Prisma.ReserveCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationUncheckedCreateWithoutNoticeEpiInput = {
@@ -2688,7 +2624,6 @@ export type DocumentationUncheckedCreateWithoutNoticeEpiInput = {
   reserves?: Prisma.ReserveUncheckedCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantUncheckedCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationCreateOrConnectWithoutNoticeEpiInput = {
@@ -2739,7 +2674,6 @@ export type DocumentationUpdateWithoutNoticeEpiInput = {
   reserves?: Prisma.ReserveUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationUncheckedUpdateWithoutNoticeEpiInput = {
@@ -2774,7 +2708,6 @@ export type DocumentationUncheckedUpdateWithoutNoticeEpiInput = {
   reserves?: Prisma.ReserveUncheckedUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUncheckedUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUncheckedUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationCreateWithoutPvMiseEauInput = {
@@ -2809,7 +2742,6 @@ export type DocumentationCreateWithoutPvMiseEauInput = {
   reserves?: Prisma.ReserveCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationUncheckedCreateWithoutPvMiseEauInput = {
@@ -2844,7 +2776,6 @@ export type DocumentationUncheckedCreateWithoutPvMiseEauInput = {
   reserves?: Prisma.ReserveUncheckedCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantUncheckedCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationCreateOrConnectWithoutPvMiseEauInput = {
@@ -2895,7 +2826,6 @@ export type DocumentationUpdateWithoutPvMiseEauInput = {
   reserves?: Prisma.ReserveUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationUncheckedUpdateWithoutPvMiseEauInput = {
@@ -2930,7 +2860,6 @@ export type DocumentationUncheckedUpdateWithoutPvMiseEauInput = {
   reserves?: Prisma.ReserveUncheckedUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUncheckedUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUncheckedUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationCreateWithoutPvReceptionBetonCharpenteCouvertureInput = {
@@ -2965,7 +2894,6 @@ export type DocumentationCreateWithoutPvReceptionBetonCharpenteCouvertureInput =
   reserves?: Prisma.ReserveCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationUncheckedCreateWithoutPvReceptionBetonCharpenteCouvertureInput = {
@@ -3000,7 +2928,6 @@ export type DocumentationUncheckedCreateWithoutPvReceptionBetonCharpenteCouvertu
   reserves?: Prisma.ReserveUncheckedCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantUncheckedCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationCreateOrConnectWithoutPvReceptionBetonCharpenteCouvertureInput = {
@@ -3051,7 +2978,6 @@ export type DocumentationUpdateWithoutPvReceptionBetonCharpenteCouvertureInput =
   reserves?: Prisma.ReserveUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationUncheckedUpdateWithoutPvReceptionBetonCharpenteCouvertureInput = {
@@ -3086,7 +3012,6 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionBetonCharpenteCouvertu
   reserves?: Prisma.ReserveUncheckedUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUncheckedUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUncheckedUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationCreateWithoutPvReceptionBetonCharpenteBardageInput = {
@@ -3121,7 +3046,6 @@ export type DocumentationCreateWithoutPvReceptionBetonCharpenteBardageInput = {
   reserves?: Prisma.ReserveCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationUncheckedCreateWithoutPvReceptionBetonCharpenteBardageInput = {
@@ -3156,7 +3080,6 @@ export type DocumentationUncheckedCreateWithoutPvReceptionBetonCharpenteBardageI
   reserves?: Prisma.ReserveUncheckedCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantUncheckedCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationCreateOrConnectWithoutPvReceptionBetonCharpenteBardageInput = {
@@ -3207,7 +3130,6 @@ export type DocumentationUpdateWithoutPvReceptionBetonCharpenteBardageInput = {
   reserves?: Prisma.ReserveUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationUncheckedUpdateWithoutPvReceptionBetonCharpenteBardageInput = {
@@ -3242,7 +3164,6 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionBetonCharpenteBardageI
   reserves?: Prisma.ReserveUncheckedUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUncheckedUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUncheckedUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationCreateWithoutPvReceptionBetonFacadeInput = {
@@ -3277,7 +3198,6 @@ export type DocumentationCreateWithoutPvReceptionBetonFacadeInput = {
   reserves?: Prisma.ReserveCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationUncheckedCreateWithoutPvReceptionBetonFacadeInput = {
@@ -3312,7 +3232,6 @@ export type DocumentationUncheckedCreateWithoutPvReceptionBetonFacadeInput = {
   reserves?: Prisma.ReserveUncheckedCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantUncheckedCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationCreateOrConnectWithoutPvReceptionBetonFacadeInput = {
@@ -3363,7 +3282,6 @@ export type DocumentationUpdateWithoutPvReceptionBetonFacadeInput = {
   reserves?: Prisma.ReserveUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationUncheckedUpdateWithoutPvReceptionBetonFacadeInput = {
@@ -3398,7 +3316,6 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionBetonFacadeInput = {
   reserves?: Prisma.ReserveUncheckedUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUncheckedUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUncheckedUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationCreateWithoutPvReceptionCharpenteMetalBoisBardageInput = {
@@ -3433,7 +3350,6 @@ export type DocumentationCreateWithoutPvReceptionCharpenteMetalBoisBardageInput 
   reserves?: Prisma.ReserveCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationUncheckedCreateWithoutPvReceptionCharpenteMetalBoisBardageInput = {
@@ -3468,7 +3384,6 @@ export type DocumentationUncheckedCreateWithoutPvReceptionCharpenteMetalBoisBard
   reserves?: Prisma.ReserveUncheckedCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantUncheckedCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationCreateOrConnectWithoutPvReceptionCharpenteMetalBoisBardageInput = {
@@ -3519,7 +3434,6 @@ export type DocumentationUpdateWithoutPvReceptionCharpenteMetalBoisBardageInput 
   reserves?: Prisma.ReserveUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationUncheckedUpdateWithoutPvReceptionCharpenteMetalBoisBardageInput = {
@@ -3554,7 +3468,6 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionCharpenteMetalBoisBard
   reserves?: Prisma.ReserveUncheckedUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUncheckedUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUncheckedUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationCreateWithoutPvReceptionCharpenteMetalBoisCouvInput = {
@@ -3589,7 +3502,6 @@ export type DocumentationCreateWithoutPvReceptionCharpenteMetalBoisCouvInput = {
   reserves?: Prisma.ReserveCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationUncheckedCreateWithoutPvReceptionCharpenteMetalBoisCouvInput = {
@@ -3624,7 +3536,6 @@ export type DocumentationUncheckedCreateWithoutPvReceptionCharpenteMetalBoisCouv
   reserves?: Prisma.ReserveUncheckedCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantUncheckedCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationCreateOrConnectWithoutPvReceptionCharpenteMetalBoisCouvInput = {
@@ -3675,7 +3586,6 @@ export type DocumentationUpdateWithoutPvReceptionCharpenteMetalBoisCouvInput = {
   reserves?: Prisma.ReserveUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationUncheckedUpdateWithoutPvReceptionCharpenteMetalBoisCouvInput = {
@@ -3710,7 +3620,6 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionCharpenteMetalBoisCouv
   reserves?: Prisma.ReserveUncheckedUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUncheckedUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUncheckedUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationCreateWithoutPvReceptionEtancheiteInput = {
@@ -3745,7 +3654,6 @@ export type DocumentationCreateWithoutPvReceptionEtancheiteInput = {
   reserves?: Prisma.ReserveCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationUncheckedCreateWithoutPvReceptionEtancheiteInput = {
@@ -3780,7 +3688,6 @@ export type DocumentationUncheckedCreateWithoutPvReceptionEtancheiteInput = {
   reserves?: Prisma.ReserveUncheckedCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantUncheckedCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationCreateOrConnectWithoutPvReceptionEtancheiteInput = {
@@ -3831,7 +3738,6 @@ export type DocumentationUpdateWithoutPvReceptionEtancheiteInput = {
   reserves?: Prisma.ReserveUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationUncheckedUpdateWithoutPvReceptionEtancheiteInput = {
@@ -3866,7 +3772,6 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionEtancheiteInput = {
   reserves?: Prisma.ReserveUncheckedUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUncheckedUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUncheckedUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationCreateWithoutPvReceptionOuvrageArtInput = {
@@ -3901,7 +3806,6 @@ export type DocumentationCreateWithoutPvReceptionOuvrageArtInput = {
   reserves?: Prisma.ReserveCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationUncheckedCreateWithoutPvReceptionOuvrageArtInput = {
@@ -3936,7 +3840,6 @@ export type DocumentationUncheckedCreateWithoutPvReceptionOuvrageArtInput = {
   reserves?: Prisma.ReserveUncheckedCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantUncheckedCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationCreateOrConnectWithoutPvReceptionOuvrageArtInput = {
@@ -3987,7 +3890,6 @@ export type DocumentationUpdateWithoutPvReceptionOuvrageArtInput = {
   reserves?: Prisma.ReserveUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationUncheckedUpdateWithoutPvReceptionOuvrageArtInput = {
@@ -4022,7 +3924,6 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionOuvrageArtInput = {
   reserves?: Prisma.ReserveUncheckedUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUncheckedUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUncheckedUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationCreateWithoutPvReceptionSupportsBetonVoirieInput = {
@@ -4057,7 +3958,6 @@ export type DocumentationCreateWithoutPvReceptionSupportsBetonVoirieInput = {
   reserves?: Prisma.ReserveCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationUncheckedCreateWithoutPvReceptionSupportsBetonVoirieInput = {
@@ -4092,7 +3992,6 @@ export type DocumentationUncheckedCreateWithoutPvReceptionSupportsBetonVoirieInp
   reserves?: Prisma.ReserveUncheckedCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantUncheckedCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationCreateOrConnectWithoutPvReceptionSupportsBetonVoirieInput = {
@@ -4143,7 +4042,6 @@ export type DocumentationUpdateWithoutPvReceptionSupportsBetonVoirieInput = {
   reserves?: Prisma.ReserveUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationUncheckedUpdateWithoutPvReceptionSupportsBetonVoirieInput = {
@@ -4178,7 +4076,6 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionSupportsBetonVoirieInp
   reserves?: Prisma.ReserveUncheckedUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUncheckedUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUncheckedUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationCreateWithoutPvReceptionOuvragesSousTraitesInput = {
@@ -4213,7 +4110,6 @@ export type DocumentationCreateWithoutPvReceptionOuvragesSousTraitesInput = {
   reserves?: Prisma.ReserveCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationUncheckedCreateWithoutPvReceptionOuvragesSousTraitesInput = {
@@ -4248,7 +4144,6 @@ export type DocumentationUncheckedCreateWithoutPvReceptionOuvragesSousTraitesInp
   reserves?: Prisma.ReserveUncheckedCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantUncheckedCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationCreateOrConnectWithoutPvReceptionOuvragesSousTraitesInput = {
@@ -4299,7 +4194,6 @@ export type DocumentationUpdateWithoutPvReceptionOuvragesSousTraitesInput = {
   reserves?: Prisma.ReserveUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationUncheckedUpdateWithoutPvReceptionOuvragesSousTraitesInput = {
@@ -4334,7 +4228,6 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionOuvragesSousTraitesInp
   reserves?: Prisma.ReserveUncheckedUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUncheckedUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUncheckedUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationCreateWithoutVisitePreventionInput = {
@@ -4369,7 +4262,6 @@ export type DocumentationCreateWithoutVisitePreventionInput = {
   reserves?: Prisma.ReserveCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationUncheckedCreateWithoutVisitePreventionInput = {
@@ -4404,7 +4296,6 @@ export type DocumentationUncheckedCreateWithoutVisitePreventionInput = {
   reserves?: Prisma.ReserveUncheckedCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantUncheckedCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationCreateOrConnectWithoutVisitePreventionInput = {
@@ -4455,7 +4346,6 @@ export type DocumentationUpdateWithoutVisitePreventionInput = {
   reserves?: Prisma.ReserveUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationUncheckedUpdateWithoutVisitePreventionInput = {
@@ -4490,7 +4380,6 @@ export type DocumentationUncheckedUpdateWithoutVisitePreventionInput = {
   reserves?: Prisma.ReserveUncheckedUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUncheckedUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUncheckedUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationCreateWithoutFicheVerifJournaliereEchafaudageInput = {
@@ -4525,7 +4414,6 @@ export type DocumentationCreateWithoutFicheVerifJournaliereEchafaudageInput = {
   reserves?: Prisma.ReserveCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationUncheckedCreateWithoutFicheVerifJournaliereEchafaudageInput = {
@@ -4560,7 +4448,6 @@ export type DocumentationUncheckedCreateWithoutFicheVerifJournaliereEchafaudageI
   reserves?: Prisma.ReserveUncheckedCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantUncheckedCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationCreateOrConnectWithoutFicheVerifJournaliereEchafaudageInput = {
@@ -4611,7 +4498,6 @@ export type DocumentationUpdateWithoutFicheVerifJournaliereEchafaudageInput = {
   reserves?: Prisma.ReserveUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationUncheckedUpdateWithoutFicheVerifJournaliereEchafaudageInput = {
@@ -4646,7 +4532,6 @@ export type DocumentationUncheckedUpdateWithoutFicheVerifJournaliereEchafaudageI
   reserves?: Prisma.ReserveUncheckedUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUncheckedUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUncheckedUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationCreateWithoutVerificationAvantMiseServiceEchafaudageInput = {
@@ -4681,7 +4566,6 @@ export type DocumentationCreateWithoutVerificationAvantMiseServiceEchafaudageInp
   reserves?: Prisma.ReserveCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationUncheckedCreateWithoutVerificationAvantMiseServiceEchafaudageInput = {
@@ -4716,7 +4600,6 @@ export type DocumentationUncheckedCreateWithoutVerificationAvantMiseServiceEchaf
   reserves?: Prisma.ReserveUncheckedCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantUncheckedCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationCreateOrConnectWithoutVerificationAvantMiseServiceEchafaudageInput = {
@@ -4767,7 +4650,6 @@ export type DocumentationUpdateWithoutVerificationAvantMiseServiceEchafaudageInp
   reserves?: Prisma.ReserveUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationUncheckedUpdateWithoutVerificationAvantMiseServiceEchafaudageInput = {
@@ -4802,7 +4684,6 @@ export type DocumentationUncheckedUpdateWithoutVerificationAvantMiseServiceEchaf
   reserves?: Prisma.ReserveUncheckedUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUncheckedUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUncheckedUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationCreateWithoutDocumentsInput = {
@@ -4837,7 +4718,6 @@ export type DocumentationCreateWithoutDocumentsInput = {
   reserves?: Prisma.ReserveCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationUncheckedCreateWithoutDocumentsInput = {
@@ -4872,7 +4752,6 @@ export type DocumentationUncheckedCreateWithoutDocumentsInput = {
   reserves?: Prisma.ReserveUncheckedCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantUncheckedCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationCreateOrConnectWithoutDocumentsInput = {
@@ -4923,7 +4802,6 @@ export type DocumentationUpdateWithoutDocumentsInput = {
   reserves?: Prisma.ReserveUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationUncheckedUpdateWithoutDocumentsInput = {
@@ -4955,163 +4833,6 @@ export type DocumentationUncheckedUpdateWithoutDocumentsInput = {
   ficheVerifJournaliereEchafaudage?: Prisma.FicheVerifJournaliereEchafaudageUncheckedUpdateOneWithoutDocumentationNestedInput
   verificationAvantMiseServiceEchafaudage?: Prisma.VerificationAvantMiseServiceEchafaudageUncheckedUpdateOneWithoutDocumentationNestedInput
   pvTerrasse?: Prisma.PVTerrasseUncheckedUpdateOneWithoutDocumentationNestedInput
-  reserves?: Prisma.ReserveUncheckedUpdateManyWithoutDocumentationNestedInput
-  interventions?: Prisma.InterventionUncheckedUpdateManyWithoutDocumentationNestedInput
-  participants?: Prisma.ParticipantUncheckedUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedUpdateManyWithoutDocumentationNestedInput
-}
-
-export type DocumentationCreateWithoutPvEtanchVersionsInput = {
-  id?: string
-  typeDoc: $Enums.TypeDocEnum
-  status?: $Enums.ProcessStatusEnum
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  chantier: Prisma.ChantierCreateNestedOneWithoutDocumentationsInput
-  ficheApri?: Prisma.FicheApriCreateNestedOneWithoutDocumentationInput
-  mmt?: Prisma.MmtCreateNestedOneWithoutDocumentationInput
-  ppsps?: Prisma.PpspsCreateNestedOneWithoutDocumentationInput
-  etatsLieux?: Prisma.EtatsLieuxCreateNestedOneWithoutDocumentationInput
-  feuilleEmargement?: Prisma.FeuilleEmargementCreateNestedOneWithoutDocumentationInput
-  ficheStarter?: Prisma.FicheStarterCreateNestedOneWithoutDocumentationInput
-  ficheVerificationFourgon?: Prisma.FicheVerificationFourgonCreateNestedOneWithoutDocumentationInput
-  noticeEpi?: Prisma.NoticeEpiCreateNestedOneWithoutDocumentationInput
-  pvMiseEau?: Prisma.PvMiseEauCreateNestedOneWithoutDocumentationInput
-  pvReceptionBetonCharpenteCouverture?: Prisma.PvReceptionBetonCharpenteCouvertureCreateNestedOneWithoutDocumentationInput
-  pvReceptionBetonCharpenteBardage?: Prisma.PvReceptionBetonCharpenteBardageCreateNestedOneWithoutDocumentationInput
-  pvReceptionBetonFacade?: Prisma.PvReceptionBetonFacadeCreateNestedOneWithoutDocumentationInput
-  pvReceptionCharpenteMetalBoisBardage?: Prisma.PvReceptionCharpenteMetalBoisBardageCreateNestedOneWithoutDocumentationInput
-  pvReceptionCharpenteMetalBoisCouv?: Prisma.PvReceptionCharpenteMetalBoisCouvertureCreateNestedOneWithoutDocumentationInput
-  pvReceptionEtancheite?: Prisma.PvReceptionEtancheiteCreateNestedOneWithoutDocumentationInput
-  pvReceptionOuvrageArt?: Prisma.PvReceptionOuvrageArtCreateNestedOneWithoutDocumentationInput
-  pvReceptionSupportsBetonVoirie?: Prisma.PvReceptionSupportsBetonVoirieCreateNestedOneWithoutDocumentationInput
-  pvReceptionOuvragesSousTraites?: Prisma.PvReceptionOuvragesSousTraitesCreateNestedOneWithoutDocumentationInput
-  visitePrevention?: Prisma.VisitePreventionCreateNestedOneWithoutDocumentationInput
-  ficheVerifJournaliereEchafaudage?: Prisma.FicheVerifJournaliereEchafaudageCreateNestedOneWithoutDocumentationInput
-  verificationAvantMiseServiceEchafaudage?: Prisma.VerificationAvantMiseServiceEchafaudageCreateNestedOneWithoutDocumentationInput
-  pvTerrasse?: Prisma.PVTerrasseCreateNestedOneWithoutDocumentationInput
-  documents?: Prisma.DocumentCreateNestedManyWithoutDocumentationInput
-  reserves?: Prisma.ReserveCreateNestedManyWithoutDocumentationInput
-  interventions?: Prisma.InterventionCreateNestedManyWithoutDocumentationInput
-  participants?: Prisma.ParticipantCreateNestedManyWithoutDocumentationInput
-}
-
-export type DocumentationUncheckedCreateWithoutPvEtanchVersionsInput = {
-  id?: string
-  idChantier: string
-  typeDoc: $Enums.TypeDocEnum
-  status?: $Enums.ProcessStatusEnum
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  ficheApri?: Prisma.FicheApriUncheckedCreateNestedOneWithoutDocumentationInput
-  mmt?: Prisma.MmtUncheckedCreateNestedOneWithoutDocumentationInput
-  ppsps?: Prisma.PpspsUncheckedCreateNestedOneWithoutDocumentationInput
-  etatsLieux?: Prisma.EtatsLieuxUncheckedCreateNestedOneWithoutDocumentationInput
-  feuilleEmargement?: Prisma.FeuilleEmargementUncheckedCreateNestedOneWithoutDocumentationInput
-  ficheStarter?: Prisma.FicheStarterUncheckedCreateNestedOneWithoutDocumentationInput
-  ficheVerificationFourgon?: Prisma.FicheVerificationFourgonUncheckedCreateNestedOneWithoutDocumentationInput
-  noticeEpi?: Prisma.NoticeEpiUncheckedCreateNestedOneWithoutDocumentationInput
-  pvMiseEau?: Prisma.PvMiseEauUncheckedCreateNestedOneWithoutDocumentationInput
-  pvReceptionBetonCharpenteCouverture?: Prisma.PvReceptionBetonCharpenteCouvertureUncheckedCreateNestedOneWithoutDocumentationInput
-  pvReceptionBetonCharpenteBardage?: Prisma.PvReceptionBetonCharpenteBardageUncheckedCreateNestedOneWithoutDocumentationInput
-  pvReceptionBetonFacade?: Prisma.PvReceptionBetonFacadeUncheckedCreateNestedOneWithoutDocumentationInput
-  pvReceptionCharpenteMetalBoisBardage?: Prisma.PvReceptionCharpenteMetalBoisBardageUncheckedCreateNestedOneWithoutDocumentationInput
-  pvReceptionCharpenteMetalBoisCouv?: Prisma.PvReceptionCharpenteMetalBoisCouvertureUncheckedCreateNestedOneWithoutDocumentationInput
-  pvReceptionEtancheite?: Prisma.PvReceptionEtancheiteUncheckedCreateNestedOneWithoutDocumentationInput
-  pvReceptionOuvrageArt?: Prisma.PvReceptionOuvrageArtUncheckedCreateNestedOneWithoutDocumentationInput
-  pvReceptionSupportsBetonVoirie?: Prisma.PvReceptionSupportsBetonVoirieUncheckedCreateNestedOneWithoutDocumentationInput
-  pvReceptionOuvragesSousTraites?: Prisma.PvReceptionOuvragesSousTraitesUncheckedCreateNestedOneWithoutDocumentationInput
-  visitePrevention?: Prisma.VisitePreventionUncheckedCreateNestedOneWithoutDocumentationInput
-  ficheVerifJournaliereEchafaudage?: Prisma.FicheVerifJournaliereEchafaudageUncheckedCreateNestedOneWithoutDocumentationInput
-  verificationAvantMiseServiceEchafaudage?: Prisma.VerificationAvantMiseServiceEchafaudageUncheckedCreateNestedOneWithoutDocumentationInput
-  pvTerrasse?: Prisma.PVTerrasseUncheckedCreateNestedOneWithoutDocumentationInput
-  documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutDocumentationInput
-  reserves?: Prisma.ReserveUncheckedCreateNestedManyWithoutDocumentationInput
-  interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutDocumentationInput
-  participants?: Prisma.ParticipantUncheckedCreateNestedManyWithoutDocumentationInput
-}
-
-export type DocumentationCreateOrConnectWithoutPvEtanchVersionsInput = {
-  where: Prisma.DocumentationWhereUniqueInput
-  create: Prisma.XOR<Prisma.DocumentationCreateWithoutPvEtanchVersionsInput, Prisma.DocumentationUncheckedCreateWithoutPvEtanchVersionsInput>
-}
-
-export type DocumentationUpsertWithoutPvEtanchVersionsInput = {
-  update: Prisma.XOR<Prisma.DocumentationUpdateWithoutPvEtanchVersionsInput, Prisma.DocumentationUncheckedUpdateWithoutPvEtanchVersionsInput>
-  create: Prisma.XOR<Prisma.DocumentationCreateWithoutPvEtanchVersionsInput, Prisma.DocumentationUncheckedCreateWithoutPvEtanchVersionsInput>
-  where?: Prisma.DocumentationWhereInput
-}
-
-export type DocumentationUpdateToOneWithWhereWithoutPvEtanchVersionsInput = {
-  where?: Prisma.DocumentationWhereInput
-  data: Prisma.XOR<Prisma.DocumentationUpdateWithoutPvEtanchVersionsInput, Prisma.DocumentationUncheckedUpdateWithoutPvEtanchVersionsInput>
-}
-
-export type DocumentationUpdateWithoutPvEtanchVersionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
-  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  chantier?: Prisma.ChantierUpdateOneRequiredWithoutDocumentationsNestedInput
-  ficheApri?: Prisma.FicheApriUpdateOneWithoutDocumentationNestedInput
-  mmt?: Prisma.MmtUpdateOneWithoutDocumentationNestedInput
-  ppsps?: Prisma.PpspsUpdateOneWithoutDocumentationNestedInput
-  etatsLieux?: Prisma.EtatsLieuxUpdateOneWithoutDocumentationNestedInput
-  feuilleEmargement?: Prisma.FeuilleEmargementUpdateOneWithoutDocumentationNestedInput
-  ficheStarter?: Prisma.FicheStarterUpdateOneWithoutDocumentationNestedInput
-  ficheVerificationFourgon?: Prisma.FicheVerificationFourgonUpdateOneWithoutDocumentationNestedInput
-  noticeEpi?: Prisma.NoticeEpiUpdateOneWithoutDocumentationNestedInput
-  pvMiseEau?: Prisma.PvMiseEauUpdateOneWithoutDocumentationNestedInput
-  pvReceptionBetonCharpenteCouverture?: Prisma.PvReceptionBetonCharpenteCouvertureUpdateOneWithoutDocumentationNestedInput
-  pvReceptionBetonCharpenteBardage?: Prisma.PvReceptionBetonCharpenteBardageUpdateOneWithoutDocumentationNestedInput
-  pvReceptionBetonFacade?: Prisma.PvReceptionBetonFacadeUpdateOneWithoutDocumentationNestedInput
-  pvReceptionCharpenteMetalBoisBardage?: Prisma.PvReceptionCharpenteMetalBoisBardageUpdateOneWithoutDocumentationNestedInput
-  pvReceptionCharpenteMetalBoisCouv?: Prisma.PvReceptionCharpenteMetalBoisCouvertureUpdateOneWithoutDocumentationNestedInput
-  pvReceptionEtancheite?: Prisma.PvReceptionEtancheiteUpdateOneWithoutDocumentationNestedInput
-  pvReceptionOuvrageArt?: Prisma.PvReceptionOuvrageArtUpdateOneWithoutDocumentationNestedInput
-  pvReceptionSupportsBetonVoirie?: Prisma.PvReceptionSupportsBetonVoirieUpdateOneWithoutDocumentationNestedInput
-  pvReceptionOuvragesSousTraites?: Prisma.PvReceptionOuvragesSousTraitesUpdateOneWithoutDocumentationNestedInput
-  visitePrevention?: Prisma.VisitePreventionUpdateOneWithoutDocumentationNestedInput
-  ficheVerifJournaliereEchafaudage?: Prisma.FicheVerifJournaliereEchafaudageUpdateOneWithoutDocumentationNestedInput
-  verificationAvantMiseServiceEchafaudage?: Prisma.VerificationAvantMiseServiceEchafaudageUpdateOneWithoutDocumentationNestedInput
-  pvTerrasse?: Prisma.PVTerrasseUpdateOneWithoutDocumentationNestedInput
-  documents?: Prisma.DocumentUpdateManyWithoutDocumentationNestedInput
-  reserves?: Prisma.ReserveUpdateManyWithoutDocumentationNestedInput
-  interventions?: Prisma.InterventionUpdateManyWithoutDocumentationNestedInput
-  participants?: Prisma.ParticipantUpdateManyWithoutDocumentationNestedInput
-}
-
-export type DocumentationUncheckedUpdateWithoutPvEtanchVersionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  idChantier?: Prisma.StringFieldUpdateOperationsInput | string
-  typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
-  status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  ficheApri?: Prisma.FicheApriUncheckedUpdateOneWithoutDocumentationNestedInput
-  mmt?: Prisma.MmtUncheckedUpdateOneWithoutDocumentationNestedInput
-  ppsps?: Prisma.PpspsUncheckedUpdateOneWithoutDocumentationNestedInput
-  etatsLieux?: Prisma.EtatsLieuxUncheckedUpdateOneWithoutDocumentationNestedInput
-  feuilleEmargement?: Prisma.FeuilleEmargementUncheckedUpdateOneWithoutDocumentationNestedInput
-  ficheStarter?: Prisma.FicheStarterUncheckedUpdateOneWithoutDocumentationNestedInput
-  ficheVerificationFourgon?: Prisma.FicheVerificationFourgonUncheckedUpdateOneWithoutDocumentationNestedInput
-  noticeEpi?: Prisma.NoticeEpiUncheckedUpdateOneWithoutDocumentationNestedInput
-  pvMiseEau?: Prisma.PvMiseEauUncheckedUpdateOneWithoutDocumentationNestedInput
-  pvReceptionBetonCharpenteCouverture?: Prisma.PvReceptionBetonCharpenteCouvertureUncheckedUpdateOneWithoutDocumentationNestedInput
-  pvReceptionBetonCharpenteBardage?: Prisma.PvReceptionBetonCharpenteBardageUncheckedUpdateOneWithoutDocumentationNestedInput
-  pvReceptionBetonFacade?: Prisma.PvReceptionBetonFacadeUncheckedUpdateOneWithoutDocumentationNestedInput
-  pvReceptionCharpenteMetalBoisBardage?: Prisma.PvReceptionCharpenteMetalBoisBardageUncheckedUpdateOneWithoutDocumentationNestedInput
-  pvReceptionCharpenteMetalBoisCouv?: Prisma.PvReceptionCharpenteMetalBoisCouvertureUncheckedUpdateOneWithoutDocumentationNestedInput
-  pvReceptionEtancheite?: Prisma.PvReceptionEtancheiteUncheckedUpdateOneWithoutDocumentationNestedInput
-  pvReceptionOuvrageArt?: Prisma.PvReceptionOuvrageArtUncheckedUpdateOneWithoutDocumentationNestedInput
-  pvReceptionSupportsBetonVoirie?: Prisma.PvReceptionSupportsBetonVoirieUncheckedUpdateOneWithoutDocumentationNestedInput
-  pvReceptionOuvragesSousTraites?: Prisma.PvReceptionOuvragesSousTraitesUncheckedUpdateOneWithoutDocumentationNestedInput
-  visitePrevention?: Prisma.VisitePreventionUncheckedUpdateOneWithoutDocumentationNestedInput
-  ficheVerifJournaliereEchafaudage?: Prisma.FicheVerifJournaliereEchafaudageUncheckedUpdateOneWithoutDocumentationNestedInput
-  verificationAvantMiseServiceEchafaudage?: Prisma.VerificationAvantMiseServiceEchafaudageUncheckedUpdateOneWithoutDocumentationNestedInput
-  pvTerrasse?: Prisma.PVTerrasseUncheckedUpdateOneWithoutDocumentationNestedInput
-  documents?: Prisma.DocumentUncheckedUpdateManyWithoutDocumentationNestedInput
   reserves?: Prisma.ReserveUncheckedUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUncheckedUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUncheckedUpdateManyWithoutDocumentationNestedInput
@@ -5149,7 +4870,6 @@ export type DocumentationCreateWithoutReservesInput = {
   documents?: Prisma.DocumentCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationUncheckedCreateWithoutReservesInput = {
@@ -5184,7 +4904,6 @@ export type DocumentationUncheckedCreateWithoutReservesInput = {
   documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutDocumentationInput
   interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutDocumentationInput
   participants?: Prisma.ParticipantUncheckedCreateNestedManyWithoutDocumentationInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedCreateNestedManyWithoutDocumentationInput
 }
 
 export type DocumentationCreateOrConnectWithoutReservesInput = {
@@ -5235,7 +4954,6 @@ export type DocumentationUpdateWithoutReservesInput = {
   documents?: Prisma.DocumentUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationUncheckedUpdateWithoutReservesInput = {
@@ -5270,7 +4988,6 @@ export type DocumentationUncheckedUpdateWithoutReservesInput = {
   documents?: Prisma.DocumentUncheckedUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUncheckedUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUncheckedUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationCreateManyChantierInput = {
@@ -5313,7 +5030,6 @@ export type DocumentationUpdateWithoutChantierInput = {
   reserves?: Prisma.ReserveUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationUncheckedUpdateWithoutChantierInput = {
@@ -5348,7 +5064,6 @@ export type DocumentationUncheckedUpdateWithoutChantierInput = {
   reserves?: Prisma.ReserveUncheckedUpdateManyWithoutDocumentationNestedInput
   interventions?: Prisma.InterventionUncheckedUpdateManyWithoutDocumentationNestedInput
   participants?: Prisma.ParticipantUncheckedUpdateManyWithoutDocumentationNestedInput
-  pvEtanchVersions?: Prisma.PvEtanchVersionUncheckedUpdateManyWithoutDocumentationNestedInput
 }
 
 export type DocumentationUncheckedUpdateManyWithoutChantierInput = {
@@ -5369,7 +5084,6 @@ export type DocumentationCountOutputType = {
   reserves: number
   interventions: number
   participants: number
-  pvEtanchVersions: number
 }
 
 export type DocumentationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -5377,7 +5091,6 @@ export type DocumentationCountOutputTypeSelect<ExtArgs extends runtime.Types.Ext
   reserves?: boolean | DocumentationCountOutputTypeCountReservesArgs
   interventions?: boolean | DocumentationCountOutputTypeCountInterventionsArgs
   participants?: boolean | DocumentationCountOutputTypeCountParticipantsArgs
-  pvEtanchVersions?: boolean | DocumentationCountOutputTypeCountPvEtanchVersionsArgs
 }
 
 /**
@@ -5418,13 +5131,6 @@ export type DocumentationCountOutputTypeCountParticipantsArgs<ExtArgs extends ru
   where?: Prisma.ParticipantWhereInput
 }
 
-/**
- * DocumentationCountOutputType without action
- */
-export type DocumentationCountOutputTypeCountPvEtanchVersionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PvEtanchVersionWhereInput
-}
-
 
 export type DocumentationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -5460,7 +5166,6 @@ export type DocumentationSelect<ExtArgs extends runtime.Types.Extensions.Interna
   reserves?: boolean | Prisma.Documentation$reservesArgs<ExtArgs>
   interventions?: boolean | Prisma.Documentation$interventionsArgs<ExtArgs>
   participants?: boolean | Prisma.Documentation$participantsArgs<ExtArgs>
-  pvEtanchVersions?: boolean | Prisma.Documentation$pvEtanchVersionsArgs<ExtArgs>
   _count?: boolean | Prisma.DocumentationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["documentation"]>
 
@@ -5522,7 +5227,6 @@ export type DocumentationInclude<ExtArgs extends runtime.Types.Extensions.Intern
   reserves?: boolean | Prisma.Documentation$reservesArgs<ExtArgs>
   interventions?: boolean | Prisma.Documentation$interventionsArgs<ExtArgs>
   participants?: boolean | Prisma.Documentation$participantsArgs<ExtArgs>
-  pvEtanchVersions?: boolean | Prisma.Documentation$pvEtanchVersionsArgs<ExtArgs>
   _count?: boolean | Prisma.DocumentationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type DocumentationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -5562,7 +5266,6 @@ export type $DocumentationPayload<ExtArgs extends runtime.Types.Extensions.Inter
     reserves: Prisma.$ReservePayload<ExtArgs>[]
     interventions: Prisma.$InterventionPayload<ExtArgs>[]
     participants: Prisma.$ParticipantPayload<ExtArgs>[]
-    pvEtanchVersions: Prisma.$PvEtanchVersionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -5992,7 +5695,6 @@ export interface Prisma__DocumentationClient<T, Null = never, ExtArgs extends ru
   reserves<T extends Prisma.Documentation$reservesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Documentation$reservesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReservePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   interventions<T extends Prisma.Documentation$interventionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Documentation$interventionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InterventionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   participants<T extends Prisma.Documentation$participantsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Documentation$participantsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ParticipantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  pvEtanchVersions<T extends Prisma.Documentation$pvEtanchVersionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Documentation$pvEtanchVersionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PvEtanchVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6940,30 +6642,6 @@ export type Documentation$participantsArgs<ExtArgs extends runtime.Types.Extensi
   take?: number
   skip?: number
   distinct?: Prisma.ParticipantScalarFieldEnum | Prisma.ParticipantScalarFieldEnum[]
-}
-
-/**
- * Documentation.pvEtanchVersions
- */
-export type Documentation$pvEtanchVersionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the PvEtanchVersion
-   */
-  select?: Prisma.PvEtanchVersionSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the PvEtanchVersion
-   */
-  omit?: Prisma.PvEtanchVersionOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PvEtanchVersionInclude<ExtArgs> | null
-  where?: Prisma.PvEtanchVersionWhereInput
-  orderBy?: Prisma.PvEtanchVersionOrderByWithRelationInput | Prisma.PvEtanchVersionOrderByWithRelationInput[]
-  cursor?: Prisma.PvEtanchVersionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.PvEtanchVersionScalarFieldEnum | Prisma.PvEtanchVersionScalarFieldEnum[]
 }
 
 /**

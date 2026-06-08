@@ -433,7 +433,6 @@ export const ModelName = {
   VerificationAvantMiseServiceEchafaudage: 'VerificationAvantMiseServiceEchafaudage',
   Document: 'Document',
   DossierExpertise: 'DossierExpertise',
-  PvEtanchVersion: 'PvEtanchVersion',
   Reserve: 'Reserve'
 } as const
 
@@ -450,7 +449,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "person" | "userPhoto" | "chantier" | "chantierDetails" | "intervenant" | "chantierIntervenant" | "action" | "chantierAction" | "actionChild" | "actionPrevious" | "chantierDocumentation" | "chantierRequiredDoc" | "chantierSharedDoc" | "chantierOrganisation" | "chantierObjectif" | "folder" | "requestLog" | "agence" | "etablissement" | "ao" | "intervention" | "fiches" | "participant" | "documentation" | "ficheApri" | "mmt" | "ppsps" | "pVTerrasse" | "etatsLieux" | "feuilleEmargement" | "ficheStarter" | "ficheVerificationFourgon" | "noticeEpi" | "pvMiseEau" | "pvReceptionBetonCharpenteCouverture" | "pvReceptionBetonCharpenteBardage" | "pvReceptionBetonFacade" | "pvReceptionCharpenteMetalBoisBardage" | "pvReceptionCharpenteMetalBoisCouverture" | "pvReceptionEtancheite" | "pvReceptionOuvrageArt" | "pvReceptionSupportsBetonVoirie" | "pvReceptionOuvragesSousTraites" | "visitePrevention" | "ficheVerifJournaliereEchafaudage" | "verificationAvantMiseServiceEchafaudage" | "document" | "dossierExpertise" | "pvEtanchVersion" | "reserve"
+    modelProps: "user" | "person" | "userPhoto" | "chantier" | "chantierDetails" | "intervenant" | "chantierIntervenant" | "action" | "chantierAction" | "actionChild" | "actionPrevious" | "chantierDocumentation" | "chantierRequiredDoc" | "chantierSharedDoc" | "chantierOrganisation" | "chantierObjectif" | "folder" | "requestLog" | "agence" | "etablissement" | "ao" | "intervention" | "fiches" | "participant" | "documentation" | "ficheApri" | "mmt" | "ppsps" | "pVTerrasse" | "etatsLieux" | "feuilleEmargement" | "ficheStarter" | "ficheVerificationFourgon" | "noticeEpi" | "pvMiseEau" | "pvReceptionBetonCharpenteCouverture" | "pvReceptionBetonCharpenteBardage" | "pvReceptionBetonFacade" | "pvReceptionCharpenteMetalBoisBardage" | "pvReceptionCharpenteMetalBoisCouverture" | "pvReceptionEtancheite" | "pvReceptionOuvrageArt" | "pvReceptionSupportsBetonVoirie" | "pvReceptionOuvragesSousTraites" | "visitePrevention" | "ficheVerifJournaliereEchafaudage" | "verificationAvantMiseServiceEchafaudage" | "document" | "dossierExpertise" | "reserve"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -4080,80 +4079,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    PvEtanchVersion: {
-      payload: Prisma.$PvEtanchVersionPayload<ExtArgs>
-      fields: Prisma.PvEtanchVersionFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.PvEtanchVersionFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PvEtanchVersionPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.PvEtanchVersionFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PvEtanchVersionPayload>
-        }
-        findFirst: {
-          args: Prisma.PvEtanchVersionFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PvEtanchVersionPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.PvEtanchVersionFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PvEtanchVersionPayload>
-        }
-        findMany: {
-          args: Prisma.PvEtanchVersionFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PvEtanchVersionPayload>[]
-        }
-        create: {
-          args: Prisma.PvEtanchVersionCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PvEtanchVersionPayload>
-        }
-        createMany: {
-          args: Prisma.PvEtanchVersionCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.PvEtanchVersionCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PvEtanchVersionPayload>[]
-        }
-        delete: {
-          args: Prisma.PvEtanchVersionDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PvEtanchVersionPayload>
-        }
-        update: {
-          args: Prisma.PvEtanchVersionUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PvEtanchVersionPayload>
-        }
-        deleteMany: {
-          args: Prisma.PvEtanchVersionDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.PvEtanchVersionUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.PvEtanchVersionUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PvEtanchVersionPayload>[]
-        }
-        upsert: {
-          args: Prisma.PvEtanchVersionUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PvEtanchVersionPayload>
-        }
-        aggregate: {
-          args: Prisma.PvEtanchVersionAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregatePvEtanchVersion>
-        }
-        groupBy: {
-          args: Prisma.PvEtanchVersionGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.PvEtanchVersionGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.PvEtanchVersionCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.PvEtanchVersionCountAggregateOutputType> | number
-        }
-      }
-    }
     Reserve: {
       payload: Prisma.$ReservePayload<ExtArgs>
       fields: Prisma.ReserveFieldRefs
@@ -4418,6 +4343,8 @@ export const ActionScalarFieldEnum = {
   startDate: 'startDate',
   dueDate: 'dueDate',
   status: 'status',
+  criticite: 'criticite',
+  photos: 'photos',
   progress: 'progress',
   childIndex: 'childIndex',
   createdAt: 'createdAt',
@@ -4907,17 +4834,6 @@ export const DossierExpertiseScalarFieldEnum = {
 export type DossierExpertiseScalarFieldEnum = (typeof DossierExpertiseScalarFieldEnum)[keyof typeof DossierExpertiseScalarFieldEnum]
 
 
-export const PvEtanchVersionScalarFieldEnum = {
-  id: 'id',
-  idDocumentation: 'idDocumentation',
-  versionNum: 'versionNum',
-  snapshot: 'snapshot',
-  savedAt: 'savedAt'
-} as const
-
-export type PvEtanchVersionScalarFieldEnum = (typeof PvEtanchVersionScalarFieldEnum)[keyof typeof PvEtanchVersionScalarFieldEnum]
-
-
 export const ReserveScalarFieldEnum = {
   id: 'id',
   idDocumentation: 'idDocumentation',
@@ -5065,6 +4981,20 @@ export type EnumTypeIntervenantEnumFieldRefInput<$PrismaModel> = FieldRefInputTy
  * Reference to a field of type 'TypeIntervenantEnum[]'
  */
 export type ListEnumTypeIntervenantEnumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TypeIntervenantEnum[]'>
+    
+
+
+/**
+ * Reference to a field of type 'ActionCriticite'
+ */
+export type EnumActionCriticiteFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ActionCriticite'>
+    
+
+
+/**
+ * Reference to a field of type 'ActionCriticite[]'
+ */
+export type ListEnumActionCriticiteFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ActionCriticite[]'>
     
 
 
@@ -5394,7 +5324,6 @@ export type GlobalOmitConfig = {
   verificationAvantMiseServiceEchafaudage?: Prisma.VerificationAvantMiseServiceEchafaudageOmit
   document?: Prisma.DocumentOmit
   dossierExpertise?: Prisma.DossierExpertiseOmit
-  pvEtanchVersion?: Prisma.PvEtanchVersionOmit
   reserve?: Prisma.ReserveOmit
 }
 

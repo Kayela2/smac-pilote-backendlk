@@ -45,6 +45,7 @@ export type ActionMinAggregateOutputType = {
   startDate: Date | null
   dueDate: Date | null
   status: $Enums.ProcessStatusEnum | null
+  criticite: $Enums.ActionCriticite | null
   progress: number | null
   childIndex: number | null
   createdAt: Date | null
@@ -60,6 +61,7 @@ export type ActionMaxAggregateOutputType = {
   startDate: Date | null
   dueDate: Date | null
   status: $Enums.ProcessStatusEnum | null
+  criticite: $Enums.ActionCriticite | null
   progress: number | null
   childIndex: number | null
   createdAt: Date | null
@@ -75,6 +77,8 @@ export type ActionCountAggregateOutputType = {
   startDate: number
   dueDate: number
   status: number
+  criticite: number
+  photos: number
   progress: number
   childIndex: number
   createdAt: number
@@ -102,6 +106,7 @@ export type ActionMinAggregateInputType = {
   startDate?: true
   dueDate?: true
   status?: true
+  criticite?: true
   progress?: true
   childIndex?: true
   createdAt?: true
@@ -117,6 +122,7 @@ export type ActionMaxAggregateInputType = {
   startDate?: true
   dueDate?: true
   status?: true
+  criticite?: true
   progress?: true
   childIndex?: true
   createdAt?: true
@@ -132,6 +138,8 @@ export type ActionCountAggregateInputType = {
   startDate?: true
   dueDate?: true
   status?: true
+  criticite?: true
+  photos?: true
   progress?: true
   childIndex?: true
   createdAt?: true
@@ -234,6 +242,8 @@ export type ActionGroupByOutputType = {
   startDate: Date | null
   dueDate: Date | null
   status: $Enums.ProcessStatusEnum
+  criticite: $Enums.ActionCriticite
+  photos: string[]
   progress: number | null
   childIndex: number | null
   createdAt: Date
@@ -272,6 +282,8 @@ export type ActionWhereInput = {
   startDate?: Prisma.DateTimeNullableFilter<"Action"> | Date | string | null
   dueDate?: Prisma.DateTimeNullableFilter<"Action"> | Date | string | null
   status?: Prisma.EnumProcessStatusEnumFilter<"Action"> | $Enums.ProcessStatusEnum
+  criticite?: Prisma.EnumActionCriticiteFilter<"Action"> | $Enums.ActionCriticite
+  photos?: Prisma.StringNullableListFilter<"Action">
   progress?: Prisma.IntNullableFilter<"Action"> | number | null
   childIndex?: Prisma.IntNullableFilter<"Action"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Action"> | Date | string
@@ -294,6 +306,8 @@ export type ActionOrderByWithRelationInput = {
   startDate?: Prisma.SortOrderInput | Prisma.SortOrder
   dueDate?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
+  criticite?: Prisma.SortOrder
+  photos?: Prisma.SortOrder
   progress?: Prisma.SortOrderInput | Prisma.SortOrder
   childIndex?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -319,6 +333,8 @@ export type ActionWhereUniqueInput = Prisma.AtLeast<{
   startDate?: Prisma.DateTimeNullableFilter<"Action"> | Date | string | null
   dueDate?: Prisma.DateTimeNullableFilter<"Action"> | Date | string | null
   status?: Prisma.EnumProcessStatusEnumFilter<"Action"> | $Enums.ProcessStatusEnum
+  criticite?: Prisma.EnumActionCriticiteFilter<"Action"> | $Enums.ActionCriticite
+  photos?: Prisma.StringNullableListFilter<"Action">
   progress?: Prisma.IntNullableFilter<"Action"> | number | null
   childIndex?: Prisma.IntNullableFilter<"Action"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Action"> | Date | string
@@ -341,6 +357,8 @@ export type ActionOrderByWithAggregationInput = {
   startDate?: Prisma.SortOrderInput | Prisma.SortOrder
   dueDate?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
+  criticite?: Prisma.SortOrder
+  photos?: Prisma.SortOrder
   progress?: Prisma.SortOrderInput | Prisma.SortOrder
   childIndex?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -364,6 +382,8 @@ export type ActionScalarWhereWithAggregatesInput = {
   startDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Action"> | Date | string | null
   dueDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Action"> | Date | string | null
   status?: Prisma.EnumProcessStatusEnumWithAggregatesFilter<"Action"> | $Enums.ProcessStatusEnum
+  criticite?: Prisma.EnumActionCriticiteWithAggregatesFilter<"Action"> | $Enums.ActionCriticite
+  photos?: Prisma.StringNullableListFilter<"Action">
   progress?: Prisma.IntNullableWithAggregatesFilter<"Action"> | number | null
   childIndex?: Prisma.IntNullableWithAggregatesFilter<"Action"> | number | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Action"> | Date | string
@@ -377,6 +397,8 @@ export type ActionCreateInput = {
   startDate?: Date | string | null
   dueDate?: Date | string | null
   status?: $Enums.ProcessStatusEnum
+  criticite?: $Enums.ActionCriticite
+  photos?: Prisma.ActionCreatephotosInput | string[]
   progress?: number | null
   childIndex?: number | null
   createdAt?: Date | string
@@ -399,6 +421,8 @@ export type ActionUncheckedCreateInput = {
   startDate?: Date | string | null
   dueDate?: Date | string | null
   status?: $Enums.ProcessStatusEnum
+  criticite?: $Enums.ActionCriticite
+  photos?: Prisma.ActionCreatephotosInput | string[]
   progress?: number | null
   childIndex?: number | null
   createdAt?: Date | string
@@ -417,6 +441,8 @@ export type ActionUpdateInput = {
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
+  criticite?: Prisma.EnumActionCriticiteFieldUpdateOperationsInput | $Enums.ActionCriticite
+  photos?: Prisma.ActionUpdatephotosInput | string[]
   progress?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   childIndex?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -439,6 +465,8 @@ export type ActionUncheckedUpdateInput = {
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
+  criticite?: Prisma.EnumActionCriticiteFieldUpdateOperationsInput | $Enums.ActionCriticite
+  photos?: Prisma.ActionUpdatephotosInput | string[]
   progress?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   childIndex?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -459,6 +487,8 @@ export type ActionCreateManyInput = {
   startDate?: Date | string | null
   dueDate?: Date | string | null
   status?: $Enums.ProcessStatusEnum
+  criticite?: $Enums.ActionCriticite
+  photos?: Prisma.ActionCreatephotosInput | string[]
   progress?: number | null
   childIndex?: number | null
   createdAt?: Date | string
@@ -472,6 +502,8 @@ export type ActionUpdateManyMutationInput = {
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
+  criticite?: Prisma.EnumActionCriticiteFieldUpdateOperationsInput | $Enums.ActionCriticite
+  photos?: Prisma.ActionUpdatephotosInput | string[]
   progress?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   childIndex?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -487,6 +519,8 @@ export type ActionUncheckedUpdateManyInput = {
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
+  criticite?: Prisma.EnumActionCriticiteFieldUpdateOperationsInput | $Enums.ActionCriticite
+  photos?: Prisma.ActionUpdatephotosInput | string[]
   progress?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   childIndex?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -503,6 +537,14 @@ export type ActionOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type StringNullableListFilter<$PrismaModel = never> = {
+  equals?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
+  has?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
+  hasEvery?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  hasSome?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  isEmpty?: boolean
+}
+
 export type ActionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   anomalyRef?: Prisma.SortOrder
@@ -512,6 +554,8 @@ export type ActionCountOrderByAggregateInput = {
   startDate?: Prisma.SortOrder
   dueDate?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  criticite?: Prisma.SortOrder
+  photos?: Prisma.SortOrder
   progress?: Prisma.SortOrder
   childIndex?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -532,6 +576,7 @@ export type ActionMaxOrderByAggregateInput = {
   startDate?: Prisma.SortOrder
   dueDate?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  criticite?: Prisma.SortOrder
   progress?: Prisma.SortOrder
   childIndex?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -547,6 +592,7 @@ export type ActionMinOrderByAggregateInput = {
   startDate?: Prisma.SortOrder
   dueDate?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  criticite?: Prisma.SortOrder
   progress?: Prisma.SortOrder
   childIndex?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -647,6 +693,19 @@ export type ActionUncheckedUpdateManyWithoutResponsibleNestedInput = {
   deleteMany?: Prisma.ActionScalarWhereInput | Prisma.ActionScalarWhereInput[]
 }
 
+export type ActionCreatephotosInput = {
+  set: string[]
+}
+
+export type EnumActionCriticiteFieldUpdateOperationsInput = {
+  set?: $Enums.ActionCriticite
+}
+
+export type ActionUpdatephotosInput = {
+  set?: string[]
+  push?: string | string[]
+}
+
 export type ActionCreateNestedOneWithoutChantiersInput = {
   create?: Prisma.XOR<Prisma.ActionCreateWithoutChantiersInput, Prisma.ActionUncheckedCreateWithoutChantiersInput>
   connectOrCreate?: Prisma.ActionCreateOrConnectWithoutChantiersInput
@@ -724,6 +783,8 @@ export type ActionCreateWithoutChantierInput = {
   startDate?: Date | string | null
   dueDate?: Date | string | null
   status?: $Enums.ProcessStatusEnum
+  criticite?: $Enums.ActionCriticite
+  photos?: Prisma.ActionCreatephotosInput | string[]
   progress?: number | null
   childIndex?: number | null
   createdAt?: Date | string
@@ -744,6 +805,8 @@ export type ActionUncheckedCreateWithoutChantierInput = {
   startDate?: Date | string | null
   dueDate?: Date | string | null
   status?: $Enums.ProcessStatusEnum
+  criticite?: $Enums.ActionCriticite
+  photos?: Prisma.ActionCreatephotosInput | string[]
   progress?: number | null
   childIndex?: number | null
   createdAt?: Date | string
@@ -793,6 +856,8 @@ export type ActionScalarWhereInput = {
   startDate?: Prisma.DateTimeNullableFilter<"Action"> | Date | string | null
   dueDate?: Prisma.DateTimeNullableFilter<"Action"> | Date | string | null
   status?: Prisma.EnumProcessStatusEnumFilter<"Action"> | $Enums.ProcessStatusEnum
+  criticite?: Prisma.EnumActionCriticiteFilter<"Action"> | $Enums.ActionCriticite
+  photos?: Prisma.StringNullableListFilter<"Action">
   progress?: Prisma.IntNullableFilter<"Action"> | number | null
   childIndex?: Prisma.IntNullableFilter<"Action"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Action"> | Date | string
@@ -806,6 +871,8 @@ export type ActionCreateWithoutResponsibleInput = {
   startDate?: Date | string | null
   dueDate?: Date | string | null
   status?: $Enums.ProcessStatusEnum
+  criticite?: $Enums.ActionCriticite
+  photos?: Prisma.ActionCreatephotosInput | string[]
   progress?: number | null
   childIndex?: number | null
   createdAt?: Date | string
@@ -826,6 +893,8 @@ export type ActionUncheckedCreateWithoutResponsibleInput = {
   startDate?: Date | string | null
   dueDate?: Date | string | null
   status?: $Enums.ProcessStatusEnum
+  criticite?: $Enums.ActionCriticite
+  photos?: Prisma.ActionCreatephotosInput | string[]
   progress?: number | null
   childIndex?: number | null
   createdAt?: Date | string
@@ -870,6 +939,8 @@ export type ActionCreateWithoutChantiersInput = {
   startDate?: Date | string | null
   dueDate?: Date | string | null
   status?: $Enums.ProcessStatusEnum
+  criticite?: $Enums.ActionCriticite
+  photos?: Prisma.ActionCreatephotosInput | string[]
   progress?: number | null
   childIndex?: number | null
   createdAt?: Date | string
@@ -891,6 +962,8 @@ export type ActionUncheckedCreateWithoutChantiersInput = {
   startDate?: Date | string | null
   dueDate?: Date | string | null
   status?: $Enums.ProcessStatusEnum
+  criticite?: $Enums.ActionCriticite
+  photos?: Prisma.ActionCreatephotosInput | string[]
   progress?: number | null
   childIndex?: number | null
   createdAt?: Date | string
@@ -924,6 +997,8 @@ export type ActionUpdateWithoutChantiersInput = {
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
+  criticite?: Prisma.EnumActionCriticiteFieldUpdateOperationsInput | $Enums.ActionCriticite
+  photos?: Prisma.ActionUpdatephotosInput | string[]
   progress?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   childIndex?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -945,6 +1020,8 @@ export type ActionUncheckedUpdateWithoutChantiersInput = {
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
+  criticite?: Prisma.EnumActionCriticiteFieldUpdateOperationsInput | $Enums.ActionCriticite
+  photos?: Prisma.ActionUpdatephotosInput | string[]
   progress?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   childIndex?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -962,6 +1039,8 @@ export type ActionCreateWithoutChildrenInput = {
   startDate?: Date | string | null
   dueDate?: Date | string | null
   status?: $Enums.ProcessStatusEnum
+  criticite?: $Enums.ActionCriticite
+  photos?: Prisma.ActionCreatephotosInput | string[]
   progress?: number | null
   childIndex?: number | null
   createdAt?: Date | string
@@ -983,6 +1062,8 @@ export type ActionUncheckedCreateWithoutChildrenInput = {
   startDate?: Date | string | null
   dueDate?: Date | string | null
   status?: $Enums.ProcessStatusEnum
+  criticite?: $Enums.ActionCriticite
+  photos?: Prisma.ActionCreatephotosInput | string[]
   progress?: number | null
   childIndex?: number | null
   createdAt?: Date | string
@@ -1005,6 +1086,8 @@ export type ActionCreateWithoutChildOfInput = {
   startDate?: Date | string | null
   dueDate?: Date | string | null
   status?: $Enums.ProcessStatusEnum
+  criticite?: $Enums.ActionCriticite
+  photos?: Prisma.ActionCreatephotosInput | string[]
   progress?: number | null
   childIndex?: number | null
   createdAt?: Date | string
@@ -1026,6 +1109,8 @@ export type ActionUncheckedCreateWithoutChildOfInput = {
   startDate?: Date | string | null
   dueDate?: Date | string | null
   status?: $Enums.ProcessStatusEnum
+  criticite?: $Enums.ActionCriticite
+  photos?: Prisma.ActionCreatephotosInput | string[]
   progress?: number | null
   childIndex?: number | null
   createdAt?: Date | string
@@ -1059,6 +1144,8 @@ export type ActionUpdateWithoutChildrenInput = {
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
+  criticite?: Prisma.EnumActionCriticiteFieldUpdateOperationsInput | $Enums.ActionCriticite
+  photos?: Prisma.ActionUpdatephotosInput | string[]
   progress?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   childIndex?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1080,6 +1167,8 @@ export type ActionUncheckedUpdateWithoutChildrenInput = {
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
+  criticite?: Prisma.EnumActionCriticiteFieldUpdateOperationsInput | $Enums.ActionCriticite
+  photos?: Prisma.ActionUpdatephotosInput | string[]
   progress?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   childIndex?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1108,6 +1197,8 @@ export type ActionUpdateWithoutChildOfInput = {
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
+  criticite?: Prisma.EnumActionCriticiteFieldUpdateOperationsInput | $Enums.ActionCriticite
+  photos?: Prisma.ActionUpdatephotosInput | string[]
   progress?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   childIndex?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1129,6 +1220,8 @@ export type ActionUncheckedUpdateWithoutChildOfInput = {
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
+  criticite?: Prisma.EnumActionCriticiteFieldUpdateOperationsInput | $Enums.ActionCriticite
+  photos?: Prisma.ActionUpdatephotosInput | string[]
   progress?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   childIndex?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1146,6 +1239,8 @@ export type ActionCreateWithoutPreviousOfInput = {
   startDate?: Date | string | null
   dueDate?: Date | string | null
   status?: $Enums.ProcessStatusEnum
+  criticite?: $Enums.ActionCriticite
+  photos?: Prisma.ActionCreatephotosInput | string[]
   progress?: number | null
   childIndex?: number | null
   createdAt?: Date | string
@@ -1167,6 +1262,8 @@ export type ActionUncheckedCreateWithoutPreviousOfInput = {
   startDate?: Date | string | null
   dueDate?: Date | string | null
   status?: $Enums.ProcessStatusEnum
+  criticite?: $Enums.ActionCriticite
+  photos?: Prisma.ActionCreatephotosInput | string[]
   progress?: number | null
   childIndex?: number | null
   createdAt?: Date | string
@@ -1189,6 +1286,8 @@ export type ActionCreateWithoutPredecessorsInput = {
   startDate?: Date | string | null
   dueDate?: Date | string | null
   status?: $Enums.ProcessStatusEnum
+  criticite?: $Enums.ActionCriticite
+  photos?: Prisma.ActionCreatephotosInput | string[]
   progress?: number | null
   childIndex?: number | null
   createdAt?: Date | string
@@ -1210,6 +1309,8 @@ export type ActionUncheckedCreateWithoutPredecessorsInput = {
   startDate?: Date | string | null
   dueDate?: Date | string | null
   status?: $Enums.ProcessStatusEnum
+  criticite?: $Enums.ActionCriticite
+  photos?: Prisma.ActionCreatephotosInput | string[]
   progress?: number | null
   childIndex?: number | null
   createdAt?: Date | string
@@ -1243,6 +1344,8 @@ export type ActionUpdateWithoutPreviousOfInput = {
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
+  criticite?: Prisma.EnumActionCriticiteFieldUpdateOperationsInput | $Enums.ActionCriticite
+  photos?: Prisma.ActionUpdatephotosInput | string[]
   progress?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   childIndex?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1264,6 +1367,8 @@ export type ActionUncheckedUpdateWithoutPreviousOfInput = {
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
+  criticite?: Prisma.EnumActionCriticiteFieldUpdateOperationsInput | $Enums.ActionCriticite
+  photos?: Prisma.ActionUpdatephotosInput | string[]
   progress?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   childIndex?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1292,6 +1397,8 @@ export type ActionUpdateWithoutPredecessorsInput = {
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
+  criticite?: Prisma.EnumActionCriticiteFieldUpdateOperationsInput | $Enums.ActionCriticite
+  photos?: Prisma.ActionUpdatephotosInput | string[]
   progress?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   childIndex?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1313,6 +1420,8 @@ export type ActionUncheckedUpdateWithoutPredecessorsInput = {
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
+  criticite?: Prisma.EnumActionCriticiteFieldUpdateOperationsInput | $Enums.ActionCriticite
+  photos?: Prisma.ActionUpdatephotosInput | string[]
   progress?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   childIndex?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1331,6 +1440,8 @@ export type ActionCreateManyChantierInput = {
   startDate?: Date | string | null
   dueDate?: Date | string | null
   status?: $Enums.ProcessStatusEnum
+  criticite?: $Enums.ActionCriticite
+  photos?: Prisma.ActionCreatephotosInput | string[]
   progress?: number | null
   childIndex?: number | null
   createdAt?: Date | string
@@ -1344,6 +1455,8 @@ export type ActionUpdateWithoutChantierInput = {
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
+  criticite?: Prisma.EnumActionCriticiteFieldUpdateOperationsInput | $Enums.ActionCriticite
+  photos?: Prisma.ActionUpdatephotosInput | string[]
   progress?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   childIndex?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1364,6 +1477,8 @@ export type ActionUncheckedUpdateWithoutChantierInput = {
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
+  criticite?: Prisma.EnumActionCriticiteFieldUpdateOperationsInput | $Enums.ActionCriticite
+  photos?: Prisma.ActionUpdatephotosInput | string[]
   progress?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   childIndex?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1383,6 +1498,8 @@ export type ActionUncheckedUpdateManyWithoutChantierInput = {
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
+  criticite?: Prisma.EnumActionCriticiteFieldUpdateOperationsInput | $Enums.ActionCriticite
+  photos?: Prisma.ActionUpdatephotosInput | string[]
   progress?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   childIndex?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1397,6 +1514,8 @@ export type ActionCreateManyResponsibleInput = {
   startDate?: Date | string | null
   dueDate?: Date | string | null
   status?: $Enums.ProcessStatusEnum
+  criticite?: $Enums.ActionCriticite
+  photos?: Prisma.ActionCreatephotosInput | string[]
   progress?: number | null
   childIndex?: number | null
   createdAt?: Date | string
@@ -1410,6 +1529,8 @@ export type ActionUpdateWithoutResponsibleInput = {
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
+  criticite?: Prisma.EnumActionCriticiteFieldUpdateOperationsInput | $Enums.ActionCriticite
+  photos?: Prisma.ActionUpdatephotosInput | string[]
   progress?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   childIndex?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1430,6 +1551,8 @@ export type ActionUncheckedUpdateWithoutResponsibleInput = {
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
+  criticite?: Prisma.EnumActionCriticiteFieldUpdateOperationsInput | $Enums.ActionCriticite
+  photos?: Prisma.ActionUpdatephotosInput | string[]
   progress?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   childIndex?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1449,6 +1572,8 @@ export type ActionUncheckedUpdateManyWithoutResponsibleInput = {
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
+  criticite?: Prisma.EnumActionCriticiteFieldUpdateOperationsInput | $Enums.ActionCriticite
+  photos?: Prisma.ActionUpdatephotosInput | string[]
   progress?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   childIndex?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1531,6 +1656,8 @@ export type ActionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   startDate?: boolean
   dueDate?: boolean
   status?: boolean
+  criticite?: boolean
+  photos?: boolean
   progress?: boolean
   childIndex?: boolean
   createdAt?: boolean
@@ -1554,6 +1681,8 @@ export type ActionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   startDate?: boolean
   dueDate?: boolean
   status?: boolean
+  criticite?: boolean
+  photos?: boolean
   progress?: boolean
   childIndex?: boolean
   createdAt?: boolean
@@ -1571,6 +1700,8 @@ export type ActionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   startDate?: boolean
   dueDate?: boolean
   status?: boolean
+  criticite?: boolean
+  photos?: boolean
   progress?: boolean
   childIndex?: boolean
   createdAt?: boolean
@@ -1588,13 +1719,15 @@ export type ActionSelectScalar = {
   startDate?: boolean
   dueDate?: boolean
   status?: boolean
+  criticite?: boolean
+  photos?: boolean
   progress?: boolean
   childIndex?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ActionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "anomalyRef" | "correctiveAction" | "idResponsible" | "idChantier" | "startDate" | "dueDate" | "status" | "progress" | "childIndex" | "createdAt" | "updatedAt", ExtArgs["result"]["action"]>
+export type ActionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "anomalyRef" | "correctiveAction" | "idResponsible" | "idChantier" | "startDate" | "dueDate" | "status" | "criticite" | "photos" | "progress" | "childIndex" | "createdAt" | "updatedAt", ExtArgs["result"]["action"]>
 export type ActionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   chantiers?: boolean | Prisma.Action$chantiersArgs<ExtArgs>
   children?: boolean | Prisma.Action$childrenArgs<ExtArgs>
@@ -1634,6 +1767,8 @@ export type $ActionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     startDate: Date | null
     dueDate: Date | null
     status: $Enums.ProcessStatusEnum
+    criticite: $Enums.ActionCriticite
+    photos: string[]
     progress: number | null
     childIndex: number | null
     createdAt: Date
@@ -2076,6 +2211,8 @@ export interface ActionFieldRefs {
   readonly startDate: Prisma.FieldRef<"Action", 'DateTime'>
   readonly dueDate: Prisma.FieldRef<"Action", 'DateTime'>
   readonly status: Prisma.FieldRef<"Action", 'ProcessStatusEnum'>
+  readonly criticite: Prisma.FieldRef<"Action", 'ActionCriticite'>
+  readonly photos: Prisma.FieldRef<"Action", 'String[]'>
   readonly progress: Prisma.FieldRef<"Action", 'Int'>
   readonly childIndex: Prisma.FieldRef<"Action", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Action", 'DateTime'>

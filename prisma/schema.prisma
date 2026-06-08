@@ -197,6 +197,8 @@ model Action {
   startDate        DateTime?         @map("start_date") @db.Timestamp(6)
   dueDate          DateTime?         @map("due_date") @db.Timestamp(6)
   status           ProcessStatusEnum @default(Initialise)
+  criticite        ActionCriticite   @default(MOYEN) @map("criticite")
+  photos           String[]
   progress         Int?
   childIndex       Int?              @map("child_index")
   createdAt        DateTime          @default(now()) @map("created_at") @db.Timestamptz(6)
@@ -243,6 +245,17 @@ model ActionPrevious {
 
   @@id([actionId, previousId])
   @@map("action_previous")
+}
+
+// ── Action Criticité ──────────────────────────────────────────────────────────
+
+enum ActionCriticite {
+  FAIBLE   @map("faible")
+  MOYEN    @map("moyen")
+  ELEVE    @map("eleve")
+  CRITIQUE @map("critique")
+
+  @@map("action_criticite")
 }
 
 // ── Process Status ────────────────────────────────────────────────────────────
@@ -598,7 +611,6 @@ model Documentation {
   reserves                                Reserve[]
   interventions                           Intervention[]
   participants                            Participant[]
-  pvEtanchVersions                        PvEtanchVersion[]
 
   @@index([idChantier])
   @@index([typeDoc])
@@ -903,20 +915,6 @@ model DossierExpertise {
 
   @@index([statut])
   @@map("dossier_expertise")
-}
-
-// ── Versioning des PV étanchéité ─────────────────────────────────────────────
-
-model PvEtanchVersion {
-  id              String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  idDocumentation String        @map("id_documentation") @db.Uuid
-  versionNum      Int           @map("version_num")
-  snapshot        Json
-  savedAt         DateTime      @default(now()) @map("saved_at") @db.Timestamp(6)
-  documentation   Documentation @relation(fields: [idDocumentation], references: [id], onDelete: Cascade)
-
-  @@index([idDocumentation])
-  @@map("pv_etan_version")
 }
 
 model Reserve {

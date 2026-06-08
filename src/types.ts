@@ -201,6 +201,7 @@ export type CreatePvEtancheiteRequest = {
     autresEcartsObservations?: string
     nomSmac: string
     signatureSmac: unknown
+    status: ProcessStatus
     receptionAcceptee: boolean
     miseEnConformiteLe: string
     envoyerEmail: boolean

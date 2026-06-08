@@ -2,6 +2,10 @@ import {prisma} from '../db/prisma.js'
 import {TypeDocEnum, ConformiteValue, PlanReperage, NatureTravaux} from '../generated/prisma/enums.js'
 import type {Prisma} from '../generated/prisma/client.js'
 import type {CreatePvEtancheiteRequest, UpdatePvEtancheiteRequest} from '../types.js'
+import {fileStorageService} from './file-storage.service.js'
+
+// ── Status mappers ────────────────────────────────────────────────────────────
+
 
 // ── Enum mappers ──────────────────────────────────────────────────────────────
 
@@ -36,7 +40,7 @@ const pvInclude = {
     pvReceptionEtancheite: true,
     participants: true,
     reserves: true,
-    pvEtanchVersions: {orderBy: {versionNum: 'asc' as const}},
+    documents: {orderBy: {version: 'asc' as const}},
 } satisfies Prisma.DocumentationInclude
 
 type PvDoc = Prisma.DocumentationGetPayload<{include: typeof pvInclude}>
@@ -90,11 +94,11 @@ function mapPvBase(doc: PvDoc) {
 function mapPv(doc: PvDoc) {
     return {
         ...mapPvBase(doc),
-        versions: doc.pvEtanchVersions.map(v => ({
-            versionId:  v.id,
-            versionNum: v.versionNum,
-            savedAt:    v.savedAt.toISOString(),
-            snapshot:   v.snapshot,
+        versions: doc.documents.map(d => ({
+            versionId:  d.id,
+            versionNum: d.version as number,
+            savedAt:    d.dateGeneration.toISOString(),
+            urlPdf:     d.urlPdf,
         })),
     }
 }
@@ -253,7 +257,7 @@ export const pvEtancheiteService = {
                 }
             }
 
-            await tx.documentation.update({where: {id}, data: {updatedAt: new Date()}})
+            await tx.documentation.update({where: {id}, data: {updatedAt: new Date(), status: 'EnCours'}})
 
             const updated = await tx.documentation.findUniqueOrThrow({
                 where: {id},
@@ -263,19 +267,36 @@ export const pvEtancheiteService = {
         })
     },
 
-    async createVersion(pvId: string, snapshot: unknown): Promise<void> {
-        const agg = await prisma.pvEtanchVersion.aggregate({
-            where:  {idDocumentation: pvId},
-            _max:   {versionNum: true},
+    async createVersion(pvId: string, pdfBuffer: Buffer): Promise<void> {
+        // Récupère le chantierId depuis la documentation
+        const doc = await prisma.documentation.findUnique({where: {id: pvId}, select: {idChantier: true}})
+        if (!doc) throw new Error(`Documentation ${pvId} introuvable`)
+
+        const agg = await prisma.document.aggregate({
+            where: {idDocumentation: pvId},
+            _max:  {version: true},
         })
-        const nextNum = (agg._max.versionNum ?? 0) + 1
-        await prisma.pvEtanchVersion.create({
+        const nextNum = (agg._max.version as number ?? 0) + 1
+
+        // Chemin Azure : {chantierId}/version-fiche/{pvId}_v{n}.pdf
+        const blobPath = `${doc.idChantier}/version-fiche/${pvId}_v${nextNum}.pdf`
+        await fileStorageService.storeBlob(pdfBuffer, blobPath, 'application/pdf')
+
+        await prisma.document.create({
             data: {
                 idDocumentation: pvId,
-                versionNum:      nextNum,
-                snapshot:        snapshot as Prisma.InputJsonValue,
+                version:         nextNum,
+                urlPdf:          blobPath,
             },
         })
+    },
+
+    async streamVersion(docId: string): Promise<{stream: import('node:stream').Readable; path: string} | null> {
+        const versionDoc = await prisma.document.findUnique({where: {id: docId}})
+        if (!versionDoc) return null
+        const stream = await fileStorageService.getDownloadStream(versionDoc.urlPdf)
+        if (!stream) return null
+        return {stream, path: versionDoc.urlPdf}
     },
 
     async delete(id: string): Promise<boolean> {
