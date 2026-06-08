@@ -31,6 +31,7 @@ export type InterventionMinAggregateOutputType = {
   idChantier: string | null
   dateAssignation: Date | null
   description: string | null
+  mode: $Enums.ModeAffectationIntervention | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -42,6 +43,7 @@ export type InterventionMaxAggregateOutputType = {
   idChantier: string | null
   dateAssignation: Date | null
   description: string | null
+  mode: $Enums.ModeAffectationIntervention | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -53,6 +55,7 @@ export type InterventionCountAggregateOutputType = {
   idChantier: number
   dateAssignation: number
   description: number
+  mode: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -66,6 +69,7 @@ export type InterventionMinAggregateInputType = {
   idChantier?: true
   dateAssignation?: true
   description?: true
+  mode?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -77,6 +81,7 @@ export type InterventionMaxAggregateInputType = {
   idChantier?: true
   dateAssignation?: true
   description?: true
+  mode?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -88,6 +93,7 @@ export type InterventionCountAggregateInputType = {
   idChantier?: true
   dateAssignation?: true
   description?: true
+  mode?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -168,10 +174,11 @@ export type InterventionGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
 export type InterventionGroupByOutputType = {
   id: string
   idIntervenant: string
-  idDocumentation: string
+  idDocumentation: string | null
   idChantier: string
   dateAssignation: Date
   description: string | null
+  mode: $Enums.ModeAffectationIntervention
   createdAt: Date
   updatedAt: Date
   _count: InterventionCountAggregateOutputType | null
@@ -200,24 +207,26 @@ export type InterventionWhereInput = {
   NOT?: Prisma.InterventionWhereInput | Prisma.InterventionWhereInput[]
   id?: Prisma.UuidFilter<"Intervention"> | string
   idIntervenant?: Prisma.UuidFilter<"Intervention"> | string
-  idDocumentation?: Prisma.UuidFilter<"Intervention"> | string
+  idDocumentation?: Prisma.UuidNullableFilter<"Intervention"> | string | null
   idChantier?: Prisma.UuidFilter<"Intervention"> | string
   dateAssignation?: Prisma.DateTimeFilter<"Intervention"> | Date | string
   description?: Prisma.StringNullableFilter<"Intervention"> | string | null
+  mode?: Prisma.EnumModeAffectationInterventionFilter<"Intervention"> | $Enums.ModeAffectationIntervention
   createdAt?: Prisma.DateTimeFilter<"Intervention"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Intervention"> | Date | string
   intervenant?: Prisma.XOR<Prisma.IntervenantScalarRelationFilter, Prisma.IntervenantWhereInput>
   chantier?: Prisma.XOR<Prisma.ChantierScalarRelationFilter, Prisma.ChantierWhereInput>
-  documentation?: Prisma.XOR<Prisma.DocumentationScalarRelationFilter, Prisma.DocumentationWhereInput>
+  documentation?: Prisma.XOR<Prisma.DocumentationNullableScalarRelationFilter, Prisma.DocumentationWhereInput> | null
 }
 
 export type InterventionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   idIntervenant?: Prisma.SortOrder
-  idDocumentation?: Prisma.SortOrder
+  idDocumentation?: Prisma.SortOrderInput | Prisma.SortOrder
   idChantier?: Prisma.SortOrder
   dateAssignation?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
+  mode?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   intervenant?: Prisma.IntervenantOrderByWithRelationInput
@@ -231,24 +240,26 @@ export type InterventionWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.InterventionWhereInput[]
   NOT?: Prisma.InterventionWhereInput | Prisma.InterventionWhereInput[]
   idIntervenant?: Prisma.UuidFilter<"Intervention"> | string
-  idDocumentation?: Prisma.UuidFilter<"Intervention"> | string
+  idDocumentation?: Prisma.UuidNullableFilter<"Intervention"> | string | null
   idChantier?: Prisma.UuidFilter<"Intervention"> | string
   dateAssignation?: Prisma.DateTimeFilter<"Intervention"> | Date | string
   description?: Prisma.StringNullableFilter<"Intervention"> | string | null
+  mode?: Prisma.EnumModeAffectationInterventionFilter<"Intervention"> | $Enums.ModeAffectationIntervention
   createdAt?: Prisma.DateTimeFilter<"Intervention"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Intervention"> | Date | string
   intervenant?: Prisma.XOR<Prisma.IntervenantScalarRelationFilter, Prisma.IntervenantWhereInput>
   chantier?: Prisma.XOR<Prisma.ChantierScalarRelationFilter, Prisma.ChantierWhereInput>
-  documentation?: Prisma.XOR<Prisma.DocumentationScalarRelationFilter, Prisma.DocumentationWhereInput>
+  documentation?: Prisma.XOR<Prisma.DocumentationNullableScalarRelationFilter, Prisma.DocumentationWhereInput> | null
 }, "id">
 
 export type InterventionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   idIntervenant?: Prisma.SortOrder
-  idDocumentation?: Prisma.SortOrder
+  idDocumentation?: Prisma.SortOrderInput | Prisma.SortOrder
   idChantier?: Prisma.SortOrder
   dateAssignation?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
+  mode?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.InterventionCountOrderByAggregateInput
@@ -262,10 +273,11 @@ export type InterventionScalarWhereWithAggregatesInput = {
   NOT?: Prisma.InterventionScalarWhereWithAggregatesInput | Prisma.InterventionScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"Intervention"> | string
   idIntervenant?: Prisma.UuidWithAggregatesFilter<"Intervention"> | string
-  idDocumentation?: Prisma.UuidWithAggregatesFilter<"Intervention"> | string
+  idDocumentation?: Prisma.UuidNullableWithAggregatesFilter<"Intervention"> | string | null
   idChantier?: Prisma.UuidWithAggregatesFilter<"Intervention"> | string
   dateAssignation?: Prisma.DateTimeWithAggregatesFilter<"Intervention"> | Date | string
   description?: Prisma.StringNullableWithAggregatesFilter<"Intervention"> | string | null
+  mode?: Prisma.EnumModeAffectationInterventionWithAggregatesFilter<"Intervention"> | $Enums.ModeAffectationIntervention
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Intervention"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Intervention"> | Date | string
 }
@@ -274,20 +286,22 @@ export type InterventionCreateInput = {
   id?: string
   dateAssignation: Date | string
   description?: string | null
+  mode?: $Enums.ModeAffectationIntervention
   createdAt?: Date | string
   updatedAt?: Date | string
   intervenant: Prisma.IntervenantCreateNestedOneWithoutInterventionsInput
   chantier: Prisma.ChantierCreateNestedOneWithoutInterventionsInput
-  documentation: Prisma.DocumentationCreateNestedOneWithoutInterventionsInput
+  documentation?: Prisma.DocumentationCreateNestedOneWithoutInterventionsInput
 }
 
 export type InterventionUncheckedCreateInput = {
   id?: string
   idIntervenant: string
-  idDocumentation: string
+  idDocumentation?: string | null
   idChantier: string
   dateAssignation: Date | string
   description?: string | null
+  mode?: $Enums.ModeAffectationIntervention
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -296,20 +310,22 @@ export type InterventionUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   dateAssignation?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumModeAffectationInterventionFieldUpdateOperationsInput | $Enums.ModeAffectationIntervention
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   intervenant?: Prisma.IntervenantUpdateOneRequiredWithoutInterventionsNestedInput
   chantier?: Prisma.ChantierUpdateOneRequiredWithoutInterventionsNestedInput
-  documentation?: Prisma.DocumentationUpdateOneRequiredWithoutInterventionsNestedInput
+  documentation?: Prisma.DocumentationUpdateOneWithoutInterventionsNestedInput
 }
 
 export type InterventionUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idIntervenant?: Prisma.StringFieldUpdateOperationsInput | string
-  idDocumentation?: Prisma.StringFieldUpdateOperationsInput | string
+  idDocumentation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   dateAssignation?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumModeAffectationInterventionFieldUpdateOperationsInput | $Enums.ModeAffectationIntervention
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -317,10 +333,11 @@ export type InterventionUncheckedUpdateInput = {
 export type InterventionCreateManyInput = {
   id?: string
   idIntervenant: string
-  idDocumentation: string
+  idDocumentation?: string | null
   idChantier: string
   dateAssignation: Date | string
   description?: string | null
+  mode?: $Enums.ModeAffectationIntervention
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -329,6 +346,7 @@ export type InterventionUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   dateAssignation?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumModeAffectationInterventionFieldUpdateOperationsInput | $Enums.ModeAffectationIntervention
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -336,10 +354,11 @@ export type InterventionUpdateManyMutationInput = {
 export type InterventionUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idIntervenant?: Prisma.StringFieldUpdateOperationsInput | string
-  idDocumentation?: Prisma.StringFieldUpdateOperationsInput | string
+  idDocumentation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   dateAssignation?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumModeAffectationInterventionFieldUpdateOperationsInput | $Enums.ModeAffectationIntervention
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -361,6 +380,7 @@ export type InterventionCountOrderByAggregateInput = {
   idChantier?: Prisma.SortOrder
   dateAssignation?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  mode?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -372,6 +392,7 @@ export type InterventionMaxOrderByAggregateInput = {
   idChantier?: Prisma.SortOrder
   dateAssignation?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  mode?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -383,6 +404,7 @@ export type InterventionMinOrderByAggregateInput = {
   idChantier?: Prisma.SortOrder
   dateAssignation?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  mode?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -471,6 +493,10 @@ export type InterventionUncheckedUpdateManyWithoutIntervenantNestedInput = {
   deleteMany?: Prisma.InterventionScalarWhereInput | Prisma.InterventionScalarWhereInput[]
 }
 
+export type EnumModeAffectationInterventionFieldUpdateOperationsInput = {
+  set?: $Enums.ModeAffectationIntervention
+}
+
 export type InterventionCreateNestedManyWithoutDocumentationInput = {
   create?: Prisma.XOR<Prisma.InterventionCreateWithoutDocumentationInput, Prisma.InterventionUncheckedCreateWithoutDocumentationInput> | Prisma.InterventionCreateWithoutDocumentationInput[] | Prisma.InterventionUncheckedCreateWithoutDocumentationInput[]
   connectOrCreate?: Prisma.InterventionCreateOrConnectWithoutDocumentationInput | Prisma.InterventionCreateOrConnectWithoutDocumentationInput[]
@@ -517,18 +543,20 @@ export type InterventionCreateWithoutChantierInput = {
   id?: string
   dateAssignation: Date | string
   description?: string | null
+  mode?: $Enums.ModeAffectationIntervention
   createdAt?: Date | string
   updatedAt?: Date | string
   intervenant: Prisma.IntervenantCreateNestedOneWithoutInterventionsInput
-  documentation: Prisma.DocumentationCreateNestedOneWithoutInterventionsInput
+  documentation?: Prisma.DocumentationCreateNestedOneWithoutInterventionsInput
 }
 
 export type InterventionUncheckedCreateWithoutChantierInput = {
   id?: string
   idIntervenant: string
-  idDocumentation: string
+  idDocumentation?: string | null
   dateAssignation: Date | string
   description?: string | null
+  mode?: $Enums.ModeAffectationIntervention
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -565,10 +593,11 @@ export type InterventionScalarWhereInput = {
   NOT?: Prisma.InterventionScalarWhereInput | Prisma.InterventionScalarWhereInput[]
   id?: Prisma.UuidFilter<"Intervention"> | string
   idIntervenant?: Prisma.UuidFilter<"Intervention"> | string
-  idDocumentation?: Prisma.UuidFilter<"Intervention"> | string
+  idDocumentation?: Prisma.UuidNullableFilter<"Intervention"> | string | null
   idChantier?: Prisma.UuidFilter<"Intervention"> | string
   dateAssignation?: Prisma.DateTimeFilter<"Intervention"> | Date | string
   description?: Prisma.StringNullableFilter<"Intervention"> | string | null
+  mode?: Prisma.EnumModeAffectationInterventionFilter<"Intervention"> | $Enums.ModeAffectationIntervention
   createdAt?: Prisma.DateTimeFilter<"Intervention"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Intervention"> | Date | string
 }
@@ -577,18 +606,20 @@ export type InterventionCreateWithoutIntervenantInput = {
   id?: string
   dateAssignation: Date | string
   description?: string | null
+  mode?: $Enums.ModeAffectationIntervention
   createdAt?: Date | string
   updatedAt?: Date | string
   chantier: Prisma.ChantierCreateNestedOneWithoutInterventionsInput
-  documentation: Prisma.DocumentationCreateNestedOneWithoutInterventionsInput
+  documentation?: Prisma.DocumentationCreateNestedOneWithoutInterventionsInput
 }
 
 export type InterventionUncheckedCreateWithoutIntervenantInput = {
   id?: string
-  idDocumentation: string
+  idDocumentation?: string | null
   idChantier: string
   dateAssignation: Date | string
   description?: string | null
+  mode?: $Enums.ModeAffectationIntervention
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -623,6 +654,7 @@ export type InterventionCreateWithoutDocumentationInput = {
   id?: string
   dateAssignation: Date | string
   description?: string | null
+  mode?: $Enums.ModeAffectationIntervention
   createdAt?: Date | string
   updatedAt?: Date | string
   intervenant: Prisma.IntervenantCreateNestedOneWithoutInterventionsInput
@@ -635,6 +667,7 @@ export type InterventionUncheckedCreateWithoutDocumentationInput = {
   idChantier: string
   dateAssignation: Date | string
   description?: string | null
+  mode?: $Enums.ModeAffectationIntervention
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -668,9 +701,10 @@ export type InterventionUpdateManyWithWhereWithoutDocumentationInput = {
 export type InterventionCreateManyChantierInput = {
   id?: string
   idIntervenant: string
-  idDocumentation: string
+  idDocumentation?: string | null
   dateAssignation: Date | string
   description?: string | null
+  mode?: $Enums.ModeAffectationIntervention
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -679,18 +713,20 @@ export type InterventionUpdateWithoutChantierInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   dateAssignation?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumModeAffectationInterventionFieldUpdateOperationsInput | $Enums.ModeAffectationIntervention
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   intervenant?: Prisma.IntervenantUpdateOneRequiredWithoutInterventionsNestedInput
-  documentation?: Prisma.DocumentationUpdateOneRequiredWithoutInterventionsNestedInput
+  documentation?: Prisma.DocumentationUpdateOneWithoutInterventionsNestedInput
 }
 
 export type InterventionUncheckedUpdateWithoutChantierInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idIntervenant?: Prisma.StringFieldUpdateOperationsInput | string
-  idDocumentation?: Prisma.StringFieldUpdateOperationsInput | string
+  idDocumentation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateAssignation?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumModeAffectationInterventionFieldUpdateOperationsInput | $Enums.ModeAffectationIntervention
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -698,19 +734,21 @@ export type InterventionUncheckedUpdateWithoutChantierInput = {
 export type InterventionUncheckedUpdateManyWithoutChantierInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idIntervenant?: Prisma.StringFieldUpdateOperationsInput | string
-  idDocumentation?: Prisma.StringFieldUpdateOperationsInput | string
+  idDocumentation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateAssignation?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumModeAffectationInterventionFieldUpdateOperationsInput | $Enums.ModeAffectationIntervention
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type InterventionCreateManyIntervenantInput = {
   id?: string
-  idDocumentation: string
+  idDocumentation?: string | null
   idChantier: string
   dateAssignation: Date | string
   description?: string | null
+  mode?: $Enums.ModeAffectationIntervention
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -719,28 +757,31 @@ export type InterventionUpdateWithoutIntervenantInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   dateAssignation?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumModeAffectationInterventionFieldUpdateOperationsInput | $Enums.ModeAffectationIntervention
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   chantier?: Prisma.ChantierUpdateOneRequiredWithoutInterventionsNestedInput
-  documentation?: Prisma.DocumentationUpdateOneRequiredWithoutInterventionsNestedInput
+  documentation?: Prisma.DocumentationUpdateOneWithoutInterventionsNestedInput
 }
 
 export type InterventionUncheckedUpdateWithoutIntervenantInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  idDocumentation?: Prisma.StringFieldUpdateOperationsInput | string
+  idDocumentation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   dateAssignation?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumModeAffectationInterventionFieldUpdateOperationsInput | $Enums.ModeAffectationIntervention
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type InterventionUncheckedUpdateManyWithoutIntervenantInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  idDocumentation?: Prisma.StringFieldUpdateOperationsInput | string
+  idDocumentation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   dateAssignation?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumModeAffectationInterventionFieldUpdateOperationsInput | $Enums.ModeAffectationIntervention
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -751,6 +792,7 @@ export type InterventionCreateManyDocumentationInput = {
   idChantier: string
   dateAssignation: Date | string
   description?: string | null
+  mode?: $Enums.ModeAffectationIntervention
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -759,6 +801,7 @@ export type InterventionUpdateWithoutDocumentationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   dateAssignation?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumModeAffectationInterventionFieldUpdateOperationsInput | $Enums.ModeAffectationIntervention
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   intervenant?: Prisma.IntervenantUpdateOneRequiredWithoutInterventionsNestedInput
@@ -771,6 +814,7 @@ export type InterventionUncheckedUpdateWithoutDocumentationInput = {
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   dateAssignation?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumModeAffectationInterventionFieldUpdateOperationsInput | $Enums.ModeAffectationIntervention
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -781,6 +825,7 @@ export type InterventionUncheckedUpdateManyWithoutDocumentationInput = {
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
   dateAssignation?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumModeAffectationInterventionFieldUpdateOperationsInput | $Enums.ModeAffectationIntervention
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -794,11 +839,12 @@ export type InterventionSelect<ExtArgs extends runtime.Types.Extensions.Internal
   idChantier?: boolean
   dateAssignation?: boolean
   description?: boolean
+  mode?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   intervenant?: boolean | Prisma.IntervenantDefaultArgs<ExtArgs>
   chantier?: boolean | Prisma.ChantierDefaultArgs<ExtArgs>
-  documentation?: boolean | Prisma.DocumentationDefaultArgs<ExtArgs>
+  documentation?: boolean | Prisma.Intervention$documentationArgs<ExtArgs>
 }, ExtArgs["result"]["intervention"]>
 
 export type InterventionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -808,11 +854,12 @@ export type InterventionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   idChantier?: boolean
   dateAssignation?: boolean
   description?: boolean
+  mode?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   intervenant?: boolean | Prisma.IntervenantDefaultArgs<ExtArgs>
   chantier?: boolean | Prisma.ChantierDefaultArgs<ExtArgs>
-  documentation?: boolean | Prisma.DocumentationDefaultArgs<ExtArgs>
+  documentation?: boolean | Prisma.Intervention$documentationArgs<ExtArgs>
 }, ExtArgs["result"]["intervention"]>
 
 export type InterventionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -822,11 +869,12 @@ export type InterventionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   idChantier?: boolean
   dateAssignation?: boolean
   description?: boolean
+  mode?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   intervenant?: boolean | Prisma.IntervenantDefaultArgs<ExtArgs>
   chantier?: boolean | Prisma.ChantierDefaultArgs<ExtArgs>
-  documentation?: boolean | Prisma.DocumentationDefaultArgs<ExtArgs>
+  documentation?: boolean | Prisma.Intervention$documentationArgs<ExtArgs>
 }, ExtArgs["result"]["intervention"]>
 
 export type InterventionSelectScalar = {
@@ -836,25 +884,26 @@ export type InterventionSelectScalar = {
   idChantier?: boolean
   dateAssignation?: boolean
   description?: boolean
+  mode?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type InterventionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "idIntervenant" | "idDocumentation" | "idChantier" | "dateAssignation" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["intervention"]>
+export type InterventionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "idIntervenant" | "idDocumentation" | "idChantier" | "dateAssignation" | "description" | "mode" | "createdAt" | "updatedAt", ExtArgs["result"]["intervention"]>
 export type InterventionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   intervenant?: boolean | Prisma.IntervenantDefaultArgs<ExtArgs>
   chantier?: boolean | Prisma.ChantierDefaultArgs<ExtArgs>
-  documentation?: boolean | Prisma.DocumentationDefaultArgs<ExtArgs>
+  documentation?: boolean | Prisma.Intervention$documentationArgs<ExtArgs>
 }
 export type InterventionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   intervenant?: boolean | Prisma.IntervenantDefaultArgs<ExtArgs>
   chantier?: boolean | Prisma.ChantierDefaultArgs<ExtArgs>
-  documentation?: boolean | Prisma.DocumentationDefaultArgs<ExtArgs>
+  documentation?: boolean | Prisma.Intervention$documentationArgs<ExtArgs>
 }
 export type InterventionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   intervenant?: boolean | Prisma.IntervenantDefaultArgs<ExtArgs>
   chantier?: boolean | Prisma.ChantierDefaultArgs<ExtArgs>
-  documentation?: boolean | Prisma.DocumentationDefaultArgs<ExtArgs>
+  documentation?: boolean | Prisma.Intervention$documentationArgs<ExtArgs>
 }
 
 export type $InterventionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -862,15 +911,16 @@ export type $InterventionPayload<ExtArgs extends runtime.Types.Extensions.Intern
   objects: {
     intervenant: Prisma.$IntervenantPayload<ExtArgs>
     chantier: Prisma.$ChantierPayload<ExtArgs>
-    documentation: Prisma.$DocumentationPayload<ExtArgs>
+    documentation: Prisma.$DocumentationPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     idIntervenant: string
-    idDocumentation: string
+    idDocumentation: string | null
     idChantier: string
     dateAssignation: Date
     description: string | null
+    mode: $Enums.ModeAffectationIntervention
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["intervention"]>
@@ -1269,7 +1319,7 @@ export interface Prisma__InterventionClient<T, Null = never, ExtArgs extends run
   readonly [Symbol.toStringTag]: "PrismaPromise"
   intervenant<T extends Prisma.IntervenantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.IntervenantDefaultArgs<ExtArgs>>): Prisma.Prisma__IntervenantClient<runtime.Types.Result.GetResult<Prisma.$IntervenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   chantier<T extends Prisma.ChantierDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ChantierDefaultArgs<ExtArgs>>): Prisma.Prisma__ChantierClient<runtime.Types.Result.GetResult<Prisma.$ChantierPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  documentation<T extends Prisma.DocumentationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DocumentationDefaultArgs<ExtArgs>>): Prisma.Prisma__DocumentationClient<runtime.Types.Result.GetResult<Prisma.$DocumentationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  documentation<T extends Prisma.Intervention$documentationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Intervention$documentationArgs<ExtArgs>>): Prisma.Prisma__DocumentationClient<runtime.Types.Result.GetResult<Prisma.$DocumentationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1305,6 +1355,7 @@ export interface InterventionFieldRefs {
   readonly idChantier: Prisma.FieldRef<"Intervention", 'String'>
   readonly dateAssignation: Prisma.FieldRef<"Intervention", 'DateTime'>
   readonly description: Prisma.FieldRef<"Intervention", 'String'>
+  readonly mode: Prisma.FieldRef<"Intervention", 'ModeAffectationIntervention'>
   readonly createdAt: Prisma.FieldRef<"Intervention", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Intervention", 'DateTime'>
 }
@@ -1705,6 +1756,25 @@ export type InterventionDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.
    * Limit how many Interventions to delete.
    */
   limit?: number
+}
+
+/**
+ * Intervention.documentation
+ */
+export type Intervention$documentationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Documentation
+   */
+  select?: Prisma.DocumentationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Documentation
+   */
+  omit?: Prisma.DocumentationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DocumentationInclude<ExtArgs> | null
+  where?: Prisma.DocumentationWhereInput
 }
 
 /**

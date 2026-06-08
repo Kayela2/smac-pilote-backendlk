@@ -1,13 +1,14 @@
 import {prisma} from '../db/prisma.js'
 import {buildPage} from '../utils/pagination.js'
-import {TypeDocEnum} from '../generated/prisma/enums.js'
+import {TypeDocEnum, ProcessStatusEnum, ModeAffectationIntervention} from '../generated/prisma/enums.js'
 import type {Prisma, TypeIntervenantEnum} from '../generated/prisma/client.js'
 import type {CreateInterventionRequest, UpdateInterventionRequest} from '../types.js'
+import {psToEnum, enumToPs} from '../utils/processStatus.js'
 
 type RawIntervention = {
     id: string
     idIntervenant: string
-    idDocumentation: string
+    idDocumentation: string | null
     idChantier: string
     dateAssignation: Date
     description: string | null
@@ -15,11 +16,13 @@ type RawIntervention = {
     updatedAt: Date
     intervenant?: {id: string; fullName: string; typeIntervenant: TypeIntervenantEnum} | null
     chantier?: {id: string; name: string | null} | null
+    documentation?: {id: string; status: ProcessStatusEnum} | null
 }
 
 const interventionInclude = {
     intervenant: {select: {id: true, fullName: true, typeIntervenant: true}},
     chantier: {select: {id: true, name: true}},
+    documentation: {select: {id: true, status: true}},
 } satisfies Prisma.InterventionInclude
 
 function mapIntervention(i: RawIntervention) {
@@ -34,6 +37,9 @@ function mapIntervention(i: RawIntervention) {
         updatedAt: i.updatedAt,
         intervenant: i.intervenant ?? undefined,
         chantier: i.chantier ?? undefined,
+        documentation: i.documentation
+            ? {id: i.documentation.id, status: enumToPs(i.documentation.status)}
+            : undefined,
     }
 }
 
@@ -100,12 +106,19 @@ const docTypeCreators: Record<TypeDocEnum, DocCreator> = {
 export interface InterventionFilters {
     idChantier?: string
     idIntervenant?: string
+    mode?: string
+}
+
+const modeMap: Record<string, ModeAffectationIntervention> = {
+    pc: ModeAffectationIntervention.PC,
+    mobile: ModeAffectationIntervention.MOBILE,
 }
 
 function buildWhere(f: InterventionFilters): Prisma.InterventionWhereInput {
     const where: Prisma.InterventionWhereInput = {}
     if (f.idChantier) where.idChantier = f.idChantier
     if (f.idIntervenant) where.idIntervenant = f.idIntervenant
+    if (f.mode && modeMap[f.mode.toLowerCase()]) where.mode = modeMap[f.mode.toLowerCase()]
     return where
 }
 
@@ -140,6 +153,16 @@ export const interventionsService = {
 
     async update(id: string, b: UpdateInterventionRequest): Promise<ReturnType<typeof mapIntervention> | 'NOT_FOUND' | 'CONFLICT'> {
         try {
+            if (b.status) {
+                const cur = await prisma.intervention.findUnique({where: {id}, select: {idDocumentation: true}})
+                if (!cur) return 'NOT_FOUND'
+                if (cur.idDocumentation) {
+                    await prisma.documentation.update({
+                        where: {id: cur.idDocumentation},
+                        data: {status: psToEnum(b.status)},
+                    })
+                }
+            }
             const iv = await prisma.intervention.update({
                 where: {id},
                 data: {
@@ -159,11 +182,43 @@ export const interventionsService = {
         }
     },
 
+    async findDocuments(id: string) {
+        const iv = await prisma.intervention.findUnique({
+            where: {id},
+            select: {idDocumentation: true},
+        })
+        if (!iv || !iv.idDocumentation) return null
+        return prisma.document.findMany({
+            where: {idDocumentation: iv.idDocumentation},
+            select: {id: true, version: true, urlPdf: true, dateGeneration: true},
+            orderBy: {version: 'desc'},
+        })
+    },
+
+    async findDocumentById(ivId: string, docId: string): Promise<{urlPdf: string} | null> {
+        const iv = await prisma.intervention.findUnique({where: {id: ivId}, select: {idDocumentation: true}})
+        if (!iv || !iv.idDocumentation) return null
+        return prisma.document.findFirst({
+            where: {id: docId, idDocumentation: iv.idDocumentation},
+            select: {urlPdf: true},
+        })
+    },
+
     async delete(id: string): Promise<boolean> {
         try {
-            await prisma.intervention.delete({where: {id}})
+            const iv = await prisma.intervention.findUnique({where: {id}, select: {idDocumentation: true}})
+            if (!iv) return false
+            if (iv.idDocumentation) {
+                await prisma.$transaction([
+                    prisma.intervention.delete({where: {id}}),
+                    prisma.documentation.delete({where: {id: iv.idDocumentation}}),
+                ])
+            } else {
+                await prisma.intervention.delete({where: {id}})
+            }
             return true
-        } catch {
+        } catch (e) {
+            console.error('[interventions.delete]', e)
             return false
         }
     },

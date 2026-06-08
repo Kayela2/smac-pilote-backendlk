@@ -494,6 +494,11 @@ export type DocumentationOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type DocumentationNullableScalarRelationFilter = {
+  is?: Prisma.DocumentationWhereInput | null
+  isNot?: Prisma.DocumentationWhereInput | null
+}
+
 export type DocumentationScalarRelationFilter = {
   is?: Prisma.DocumentationWhereInput
   isNot?: Prisma.DocumentationWhereInput
@@ -574,10 +579,12 @@ export type DocumentationCreateNestedOneWithoutInterventionsInput = {
   connect?: Prisma.DocumentationWhereUniqueInput
 }
 
-export type DocumentationUpdateOneRequiredWithoutInterventionsNestedInput = {
+export type DocumentationUpdateOneWithoutInterventionsNestedInput = {
   create?: Prisma.XOR<Prisma.DocumentationCreateWithoutInterventionsInput, Prisma.DocumentationUncheckedCreateWithoutInterventionsInput>
   connectOrCreate?: Prisma.DocumentationCreateOrConnectWithoutInterventionsInput
   upsert?: Prisma.DocumentationUpsertWithoutInterventionsInput
+  disconnect?: Prisma.DocumentationWhereInput | boolean
+  delete?: Prisma.DocumentationWhereInput | boolean
   connect?: Prisma.DocumentationWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.DocumentationUpdateToOneWithWhereWithoutInterventionsInput, Prisma.DocumentationUpdateWithoutInterventionsInput>, Prisma.DocumentationUncheckedUpdateWithoutInterventionsInput>
 }

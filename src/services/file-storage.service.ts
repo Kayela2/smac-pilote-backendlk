@@ -3,13 +3,14 @@ import { Readable } from 'node:stream'
 import { BlobServiceClient } from '@azure/storage-blob'
 import { config } from '../config.js'
 import { StoreResult } from '../types.js'
-import { DocumentExtension, Motif } from '../enums.js'
+import { DocumentExtension, ImageExtension, Motif } from '../enums.js'
 
 const ALLOWED_DOCUMENT_EXTENSIONS = new Set(Object.values(DocumentExtension))
+const ALLOWED_IMAGE_EXTENSIONS = new Set(Object.values(ImageExtension))
 const VALID_MOTIFS = new Set(Object.values(Motif))
 
 function sanitizeFileName(fileName: string): string {
-    let clean = fileName.replace(/[^a-zA-Z0-9.\-]/g, '_')
+    let clean = fileName.replace(/[^a-zA-Z0-9.\\-]/g, '_')
     clean = clean.replace(/\.+/g, '.')
     if (clean.startsWith('.')) clean = `file${clean}`
     return clean.length > 255 ? clean.substring(0, 255) : clean
@@ -83,6 +84,27 @@ export const fileStorageService = {
             await getContainerClient().getBlockBlobClient(blobName).deleteIfExists()
         } catch (e) {
             console.error(`Could not delete blob ${blobName}:`, e)
+        }
+    },
+
+    async storeImage(file: { buffer: Buffer; originalName: string }, actionId: string, chantierId: string): Promise<StoreResult> {
+        try {
+            const sanitized = sanitizeFileName(path.basename(file.originalName))
+            const extension = getExtension(sanitized).toLowerCase()
+            if (!ALLOWED_IMAGE_EXTENSIONS.has(extension as ImageExtension)) {
+                return `Image type not accepted :: Provided: [.${extension}] :: Accepted: [.png][.jpg][.jpeg][.webp]`
+            }
+            const baseName = sanitized.substring(0, sanitized.lastIndexOf('.')) || sanitized
+            const blobName = `${chantierId}/action-photos/${actionId}/${baseName}-${Date.now()}.${extension}`
+            const mimeType = extension === 'jpg' ? 'image/jpeg' : `image/${extension}`
+            const blobClient = getContainerClient().getBlockBlobClient(blobName)
+            await blobClient.upload(file.buffer, file.buffer.length, {
+                blobHTTPHeaders: {blobContentType: mimeType},
+            })
+            return {path: blobName, url: blobClient.url}
+        } catch (e) {
+            console.error(`Could not store image ${file.originalName}:`, e)
+            return `Could not store image ${file.originalName}`
         }
     },
 

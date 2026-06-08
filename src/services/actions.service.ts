@@ -3,7 +3,8 @@ import {buildPage} from '../utils/pagination.js'
 import {ProcessStatus} from '../enums.js'
 import type {Prisma} from '../generated/prisma/client.js'
 import {psToEnum, enumToPs} from '../utils/processStatus.js'
-import type {CreateActionRequest, MappedAction, UpdateActionRequest} from '../types.js'
+import type {CreateActionRequest, File as StoredFile, MappedAction, UpdateActionRequest} from '../types.js'
+import {fileStorageService} from './file-storage.service.js'
 
 const actionInclude = {
     children: true,
@@ -17,7 +18,8 @@ function mapAction(t: ActionWithIncludes, children: MappedAction[] | null = null
     return {
         id: t.id, chantier: t.chantier, anomalyRef: t.anomalyRef, correctiveAction: t.correctiveAction,
         responsible: t.responsible, startDate: t.startDate, dueDate: t.dueDate,
-        status: enumToPs(t.status) as ProcessStatus, progress: t.progress, childIndex: t.childIndex,
+        status: enumToPs(t.status) as ProcessStatus, criticite: t.criticite.toLowerCase(), photos: t.photos,
+        progress: t.progress, childIndex: t.childIndex,
         children, previous, createdAt: t.createdAt, updatedAt: t.updatedAt,
     }
 }
@@ -122,6 +124,7 @@ export const actionsService = {
                 startDate: b.startDate ? new Date(b.startDate) : null,
                 dueDate: b.dueDate ? new Date(b.dueDate) : null,
                 status: psToEnum(b.status ?? ProcessStatus.INITIALIZED),
+                criticite: ((b.criticite?.toUpperCase()) as any) ?? 'MOYEN',
             },
         })
         return (await loadAction(action.id))!
@@ -137,8 +140,9 @@ export const actionsService = {
                 correctiveAction: b.correctiveAction ?? null, idResponsible: b.responsible!,
                 startDate: b.startDate ? new Date(b.startDate) : null,
                 dueDate: b.dueDate ? new Date(b.dueDate) : null,
-                status: psToEnum(b.status ?? ProcessStatus.INITIALIZED), childIndex,
-                childOf: {create: {actionId}},
+                status: psToEnum(b.status ?? ProcessStatus.INITIALIZED),
+                criticite: ((b.criticite?.toUpperCase()) as any) ?? 'MOYEN',
+                childIndex, childOf: {create: {actionId}},
             },
         })
         return loadAction(actionId)
@@ -156,8 +160,9 @@ export const actionsService = {
                     correctiveAction: b.correctiveAction ?? null, idResponsible: b.responsible!,
                     startDate: b.startDate ? new Date(b.startDate) : null,
                     dueDate: b.dueDate ? new Date(b.dueDate) : null,
-                    status: psToEnum(b.status ?? ProcessStatus.INITIALIZED), childIndex: childIndex++,
-                    childOf: {create: {actionId}},
+                    status: psToEnum(b.status ?? ProcessStatus.INITIALIZED),
+                    criticite: ((b.criticite?.toUpperCase()) as any) ?? 'MOYEN',
+                    childIndex: childIndex++, childOf: {create: {actionId}},
                 },
             })
         }
@@ -178,7 +183,9 @@ export const actionsService = {
                     correctiveAction: b.correctiveAction ?? undefined,
                     idResponsible: b.responsible ?? undefined,
                     dueDate: b.dueDate ? new Date(b.dueDate) : undefined,
-                    status: b.status ? psToEnum(b.status) : undefined, updatedAt: new Date(),
+                    status: b.status ? psToEnum(b.status) : undefined,
+                    criticite: b.criticite ? (b.criticite.toUpperCase() as any) : undefined,
+                    updatedAt: new Date(),
                 },
             })
             return (await loadAction(id))!
@@ -186,6 +193,22 @@ export const actionsService = {
             if ((e as { code?: string })?.code === 'P2025') return 'NOT_FOUND'
             throw e
         }
+    },
+
+    async getPhotoPath(actionId: string, index: number): Promise<string | null> {
+        const action = await prisma.action.findUnique({where: {id: actionId}, select: {photos: true}})
+        if (!action || index < 0 || index >= action.photos.length) return null
+        return action.photos[index]
+    },
+
+    async addPhoto(id: string, file: StoredFile): Promise<MappedAction | string> {
+        const action = await prisma.action.findUnique({where: {id}, select: {id: true, idChantier: true, photos: true}})
+        if (!action) return 'NOT_FOUND'
+        if (action.photos.length >= 8) return 'Maximum 8 photos per action'
+        const result = await fileStorageService.storeImage(file, action.id, action.idChantier)
+        if (typeof result === 'string') return result
+        await prisma.action.update({where: {id}, data: {photos: {push: result.path}}})
+        return (await loadAction(id))!
     },
 
     async delete(id: string): Promise<boolean> {

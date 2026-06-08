@@ -19,6 +19,7 @@ export enum ProcessStatus {
     PENDING = "En attente",
     NOT_STARTED = "Pas commencé",
     COMPLETE = "Terminé",
+    TRAITE = "Traité",
     CANCELED = "Annulé",
     ACCEPTED = "Accepté",
     REFUSED = "Refusé",

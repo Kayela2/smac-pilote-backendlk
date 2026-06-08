@@ -464,6 +464,7 @@ export const InterventionScalarFieldEnum = {
   idChantier: 'idChantier',
   dateAssignation: 'dateAssignation',
   description: 'description',
+  mode: 'mode',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

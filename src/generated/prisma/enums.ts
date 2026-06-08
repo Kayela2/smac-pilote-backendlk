@@ -19,6 +19,14 @@ export const ActionCriticite = {
 export type ActionCriticite = (typeof ActionCriticite)[keyof typeof ActionCriticite]
 
 
+export const ModeAffectationIntervention = {
+  PC: 'PC',
+  MOBILE: 'MOBILE'
+} as const
+
+export type ModeAffectationIntervention = (typeof ModeAffectationIntervention)[keyof typeof ModeAffectationIntervention]
+
+
 export const ProcessStatusEnum = {
   Planifie: 'Planifie',
   Initialise: 'Initialise',
@@ -26,6 +34,7 @@ export const ProcessStatusEnum = {
   EnAttente: 'EnAttente',
   PasCommence: 'PasCommence',
   Termine: 'Termine',
+  Traite: 'Traite',
   Annule: 'Annule',
   Accepte: 'Accepte',
   Refuse: 'Refuse'

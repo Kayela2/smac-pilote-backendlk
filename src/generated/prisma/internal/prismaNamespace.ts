@@ -4537,6 +4537,7 @@ export const InterventionScalarFieldEnum = {
   idChantier: 'idChantier',
   dateAssignation: 'dateAssignation',
   description: 'description',
+  mode: 'mode',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -5051,6 +5052,20 @@ export type EnumStatutAoEnumFieldRefInput<$PrismaModel> = FieldRefInputType<$Pri
  * Reference to a field of type 'StatutAoEnum[]'
  */
 export type ListEnumStatutAoEnumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StatutAoEnum[]'>
+    
+
+
+/**
+ * Reference to a field of type 'ModeAffectationIntervention'
+ */
+export type EnumModeAffectationInterventionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ModeAffectationIntervention'>
+    
+
+
+/**
+ * Reference to a field of type 'ModeAffectationIntervention[]'
+ */
+export type ListEnumModeAffectationInterventionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ModeAffectationIntervention[]'>
     
 
 

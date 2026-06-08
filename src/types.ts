@@ -220,6 +220,7 @@ export type CreateActionRequest = {
     startDate?: string
     dueDate?: string
     status?: ProcessStatus
+    criticite?: string
 }
 
 export type UpdateActionRequest = {
@@ -229,6 +230,7 @@ export type UpdateActionRequest = {
     responsible?: string
     dueDate?: string
     status?: ProcessStatus
+    criticite?: string
 }
 
 export type UserWithRelations = {
@@ -257,6 +259,8 @@ export type MappedAction = {
     startDate: Date | null
     dueDate: Date | null
     status: ProcessStatus
+    criticite: string
+    photos: string[]
     progress: number | null
     childIndex: number | null
     children: MappedAction[] | null

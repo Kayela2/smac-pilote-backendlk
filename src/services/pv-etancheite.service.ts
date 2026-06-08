@@ -127,7 +127,7 @@ export const pvEtancheiteService = {
     async create(b: CreatePvEtancheiteRequest) {
         return prisma.$transaction(async (tx) => {
             const doc = await tx.documentation.create({
-                data: {idChantier: b.idChantier, typeDoc: TypeDocEnum.PVReceptionEtancheite},
+                data: {idChantier: b.idChantier, typeDoc: TypeDocEnum.PVReceptionEtancheite, status: 'Traite'},
             })
 
             await tx.pvReceptionEtancheite.create({
@@ -257,7 +257,7 @@ export const pvEtancheiteService = {
                 }
             }
 
-            await tx.documentation.update({where: {id}, data: {updatedAt: new Date(), status: 'EnCours'}})
+            await tx.documentation.update({where: {id}, data: {updatedAt: new Date(), status: 'Traite'}})
 
             const updated = await tx.documentation.findUniqueOrThrow({
                 where: {id},

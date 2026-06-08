@@ -439,6 +439,23 @@ export type EnumStatutAoEnumWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumStatutAoEnumFilter<$PrismaModel>
 }
 
+export type EnumModeAffectationInterventionFilter<$PrismaModel = never> = {
+  equals?: $Enums.ModeAffectationIntervention | Prisma.EnumModeAffectationInterventionFieldRefInput<$PrismaModel>
+  in?: $Enums.ModeAffectationIntervention[] | Prisma.ListEnumModeAffectationInterventionFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ModeAffectationIntervention[] | Prisma.ListEnumModeAffectationInterventionFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumModeAffectationInterventionFilter<$PrismaModel> | $Enums.ModeAffectationIntervention
+}
+
+export type EnumModeAffectationInterventionWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ModeAffectationIntervention | Prisma.EnumModeAffectationInterventionFieldRefInput<$PrismaModel>
+  in?: $Enums.ModeAffectationIntervention[] | Prisma.ListEnumModeAffectationInterventionFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ModeAffectationIntervention[] | Prisma.ListEnumModeAffectationInterventionFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumModeAffectationInterventionWithAggregatesFilter<$PrismaModel> | $Enums.ModeAffectationIntervention
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumModeAffectationInterventionFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumModeAffectationInterventionFilter<$PrismaModel>
+}
+
 export type EnumTypeDocEnumFilter<$PrismaModel = never> = {
   equals?: $Enums.TypeDocEnum | Prisma.EnumTypeDocEnumFieldRefInput<$PrismaModel>
   in?: $Enums.TypeDocEnum[] | Prisma.ListEnumTypeDocEnumFieldRefInput<$PrismaModel>
@@ -1030,6 +1047,23 @@ export type NestedEnumStatutAoEnumWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumStatutAoEnumFilter<$PrismaModel>
   _max?: Prisma.NestedEnumStatutAoEnumFilter<$PrismaModel>
+}
+
+export type NestedEnumModeAffectationInterventionFilter<$PrismaModel = never> = {
+  equals?: $Enums.ModeAffectationIntervention | Prisma.EnumModeAffectationInterventionFieldRefInput<$PrismaModel>
+  in?: $Enums.ModeAffectationIntervention[] | Prisma.ListEnumModeAffectationInterventionFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ModeAffectationIntervention[] | Prisma.ListEnumModeAffectationInterventionFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumModeAffectationInterventionFilter<$PrismaModel> | $Enums.ModeAffectationIntervention
+}
+
+export type NestedEnumModeAffectationInterventionWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ModeAffectationIntervention | Prisma.EnumModeAffectationInterventionFieldRefInput<$PrismaModel>
+  in?: $Enums.ModeAffectationIntervention[] | Prisma.ListEnumModeAffectationInterventionFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ModeAffectationIntervention[] | Prisma.ListEnumModeAffectationInterventionFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumModeAffectationInterventionWithAggregatesFilter<$PrismaModel> | $Enums.ModeAffectationIntervention
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumModeAffectationInterventionFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumModeAffectationInterventionFilter<$PrismaModel>
 }
 
 export type NestedEnumTypeDocEnumFilter<$PrismaModel = never> = {
