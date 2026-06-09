@@ -4571,6 +4571,7 @@ export type ParticipantScalarFieldEnum = (typeof ParticipantScalarFieldEnum)[key
 export const DocumentationScalarFieldEnum = {
   id: 'id',
   idChantier: 'idChantier',
+  title: 'title',
   typeDoc: 'typeDoc',
   status: 'status',
   createdAt: 'createdAt',

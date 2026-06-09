@@ -27,6 +27,7 @@ export type AggregateDocumentation = {
 export type DocumentationMinAggregateOutputType = {
   id: string | null
   idChantier: string | null
+  title: string | null
   typeDoc: $Enums.TypeDocEnum | null
   status: $Enums.ProcessStatusEnum | null
   createdAt: Date | null
@@ -36,6 +37,7 @@ export type DocumentationMinAggregateOutputType = {
 export type DocumentationMaxAggregateOutputType = {
   id: string | null
   idChantier: string | null
+  title: string | null
   typeDoc: $Enums.TypeDocEnum | null
   status: $Enums.ProcessStatusEnum | null
   createdAt: Date | null
@@ -45,6 +47,7 @@ export type DocumentationMaxAggregateOutputType = {
 export type DocumentationCountAggregateOutputType = {
   id: number
   idChantier: number
+  title: number
   typeDoc: number
   status: number
   createdAt: number
@@ -56,6 +59,7 @@ export type DocumentationCountAggregateOutputType = {
 export type DocumentationMinAggregateInputType = {
   id?: true
   idChantier?: true
+  title?: true
   typeDoc?: true
   status?: true
   createdAt?: true
@@ -65,6 +69,7 @@ export type DocumentationMinAggregateInputType = {
 export type DocumentationMaxAggregateInputType = {
   id?: true
   idChantier?: true
+  title?: true
   typeDoc?: true
   status?: true
   createdAt?: true
@@ -74,6 +79,7 @@ export type DocumentationMaxAggregateInputType = {
 export type DocumentationCountAggregateInputType = {
   id?: true
   idChantier?: true
+  title?: true
   typeDoc?: true
   status?: true
   createdAt?: true
@@ -156,6 +162,7 @@ export type DocumentationGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
 export type DocumentationGroupByOutputType = {
   id: string
   idChantier: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status: $Enums.ProcessStatusEnum
   createdAt: Date
@@ -186,6 +193,7 @@ export type DocumentationWhereInput = {
   NOT?: Prisma.DocumentationWhereInput | Prisma.DocumentationWhereInput[]
   id?: Prisma.UuidFilter<"Documentation"> | string
   idChantier?: Prisma.UuidFilter<"Documentation"> | string
+  title?: Prisma.StringFilter<"Documentation"> | string
   typeDoc?: Prisma.EnumTypeDocEnumFilter<"Documentation"> | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFilter<"Documentation"> | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFilter<"Documentation"> | Date | string
@@ -222,6 +230,7 @@ export type DocumentationWhereInput = {
 export type DocumentationOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   idChantier?: Prisma.SortOrder
+  title?: Prisma.SortOrder
   typeDoc?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -261,6 +270,7 @@ export type DocumentationWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.DocumentationWhereInput[]
   NOT?: Prisma.DocumentationWhereInput | Prisma.DocumentationWhereInput[]
   idChantier?: Prisma.UuidFilter<"Documentation"> | string
+  title?: Prisma.StringFilter<"Documentation"> | string
   typeDoc?: Prisma.EnumTypeDocEnumFilter<"Documentation"> | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFilter<"Documentation"> | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFilter<"Documentation"> | Date | string
@@ -297,6 +307,7 @@ export type DocumentationWhereUniqueInput = Prisma.AtLeast<{
 export type DocumentationOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   idChantier?: Prisma.SortOrder
+  title?: Prisma.SortOrder
   typeDoc?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -312,6 +323,7 @@ export type DocumentationScalarWhereWithAggregatesInput = {
   NOT?: Prisma.DocumentationScalarWhereWithAggregatesInput | Prisma.DocumentationScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"Documentation"> | string
   idChantier?: Prisma.UuidWithAggregatesFilter<"Documentation"> | string
+  title?: Prisma.StringWithAggregatesFilter<"Documentation"> | string
   typeDoc?: Prisma.EnumTypeDocEnumWithAggregatesFilter<"Documentation"> | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumWithAggregatesFilter<"Documentation"> | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Documentation"> | Date | string
@@ -320,6 +332,7 @@ export type DocumentationScalarWhereWithAggregatesInput = {
 
 export type DocumentationCreateInput = {
   id?: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -356,6 +369,7 @@ export type DocumentationCreateInput = {
 export type DocumentationUncheckedCreateInput = {
   id?: string
   idChantier: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -390,6 +404,7 @@ export type DocumentationUncheckedCreateInput = {
 
 export type DocumentationUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -426,6 +441,7 @@ export type DocumentationUpdateInput = {
 export type DocumentationUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -461,6 +477,7 @@ export type DocumentationUncheckedUpdateInput = {
 export type DocumentationCreateManyInput = {
   id?: string
   idChantier: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -469,6 +486,7 @@ export type DocumentationCreateManyInput = {
 
 export type DocumentationUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -478,6 +496,7 @@ export type DocumentationUpdateManyMutationInput = {
 export type DocumentationUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -507,6 +526,7 @@ export type DocumentationScalarRelationFilter = {
 export type DocumentationCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   idChantier?: Prisma.SortOrder
+  title?: Prisma.SortOrder
   typeDoc?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -516,6 +536,7 @@ export type DocumentationCountOrderByAggregateInput = {
 export type DocumentationMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   idChantier?: Prisma.SortOrder
+  title?: Prisma.SortOrder
   typeDoc?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -525,6 +546,7 @@ export type DocumentationMaxOrderByAggregateInput = {
 export type DocumentationMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   idChantier?: Prisma.SortOrder
+  title?: Prisma.SortOrder
   typeDoc?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -941,6 +963,7 @@ export type DocumentationUpdateOneRequiredWithoutReservesNestedInput = {
 
 export type DocumentationCreateWithoutChantierInput = {
   id?: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -975,6 +998,7 @@ export type DocumentationCreateWithoutChantierInput = {
 
 export type DocumentationUncheckedCreateWithoutChantierInput = {
   id?: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -1039,6 +1063,7 @@ export type DocumentationScalarWhereInput = {
   NOT?: Prisma.DocumentationScalarWhereInput | Prisma.DocumentationScalarWhereInput[]
   id?: Prisma.UuidFilter<"Documentation"> | string
   idChantier?: Prisma.UuidFilter<"Documentation"> | string
+  title?: Prisma.StringFilter<"Documentation"> | string
   typeDoc?: Prisma.EnumTypeDocEnumFilter<"Documentation"> | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFilter<"Documentation"> | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFilter<"Documentation"> | Date | string
@@ -1047,6 +1072,7 @@ export type DocumentationScalarWhereInput = {
 
 export type DocumentationCreateWithoutInterventionsInput = {
   id?: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -1082,6 +1108,7 @@ export type DocumentationCreateWithoutInterventionsInput = {
 export type DocumentationUncheckedCreateWithoutInterventionsInput = {
   id?: string
   idChantier: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -1131,6 +1158,7 @@ export type DocumentationUpdateToOneWithWhereWithoutInterventionsInput = {
 
 export type DocumentationUpdateWithoutInterventionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1166,6 +1194,7 @@ export type DocumentationUpdateWithoutInterventionsInput = {
 export type DocumentationUncheckedUpdateWithoutInterventionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1199,6 +1228,7 @@ export type DocumentationUncheckedUpdateWithoutInterventionsInput = {
 
 export type DocumentationCreateWithoutParticipantsInput = {
   id?: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -1234,6 +1264,7 @@ export type DocumentationCreateWithoutParticipantsInput = {
 export type DocumentationUncheckedCreateWithoutParticipantsInput = {
   id?: string
   idChantier: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -1283,6 +1314,7 @@ export type DocumentationUpdateToOneWithWhereWithoutParticipantsInput = {
 
 export type DocumentationUpdateWithoutParticipantsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1318,6 +1350,7 @@ export type DocumentationUpdateWithoutParticipantsInput = {
 export type DocumentationUncheckedUpdateWithoutParticipantsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1351,6 +1384,7 @@ export type DocumentationUncheckedUpdateWithoutParticipantsInput = {
 
 export type DocumentationCreateWithoutFicheApriInput = {
   id?: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -1386,6 +1420,7 @@ export type DocumentationCreateWithoutFicheApriInput = {
 export type DocumentationUncheckedCreateWithoutFicheApriInput = {
   id?: string
   idChantier: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -1435,6 +1470,7 @@ export type DocumentationUpdateToOneWithWhereWithoutFicheApriInput = {
 
 export type DocumentationUpdateWithoutFicheApriInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1470,6 +1506,7 @@ export type DocumentationUpdateWithoutFicheApriInput = {
 export type DocumentationUncheckedUpdateWithoutFicheApriInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1503,6 +1540,7 @@ export type DocumentationUncheckedUpdateWithoutFicheApriInput = {
 
 export type DocumentationCreateWithoutMmtInput = {
   id?: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -1538,6 +1576,7 @@ export type DocumentationCreateWithoutMmtInput = {
 export type DocumentationUncheckedCreateWithoutMmtInput = {
   id?: string
   idChantier: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -1587,6 +1626,7 @@ export type DocumentationUpdateToOneWithWhereWithoutMmtInput = {
 
 export type DocumentationUpdateWithoutMmtInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1622,6 +1662,7 @@ export type DocumentationUpdateWithoutMmtInput = {
 export type DocumentationUncheckedUpdateWithoutMmtInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1655,6 +1696,7 @@ export type DocumentationUncheckedUpdateWithoutMmtInput = {
 
 export type DocumentationCreateWithoutPpspsInput = {
   id?: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -1690,6 +1732,7 @@ export type DocumentationCreateWithoutPpspsInput = {
 export type DocumentationUncheckedCreateWithoutPpspsInput = {
   id?: string
   idChantier: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -1739,6 +1782,7 @@ export type DocumentationUpdateToOneWithWhereWithoutPpspsInput = {
 
 export type DocumentationUpdateWithoutPpspsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1774,6 +1818,7 @@ export type DocumentationUpdateWithoutPpspsInput = {
 export type DocumentationUncheckedUpdateWithoutPpspsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1807,6 +1852,7 @@ export type DocumentationUncheckedUpdateWithoutPpspsInput = {
 
 export type DocumentationCreateWithoutPvTerrasseInput = {
   id?: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -1842,6 +1888,7 @@ export type DocumentationCreateWithoutPvTerrasseInput = {
 export type DocumentationUncheckedCreateWithoutPvTerrasseInput = {
   id?: string
   idChantier: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -1891,6 +1938,7 @@ export type DocumentationUpdateToOneWithWhereWithoutPvTerrasseInput = {
 
 export type DocumentationUpdateWithoutPvTerrasseInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1926,6 +1974,7 @@ export type DocumentationUpdateWithoutPvTerrasseInput = {
 export type DocumentationUncheckedUpdateWithoutPvTerrasseInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1959,6 +2008,7 @@ export type DocumentationUncheckedUpdateWithoutPvTerrasseInput = {
 
 export type DocumentationCreateWithoutEtatsLieuxInput = {
   id?: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -1994,6 +2044,7 @@ export type DocumentationCreateWithoutEtatsLieuxInput = {
 export type DocumentationUncheckedCreateWithoutEtatsLieuxInput = {
   id?: string
   idChantier: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -2043,6 +2094,7 @@ export type DocumentationUpdateToOneWithWhereWithoutEtatsLieuxInput = {
 
 export type DocumentationUpdateWithoutEtatsLieuxInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2078,6 +2130,7 @@ export type DocumentationUpdateWithoutEtatsLieuxInput = {
 export type DocumentationUncheckedUpdateWithoutEtatsLieuxInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2111,6 +2164,7 @@ export type DocumentationUncheckedUpdateWithoutEtatsLieuxInput = {
 
 export type DocumentationCreateWithoutFeuilleEmargementInput = {
   id?: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -2146,6 +2200,7 @@ export type DocumentationCreateWithoutFeuilleEmargementInput = {
 export type DocumentationUncheckedCreateWithoutFeuilleEmargementInput = {
   id?: string
   idChantier: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -2195,6 +2250,7 @@ export type DocumentationUpdateToOneWithWhereWithoutFeuilleEmargementInput = {
 
 export type DocumentationUpdateWithoutFeuilleEmargementInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2230,6 +2286,7 @@ export type DocumentationUpdateWithoutFeuilleEmargementInput = {
 export type DocumentationUncheckedUpdateWithoutFeuilleEmargementInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2263,6 +2320,7 @@ export type DocumentationUncheckedUpdateWithoutFeuilleEmargementInput = {
 
 export type DocumentationCreateWithoutFicheStarterInput = {
   id?: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -2298,6 +2356,7 @@ export type DocumentationCreateWithoutFicheStarterInput = {
 export type DocumentationUncheckedCreateWithoutFicheStarterInput = {
   id?: string
   idChantier: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -2347,6 +2406,7 @@ export type DocumentationUpdateToOneWithWhereWithoutFicheStarterInput = {
 
 export type DocumentationUpdateWithoutFicheStarterInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2382,6 +2442,7 @@ export type DocumentationUpdateWithoutFicheStarterInput = {
 export type DocumentationUncheckedUpdateWithoutFicheStarterInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2415,6 +2476,7 @@ export type DocumentationUncheckedUpdateWithoutFicheStarterInput = {
 
 export type DocumentationCreateWithoutFicheVerificationFourgonInput = {
   id?: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -2450,6 +2512,7 @@ export type DocumentationCreateWithoutFicheVerificationFourgonInput = {
 export type DocumentationUncheckedCreateWithoutFicheVerificationFourgonInput = {
   id?: string
   idChantier: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -2499,6 +2562,7 @@ export type DocumentationUpdateToOneWithWhereWithoutFicheVerificationFourgonInpu
 
 export type DocumentationUpdateWithoutFicheVerificationFourgonInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2534,6 +2598,7 @@ export type DocumentationUpdateWithoutFicheVerificationFourgonInput = {
 export type DocumentationUncheckedUpdateWithoutFicheVerificationFourgonInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2567,6 +2632,7 @@ export type DocumentationUncheckedUpdateWithoutFicheVerificationFourgonInput = {
 
 export type DocumentationCreateWithoutNoticeEpiInput = {
   id?: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -2602,6 +2668,7 @@ export type DocumentationCreateWithoutNoticeEpiInput = {
 export type DocumentationUncheckedCreateWithoutNoticeEpiInput = {
   id?: string
   idChantier: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -2651,6 +2718,7 @@ export type DocumentationUpdateToOneWithWhereWithoutNoticeEpiInput = {
 
 export type DocumentationUpdateWithoutNoticeEpiInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2686,6 +2754,7 @@ export type DocumentationUpdateWithoutNoticeEpiInput = {
 export type DocumentationUncheckedUpdateWithoutNoticeEpiInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2719,6 +2788,7 @@ export type DocumentationUncheckedUpdateWithoutNoticeEpiInput = {
 
 export type DocumentationCreateWithoutPvMiseEauInput = {
   id?: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -2754,6 +2824,7 @@ export type DocumentationCreateWithoutPvMiseEauInput = {
 export type DocumentationUncheckedCreateWithoutPvMiseEauInput = {
   id?: string
   idChantier: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -2803,6 +2874,7 @@ export type DocumentationUpdateToOneWithWhereWithoutPvMiseEauInput = {
 
 export type DocumentationUpdateWithoutPvMiseEauInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2838,6 +2910,7 @@ export type DocumentationUpdateWithoutPvMiseEauInput = {
 export type DocumentationUncheckedUpdateWithoutPvMiseEauInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2871,6 +2944,7 @@ export type DocumentationUncheckedUpdateWithoutPvMiseEauInput = {
 
 export type DocumentationCreateWithoutPvReceptionBetonCharpenteCouvertureInput = {
   id?: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -2906,6 +2980,7 @@ export type DocumentationCreateWithoutPvReceptionBetonCharpenteCouvertureInput =
 export type DocumentationUncheckedCreateWithoutPvReceptionBetonCharpenteCouvertureInput = {
   id?: string
   idChantier: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -2955,6 +3030,7 @@ export type DocumentationUpdateToOneWithWhereWithoutPvReceptionBetonCharpenteCou
 
 export type DocumentationUpdateWithoutPvReceptionBetonCharpenteCouvertureInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2990,6 +3066,7 @@ export type DocumentationUpdateWithoutPvReceptionBetonCharpenteCouvertureInput =
 export type DocumentationUncheckedUpdateWithoutPvReceptionBetonCharpenteCouvertureInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3023,6 +3100,7 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionBetonCharpenteCouvertu
 
 export type DocumentationCreateWithoutPvReceptionBetonCharpenteBardageInput = {
   id?: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -3058,6 +3136,7 @@ export type DocumentationCreateWithoutPvReceptionBetonCharpenteBardageInput = {
 export type DocumentationUncheckedCreateWithoutPvReceptionBetonCharpenteBardageInput = {
   id?: string
   idChantier: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -3107,6 +3186,7 @@ export type DocumentationUpdateToOneWithWhereWithoutPvReceptionBetonCharpenteBar
 
 export type DocumentationUpdateWithoutPvReceptionBetonCharpenteBardageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3142,6 +3222,7 @@ export type DocumentationUpdateWithoutPvReceptionBetonCharpenteBardageInput = {
 export type DocumentationUncheckedUpdateWithoutPvReceptionBetonCharpenteBardageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3175,6 +3256,7 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionBetonCharpenteBardageI
 
 export type DocumentationCreateWithoutPvReceptionBetonFacadeInput = {
   id?: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -3210,6 +3292,7 @@ export type DocumentationCreateWithoutPvReceptionBetonFacadeInput = {
 export type DocumentationUncheckedCreateWithoutPvReceptionBetonFacadeInput = {
   id?: string
   idChantier: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -3259,6 +3342,7 @@ export type DocumentationUpdateToOneWithWhereWithoutPvReceptionBetonFacadeInput 
 
 export type DocumentationUpdateWithoutPvReceptionBetonFacadeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3294,6 +3378,7 @@ export type DocumentationUpdateWithoutPvReceptionBetonFacadeInput = {
 export type DocumentationUncheckedUpdateWithoutPvReceptionBetonFacadeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3327,6 +3412,7 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionBetonFacadeInput = {
 
 export type DocumentationCreateWithoutPvReceptionCharpenteMetalBoisBardageInput = {
   id?: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -3362,6 +3448,7 @@ export type DocumentationCreateWithoutPvReceptionCharpenteMetalBoisBardageInput 
 export type DocumentationUncheckedCreateWithoutPvReceptionCharpenteMetalBoisBardageInput = {
   id?: string
   idChantier: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -3411,6 +3498,7 @@ export type DocumentationUpdateToOneWithWhereWithoutPvReceptionCharpenteMetalBoi
 
 export type DocumentationUpdateWithoutPvReceptionCharpenteMetalBoisBardageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3446,6 +3534,7 @@ export type DocumentationUpdateWithoutPvReceptionCharpenteMetalBoisBardageInput 
 export type DocumentationUncheckedUpdateWithoutPvReceptionCharpenteMetalBoisBardageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3479,6 +3568,7 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionCharpenteMetalBoisBard
 
 export type DocumentationCreateWithoutPvReceptionCharpenteMetalBoisCouvInput = {
   id?: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -3514,6 +3604,7 @@ export type DocumentationCreateWithoutPvReceptionCharpenteMetalBoisCouvInput = {
 export type DocumentationUncheckedCreateWithoutPvReceptionCharpenteMetalBoisCouvInput = {
   id?: string
   idChantier: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -3563,6 +3654,7 @@ export type DocumentationUpdateToOneWithWhereWithoutPvReceptionCharpenteMetalBoi
 
 export type DocumentationUpdateWithoutPvReceptionCharpenteMetalBoisCouvInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3598,6 +3690,7 @@ export type DocumentationUpdateWithoutPvReceptionCharpenteMetalBoisCouvInput = {
 export type DocumentationUncheckedUpdateWithoutPvReceptionCharpenteMetalBoisCouvInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3631,6 +3724,7 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionCharpenteMetalBoisCouv
 
 export type DocumentationCreateWithoutPvReceptionEtancheiteInput = {
   id?: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -3666,6 +3760,7 @@ export type DocumentationCreateWithoutPvReceptionEtancheiteInput = {
 export type DocumentationUncheckedCreateWithoutPvReceptionEtancheiteInput = {
   id?: string
   idChantier: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -3715,6 +3810,7 @@ export type DocumentationUpdateToOneWithWhereWithoutPvReceptionEtancheiteInput =
 
 export type DocumentationUpdateWithoutPvReceptionEtancheiteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3750,6 +3846,7 @@ export type DocumentationUpdateWithoutPvReceptionEtancheiteInput = {
 export type DocumentationUncheckedUpdateWithoutPvReceptionEtancheiteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3783,6 +3880,7 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionEtancheiteInput = {
 
 export type DocumentationCreateWithoutPvReceptionOuvrageArtInput = {
   id?: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -3818,6 +3916,7 @@ export type DocumentationCreateWithoutPvReceptionOuvrageArtInput = {
 export type DocumentationUncheckedCreateWithoutPvReceptionOuvrageArtInput = {
   id?: string
   idChantier: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -3867,6 +3966,7 @@ export type DocumentationUpdateToOneWithWhereWithoutPvReceptionOuvrageArtInput =
 
 export type DocumentationUpdateWithoutPvReceptionOuvrageArtInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3902,6 +4002,7 @@ export type DocumentationUpdateWithoutPvReceptionOuvrageArtInput = {
 export type DocumentationUncheckedUpdateWithoutPvReceptionOuvrageArtInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3935,6 +4036,7 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionOuvrageArtInput = {
 
 export type DocumentationCreateWithoutPvReceptionSupportsBetonVoirieInput = {
   id?: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -3970,6 +4072,7 @@ export type DocumentationCreateWithoutPvReceptionSupportsBetonVoirieInput = {
 export type DocumentationUncheckedCreateWithoutPvReceptionSupportsBetonVoirieInput = {
   id?: string
   idChantier: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -4019,6 +4122,7 @@ export type DocumentationUpdateToOneWithWhereWithoutPvReceptionSupportsBetonVoir
 
 export type DocumentationUpdateWithoutPvReceptionSupportsBetonVoirieInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4054,6 +4158,7 @@ export type DocumentationUpdateWithoutPvReceptionSupportsBetonVoirieInput = {
 export type DocumentationUncheckedUpdateWithoutPvReceptionSupportsBetonVoirieInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4087,6 +4192,7 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionSupportsBetonVoirieInp
 
 export type DocumentationCreateWithoutPvReceptionOuvragesSousTraitesInput = {
   id?: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -4122,6 +4228,7 @@ export type DocumentationCreateWithoutPvReceptionOuvragesSousTraitesInput = {
 export type DocumentationUncheckedCreateWithoutPvReceptionOuvragesSousTraitesInput = {
   id?: string
   idChantier: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -4171,6 +4278,7 @@ export type DocumentationUpdateToOneWithWhereWithoutPvReceptionOuvragesSousTrait
 
 export type DocumentationUpdateWithoutPvReceptionOuvragesSousTraitesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4206,6 +4314,7 @@ export type DocumentationUpdateWithoutPvReceptionOuvragesSousTraitesInput = {
 export type DocumentationUncheckedUpdateWithoutPvReceptionOuvragesSousTraitesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4239,6 +4348,7 @@ export type DocumentationUncheckedUpdateWithoutPvReceptionOuvragesSousTraitesInp
 
 export type DocumentationCreateWithoutVisitePreventionInput = {
   id?: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -4274,6 +4384,7 @@ export type DocumentationCreateWithoutVisitePreventionInput = {
 export type DocumentationUncheckedCreateWithoutVisitePreventionInput = {
   id?: string
   idChantier: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -4323,6 +4434,7 @@ export type DocumentationUpdateToOneWithWhereWithoutVisitePreventionInput = {
 
 export type DocumentationUpdateWithoutVisitePreventionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4358,6 +4470,7 @@ export type DocumentationUpdateWithoutVisitePreventionInput = {
 export type DocumentationUncheckedUpdateWithoutVisitePreventionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4391,6 +4504,7 @@ export type DocumentationUncheckedUpdateWithoutVisitePreventionInput = {
 
 export type DocumentationCreateWithoutFicheVerifJournaliereEchafaudageInput = {
   id?: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -4426,6 +4540,7 @@ export type DocumentationCreateWithoutFicheVerifJournaliereEchafaudageInput = {
 export type DocumentationUncheckedCreateWithoutFicheVerifJournaliereEchafaudageInput = {
   id?: string
   idChantier: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -4475,6 +4590,7 @@ export type DocumentationUpdateToOneWithWhereWithoutFicheVerifJournaliereEchafau
 
 export type DocumentationUpdateWithoutFicheVerifJournaliereEchafaudageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4510,6 +4626,7 @@ export type DocumentationUpdateWithoutFicheVerifJournaliereEchafaudageInput = {
 export type DocumentationUncheckedUpdateWithoutFicheVerifJournaliereEchafaudageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4543,6 +4660,7 @@ export type DocumentationUncheckedUpdateWithoutFicheVerifJournaliereEchafaudageI
 
 export type DocumentationCreateWithoutVerificationAvantMiseServiceEchafaudageInput = {
   id?: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -4578,6 +4696,7 @@ export type DocumentationCreateWithoutVerificationAvantMiseServiceEchafaudageInp
 export type DocumentationUncheckedCreateWithoutVerificationAvantMiseServiceEchafaudageInput = {
   id?: string
   idChantier: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -4627,6 +4746,7 @@ export type DocumentationUpdateToOneWithWhereWithoutVerificationAvantMiseService
 
 export type DocumentationUpdateWithoutVerificationAvantMiseServiceEchafaudageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4662,6 +4782,7 @@ export type DocumentationUpdateWithoutVerificationAvantMiseServiceEchafaudageInp
 export type DocumentationUncheckedUpdateWithoutVerificationAvantMiseServiceEchafaudageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4695,6 +4816,7 @@ export type DocumentationUncheckedUpdateWithoutVerificationAvantMiseServiceEchaf
 
 export type DocumentationCreateWithoutDocumentsInput = {
   id?: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -4730,6 +4852,7 @@ export type DocumentationCreateWithoutDocumentsInput = {
 export type DocumentationUncheckedCreateWithoutDocumentsInput = {
   id?: string
   idChantier: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -4779,6 +4902,7 @@ export type DocumentationUpdateToOneWithWhereWithoutDocumentsInput = {
 
 export type DocumentationUpdateWithoutDocumentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4814,6 +4938,7 @@ export type DocumentationUpdateWithoutDocumentsInput = {
 export type DocumentationUncheckedUpdateWithoutDocumentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4847,6 +4972,7 @@ export type DocumentationUncheckedUpdateWithoutDocumentsInput = {
 
 export type DocumentationCreateWithoutReservesInput = {
   id?: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -4882,6 +5008,7 @@ export type DocumentationCreateWithoutReservesInput = {
 export type DocumentationUncheckedCreateWithoutReservesInput = {
   id?: string
   idChantier: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -4931,6 +5058,7 @@ export type DocumentationUpdateToOneWithWhereWithoutReservesInput = {
 
 export type DocumentationUpdateWithoutReservesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4966,6 +5094,7 @@ export type DocumentationUpdateWithoutReservesInput = {
 export type DocumentationUncheckedUpdateWithoutReservesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idChantier?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4999,6 +5128,7 @@ export type DocumentationUncheckedUpdateWithoutReservesInput = {
 
 export type DocumentationCreateManyChantierInput = {
   id?: string
+  title: string
   typeDoc: $Enums.TypeDocEnum
   status?: $Enums.ProcessStatusEnum
   createdAt?: Date | string
@@ -5007,6 +5137,7 @@ export type DocumentationCreateManyChantierInput = {
 
 export type DocumentationUpdateWithoutChantierInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5041,6 +5172,7 @@ export type DocumentationUpdateWithoutChantierInput = {
 
 export type DocumentationUncheckedUpdateWithoutChantierInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5075,6 +5207,7 @@ export type DocumentationUncheckedUpdateWithoutChantierInput = {
 
 export type DocumentationUncheckedUpdateManyWithoutChantierInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   typeDoc?: Prisma.EnumTypeDocEnumFieldUpdateOperationsInput | $Enums.TypeDocEnum
   status?: Prisma.EnumProcessStatusEnumFieldUpdateOperationsInput | $Enums.ProcessStatusEnum
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5142,6 +5275,7 @@ export type DocumentationCountOutputTypeCountParticipantsArgs<ExtArgs extends ru
 export type DocumentationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   idChantier?: boolean
+  title?: boolean
   typeDoc?: boolean
   status?: boolean
   createdAt?: boolean
@@ -5179,6 +5313,7 @@ export type DocumentationSelect<ExtArgs extends runtime.Types.Extensions.Interna
 export type DocumentationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   idChantier?: boolean
+  title?: boolean
   typeDoc?: boolean
   status?: boolean
   createdAt?: boolean
@@ -5189,6 +5324,7 @@ export type DocumentationSelectCreateManyAndReturn<ExtArgs extends runtime.Types
 export type DocumentationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   idChantier?: boolean
+  title?: boolean
   typeDoc?: boolean
   status?: boolean
   createdAt?: boolean
@@ -5199,13 +5335,14 @@ export type DocumentationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
 export type DocumentationSelectScalar = {
   id?: boolean
   idChantier?: boolean
+  title?: boolean
   typeDoc?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type DocumentationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "idChantier" | "typeDoc" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["documentation"]>
+export type DocumentationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "idChantier" | "title" | "typeDoc" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["documentation"]>
 export type DocumentationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   chantier?: boolean | Prisma.ChantierDefaultArgs<ExtArgs>
   ficheApri?: boolean | Prisma.Documentation$ficheApriArgs<ExtArgs>
@@ -5277,6 +5414,7 @@ export type $DocumentationPayload<ExtArgs extends runtime.Types.Extensions.Inter
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     idChantier: string
+    title: string
     typeDoc: $Enums.TypeDocEnum
     status: $Enums.ProcessStatusEnum
     createdAt: Date
@@ -5733,6 +5871,7 @@ export interface Prisma__DocumentationClient<T, Null = never, ExtArgs extends ru
 export interface DocumentationFieldRefs {
   readonly id: Prisma.FieldRef<"Documentation", 'String'>
   readonly idChantier: Prisma.FieldRef<"Documentation", 'String'>
+  readonly title: Prisma.FieldRef<"Documentation", 'String'>
   readonly typeDoc: Prisma.FieldRef<"Documentation", 'TypeDocEnum'>
   readonly status: Prisma.FieldRef<"Documentation", 'ProcessStatusEnum'>
   readonly createdAt: Prisma.FieldRef<"Documentation", 'DateTime'>

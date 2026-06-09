@@ -6,6 +6,7 @@ import {fileStorageService} from './file-storage.service.js'
 
 // ── Status mappers ────────────────────────────────────────────────────────────
 
+const PV_TYPES = Object.values(TypeDocEnum).filter(t => t.startsWith('PV')) as TypeDocEnum[]
 
 // ── Enum mappers ──────────────────────────────────────────────────────────────
 
@@ -125,9 +126,11 @@ export const pvEtancheiteService = {
     },
 
     async create(b: CreatePvEtancheiteRequest) {
+        const count = await prisma.documentation.count({where: {typeDoc: {in: PV_TYPES}}})
+        const title = `PV-${count + 1}`
         return prisma.$transaction(async (tx) => {
             const doc = await tx.documentation.create({
-                data: {idChantier: b.idChantier, typeDoc: TypeDocEnum.PVReceptionEtancheite, status: 'Traite'},
+                data: {idChantier: b.idChantier, typeDoc: TypeDocEnum.PVReceptionEtancheite, status: 'Traite', title},
             })
 
             await tx.pvReceptionEtancheite.create({

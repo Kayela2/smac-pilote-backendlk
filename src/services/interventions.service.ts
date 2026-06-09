@@ -16,13 +16,13 @@ type RawIntervention = {
     updatedAt: Date
     intervenant?: {id: string; fullName: string; typeIntervenant: TypeIntervenantEnum} | null
     chantier?: {id: string; name: string | null} | null
-    documentation?: {id: string; status: ProcessStatusEnum} | null
+    documentation?: {id: string; title: string | null; status: ProcessStatusEnum} | null
 }
 
 const interventionInclude = {
     intervenant: {select: {id: true, fullName: true, typeIntervenant: true}},
     chantier: {select: {id: true, name: true}},
-    documentation: {select: {id: true, status: true}},
+    documentation: {select: {id: true, title: true, status: true}},
 } satisfies Prisma.InterventionInclude
 
 function mapIntervention(i: RawIntervention) {
@@ -38,7 +38,7 @@ function mapIntervention(i: RawIntervention) {
         intervenant: i.intervenant ?? undefined,
         chantier: i.chantier ?? undefined,
         documentation: i.documentation
-            ? {id: i.documentation.id, status: enumToPs(i.documentation.status)}
+            ? {id: i.documentation.id, title: i.documentation.title ?? null, status: enumToPs(i.documentation.status)}
             : undefined,
     }
 }
@@ -103,6 +103,9 @@ const docTypeCreators: Record<TypeDocEnum, DocCreator> = {
     [TypeDocEnum.PVReceptionBetonTerrasse]:                (tx, id) => tx.pVTerrasse.create({data: {id}}),
 }
 
+const PV_TYPES = Object.values(TypeDocEnum).filter(t => t.startsWith('PV')) as TypeDocEnum[]
+const FICHE_TYPES = Object.values(TypeDocEnum).filter(t => !t.startsWith('PV')) as TypeDocEnum[]
+
 export interface InterventionFilters {
     idChantier?: string
     idIntervenant?: string
@@ -132,9 +135,15 @@ export const interventionsService = {
     },
 
     async create(b: CreateInterventionRequest) {
+        const isPv = (b.typeDoc as string).startsWith('PV')
+        const prefix = isPv ? 'PV' : 'FICHE'
+        const count = await prisma.documentation.count({
+            where: {typeDoc: {in: isPv ? PV_TYPES : FICHE_TYPES}},
+        })
+        const title = `${prefix}-${count + 1}`
         return prisma.$transaction(async (tx) => {
             const doc = await tx.documentation.create({
-                data: {idChantier: b.idChantier, typeDoc: b.typeDoc},
+                data: {idChantier: b.idChantier, typeDoc: b.typeDoc, title}
             })
             await docTypeCreators[b.typeDoc](tx, doc.id)
             const iv = await tx.intervention.create({
