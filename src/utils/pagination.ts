@@ -12,7 +12,7 @@ export function getPagination(req: Request): { page: number; size: number; offse
 }
 
 export function getSort(req: Request): { field: string; dir: 'asc' | 'desc' } {
-    const raw = String(req.query.sort ?? '').trim()
+    const raw = (typeof req.query.sort === 'string' ? req.query.sort : '').trim()
     const comma = raw.indexOf(',')
     const field = comma > 0 ? raw.slice(0, comma).trim() : raw
     const dir = raw.slice(comma + 1).trim() === 'desc' ? 'desc' : 'asc'

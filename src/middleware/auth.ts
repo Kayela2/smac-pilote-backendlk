@@ -27,10 +27,8 @@ declare global {
 function extractToken(req: Request): string | null {
     const header = req.headers.authorization
     if (header?.startsWith('Bearer ')) return header.slice(7)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const cookies = (req as any).cookies
-    if (cookies?.jwtToken) return cookies.jwtToken as string
-    return null
+    const cookies = req.cookies as Record<string, string> | undefined
+    return cookies?.jwtToken ?? null
 }
 
 /** Reject requests without a valid JWT (header or cookie). */

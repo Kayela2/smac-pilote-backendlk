@@ -96,7 +96,7 @@ function mapPv(doc: PvDoc) {
         ...mapPvBase(doc),
         versions: doc.documents.map(d => ({
             versionId:  d.id,
-            versionNum: d.version as number,
+            versionNum: d.version,
             savedAt:    d.dateGeneration.toISOString(),
             urlPdf:     d.urlPdf,
         })),

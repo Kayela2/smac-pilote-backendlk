@@ -12,8 +12,8 @@ export const interventionsController = {
         const {page, size, offset} = getPagination(req)
         const q = req.query
         const filters: InterventionFilters = {
-            idChantier: q.chantierId ? String(q.chantierId) : (q.idChantier ? String(q.idChantier) : undefined),
-            idIntervenant: q.intervenantId ? String(q.intervenantId) : (q.idIntervenant ? String(q.idIntervenant) : undefined),
+            idChantier: typeof q.chantierId === 'string' ? q.chantierId : (typeof q.idChantier === 'string' ? q.idChantier : undefined),
+            idIntervenant: typeof q.intervenantId === 'string' ? q.intervenantId : (typeof q.idIntervenant === 'string' ? q.idIntervenant : undefined),
         }
         res.json(ok(await interventionsService.findAll(filters, page, size, offset, getSort(req)), 'Interventions retrieved successfully'))
     }),

@@ -8,14 +8,14 @@ import type {CreateActionRequest, UpdateActionRequest} from '../types.js'
 function getFilters(req: Request): ActionFilters {
     const q = req.query
     return {
-        idChantier: q.idChantier ? String(q.idChantier) : undefined,
-        anomalyRef: q.anomalyRef ? String(q.anomalyRef) : undefined,
-        correctiveAction: q.correctiveAction ? String(q.correctiveAction) : undefined,
-        responsible: q.responsible ? String(q.responsible) : undefined,
-        status: q.status ? String(q.status) : undefined,
-        dueDate: q.dueDate ? new Date(String(q.dueDate)) : undefined,
-        dueDateAfter: q.dueDateAfter ? new Date(String(q.dueDateAfter)) : undefined,
-        dueDateBefore: q.dueDateBefore ? new Date(String(q.dueDateBefore)) : undefined,
+        idChantier: typeof q.idChantier === 'string' ? q.idChantier : undefined,
+        anomalyRef: typeof q.anomalyRef === 'string' ? q.anomalyRef : undefined,
+        correctiveAction: typeof q.correctiveAction === 'string' ? q.correctiveAction : undefined,
+        responsible: typeof q.responsible === 'string' ? q.responsible : undefined,
+        status: typeof q.status === 'string' ? q.status : undefined,
+        dueDate: typeof q.dueDate === 'string' ? new Date(q.dueDate) : undefined,
+        dueDateAfter: typeof q.dueDateAfter === 'string' ? new Date(q.dueDateAfter) : undefined,
+        dueDateBefore: typeof q.dueDateBefore === 'string' ? new Date(q.dueDateBefore) : undefined,
     }
 }
 

@@ -109,8 +109,6 @@ export const authService = {
         }
 
         if (!user) {
-            const agg = await prisma.user.aggregate({_max: {matricule: true}})
-            const nextMatricule = (agg._max.matricule ?? 10000) + 1
             user = await prisma.user.create({
                 data: {
                     matricule: employeeId,

@@ -591,6 +591,7 @@ model Participant {
 model Documentation {
   id                                      String                                   @id @default(dbgenerated("gen_random_uuid()")) @map("id_documentation") @db.Uuid
   idChantier                              String                                   @map("id_chantier") @db.Uuid
+  title                              String
   typeDoc                                 TypeDocEnum                              @map("type_doc")
   status                                  ProcessStatusEnum                        @default(PasCommence) @map("status")
   createdAt                               DateTime                                 @default(now()) @map("created_at") @db.Timestamp(6)

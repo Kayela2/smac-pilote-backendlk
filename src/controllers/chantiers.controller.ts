@@ -89,7 +89,7 @@ export const chantiersController = {
 
     setOrganisation: asyncHandler(async (req, res) => {
         const b = (req.body ?? {}) as Record<string, unknown>
-        const s = (k: string): string | null => typeof b[k] === 'string' ? (b[k] as string) : null
+        const s = (k: string): string | null => typeof b[k] === 'string' ? b[k] : null
         try {
             res.json(ok(await organisationService.set(req.params.chantierId, {
                 heureDepart: s('heureDepart'),
@@ -149,10 +149,10 @@ export const chantiersController = {
         const codeOTP = q.codeOTP !== undefined && q.codeOTP !== '' ? Number(q.codeOTP) : undefined
         const filters: ChantierFilters = {
             codeOTP: codeOTP !== undefined && Number.isFinite(codeOTP) ? codeOTP : undefined,
-            name: q.name ? String(q.name) : undefined,
-            team: q.team ? String(q.team) : undefined,
-            status: q.status ? String(q.status) : undefined,
-            client: q.client ? String(q.client) : undefined,
+            name: typeof q.name === 'string' ? q.name : undefined,
+            team: typeof q.team === 'string' ? q.team : undefined,
+            status: typeof q.status === 'string' ? q.status : undefined,
+            client: typeof q.client === 'string' ? q.client : undefined,
         }
         if (q.progressFrom !== undefined || q.progressTo !== undefined) {
             const from = Number(q.progressFrom ?? 0)

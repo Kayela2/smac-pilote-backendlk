@@ -2,6 +2,7 @@ import {prisma} from '../db/prisma.js'
 import {buildPage} from '../utils/pagination.js'
 import {ProcessStatus} from '../enums.js'
 import type {Prisma} from '../generated/prisma/client.js'
+import {ActionCriticite} from '../generated/prisma/enums.js'
 import {psToEnum, enumToPs} from '../utils/processStatus.js'
 import type {CreateActionRequest, File as StoredFile, MappedAction, UpdateActionRequest} from '../types.js'
 import {fileStorageService} from './file-storage.service.js'
@@ -124,7 +125,7 @@ export const actionsService = {
                 startDate: b.startDate ? new Date(b.startDate) : null,
                 dueDate: b.dueDate ? new Date(b.dueDate) : null,
                 status: psToEnum(b.status ?? ProcessStatus.INITIALIZED),
-                criticite: ((b.criticite?.toUpperCase()) as any) ?? 'MOYEN',
+                criticite: (b.criticite?.toUpperCase() ?? 'MOYEN') as ActionCriticite,
             },
         })
         return (await loadAction(action.id))!
@@ -141,7 +142,7 @@ export const actionsService = {
                 startDate: b.startDate ? new Date(b.startDate) : null,
                 dueDate: b.dueDate ? new Date(b.dueDate) : null,
                 status: psToEnum(b.status ?? ProcessStatus.INITIALIZED),
-                criticite: ((b.criticite?.toUpperCase()) as any) ?? 'MOYEN',
+                criticite: (b.criticite?.toUpperCase() ?? 'MOYEN') as ActionCriticite,
                 childIndex, childOf: {create: {actionId}},
             },
         })
@@ -157,11 +158,11 @@ export const actionsService = {
             await prisma.action.create({
                 data: {
                     idChantier: b.idChantier, anomalyRef: b.anomalyRef ?? null,
-                    correctiveAction: b.correctiveAction ?? null, idResponsible: b.responsible!,
+                    correctiveAction: b.correctiveAction ?? null, idResponsible: b.responsible,
                     startDate: b.startDate ? new Date(b.startDate) : null,
                     dueDate: b.dueDate ? new Date(b.dueDate) : null,
                     status: psToEnum(b.status ?? ProcessStatus.INITIALIZED),
-                    criticite: ((b.criticite?.toUpperCase()) as any) ?? 'MOYEN',
+                    criticite: (b.criticite?.toUpperCase() ?? 'MOYEN') as ActionCriticite,
                     childIndex: childIndex++, childOf: {create: {actionId}},
                 },
             })
@@ -184,7 +185,7 @@ export const actionsService = {
                     idResponsible: b.responsible ?? undefined,
                     dueDate: b.dueDate ? new Date(b.dueDate) : undefined,
                     status: b.status ? psToEnum(b.status) : undefined,
-                    criticite: b.criticite ? (b.criticite.toUpperCase() as any) : undefined,
+                    criticite: b.criticite ? b.criticite.toUpperCase() as ActionCriticite : undefined,
                     updatedAt: new Date(),
                 },
             })

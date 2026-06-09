@@ -10,11 +10,11 @@ function getFilters(req: Request): IntervenantFilters {
     const numSAP = q.numSAP !== undefined && q.numSAP !== '' ? Number(q.numSAP) : undefined
     return {
         numSAP: numSAP !== undefined && Number.isFinite(numSAP) ? numSAP : undefined,
-        mail: q.mail ? String(q.mail) : undefined,
-        phone: q.phone ? String(q.phone) : undefined,
-        fullName: q.fullName ? String(q.fullName) : undefined,
-        typePole: q.typePole ? String(q.typePole) : undefined,
-        address: q.address ? String(q.address) : undefined,
+        mail: typeof q.mail === 'string' ? q.mail : undefined,
+        phone: typeof q.phone === 'string' ? q.phone : undefined,
+        fullName: typeof q.fullName === 'string' ? q.fullName : undefined,
+        typePole: typeof q.typePole === 'string' ? q.typePole : undefined,
+        address: typeof q.address === 'string' ? q.address : undefined,
     }
 }
 

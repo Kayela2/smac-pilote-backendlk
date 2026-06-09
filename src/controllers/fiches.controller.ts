@@ -15,8 +15,8 @@ export const fichesController = {
     getAll: asyncHandler(async (req, res) => {
         const {page, size, offset} = getPagination(req)
         let type: TypeFiche | undefined
-        if (req.query.type !== undefined && req.query.type !== '') {
-            const resolved = resolveType(String(req.query.type))
+        if (typeof req.query.type === 'string' && req.query.type !== '') {
+            const resolved = resolveType(req.query.type)
             if (!resolved) { res.status(406).json(fail(`Invalid fiche type [${req.query.type}]`)); return }
             type = resolved
         }

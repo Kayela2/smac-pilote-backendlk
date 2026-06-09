@@ -14,7 +14,6 @@ import {
     IntervenantPole
 } from './enums.js'
 import {ChantierDocumentationStatus, TypeDocEnum, TypeFiche, TypeIntervenantEnum} from "./generated/prisma/enums.js";
-import {Intervenant} from "./generated/prisma/client.js";
 
 export type {MessageType}
 

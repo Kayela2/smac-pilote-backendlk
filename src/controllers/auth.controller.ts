@@ -37,12 +37,13 @@ export const authController = {
         res.json(ok(null, 'Logged out successful'))
     }) as RequestHandler,
 
-    checkTokenValidity: asyncHandler(async (req, res) => {
+    checkTokenValidity: asyncHandler((req, res) => {
         try {
             res.json(ok(authService.checkTokenValidity(req.params.token), 'Token Valid'))
         } catch {
             res.status(401).json(fail('Token invalid or expired'))
         }
+        return Promise.resolve()
     }),
 
     register: asyncHandler(async (req, res) => {

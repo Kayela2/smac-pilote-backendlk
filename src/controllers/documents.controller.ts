@@ -50,8 +50,8 @@ export const documentsController = {
         const {page, size, offset} = getPagination(req)
         const sort = getSort(req)
         let motif: Motif | undefined
-        if (req.query.motif !== undefined && req.query.motif !== '') {
-            const raw = String(req.query.motif).replace(/@/, '/') as Motif
+        if (typeof req.query.motif === 'string' && req.query.motif !== '') {
+            const raw = req.query.motif.replace(/@/, '/') as Motif
             if (!Object.values(Motif).includes(raw)) {
                 res.status(400).json(fail(`Invalid motif: ${raw}`))
                 return
@@ -60,9 +60,8 @@ export const documentsController = {
         }
         // folderId filter: omitted → all; "root"/"null" → unfiled (folderId IS NULL); <uuid> → that folder
         let folderId: string | null | undefined
-        if (req.query.folderId !== undefined) {
-            const raw = String(req.query.folderId)
-            folderId = (raw === '' || raw === 'root' || raw === 'null') ? null : raw
+        if (typeof req.query.folderId === 'string') {
+            folderId = (req.query.folderId === '' || req.query.folderId === 'root' || req.query.folderId === 'null') ? null : req.query.folderId
         }
         res.json(ok(
             await documentsService.findByChantier(req.params.chantierId, page, size, offset, sort, motif, folderId),

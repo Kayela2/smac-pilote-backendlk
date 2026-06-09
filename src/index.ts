@@ -12,6 +12,7 @@ import {fileURLToPath} from 'url'
 import {config} from './config.js'
 import {prisma} from './db/prisma.js'
 import {fail, ok} from './utils/response.js'
+import {asyncHandler} from './utils/asyncHandler.js'
 import {authRouter} from './routes/auth.routes.js'
 import {usersRouter} from './routes/users.routes.js'
 import {chantiersRouter} from './routes/chantiers.routes.js'
@@ -39,14 +40,14 @@ app.use(cookieParser())
 app.use('/uploads', express.static(config.uploadDir))
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
-app.get('/api/v1/health', async (_req: Request, res: Response) => {
+app.get('/api/v1/health', asyncHandler(async (_req, res) => {
     try {
         await prisma.$queryRaw`SELECT 1`
         res.json(ok('ok', 'API healthy'))
     } catch {
         res.status(503).json(fail('Database unavailable'))
     }
-})
+}))
 
 const V1 = '/api/v1'
 app.use(`${V1}/auth`, authRouter)
@@ -105,8 +106,10 @@ async function bootstrapAdmin(): Promise<void> {
     }
 }
 
-app.listen(config.port, async () => {
-    await fileStorageService.init()
-    await bootstrapAdmin()
-    console.log(`SMAC-PILOTE API listening on http://localhost:${config.port}`)
+app.listen(config.port, () => {
+    void (async () => {
+        await fileStorageService.init()
+        await bootstrapAdmin()
+        console.log(`SMAC-PILOTE API listening on http://localhost:${config.port}`)
+    })()
 })
