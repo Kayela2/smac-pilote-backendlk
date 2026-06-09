@@ -51,6 +51,7 @@ function mapPvBase(doc: PvDoc) {
     return {
         id: doc.id,
         idChantier: doc.idChantier,
+        status: doc.status,
         zoneBatiment: pv.zoneBatiment,
         dateInspection: pv.dateInspection,
         responsableChantier: pv.responsableChantier,
@@ -132,6 +133,18 @@ export const pvEtancheiteService = {
             const doc = await tx.documentation.create({
                 data: {idChantier: b.idChantier, typeDoc: TypeDocEnum.PVReceptionEtancheite, status: 'Traite', title},
             })
+
+            if (b.idIntervenant) {
+                await tx.intervention.create({
+                    data: {
+                        idIntervenant:   b.idIntervenant,
+                        idDocumentation: doc.id,
+                        idChantier:      b.idChantier,
+                        dateAssignation: new Date(),
+                        mode:            'MOBILE',
+                    },
+                })
+            }
 
             await tx.pvReceptionEtancheite.create({
                 data: {

@@ -180,6 +180,7 @@ export type PvConformite = 'conforme' | 'non-conforme' | 'SO'
 
 export type CreatePvEtancheiteRequest = {
     idChantier: string
+    idIntervenant?: string
     zoneBatiment: string
     dateInspection: string
     responsableChantier: string
