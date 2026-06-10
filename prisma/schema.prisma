@@ -280,6 +280,8 @@ enum ProcessStatusEnum {
   Annule      @map("Annulé")
   Accepte     @map("Accepté")
   Refuse      @map("Refusé")
+  Bloque      @map("Bloqué")
+  AFaire      @map("À faire")
 
   @@map("process_status_enum")
 }
