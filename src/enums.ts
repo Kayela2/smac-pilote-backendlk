@@ -23,6 +23,8 @@ export enum ProcessStatus {
     CANCELED = "Annulé",
     ACCEPTED = "Accepté",
     REFUSED = "Refusé",
+    BLOQUE = "Bloqué",
+    A_FAIRE = "À faire",
 }
 
 export enum ImageExtension {

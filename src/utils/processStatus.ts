@@ -1,6 +1,5 @@
 import {ProcessStatusEnum} from '../generated/prisma/enums.js'
 import {ProcessStatus} from '../enums.js'
-
 const PS_TO_ENUM: Record<string, ProcessStatusEnum> = {
     [ProcessStatus.PLANNED]:     ProcessStatusEnum.Planifie,
     [ProcessStatus.INITIALIZED]: ProcessStatusEnum.Initialise,
@@ -12,6 +11,8 @@ const PS_TO_ENUM: Record<string, ProcessStatusEnum> = {
     [ProcessStatus.CANCELED]:    ProcessStatusEnum.Annule,
     [ProcessStatus.ACCEPTED]:    ProcessStatusEnum.Accepte,
     [ProcessStatus.REFUSED]:     ProcessStatusEnum.Refuse,
+    [ProcessStatus.BLOQUE]:      ProcessStatusEnum.Bloque,
+    [ProcessStatus.A_FAIRE]:     ProcessStatusEnum.AFaire,
 }
 
 const ENUM_TO_PS: Record<ProcessStatusEnum, string> = {
@@ -25,7 +26,8 @@ const ENUM_TO_PS: Record<ProcessStatusEnum, string> = {
     [ProcessStatusEnum.Annule]:      ProcessStatus.CANCELED,
     [ProcessStatusEnum.Accepte]:     ProcessStatus.ACCEPTED,
     [ProcessStatusEnum.Refuse]:      ProcessStatus.REFUSED,
+    [ProcessStatusEnum.Bloque]:      ProcessStatus.BLOQUE,
+    [ProcessStatusEnum.AFaire]:      ProcessStatus.A_FAIRE,
 }
-
 export const psToEnum = (s: string): ProcessStatusEnum => PS_TO_ENUM[s] ?? ProcessStatusEnum.Initialise
 export const enumToPs = (e: ProcessStatusEnum): string => ENUM_TO_PS[e] ?? ProcessStatus.INITIALIZED
