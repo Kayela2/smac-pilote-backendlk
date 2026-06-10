@@ -37,7 +37,9 @@ export const ProcessStatusEnum = {
   Traite: 'Traite',
   Annule: 'Annule',
   Accepte: 'Accepte',
-  Refuse: 'Refuse'
+  Refuse: 'Refuse',
+  Bloque: 'Bloque',
+  AFaire: 'AFaire'
 } as const
 
 export type ProcessStatusEnum = (typeof ProcessStatusEnum)[keyof typeof ProcessStatusEnum]
